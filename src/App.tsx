@@ -1,10 +1,11 @@
-import Hero from "./components/hero/Hero";
+import Features from "./pages/Features";
+import Hero from "./pages/Hero";
 
 function App() {
   return (
     <>
       <Hero />
-      <p>Lorem ium voluptates eius quia doloribus fuga modi quidem labore.</p>
+      <Features />
     </>
   );
 }
