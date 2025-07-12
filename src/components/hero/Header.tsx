@@ -12,7 +12,7 @@ function Header() {
             <span className="text-4xl font-bold">Paylio</span>
           </div>
           <nav>
-            <ul className="flex gap-14 text-base font-semibold items-center">
+            <ul className="hidden md:flex gap-14 text-base font-semibold items-center">
               {navLinks.map((link) => {
                 return (
                   <li className="">
@@ -24,7 +24,7 @@ function Header() {
           </nav>
         </div>
 
-        <div className="flex justify-end items-center gap-3 px-2">
+        <div className="flex justify-end items-center md:gap-3 md:px-2">
           <div>
             <a
               className="border-1 border-[#b9bfc7] rounded-xl inline-flex items-center justify-center px-6 py-2 text-[#0B3E4E] text-base font-semibold"
@@ -35,7 +35,7 @@ function Header() {
           </div>
           <div>
             <a
-              className="border-1 border-[#2A8E9E] rounded-xl inline-flex items-center justify-center px-6 py-2 bg-[#2A8E9E] text-white text-base font-medium"
+              className="hidden md:block border-1 border-[#2A8E9E] rounded-xl items-center justify-center px-6 py-2 bg-[#2A8E9E] text-white text-base font-medium"
               href=""
             >
               Sign Up

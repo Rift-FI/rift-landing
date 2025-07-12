@@ -5,7 +5,9 @@ function App() {
   return (
     <>
       <Hero />
-      <Features />
+      <div className="bg-[#FEFEFE] py-20">
+        <Features />
+      </div>
     </>
   );
 }
