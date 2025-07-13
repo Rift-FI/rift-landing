@@ -28,7 +28,7 @@ function Hero() {
               </div>
               <div className="border-1 rounded-2xl border-[#b9bfc7] bg-white inline-block relative w-full md:w-[82%] mb-4 p-0.5">
                 <input
-                  className="text-base outline-hidden px-4 md:px-8 py-3 w-[75%] font-semibold"
+                  className="text-sm md:text-base outline-hidden px-4 md:px-8 py-3 w-[75%] font-semibold"
                   type="text"
                   placeholder="Your business email"
                   // size={10}

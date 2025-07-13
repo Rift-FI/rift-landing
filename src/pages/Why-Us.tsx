@@ -50,8 +50,8 @@ function WhyUs() {
           <div className="text-xl md:text-3xl font-semibold text-black mb-4 lg:pt-12">
             No asset volatility
             <p className="text-[#6e7a93] text-sm md:text-base font-medium mt-2">
-              Create a financial experience and automate repeat purchases by
-              scheduling recurring payments.
+              Generate returns on your cash reserves without making any
+              investments.
             </p>
           </div>
           <div className="bg-white pt-4 px-4 lg:px-8 lg:pt-8 rounded-t-2xl md:col-span-2">
