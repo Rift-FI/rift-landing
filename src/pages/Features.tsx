@@ -29,7 +29,7 @@ function Features() {
           <div>
             <img className="size-8" src={Transfers} width={50} />
             <h3 className="text-xl md:text-2xl font-semibold text-black mt-6 mb-2 md:mb-4">
-              Free transfers
+              Free Transfers
             </h3>
             <p className="text-[#6e7a93] text-sm md:text-base font-medium">
               Create a financial experience and automate repeat purchases by
@@ -38,7 +38,7 @@ function Features() {
           </div>
           <div>
             <img className="size-8" src={Accounts} width={50} />
-            <h3 className="text-xl md:text-2xl font-semibold text-black mt-6 mb-4">
+            <h3 className="text-xl md:text-2xl font-semibold text-black mt-6 mb-2 md:mb-4">
               Multiple Accounts
             </h3>
             <p className="text-[#6e7a93] text-sm md:text-base font-medium">
@@ -48,7 +48,7 @@ function Features() {
           </div>
           <div>
             <img className="size-8" src={Shield} width={50} />
-            <h3 className="text-xl md:text-2xl font-semibold text-black mt-6 mb-4">
+            <h3 className="text-xl md:text-2xl font-semibold text-black mt-6 mb-2 md:mb-4">
               Unmatched Security
             </h3>
             <p className="text-[#6e7a93] text-sm md:text-base font-medium">
