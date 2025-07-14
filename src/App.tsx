@@ -2,6 +2,8 @@ import WhyUs from "./pages/Why-Us";
 import Features from "./pages/Features";
 import Hero from "./pages/Hero";
 import Steps from "./pages/Steps";
+import Stats from "./pages/Stats";
+import CTA from "./pages/CTA";
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
         <Features />
         <WhyUs />
         <Steps />
+        <Stats />
+        <CTA />
       </div>
     </>
   );

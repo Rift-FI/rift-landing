@@ -2,7 +2,7 @@ function Steps() {
   return (
     <section className="bg-[#213547] mt-20 py-24">
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
           <div className="col-span-2">
             <p className="text-[#2A8E9E] text-sm font-medium mb-3">STEPS</p>
             <h2 className="text-3xl md:text-5xl/tight font-medium text-white">

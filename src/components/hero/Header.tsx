@@ -35,7 +35,7 @@ function Header() {
           </div>
           <div>
             <a
-              className="hidden md:block border-1 border-[#2A8E9E] rounded-xl items-center justify-center px-6 py-2 bg-[#2A8E9E] text-white text-base font-medium"
+              className="hidden md:block border-1 border-[#2A8E9E] rounded-xl items-center justify-center px-6 py-2 bg-[#2A8E9E] text-white text-base"
               href=""
             >
               Sign Up
