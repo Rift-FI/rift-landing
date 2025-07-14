@@ -1,12 +1,12 @@
-import Logo from "../../assets/logo.svg";
+import Logo from "../assets/logo.svg";
 
 const navLinks = ["Product", "Customers", "Pricing", "Learn"];
 
 function Header() {
   return (
     <>
-      <header className="container grid grid-cols-2 bg-[#E9F3F4]">
-        <div className="flex justify-between items-center">
+      <header className="container grid grid-cols-3 xl:grid-cols-2 bg-[#E9F3F4]">
+        <div className="flex justify-between items-center not-xl:col-span-2">
           <div className="flex gap-2 items-center cursor-pointer">
             <img src={Logo} alt="logo" height={35} width={35} />
             <span className="text-4xl font-bold">Paylio</span>

@@ -1,6 +1,6 @@
 import DepositPhotos from "../assets/depositphoto.svg";
 import Transfer from "../assets/transfer.svg";
-import Chart from "../components/why-us/AreaChart";
+import Chart from "../components/AreaChart";
 
 function WhyUs() {
   return (

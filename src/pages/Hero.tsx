@@ -1,4 +1,4 @@
-import Header from "../components/hero/Header";
+import Header from "../components/Header";
 import Intuit from "../assets/intuit.svg";
 import Coinbase from "../assets/coinbase.svg";
 import Lyft from "../assets/lyft.svg";
@@ -48,7 +48,7 @@ function Hero() {
             </div>
 
             <div className="size-full flex items-center justify-center cursor-default relative not-lg:mt-14 not-sm:hidden">
-              <div className="w-[54%] lg:w-[68%] p-6 md:p-8 bg-white rounded-2xl">
+              <div className="w-[54%] lg:w-[75%] xl:w-[68%] p-6 md:p-8 bg-white rounded-2xl">
                 <div className="flex items-center gap-x-3 mb-6">
                   <div className="bg-[#2A8E9E] rounded-xl p-2.5">
                     <img
@@ -151,7 +151,7 @@ function Hero() {
                   Pay
                 </div>
               </div>
-              <div className="w-[30%] lg:w-[35%] rounded-2xl overflow-hidden text-white absolute bottom-1/2 left-7/12">
+              <div className="w-[30%] lg:w-[40%] xl:w-[35%] rounded-2xl overflow-hidden text-white absolute bottom-1/2 left-7/12">
                 <div className="h-50 bg-[#2A8E9E] p-6">
                   <p className="text-sm font-light">Credit Card</p>
                   <p className="text-xl font-medium">234 **** ****</p>

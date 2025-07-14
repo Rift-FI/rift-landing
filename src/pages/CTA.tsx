@@ -2,7 +2,7 @@ function CTA() {
   return (
     <section className="container">
       <div className=" bg-[#213547] rounded-2xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 p-6 md:p-10 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 p-6 md:p-10 gap-8">
           <div className="space-y-4">
             <p className="text-[#2A8E9E] text-sm font-medium">TRY IT NOW</p>
             <h2 className="text-3xl md:text-5xl/tight font-medium text-white">

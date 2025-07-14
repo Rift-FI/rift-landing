@@ -14,22 +14,22 @@ function Stats() {
           have made big improvements with us.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 mt-12 md:mt-16 not-sm:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 mt-12 md:mt-16 not-sm:gap-8 justify-self-center">
         <div className="text-center md:justify-self-end">
           <p className="text-7xl font-semibold">24%</p>
-          <p className="text-[#213547] text-sm md:text-base font-medium mt-2">
+          <p className="text-[#213547] text-sm md:text-base font-semibold mt-2">
             Business revenue
           </p>
         </div>
         <div className="text-center">
           <p className="text-7xl font-semibold">180K</p>
-          <p className="text-[#213547] text-sm md:text-base font-medium mt-2">
+          <p className="text-[#213547] text-sm md:text-base font-semibold mt-2">
             In annual revenue
           </p>
         </div>
         <div className="text-center md:justify-self-start">
           <p className="text-7xl font-semibold">10+</p>
-          <p className="text-[#213547] text-sm md:text-base font-medium mt-2">
+          <p className="text-[#213547] text-sm md:text-base font-semibold mt-2">
             Months of runway
           </p>
         </div>
