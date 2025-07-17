@@ -25,6 +25,7 @@ function WhyUs() {
                 alt="DepositPhotos"
                 height={25}
                 width={25}
+                loading="lazy"
               />
             </div>
             <img src={Transfer} height={25} width={100} />

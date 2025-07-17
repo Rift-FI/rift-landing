@@ -5,6 +5,7 @@ import Lyft from "../assets/lyft.svg";
 import DepositPhotos from "../assets/depositphoto.svg";
 import VISA from "../assets/visa.svg";
 import NFC from "../assets/nfc.svg";
+import { ArrowUpRight } from "lucide-react";
 
 function Hero() {
   return (
@@ -12,7 +13,7 @@ function Hero() {
       <div className="bg-[#E9F3F4] pt-8">
         <Header />
 
-        <section className="container cursor-default pt-24 pb-16">
+        <section className="container cursor-default mt-14 md:pt-16 pb-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 md:px-6">
             <div>
               <div className="text-5xl md:text-6xl xl:text-7xl">
@@ -34,16 +35,17 @@ function Hero() {
                   // size={10}
                 />
                 <button
-                  className="absolute right-0.5 top-1/2 -translate-y-1/2 bg-[#2A8E9E] px-5 py-3 rounded-2xl text-white text-base cursor-pointer"
+                  className="absolute right-0.5 top-1/2 -translate-y-1/2 bg-[#2A8E9E] px-5 py-3 rounded-2xl text-white text-base cursor-pointer flex gap-2"
                   type="button"
                 >
                   Get Started
+                  <ArrowUpRight />
                 </button>
               </div>
               <div className="flex items-center gap-x-16 size-16 md:size-28">
-                <img src={Intuit} alt="Klarna" width={120} />
-                <img src={Coinbase} alt="coinbase" width={120} />
-                <img src={Lyft} alt="lyft" width={60} />
+                <img src={Intuit} alt="Klarna" width={120} loading="lazy" />
+                <img src={Coinbase} alt="coinbase" width={120} loading="lazy" />
+                <img src={Lyft} alt="lyft" width={60} loading="lazy" />
               </div>
             </div>
 
@@ -56,6 +58,7 @@ function Hero() {
                       alt="DepositPhotos"
                       height={25}
                       width={25}
+                      loading="lazy"
                     />
                   </div>
                   <div>
@@ -157,8 +160,14 @@ function Hero() {
                   <p className="text-xl font-medium">234 **** ****</p>
                 </div>
                 <div className="flex justify-between items-center py-1 px-6 bg-[#213547]">
-                  <img className="shrink" src={VISA} alt="VISA" width={60} />
-                  <img src={NFC} alt="NFC" width={30} />
+                  <img
+                    className="shrink"
+                    src={VISA}
+                    alt="VISA"
+                    width={60}
+                    loading="lazy"
+                  />
+                  <img src={NFC} alt="NFC" width={30} loading="lazy" />
                 </div>
               </div>
             </div>

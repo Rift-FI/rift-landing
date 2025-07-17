@@ -27,7 +27,7 @@ function Features() {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 md:gap-16 mt-12 md:mt-14 px-6">
           <div>
-            <img className="size-8" src={Transfers} width={50} />
+            <img className="size-8" src={Transfers} width={50} loading="lazy" />
             <h3 className="text-xl md:text-2xl font-semibold text-black mt-6 mb-2 md:mb-4">
               Free Transfers
             </h3>
@@ -37,7 +37,7 @@ function Features() {
             </p>
           </div>
           <div>
-            <img className="size-8" src={Accounts} width={50} />
+            <img className="size-8" src={Accounts} width={50} loading="lazy" />
             <h3 className="text-xl md:text-2xl font-semibold text-black mt-6 mb-2 md:mb-4">
               Multiple Accounts
             </h3>
@@ -47,7 +47,7 @@ function Features() {
             </p>
           </div>
           <div>
-            <img className="size-8" src={Shield} width={50} />
+            <img className="size-8" src={Shield} width={50} loading="lazy" />
             <h3 className="text-xl md:text-2xl font-semibold text-black mt-6 mb-2 md:mb-4">
               Unmatched Security
             </h3>

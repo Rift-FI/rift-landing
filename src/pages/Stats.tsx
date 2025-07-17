@@ -1,3 +1,5 @@
+import { ArrowUpRight } from "lucide-react";
+
 function Stats() {
   return (
     <section className="container mt-32 mb-32">
@@ -14,7 +16,7 @@ function Stats() {
           have made big improvements with us.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 mt-12 md:mt-16 not-sm:gap-8 justify-self-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 mt-12 md:mt-16 not-sm:gap-8">
         <div className="text-center md:justify-self-end">
           <p className="text-7xl font-semibold">24%</p>
           <p className="text-[#213547] text-sm md:text-base font-semibold mt-2">
@@ -41,20 +43,24 @@ function Stats() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
           <div className="bg-[#E9F3F4] rounded-2xl p-6 md:p-10 space-y-20">
             <h2 className="text-3xl md:text-5xl/tight font-medium">Plus</h2>
-            <div>
+            <div className="flex justify-between">
               <span className="text-xl md:text-2xl font-medium">
                 £2.99/month
               </span>
-              <span></span>
+              <span className="cursor-pointer">
+                <ArrowUpRight />
+              </span>
             </div>
           </div>
           <div className="bg-[#2a8e9e] rounded-2xl p-6 md:p-10 text-white space-y-20">
             <h2 className="text-3xl md:text-5xl/tight font-medium">Premium</h2>
-            <div>
+            <div className="flex justify-between">
               <span className="text-xl md:text-2xl font-medium">
                 £6.99/month
               </span>
-              <span></span>
+              <span className="cursor-pointer">
+                <ArrowUpRight />
+              </span>
             </div>
           </div>
         </div>

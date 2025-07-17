@@ -5,19 +5,27 @@ import Steps from "./pages/Steps";
 import Stats from "./pages/Stats";
 import CTA from "./pages/CTA";
 import Footer from "./components/Footer";
+import { motion } from "framer-motion";
 
 function App() {
   return (
     <>
-      <Hero />
-      <div className="bg-[#FEFEFE] pt-20 pb-4">
-        <Features />
-        <WhyUs />
-        <Steps />
-        <Stats />
-        <CTA />
-        <Footer />
-      </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1.3 }}
+      >
+        <Hero />
+        <div className="bg-[#FEFEFE] pt-20 pb-4">
+          <Features />
+          <WhyUs />
+          <Steps />
+          <Stats />
+          <CTA />
+          <Footer />
+        </div>
+      </motion.div>
     </>
   );
 }

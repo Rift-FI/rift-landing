@@ -36,7 +36,7 @@ function Footer() {
             </ul>
           </div>
         </div>
-        <div className="space-y-4 justify-self-end">
+        <div className="space-y-4 md:justify-self-end">
           <p className="text-xs md:text-base font-medium">Follow us on</p>
           <div className="flex items-center gap-1 cursor-pointer">
             <svg
