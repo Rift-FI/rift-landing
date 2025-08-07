@@ -1,9 +1,5 @@
 import Header from "../components/Header";
-import Intuit from "../assets/intuit.svg";
-import Coinbase from "../assets/coinbase.svg";
-import Lyft from "../assets/lyft.svg";
 import DepositPhotos from "../assets/depositphoto.svg";
-import VISA from "../assets/visa.svg";
 import NFC from "../assets/nfc.svg";
 import { ArrowUpRight } from "lucide-react";
 
@@ -17,35 +13,31 @@ function Hero() {
           <div className="grid grid-cols-1 lg:grid-cols-2 md:px-6">
             <div>
               <div className="text-5xl md:text-6xl xl:text-7xl">
-                <p className="font-bold mb-3">Get paid early</p>
-                <p className="font-medium mb-3">save automatically</p>
-                <p className="font-medium">all your pay.</p>
+                <p className="font-bold mb-3">Accept crypto</p>
+                <p className="font-medium mb-3">payments instantly</p>
+                <p className="font-medium">across Africa.</p>
               </div>
               <div className="text-[#6e7a93] text-lg/tight md:text-xl font-normal my-8">
                 <p>
-                  Supports small businesses with simple invoicing, powerful
-                  integrations, and cash flow management tools.
+                  Empowering African businesses to receive USDC payments with instant 
+                  off-ramping to mobile money and bank accounts. Save on fees, attract global customers.
                 </p>
               </div>
-              <div className="border-1 rounded-2xl border-[#b9bfc7] bg-white inline-block relative w-full md:w-[82%] mb-4 p-0.5">
-                <input
-                  className="text-sm md:text-base outline-hidden px-4 md:px-8 py-3 w-[75%] font-semibold"
-                  type="text"
-                  placeholder="Your business email"
-                  // size={10}
-                />
-                <button
-                  className="absolute right-0.5 top-1/2 -translate-y-1/2 bg-[#2A8E9E] px-5 py-3 rounded-2xl text-white text-base cursor-pointer flex gap-2"
-                  type="button"
+              <div className="mb-4">
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLScXU4NMfJmsEE0qsJ5z5ALslnUZi-9OhfrAGdTNhC-fxk4fJQ/viewform?usp=header"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#2A8E9E] px-8 py-4 rounded-2xl text-white text-base cursor-pointer flex gap-2 items-center inline-flex"
                 >
-                  Get Started
+                  Talk to Us
                   <ArrowUpRight />
-                </button>
+                </a>
               </div>
-              <div className="flex items-center gap-x-16 size-16 md:size-28">
-                <img src={Intuit} alt="Klarna" width={120} loading="lazy" />
-                <img src={Coinbase} alt="coinbase" width={120} loading="lazy" />
-                <img src={Lyft} alt="lyft" width={60} loading="lazy" />
+              <div className="flex items-center gap-x-16 text-sm md:text-base font-semibold text-[#6e7a93]">
+                <span>Malkia Fashion</span>
+                <span>Baobab Electronics</span>
+                <span>Umoja Crafts</span>
               </div>
             </div>
 
@@ -62,19 +54,19 @@ function Hero() {
                     />
                   </div>
                   <div>
-                    <p className="text-base font-bold">Dipa Inhouse</p>
+                    <p className="text-base font-bold">Kigali Coffee Co.</p>
                     <p className="text-sm text-[#6e7a93] font-medium">
-                      dipainhouse@gmail.com
+                      payments@kigalicoffee.rw
                     </p>
                   </div>
                 </div>
                 <div className="border-1 border-[#b9bfc7] p-5 rounded-2xl mb-2">
                   <p className="text-[#6e7a93] text-xs font-medium mb-1">
-                    Invoice
+                    Payment Request
                   </p>
-                  <p className="font-bold text-4xl mb-1">$1,876,580</p>
+                  <p className="font-bold text-4xl mb-1">750 USDC</p>
                   <p className="text-[#6e7a93] text-xs font-medium">
-                    April 21, 2024
+                    December 15, 2024
                   </p>
                 </div>
                 <div>
@@ -98,7 +90,7 @@ function Hero() {
                       </svg>
 
                       <div className="w-full flex justify-between items-center text-sm font-medium">
-                        <span>Credit Card</span>
+                        <span>USDC Wallet</span>
                         <label className="relative w-4 h-4 flex items-center justify-center border-2 border-[#2A8E9E] rounded-full">
                           <input
                             type="radio"
@@ -134,7 +126,7 @@ function Hero() {
                       </svg>
 
                       <div className="w-full flex justify-between items-center text-sm font-medium">
-                        <span>Bank Account</span>
+                        <span>Mobile Money</span>
                         <label className="relative w-4 h-4 flex items-center justify-center border-2 border-[#b9bfc7] rounded-full">
                           <input
                             type="radio"
@@ -156,17 +148,11 @@ function Hero() {
               </div>
               <div className="w-[30%] lg:w-[40%] xl:w-[35%] rounded-2xl overflow-hidden text-white absolute bottom-1/2 left-7/12">
                 <div className="h-50 bg-[#2A8E9E] p-6">
-                  <p className="text-sm font-light">Credit Card</p>
-                  <p className="text-xl font-medium">234 **** ****</p>
+                  <p className="text-sm font-light">USDC Wallet</p>
+                  <p className="text-xl font-medium">0xA1B2 **** ****</p>
                 </div>
                 <div className="flex justify-between items-center py-1 px-6 bg-[#213547]">
-                  <img
-                    className="shrink"
-                    src={VISA}
-                    alt="VISA"
-                    width={60}
-                    loading="lazy"
-                  />
+                  <span className="text-white text-sm font-medium">USDC</span>
                   <img src={NFC} alt="NFC" width={30} loading="lazy" />
                 </div>
               </div>

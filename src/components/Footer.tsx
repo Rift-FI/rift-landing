@@ -1,21 +1,18 @@
-import Logo from "../assets/logo.svg";
-
 function Footer() {
   return (
     <footer className="container mt-16">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 space-y-8">
         <div className="flex gap-1 font-bold text-2xl items-start">
-          <img src={Logo} alt="logo" height={25} width={25} />
-          Paylio
+          Rift
         </div>
         <div className="grid grid-cols-3 md:col-span-2 lg:col-span-2">
           <div className="text-[#213547] text-sm md:text-base font-semibold space-y-4">
             <p>Solutions</p>
             <ul className="text-[#6e7a93] text-xs md:text-base font-normal space-y-1 cursor-pointer">
-              <li>Small Businesses</li>
-              <li>Freelancers</li>
-              <li>Customers</li>
-              <li>Taxes</li>
+              <li>Crypto Payments</li>
+              <li>POS Integration</li>
+              <li>Off-ramping</li>
+              <li>SDK</li>
             </ul>
           </div>
           <div className="text-[#213547] text-sm md:text-base font-semibold space-y-4">
@@ -115,7 +112,7 @@ function Footer() {
       </div>
       <hr className="border-t-0.5 border-[#6e7a93] mt-8" />
       <p className="text-center text-xs font-normal mt-4">
-        &copy;Paylio {new Date().getFullYear()}. All Rights Reserved
+        &copy;Rift Finance {new Date().getFullYear()}. All Rights Reserved
       </p>
       <div></div>
     </footer>

@@ -9,51 +9,51 @@ function Features() {
         <div className="flex flex-col lg:flex-row md:justify-between lg:items-center">
           <div>
             <p className="text-[#2A8E9E] text-sm font-medium mb-3">
-              FUTURE PAYMENT
+              CRYPTO PAYMENT PLATFORM
             </p>
             <h2 className="text-3xl md:text-5xl/tight font-medium text-black">
-              Experience that grows
+              Solutions built for
               <br />
-              with your scale.
+              African businesses.
             </h2>
           </div>
           <div className="text-sm not-sm:mt-4 md:text-lg font-normal text-[#6e7a93]">
-            Design a financial operating system that works for
+            Accept USDC payments, reduce transaction costs,
             <br />
-            your business and streamlined cash flow
+            and expand your customer base with instant
             <br />
-            management
+            crypto-to-fiat conversion
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 md:gap-16 mt-12 md:mt-14 px-6">
           <div>
             <img className="size-8" src={Transfers} width={50} loading="lazy" />
             <h3 className="text-xl md:text-2xl font-semibold text-black mt-6 mb-2 md:mb-4">
-              Free Transfers
+              Low-Cost Transactions
             </h3>
             <p className="text-[#6e7a93] text-sm md:text-base font-medium">
-              Create a financial experience and automate repeat purchases by
-              scheduling recurring payments.
+              Save on payment processing fees with just 1% flat fee compared to 
+              traditional 3% PSP charges. Instant USDC settlements.
             </p>
           </div>
           <div>
             <img className="size-8" src={Accounts} width={50} loading="lazy" />
             <h3 className="text-xl md:text-2xl font-semibold text-black mt-6 mb-2 md:mb-4">
-              Multiple Accounts
+              Instant Off-ramping
             </h3>
             <p className="text-[#6e7a93] text-sm md:text-base font-medium">
-              Run your operations with cash from your account and generate yield
-              on funds stored in the account.
+              Convert USDC to local currency instantly with direct transfers to 
+              mobile money and bank accounts across Kenya and Africa.
             </p>
           </div>
           <div>
             <img className="size-8" src={Shield} width={50} loading="lazy" />
             <h3 className="text-xl md:text-2xl font-semibold text-black mt-6 mb-2 md:mb-4">
-              Unmatched Security
+              Developer SDK
             </h3>
             <p className="text-[#6e7a93] text-sm md:text-base font-medium">
-              Securely manage your finances with organization-wide MFA,
-              card-locking and account-level controls.
+              Integrate crypto payments into any application with our comprehensive 
+              SDK. Gas fees abstracted, wallet creation simplified.
             </p>
           </div>
         </div>
