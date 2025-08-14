@@ -18,6 +18,7 @@ function Header() {
     <>
       <header className="container grid grid-cols-2 lg:grid-cols-4 bg-[#E9F3F4]">
         <div className="flex gap-2 items-center cursor-pointer">
+          <img src="/logo.png" alt="Rift Finance Logo" height={70} width={70} loading="lazy" />
           <span className="text-3xl md:text-4xl font-bold">Rift</span>
         </div>
 
