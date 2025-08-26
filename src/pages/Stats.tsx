@@ -6,33 +6,33 @@ function Stats() {
       <div className="flex flex-col items-center">
         <p className="text-[#2A8E9E] text-sm font-medium mb-3">OUR MISSION</p>
         <h2 className="text-3xl md:text-5xl/tight font-medium text-black text-center">
-          Transforming African
+          Complete payment infrastructure
           <br />
-          business payments
+          for growing businesses
         </h2>
         <p className="text-[#6e7a93] text-sm md:text-base font-medium mt-4 text-center">
-          From Kenya to across Africa, businesses are saving costs
+          From invoice creation to multi-channel payments,
           <br />
-          and expanding globally with crypto payments.
+          we're building the next generation of business payments.
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 mt-12 md:mt-16 not-sm:gap-8">
         <div className="text-center md:justify-self-end">
-          <p className="text-7xl font-semibold">67%</p>
+          <p className="text-7xl font-semibold">1000+</p>
           <p className="text-[#213547] text-sm md:text-base font-semibold mt-2">
-            Cost savings achieved
+            Businesses served
           </p>
         </div>
         <div className="text-center">
-          <p className="text-7xl font-semibold">500+</p>
+          <p className="text-7xl font-semibold">5+</p>
           <p className="text-[#213547] text-sm md:text-base font-semibold mt-2">
-            African businesses
+            Payment methods
           </p>
         </div>
         <div className="text-center md:justify-self-start">
-          <p className="text-7xl font-semibold">1%</p>
+          <p className="text-7xl font-semibold">24/7</p>
           <p className="text-[#213547] text-sm md:text-base font-semibold mt-2">
-            Flat transaction fee
+            Payment processing
           </p>
         </div>
       </div>

@@ -6,16 +6,16 @@ function CTA() {
           <div className="space-y-4">
             <p className="text-[#2A8E9E] text-sm font-medium">TRY IT NOW</p>
             <h2 className="text-3xl md:text-5xl/tight font-medium text-white">
-              Ready to transform your business with crypto payments?
+              Ready for complete payment infrastructure?
             </h2>
             <p className="text-[#6e7a93] text-sm md:text-base font-medium mt-4">
-              Join hundreds of African businesses saving costs and expanding globally 
-              with Rift Finance's crypto payment platform.
+              Join 1000+ businesses using Rift for invoices, payments, KYB approval, 
+              and multi-channel money collection. Built for next-level businesses.
             </p>
           </div>
           <div className="flex gap-4 items-end">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLScXU4NMfJmsEE0qsJ5z5ALslnUZi-9OhfrAGdTNhC-fxk4fJQ/viewform?usp=header" target="_blank" rel="noopener noreferrer" className="border-1 border-[#2A8E9E] rounded-xl items-center justify-center px-5 py-3 bg-[#2A8E9E] text-white text-sm font-normal cursor-pointer inline-flex">
-              Start Accepting Crypto
+              Get Complete Payment Solution
             </a>
             <a href="https://docs.riftfi.xyz" target="_blank" rel="noopener noreferrer" className="border-1 border-[#2A8E9E] rounded-xl items-center justify-center px-5 py-3 text-white text-sm font-normal cursor-pointer inline-flex">
               View SDK Docs

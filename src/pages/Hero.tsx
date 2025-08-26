@@ -13,14 +13,14 @@ function Hero() {
           <div className="grid grid-cols-1 lg:grid-cols-2 md:px-6">
             <div>
               <div className="text-5xl md:text-6xl xl:text-7xl">
-                <p className="font-bold mb-3">Accept crypto</p>
-                <p className="font-medium mb-3">payments instantly</p>
-                <p className="font-medium">across Africa.</p>
+                <p className="font-bold mb-3">Complete payment</p>
+                <p className="font-medium mb-3">infrastructure for</p>
+                <p className="font-medium">next-level businesses.</p>
               </div>
               <div className="text-[#6e7a93] text-lg/tight md:text-xl font-normal my-8">
                 <p>
-                  Empowering African businesses to receive USDC payments with instant 
-                  off-ramping to mobile money and bank accounts. Save on fees, attract global customers.
+                  Create invoices, get paid in USDC or M-Pesa, receive money via paybill, bank, 
+                  or till numbers. Built for businesses ready to tap into new markets.
                 </p>
               </div>
               <div className="mb-4">
@@ -54,19 +54,19 @@ function Hero() {
                     />
                   </div>
                   <div>
-                    <p className="text-base font-bold">Kigali Coffee Co.</p>
+                    <p className="text-base font-bold">Malkia Fashion</p>
                     <p className="text-sm text-[#6e7a93] font-medium">
-                      payments@kigalicoffee.rw
+                      invoices@malkiafashion.ke
                     </p>
                   </div>
                 </div>
                 <div className="border-1 border-[#b9bfc7] p-5 rounded-2xl mb-2">
                   <p className="text-[#6e7a93] text-xs font-medium mb-1">
-                    Payment Request
+                    Invoice #INV-2024-001
                   </p>
-                  <p className="font-bold text-4xl mb-1">750 USDC</p>
+                  <p className="font-bold text-4xl mb-1">KES 120,000</p>
                   <p className="text-[#6e7a93] text-xs font-medium">
-                    December 15, 2024
+                    Due: December 20, 2024
                   </p>
                 </div>
                 <div>
@@ -90,7 +90,7 @@ function Hero() {
                       </svg>
 
                       <div className="w-full flex justify-between items-center text-sm font-medium">
-                        <span>USDC Wallet</span>
+                        <span>Pay with USDC</span>
                         <label className="relative w-4 h-4 flex items-center justify-center border-2 border-[#2A8E9E] rounded-full">
                           <input
                             type="radio"
@@ -126,7 +126,7 @@ function Hero() {
                       </svg>
 
                       <div className="w-full flex justify-between items-center text-sm font-medium">
-                        <span>Mobile Money</span>
+                        <span>Pay with M-Pesa</span>
                         <label className="relative w-4 h-4 flex items-center justify-center border-2 border-[#b9bfc7] rounded-full">
                           <input
                             type="radio"
