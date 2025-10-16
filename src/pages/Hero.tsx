@@ -1,7 +1,7 @@
+import { CircleArrowRight } from "lucide-react";
 import Header from "../components/Header";
 import DepositPhotos from "../assets/depositphoto.svg";
 import NFC from "../assets/nfc.svg";
-import { ArrowUpRight } from "lucide-react";
 
 function Hero() {
   return (
@@ -13,31 +13,27 @@ function Hero() {
           <div className="grid grid-cols-1 lg:grid-cols-2 md:px-6">
             <div>
               <div className="text-5xl md:text-6xl xl:text-7xl">
-                <p className="font-bold mb-3">Complete payment</p>
-                <p className="font-medium mb-3">infrastructure for</p>
-                <p className="font-medium">next-level businesses.</p>
+                <p className="font-medium">
+                  The financial layer for Africa's new economy
+                </p>
               </div>
               <div className="text-[#6e7a93] text-lg/tight md:text-xl font-normal my-8">
                 <p>
-                  Create invoices, get paid in USDC or M-Pesa, receive money via paybill, bank, 
-                  or till numbers. Built for businesses ready to tap into new markets.
+                  Rift lets anyone get paid globally, make payments, and invest
+                  in real yield-generating African businesses, while those
+                  businesses unlock capital through onchain reputation.
                 </p>
               </div>
-              <div className="mb-4">
+              <div className="mb-4 flex flex-row gap-4">
                 <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLScXU4NMfJmsEE0qsJ5z5ALslnUZi-9OhfrAGdTNhC-fxk4fJQ/viewform?usp=header"
+                  href="https://wallet.riftfi.xyz/auth"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#2A8E9E] px-8 py-4 rounded-2xl text-white text-base cursor-pointer flex gap-2 items-center inline-flex"
+                  className="bg-[#2A8E9E] px-8 py-4 rounded-2xl text-white text-base cursor-pointer flex gap-2 items-center inline-flex font-semibold"
                 >
-                  Talk to Us
-                  <ArrowUpRight />
+                  Get the App
+                  <CircleArrowRight />
                 </a>
-              </div>
-              <div className="flex items-center gap-x-16 text-sm md:text-base font-semibold text-[#6e7a93]">
-                <span>Malkia Fashion</span>
-                <span>Baobab Electronics</span>
-                <span>Umoja Crafts</span>
               </div>
             </div>
 

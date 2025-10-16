@@ -7,8 +7,8 @@ function WhyUs() {
     <section className="container mt-32">
       <div className="flex flex-col items-center">
         <p className="text-[#2A8E9E] text-sm font-medium mb-3">WHY US</p>
-        <h2 className="text-3xl md:text-5xl/tight font-medium text-black">
-          Built for next-level businesses
+        <h2 className="text-3xl md:text-5xl/tight font-medium text-black text-center">
+          Borderless Money, Open Capital & Real Returns.
         </h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 mt-12 gap-6 lg:px-8">
@@ -51,8 +51,8 @@ function WhyUs() {
           <div className="text-xl md:text-3xl font-semibold text-black mb-4 lg:pt-12">
             Complete payment solution
             <p className="text-[#6e7a93] text-sm md:text-base font-medium mt-2">
-              No existing payment system? No problem. Create invoices, get paid via multiple 
-              channels, and tap into new markets with one platform.
+              No existing payment system? No problem. Create invoices, get paid
+              via multiple channels, and tap into new markets with one platform.
             </p>
           </div>
           <div className="bg-white pt-4 px-4 lg:px-8 lg:pt-8 rounded-t-2xl md:col-span-2">
