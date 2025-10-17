@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 
 function Stats() {
   return (
-    <section className="container mt-32 mb-32">
+    <section className="container mt-10 mb-32">
       <div className="flex flex-col items-center">
         <p className="text-[#2A8E9E] text-sm font-medium mb-3">OUR MISSION</p>
         <h2 className="text-3xl md:text-5xl/tight font-medium text-black text-center">
@@ -52,8 +52,15 @@ function Stats() {
               </span>
             </div>
           </div>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLScXU4NMfJmsEE0qsJ5z5ALslnUZi-9OhfrAGdTNhC-fxk4fJQ/viewform?usp=header" target="_blank" rel="noopener noreferrer" className="bg-[#2a8e9e] rounded-2xl p-6 md:p-10 text-white space-y-20 block">
-            <h2 className="text-3xl md:text-5xl/tight font-medium">Enterprise</h2>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLScXU4NMfJmsEE0qsJ5z5ALslnUZi-9OhfrAGdTNhC-fxk4fJQ/viewform?usp=header"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#2a8e9e] rounded-2xl p-6 md:p-10 text-white space-y-20 block"
+          >
+            <h2 className="text-3xl md:text-5xl/tight font-medium">
+              Enterprise
+            </h2>
             <div className="flex justify-between">
               <span className="text-xl md:text-2xl font-medium">
                 Custom pricing
