@@ -1,0 +1,79 @@
+@use "../constants/colors" as colors;
+@use "../constants/mixins" as mixins;
+
+#header {
+  @include mixins.section-padding();
+  margin-top: 1rem;
+
+  @include mixins.desktop() {
+    @include mixins.flexmixin(row, nowrap, center, flex-start, 0);
+    margin-top: 4rem;
+  }
+
+  .l1 {
+    .welcome {
+      @include mixins.flexmixin(row, nowrap, center, flex-start, 0.25rem);
+      width: fit-content;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-weight: 500;
+      background-color: rgba($color: colors.$sucesslight, $alpha: 0.25);
+
+      .icon {
+        @include mixins.simplerotate(0.5s, 0s);
+        font-size: 1.5rem;
+        color: colors.$darkshark;
+      }
+    }
+
+    .about {
+      margin-top: 1rem;
+      font-size: 3.5rem;
+      font-weight: 500;
+    }
+
+    .info {
+      font-size: 1.125rem;
+      font-weight: 400;
+      color: rgba($color: colors.$textprimary, $alpha: 0.625);
+    }
+
+    .getstrated {
+      width: 100%;
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.625rem 0;
+      border-radius: 2rem;
+      font-size: 1.025rem;
+      font-weight: 600;
+      text-align: center;
+      color: colors.$primarywhite;
+      background-color: colors.$blueaccent;
+
+      @include mixins.desktop() {
+        width: fit-content;
+        padding: 0.875rem 6rem;
+        border-radius: 0.75rem;
+      }
+
+      &:hover {
+        background-color: colors.$textprimary;
+        transition: all ease-in-out 0.25s;
+      }
+    }
+  }
+
+  .l2 {
+    display: none !important;
+
+    @include mixins.desktop() {
+      display: block !important;
+      width: 54%;
+      height: 30rem;
+      background-image: url(/assets/assets-01.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+  }
+}
