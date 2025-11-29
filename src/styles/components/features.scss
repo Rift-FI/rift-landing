@@ -68,19 +68,19 @@
 
         @include mixins.desktop() {
           padding: 2rem 2rem 0 2rem;
-          font-size: 3rem;
+          font-size: 2rem;
         }
       }
 
       .f_desc {
+        padding: 0 1rem 1rem 1rem;
+        font-weight: 400;
+        color: rgba($color: colors.$textprimary, $alpha: 0.6);
+
         @include mixins.desktop() {
           padding: 0 2rem 0 2rem;
           font-size: 1.25rem;
         }
-
-        padding: 0 1rem 1rem 1rem;
-        font-weight: 400;
-        color: rgba($color: colors.$textprimary, $alpha: 0.6);
       }
 
       .f_bg_image {
@@ -123,19 +123,20 @@
         background-color: colors.$secondary;
 
         span {
-          @include mixins.desktop() {
-            padding: 2rem 0 2rem 2rem;
-          }
-
           display: inline-block;
           padding: 1rem;
 
-          .f_title {
-            @include mixins.desktop() {
-              font-size: 3rem;
-            }
+          @include mixins.desktop() {
+            padding: 2rem 0 2rem 2rem;
+            display: inline;
+          }
 
+          .f_title {
             font-size: 1.5rem;
+
+            @include mixins.desktop() {
+              font-size: 2rem;
+            }
           }
 
           .f_desc {
@@ -154,7 +155,7 @@
           @include mixins.desktop() {
             display: block !important;
             width: calc(100% - 10rem);
-            height: 100%;
+            height: 99%;
             background-size: cover;
             background-repeat: no-repeat;
           }
