@@ -19,7 +19,7 @@
       font-weight: 500;
       background-color: rgba($color: colors.$sucesslight, $alpha: 0.25);
 
-      .icon {
+      #_icon {
         @include mixins.simplerotate(0.5s, 0s);
         font-size: 1.5rem;
         color: colors.$darkshark;
@@ -48,7 +48,7 @@
       font-weight: 600;
       text-align: center;
       color: colors.$primarywhite;
-      background-color: colors.$blueaccent;
+      background-color: colors.$textprimary;
 
       @include mixins.desktop() {
         width: fit-content;
@@ -57,7 +57,7 @@
       }
 
       &:hover {
-        background-color: colors.$textprimary;
+        background-color: colors.$blueaccent;
         transition: all ease-in-out 0.25s;
       }
     }
