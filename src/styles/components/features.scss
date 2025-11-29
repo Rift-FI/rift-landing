@@ -1,0 +1,44 @@
+@use "../constants/colors" as colors;
+@use "../constants/mixins" as mixins;
+
+#features {
+  @include mixins.section-padding();
+  margin-top: 1rem;
+
+  .title {
+    @include mixins.flexmixin(row, nowrap, center, flex-start, 0.25rem);
+    font-weight: 500;
+    color: colors.$blueaccent;
+    text-transform: uppercase;
+
+    .features_icon {
+      @include mixins.simpletranslate(0.5s, 0s);
+      color: colors.$blueaccent;
+    }
+  }
+
+  .title-desc {
+    @include mixins.desktop() {
+      @include mixins.flexmixin(row, nowrap, center, space-between, 0);
+    }
+
+    ._title {
+      font-size: 2rem;
+      font-weight: 500;
+
+      @include mixins.desktop() {
+        width: 50%;
+        font-size: 4rem;
+      }
+    }
+
+    ._desc {
+      @include mixins.desktop() {
+        width: calc(100% - 60%);
+      }
+
+      font-size: 1.025rem;
+      color: rgba($color: colors.$textprimary, $alpha: 0.7);
+    }
+  }
+}
