@@ -14,7 +14,7 @@ export const Footer = () => {
         Money Differently.
       </p>
       <p className="f_desc">
-        Join use as we revolutionize the way
+        Join us as we revolutionize how we
         <br />
         we save, spend & grow wealth.
       </p>

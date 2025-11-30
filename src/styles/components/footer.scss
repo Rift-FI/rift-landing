@@ -7,17 +7,26 @@ $textsecondary: rgba(
 );
 
 #footer {
-  @include mixins.section-padding();
   width: 100%;
-  min-height: 3rem;
-  margin-top: 2rem;
-  border-radius: 3rem 3rem 0 0;
+  margin-top: 1rem;
+  padding: 2rem;
+  border-radius: 2rem 2rem 0 0;
   background-color: colors.$blueaccent;
 
+  @include mixins.desktop() {
+    @include mixins.section-padding();
+    margin-top: 2rem;
+    border-radius: 3rem 3rem 0 0;
+  }
+
   .f_title {
-    font-size: 3rem;
+    font-size: 1.5rem;
     font-weight: 400;
     color: colors.$primarywhite;
+
+    @include mixins.desktop() {
+      font-size: 3rem;
+    }
   }
 
   .f_desc {
@@ -30,15 +39,23 @@ $textsecondary: rgba(
     @include mixins.flexmixin(row, nowrap, center, flex-start, 1rem);
     margin-top: 1rem;
 
+    @include mixins.desktop() {
+      margin-top: 2rem;
+    }
+
     a {
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: colors.$primarywhite;
+
+      @include mixins.desktop() {
+        font-size: 2rem;
+      }
     }
   }
 
   .copy {
     @include mixins.flexmixin(row, nowrap, center, flex-start, 0.25rem);
-    font-weight: 400;
+    font-weight: 500;
     color: $textsecondary;
   }
 }
