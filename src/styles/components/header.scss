@@ -28,8 +28,12 @@
 
     .about {
       margin-top: 1rem;
-      font-size: 3.5rem;
+      font-size: 1.75rem;
       font-weight: 500;
+
+      @include mixins.desktop() {
+        font-size: 3.5rem;
+      }
     }
 
     .info {
