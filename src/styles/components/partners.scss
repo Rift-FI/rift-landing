@@ -32,7 +32,8 @@
       background-color: colors.$secondary;
 
       @include mixins.desktop() {
-        width: 20%;
+        width: 19%;
+        margin-top: 0;
       }
 
       span {
@@ -41,6 +42,42 @@
 
       &.aya {
         background-color: colors.$blueaccent;
+
+        span {
+          color: colors.$primarywhite;
+        }
+      }
+
+      &.celo,
+      &.base {
+        border: 1px solid rgba($color: colors.$darkshark, $alpha: 0.25);
+      }
+
+      &.base {
+        img {
+          object-fit: contain;
+          width: 50%;
+          height: 50%;
+        }
+      }
+
+      &.pretium {
+        background-color: colors.$blueaccent;
+
+        span {
+          color: colors.$primarywhite;
+        }
+      }
+
+      &.liquidroyalty,
+      &.labs {
+        background-color: colors.$darkshark;
+
+        img {
+          object-fit: contain;
+          width: 50%;
+          height: 50%;
+        }
 
         span {
           color: colors.$primarywhite;
