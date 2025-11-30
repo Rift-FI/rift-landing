@@ -15,11 +15,45 @@
     color: colors.$blueaccent;
   }
 
-  .partners_ctr {
-    @include mixins.flexmixin(row, nowrap, center, center, 0.5rem);
-    width: 100%;
-    height: 3rem;
-    margin-top: 0.5rem;
-    border-radius: 2rem;
+  ._partners_ctr {
+    @include mixins.flexmixin(row, wrap, center, flex-start, 0.5rem);
+
+    @include mixins.desktop() {
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .partner_ctr {
+      @include mixins.flexmixin(column, nowrap, center, center, 0.5rem);
+      width: 100%;
+      height: 10rem;
+      margin-top: 0.5rem;
+      border-radius: 2rem;
+      background-color: colors.$secondary;
+
+      @include mixins.desktop() {
+        width: 20%;
+      }
+
+      span {
+        font-weight: 500;
+      }
+
+      &.aya {
+        background-color: colors.$blueaccent;
+
+        span {
+          color: colors.$primarywhite;
+        }
+      }
+
+      &._add {
+        background-color: colors.$buttonlime;
+
+        span {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }
