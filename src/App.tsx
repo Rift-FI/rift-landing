@@ -4,6 +4,7 @@ import { Header } from "./components/Header";
 import { About } from "./components/About";
 import { Features } from "./components/Features";
 import { HowItWorks } from "./components/HowItWorks";
+import { Partners } from "./components/Partners";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <About />
       <Features />
       <HowItWorks />
+      <Partners />
     </Fragment>
   );
 }
