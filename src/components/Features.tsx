@@ -12,7 +12,7 @@ export const Features = () => {
         <p className="_title">
           Unleashing the power
           <br />
-          of Finance
+          of Finance.
         </p>
         <p className="_desc">
           At Rift, we empower you to take control of your finances like never
