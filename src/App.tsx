@@ -5,6 +5,7 @@ import { About } from "./components/About";
 import { Features } from "./components/Features";
 import { HowItWorks } from "./components/HowItWorks";
 import { Partners } from "./components/Partners";
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Features />
       <HowItWorks />
       <Partners />
+      <Footer />
     </Fragment>
   );
 }

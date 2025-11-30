@@ -1,0 +1,44 @@
+@use "../constants/colors" as colors;
+@use "../constants/mixins" as mixins;
+
+$textsecondary: rgba(
+  $color: colors.$primarywhite,
+  $alpha: 0.75,
+);
+
+#footer {
+  @include mixins.section-padding();
+  width: 100%;
+  min-height: 3rem;
+  margin-top: 2rem;
+  border-radius: 3rem 3rem 0 0;
+  background-color: colors.$blueaccent;
+
+  .f_title {
+    font-size: 3rem;
+    font-weight: 400;
+    color: colors.$primarywhite;
+  }
+
+  .f_desc {
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: $textsecondary;
+  }
+
+  .links {
+    @include mixins.flexmixin(row, nowrap, center, flex-start, 1rem);
+    margin-top: 1rem;
+
+    a {
+      font-size: 2rem;
+      color: colors.$primarywhite;
+    }
+  }
+
+  .copy {
+    @include mixins.flexmixin(row, nowrap, center, flex-start, 0.25rem);
+    font-weight: 400;
+    color: $textsecondary;
+  }
+}
