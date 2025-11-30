@@ -1,0 +1,56 @@
+@use "../constants/colors" as colors;
+@use "../constants/mixins" as mixins;
+
+#navbar {
+  display: none !important;
+
+  @include mixins.desktop() {
+    @include mixins.flexmixin(row, nowrap, center, space-between, 0);
+    @include mixins.section-padding();
+    width: 100%;
+  }
+
+  .links {
+    @include mixins.flexmixin(row, nowrap, center, flex-start, 1.625rem);
+
+    a {
+      font-size: 1.125rem;
+      font-weight: 600;
+
+      &:hover {
+        color: rgba($color: colors.$textprimary, $alpha: 0.5);
+        transition: all ease-in-out 0.25s;
+      }
+    }
+  }
+
+  .logo {
+    @include mixins.flexmixin(row, nowrap, center, flex-start, 0);
+
+    img {
+      width: 3.5rem;
+      height: 3.5rem;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    span {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+  }
+
+  .getstrated {
+    padding: 0.625rem 4rem;
+    border-radius: 0.75rem;
+    font-size: 1.025rem;
+    font-weight: 600;
+    color: colors.$primarywhite;
+    background-color: colors.$blueaccent;
+
+    &:hover {
+      background-color: colors.$textprimary;
+      transition: all ease-in-out 0.25s;
+    }
+  }
+}

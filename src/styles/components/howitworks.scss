@@ -1,0 +1,77 @@
+@use "../constants/colors" as colors;
+@use "../constants/mixins" as mixins;
+
+#howitworks {
+  @include mixins.section-padding();
+  color: colors.$primarywhite;
+
+  @include mixins.desktop() {
+    margin-top: 2rem;
+  }
+
+  .howitworks__ctr {
+    padding: 1rem;
+    border-radius: 2rem;
+    background-color: colors.$darkshark;
+
+    @include mixins.desktop() {
+      padding: 3rem 5rem;
+    }
+
+    .h_title {
+      @include mixins.flexmixin(row, nowrap, center, flex-start, 0.25rem);
+      font-weight: 500;
+      color: colors.$sucesslight;
+      text-transform: uppercase;
+    }
+
+    .h_sub {
+      font-size: 1.5rem;
+
+      @include mixins.desktop() {
+        font-size: 2.5rem;
+      }
+    }
+
+    .h__sub {
+      margin-top: 0.5rem;
+      font-size: 1.1 25rem;
+      font-weight: 400;
+      color: rgba($color: colors.$primarywhite, $alpha: 0.6);
+    }
+
+    .step {
+      border-bottom: 1px solid rgba($color: colors.$primarywhite, $alpha: 0.05);
+      padding-bottom: 0.75rem;
+      margin-top: 2rem;
+
+      .counter {
+        padding: 0.25rem 0.625rem;
+        border-radius: 0.625rem;
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: colors.$textprimary;
+        background-color: colors.$primarywhite;
+      }
+
+      .s_title {
+        margin-top: 1rem;
+        font-size: 1.5rem;
+        font-weight: 500;
+
+        span {
+          color: colors.$buttonlime;
+        }
+      }
+
+      .s_desc {
+        font-size: 1.125rem;
+        color: rgba($color: colors.$primarywhite, $alpha: 0.75);
+      }
+
+      &.last {
+        border: 0;
+      }
+    }
+  }
+}

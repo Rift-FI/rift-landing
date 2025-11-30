@@ -1,0 +1,170 @@
+@use "../constants/colors" as colors;
+@use "../constants/mixins" as mixins;
+
+#features {
+  @include mixins.section-padding();
+  margin-top: 1rem;
+
+  .title {
+    @include mixins.flexmixin(row, nowrap, center, flex-start, 0.25rem);
+    font-weight: 500;
+    color: colors.$blueaccent;
+    text-transform: uppercase;
+  }
+
+  .title-desc {
+    @include mixins.desktop() {
+      @include mixins.flexmixin(row, nowrap, center, space-between, 0);
+    }
+
+    ._title {
+      font-size: 2rem;
+      font-weight: 500;
+
+      @include mixins.desktop() {
+        width: 50%;
+        font-size: 4rem;
+      }
+    }
+
+    ._desc {
+      @include mixins.desktop() {
+        width: calc(100% - 60%);
+      }
+
+      font-size: 1.025rem;
+      color: rgba($color: colors.$textprimary, $alpha: 0.7);
+    }
+  }
+
+  .__features {
+    @include mixins.flexmixin(column, nowrap, flex-start, flex-start, 0.75rem);
+    margin-top: 1rem;
+
+    @include mixins.desktop() {
+      @include mixins.flexmixin(row, nowrap, center, space-between, 0);
+      width: 100%;
+      height: 44rem;
+      margin-top: 0.5rem;
+    }
+
+    .f_left {
+      @include mixins.desktop() {
+        @include mixins.flexmixin(column, nowrap, flex-start, space-between, 0);
+        width: 40%;
+        height: 100%;
+      }
+
+      border-radius: 2rem;
+      background-color: colors.$secondary;
+
+      .f_title {
+        padding: 1rem 1rem 0 1rem;
+        font-size: 1.5rem;
+
+        @include mixins.desktop() {
+          padding: 2rem 2rem 0 2rem;
+          font-size: 2rem;
+        }
+      }
+
+      .f_desc {
+        padding: 0 1rem 1rem 1rem;
+        font-weight: 400;
+        color: rgba($color: colors.$textprimary, $alpha: 0.6);
+
+        @include mixins.desktop() {
+          padding: 0 2rem 0 2rem;
+          font-size: 1.25rem;
+        }
+      }
+
+      .f_bg_image {
+        display: none !important;
+
+        @include mixins.desktop() {
+          display: block !important;
+          width: 100%;
+          height: calc(100% - 10rem);
+          background-image: url(/assets/instant-payments.png);
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+      }
+    }
+
+    .f_right {
+      @include mixins.flexmixin(
+        column,
+        nowrap,
+        flex-start,
+        flex-start,
+        0.75rem
+      );
+
+      @include mixins.desktop() {
+        @include mixins.flexmixin(column, nowrap, center, space-between, 0);
+        width: 59%;
+        height: 100%;
+      }
+
+      .feature {
+        @include mixins.desktop() {
+          @include mixins.flexmixin(row, nowrap, flex-start, space-between, 0);
+          width: 100%;
+          height: 49%;
+        }
+
+        border-radius: 2rem;
+        background-color: colors.$secondary;
+
+        span {
+          display: inline-block;
+          padding: 1rem;
+
+          @include mixins.desktop() {
+            padding: 2rem 0 2rem 2rem;
+            display: inline;
+          }
+
+          .f_title {
+            font-size: 1.5rem;
+
+            @include mixins.desktop() {
+              font-size: 2rem;
+            }
+          }
+
+          .f_desc {
+            @include mixins.desktop() {
+              font-size: 1.25rem;
+            }
+
+            font-weight: 400;
+            color: rgba($color: colors.$textprimary, $alpha: 0.6);
+          }
+        }
+
+        .f_bg_image {
+          display: none !important;
+
+          @include mixins.desktop() {
+            display: block !important;
+            width: calc(100% - 10rem);
+            height: 99%;
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+
+          &.crossborder {
+            background-image: url(/assets/cross-border.png);
+          }
+
+          &.insights {
+            background-image: url(/assets/insights.png);
+          }
+        }
+      }
+    }
+  }
+}
