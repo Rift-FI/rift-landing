@@ -21,15 +21,15 @@ export const Footer = () => {
             </p>
 
             <div className="links">
-                <a href="https://x.com/tryrift" target="_blank">
+                <a href="https://x.com/tryrift" target="_blank" title="Rift on X">
                     <RiTwitterXFill />
                 </a>
 
-                <a href="https://t.me/+B8abU5EjpTsyMWE8" target="_blank">
+                <a href="https://t.me/+B8abU5EjpTsyMWE8" target="_blank" title="Telegram channel">
                     <SiTelegram />
                 </a>
 
-                <a href="https://documentation.riftfi.xyz/" target="_blank">
+                <a href="https://documentation.riftfi.xyz/" target="_blank" title="Documentation">
                     <GoFileDirectoryFill />
                 </a>
             </div>
