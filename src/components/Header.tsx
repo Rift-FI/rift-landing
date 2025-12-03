@@ -1,4 +1,5 @@
 import { MdStars } from "react-icons/md";
+import { RotateText } from "./ui/animated-text";
 import "../styles/components/header.scss";
 
 export const Header = () => {
@@ -19,9 +20,8 @@ export const Header = () => {
                 </p>
 
                 <p className="info">
-                    Rift transforms the way you pay, save and build your wealth
-                    <br />
-                    with a single account.
+                    Rift gives you direct secure access to world class yield generating assets <br />
+                    with a single USD account to <RotateText words={["Save.", "Pay.", "& Build your wealth."]} />
                 </p>
 
                 <a

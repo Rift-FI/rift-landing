@@ -1,0 +1,33 @@
+@use "../../constants/colors.scss" as colors;
+
+.rotator-container {
+  vertical-align: middle;
+}
+
+.rotator-word {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: colors.$darkshark;
+  margin: 0;
+  padding: 0;
+}
+
+.anim-slide-up {
+  animation: slideUp 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(18%);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-4%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
