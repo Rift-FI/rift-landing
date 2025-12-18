@@ -20,15 +20,6 @@ export const Partners = () => {
         </a>
 
         <a
-          href="https://www.celoafricadao.xyz"
-          target="_blank"
-          className="partner_ctr celo"
-        >
-          <img src="/assets/CAD.svg" alt="cad" />
-          <span>CELO Africa DAO</span>
-        </a>
-
-        <a
           href="https://www.base.org"
           target="_blank"
           className="partner_ctr base"
