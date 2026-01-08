@@ -17,7 +17,7 @@
       padding: 0.5rem 1rem;
       border-radius: 2rem;
       font-weight: 500;
-      background-color: rgba($color: colors.$sucesslight, $alpha: 0.25);
+      background-color: colors.$secondary;
 
       #_icon {
         @include mixins.simplerotate(0.5s, 0s);
@@ -53,6 +53,7 @@
       text-align: center;
       color: colors.$primarywhite;
       background-color: colors.$textprimary;
+      transition: all ease-in-out 0.5s;
 
       @include mixins.desktop() {
         width: fit-content;
@@ -61,8 +62,8 @@
       }
 
       &:hover {
+        border-radius: 2rem;
         background-color: colors.$blueaccent;
-        transition: all ease-in-out 0.25s;
       }
     }
   }

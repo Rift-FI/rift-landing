@@ -19,7 +19,7 @@
 
       &:hover {
         color: rgba($color: colors.$textprimary, $alpha: 0.5);
-        transition: all ease-in-out 0.25s;
+        transition: all ease-in-out 0.5s;
       }
     }
   }
@@ -47,10 +47,11 @@
     font-weight: 600;
     color: colors.$primarywhite;
     background-color: colors.$blueaccent;
+    transition: all ease-in-out 0.25s;
 
     &:hover {
+      border-radius: 2rem;
       background-color: colors.$textprimary;
-      transition: all ease-in-out 0.25s;
     }
   }
 }
