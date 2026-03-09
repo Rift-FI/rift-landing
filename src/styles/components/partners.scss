@@ -28,23 +28,24 @@
     }
   }
 
-  // Marquee belt
+  // Marquee belt — hidden on mobile, visible on desktop
   .marquee_wrapper {
-    position: relative;
-    overflow: hidden;
-    margin-top: 2rem;
+    display: none;
+
+    @include mixins.desktop() {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      margin-top: 2rem;
+    }
 
     .marquee_fade {
       position: absolute;
       top: 0;
       bottom: 0;
-      width: 4rem;
+      width: 8rem;
       z-index: 2;
       pointer-events: none;
-
-      @include mixins.desktop() {
-        width: 8rem;
-      }
 
       &.left {
         left: 0;
@@ -66,90 +67,97 @@
     }
 
     .marquee_track {
-      @include mixins.flexmixin(row, nowrap, center, flex-start, 1.25rem);
+      @include mixins.flexmixin(row, nowrap, center, flex-start, 1.75rem);
       animation: marquee 25s linear infinite;
       width: max-content;
-
-      @include mixins.desktop() {
-        gap: 1.75rem;
-      }
 
       &:hover {
         animation-play-state: paused;
       }
+    }
+  }
 
-      .partner_card {
-        @include mixins.flexmixin(row, nowrap, center, center, 0.75rem);
-        flex-shrink: 0;
-        padding: 1rem 1.75rem;
-        border-radius: 1.25rem;
-        background-color: colors.$secondary;
-        border: 1px solid rgba($color: colors.$darkshark, $alpha: 0.06);
-        transition: all ease-in-out 0.25s;
+  // Mobile grid — visible on mobile, hidden on desktop
+  .partners_grid {
+    @include mixins.flexmixin(row, wrap, stretch, center, 0.625rem);
+    margin-top: 1.5rem;
 
-        @include mixins.desktop() {
-          padding: 1.25rem 2rem;
-          gap: 1rem;
-        }
+    @include mixins.desktop() {
+      display: none !important;
+    }
+  }
 
-        &:hover {
-          border-color: rgba($color: colors.$blueaccent, $alpha: 0.2);
-          box-shadow: 0 4px 20px rgba($color: colors.$blueaccent, $alpha: 0.06);
-        }
+  // Shared card styles
+  .partner_card {
+    @include mixins.flexmixin(row, nowrap, center, center, 0.75rem);
+    flex-shrink: 0;
+    padding: 0.875rem 1.25rem;
+    border-radius: 1.25rem;
+    background-color: colors.$secondary;
+    border: 1px solid rgba($color: colors.$darkshark, $alpha: 0.06);
+    transition: all ease-in-out 0.25s;
 
-        img {
-          width: 2.5rem;
-          height: 2.5rem;
-          object-fit: contain;
-          object-position: center;
+    @include mixins.desktop() {
+      padding: 1.25rem 2rem;
+      gap: 1rem;
+    }
 
-          @include mixins.desktop() {
-            width: 3rem;
-            height: 3rem;
-          }
-        }
+    &:hover {
+      border-color: rgba($color: colors.$blueaccent, $alpha: 0.2);
+      box-shadow: 0 4px 20px rgba($color: colors.$blueaccent, $alpha: 0.06);
+    }
 
-        span {
-          font-size: 1rem;
-          font-weight: 600;
-          white-space: nowrap;
+    img {
+      width: 2rem;
+      height: 2rem;
+      object-fit: contain;
+      object-position: center;
 
-          @include mixins.desktop() {
-            font-size: 1.1rem;
-          }
-        }
+      @include mixins.desktop() {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
 
-        // Theme variants
-        &.aya,
-        &.pretium {
-          background-color: colors.$blueaccent;
-          border-color: colors.$blueaccent;
+    span {
+      font-size: 0.9rem;
+      font-weight: 600;
+      white-space: nowrap;
 
-          span {
-            color: colors.$primarywhite;
-          }
-        }
+      @include mixins.desktop() {
+        font-size: 1.1rem;
+      }
+    }
 
-        &.liquidroyalty,
-        &.labs {
-          background-color: colors.$darkshark;
-          border-color: colors.$darkshark;
+    // Theme variants
+    &.aya,
+    &.pretium {
+      background-color: colors.$blueaccent;
+      border-color: colors.$blueaccent;
 
-          span {
-            color: colors.$primarywhite;
-          }
-        }
+      span {
+        color: colors.$primarywhite;
+      }
+    }
 
-        &.base,
-        &.celo {
-          background-color: colors.$primarywhite;
-          border-color: rgba($color: colors.$darkshark, $alpha: 0.12);
+    &.liquidroyalty,
+    &.labs {
+      background-color: colors.$darkshark;
+      border-color: colors.$darkshark;
 
-          img {
-            width: 60%;
-            height: 60%;
-          }
-        }
+      span {
+        color: colors.$primarywhite;
+      }
+    }
+
+    &.base,
+    &.celo {
+      background-color: colors.$primarywhite;
+      border-color: rgba($color: colors.$darkshark, $alpha: 0.12);
+
+      img {
+        width: 60%;
+        height: 60%;
       }
     }
   }

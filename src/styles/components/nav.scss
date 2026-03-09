@@ -1,6 +1,27 @@
 @use "../constants/colors" as colors;
 @use "../constants/mixins" as mixins;
 
+.mobile_logo {
+  @include mixins.flexmixin(row, nowrap, center, flex-start, 0);
+  padding: 1rem 1rem 0;
+
+  @include mixins.desktop() {
+    display: none !important;
+  }
+
+  img {
+    width: 2.75rem;
+    height: 2.75rem;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  span {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
+
 #navbar {
   display: none !important;
 

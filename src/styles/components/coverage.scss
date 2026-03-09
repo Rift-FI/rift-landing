@@ -75,13 +75,15 @@
 
       .cv_card {
         @include mixins.flexmixin(row, nowrap, center, flex-start, 0.875rem);
-        padding: 0.875rem 1.25rem;
+        width: calc(50% - 0.3125rem);
+        padding: 0.875rem 1rem;
         border-radius: 1rem;
         background-color: colors.$primarywhite;
         border: 1px solid rgba($color: colors.$buttonlime, $alpha: 0.35);
         transition: all ease-in-out 0.25s;
 
         @include mixins.desktop() {
+          width: calc(33.333% - 0.42rem);
           padding: 1rem 1.5rem;
         }
 

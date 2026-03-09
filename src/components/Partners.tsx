@@ -40,8 +40,18 @@ const partners = [
   },
 ];
 
+const PartnerCard = ({ p }: { p: (typeof partners)[0] }) => (
+  <a
+    href={p.href}
+    target="_blank"
+    className={`partner_card ${p.theme}`}
+  >
+    <img src={p.logo} alt={p.name} />
+    <span>{p.name}</span>
+  </a>
+);
+
 export const Partners = () => {
-  // Double the array for seamless loop
   const doubled = [...partners, ...partners];
 
   return (
@@ -51,23 +61,21 @@ export const Partners = () => {
         Trusted By
       </p>
 
-      <p className="p_heading">
-        Our Partners
-      </p>
+      <p className="p_heading">Our Partners</p>
 
+      {/* Mobile: wrapped grid */}
+      <div className="partners_grid">
+        {partners.map((p, i) => (
+          <PartnerCard p={p} key={i} />
+        ))}
+      </div>
+
+      {/* Desktop: scrolling marquee */}
       <div className="marquee_wrapper">
         <div className="marquee_fade left" />
         <div className="marquee_track">
           {doubled.map((p, i) => (
-            <a
-              href={p.href}
-              target="_blank"
-              className={`partner_card ${p.theme}`}
-              key={i}
-            >
-              <img src={p.logo} alt={p.name} />
-              <span>{p.name}</span>
-            </a>
+            <PartnerCard p={p} key={i} />
           ))}
         </div>
         <div className="marquee_fade right" />

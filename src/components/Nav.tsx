@@ -2,6 +2,11 @@ import "../styles/components/nav.scss";
 
 export const Navbar = () => {
   return (
+    <>
+    <div className="mobile_logo">
+      <img src="/icon.png" alt="icon" />
+      <span>Rift.</span>
+    </div>
     <nav id="navbar">
       <div className="links">
         <a href="#features">Features</a>
@@ -23,5 +28,6 @@ export const Navbar = () => {
         Get Started
       </a>
     </nav>
+    </>
   );
 };
