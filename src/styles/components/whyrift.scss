@@ -1,0 +1,108 @@
+@use "../constants/colors" as colors;
+@use "../constants/mixins" as mixins;
+
+#whyrift {
+  @include mixins.section-padding();
+
+  .whyrift__ctr {
+    padding: 2.5rem 1.5rem;
+    border-radius: 2rem;
+    background-color: colors.$secondary;
+
+    @include mixins.desktop() {
+      @include mixins.flexmixin(row, nowrap, center, space-between, 4rem);
+      padding: 4rem 5rem;
+    }
+
+    .wr_left {
+      @include mixins.desktop() {
+        width: 55%;
+      }
+
+      .wr_label {
+        @include mixins.flexmixin(row, nowrap, center, flex-start, 0.375rem);
+        color: colors.$blueaccent;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+
+      .wr_heading {
+        margin-top: 0.5rem;
+        font-size: 2rem;
+        font-weight: 500;
+
+        @include mixins.desktop() {
+          font-size: 3rem;
+        }
+
+        span {
+          color: colors.$blueaccent;
+        }
+      }
+
+      .wr_desc {
+        margin-top: 1rem;
+        font-size: 1.05rem;
+        font-weight: 400;
+        color: rgba($color: colors.$textprimary, $alpha: 0.6);
+        line-height: 1.8;
+      }
+
+      .wr_btn {
+        display: inline-block;
+        margin-top: 1.75rem;
+        padding: 0.875rem 3rem;
+        border-radius: 0.75rem;
+        font-size: 1.025rem;
+        font-weight: 600;
+        color: colors.$primarywhite;
+        background-color: colors.$textprimary;
+        transition: all ease-in-out 0.3s;
+
+        &:hover {
+          border-radius: 2rem;
+          background-color: colors.$blueaccent;
+        }
+      }
+    }
+
+    .wr_right {
+      @include mixins.flexmixin(column, nowrap, stretch, flex-start, 0);
+      margin-top: 2rem;
+
+      @include mixins.desktop() {
+        margin-top: 0;
+        width: 40%;
+      }
+
+      .wr_point {
+        @include mixins.flexmixin(row, nowrap, center, flex-start, 1rem);
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba($color: colors.$darkshark, $alpha: 0.06);
+
+        &:last-child {
+          border-bottom: 0;
+        }
+
+        .wr_check {
+          @include mixins.flexmixin(row, nowrap, center, center, 0);
+          width: 2rem;
+          height: 2rem;
+          flex-shrink: 0;
+          border-radius: 50%;
+          font-size: 0.8rem;
+          font-weight: 700;
+          color: colors.$blueaccent;
+          background-color: rgba($color: colors.$blueaccent, $alpha: 0.08);
+        }
+
+        p {
+          font-size: 1.05rem;
+          font-weight: 500;
+          color: colors.$textprimary;
+        }
+      }
+    }
+  }
+}

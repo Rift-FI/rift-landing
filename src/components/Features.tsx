@@ -10,23 +10,22 @@ export const Features = () => {
 
             <div className="title-desc">
                 <p className="_title">
-                    Unleashing the power
+                    Three layers,
                     <br />
-                    of Finance.
+                    one simple app.
                 </p>
                 <p className="_desc">
-                    We believe that wealth-building should be borderless. That's why we built Rift, a neobank that gives
-                    you a USD account to spend, save and invest without limits. Grow your wealth by accessing US stocks,
-                    high revenue e-commerce shops in Shenzhen and leading Defi yield protocols, all in one app.
+                    Move between local currency and digital dollars in seconds. Then save, invest, spend,
+                    and send — all from one place. The blockchain is invisible. You just see your money, working for you.
                 </p>
             </div>
 
             <div className="__features">
                 <div className="f_left">
-                    <p className="f_title">Instant, Secure Payments</p>
+                    <p className="f_title">The Ramp: In and Out</p>
                     <p className="f_desc">
-                        Built on blockchain, we guarantee your peace of mind through secure
-                        transfers at lightning speed with every transaction.
+                        Add money in Naira, KES, or GHS via bank transfer, mobile money, or card.
+                        Get USDC instantly. Reverse anytime. The crypto is invisible.
                     </p>
 
                     <div className="f_bg_image" />
@@ -35,10 +34,10 @@ export const Features = () => {
                 <div className="f_right">
                     <div className="feature">
                         <span>
-                            <p className="f_title">Multi-currency and Cross-Border Ready</p>
+                            <p className="f_title">Dollar Savings & Yield</p>
                             <p className="f_desc">
-                                One platform, endless possibilities. Send, receive, pay and
-                                invest globally without the borders.
+                                Hold your money in USDC. Earn yield on your balance automatically.
+                                Your dollars work while you sleep — no staking, no complexity.
                                 <br />
                             </p>
                         </span>
@@ -48,10 +47,10 @@ export const Features = () => {
 
                     <div className="feature">
                         <span>
-                            <p className="f_title">Smart Insights and Spending Analytics</p>
+                            <p className="f_title">Invest & Spend Globally</p>
                             <p className="f_desc">
-                                Let your data work for you, we help you keep track of your
-                                investments and spending.
+                                Buy fractional US stocks from $10. Get a virtual card to spend
+                                anywhere. Send money globally — they receive local currency.
                                 <br />
                             </p>
                         </span>

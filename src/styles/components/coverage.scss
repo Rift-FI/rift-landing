@@ -1,0 +1,115 @@
+@use "../constants/colors" as colors;
+@use "../constants/mixins" as mixins;
+
+#coverage {
+  @include mixins.section-padding();
+  margin-top: 1rem;
+
+  @include mixins.desktop() {
+    margin-top: 2rem;
+  }
+
+  .coverage__ctr {
+    padding: 2.5rem 1.5rem;
+    border-radius: 2rem;
+    background-color: colors.$secondary;
+    text-align: center;
+
+    @include mixins.desktop() {
+      padding: 4rem 5rem;
+    }
+
+    .cv_label {
+      @include mixins.flexmixin(row, nowrap, center, center, 0.25rem);
+      font-weight: 500;
+      color: colors.$blueaccent;
+      text-transform: uppercase;
+      font-size: 0.875rem;
+    }
+
+    .cv_heading {
+      margin-top: 0.25rem;
+      font-size: 2rem;
+      font-weight: 500;
+
+      @include mixins.desktop() {
+        font-size: 3rem;
+      }
+    }
+
+    .cv_desc {
+      margin: 0.5rem auto 0;
+      font-size: 1.025rem;
+      color: rgba($color: colors.$textprimary, $alpha: 0.6);
+
+      @include mixins.desktop() {
+        width: 45%;
+      }
+    }
+
+    .cv_badge {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.3rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+
+      &.live {
+        background-color: colors.$buttonlime;
+        color: colors.$darkshark;
+      }
+    }
+
+    .cv_cards {
+      @include mixins.flexmixin(row, wrap, stretch, center, 0.625rem);
+      margin-top: 1rem;
+
+      @include mixins.desktop() {
+        max-width: 42rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cv_card {
+        @include mixins.flexmixin(row, nowrap, center, flex-start, 0.875rem);
+        padding: 0.875rem 1.25rem;
+        border-radius: 1rem;
+        background-color: colors.$primarywhite;
+        border: 1px solid rgba($color: colors.$buttonlime, $alpha: 0.35);
+        transition: all ease-in-out 0.25s;
+
+        @include mixins.desktop() {
+          padding: 1rem 1.5rem;
+        }
+
+        &:hover {
+          border-color: colors.$blueaccent;
+          box-shadow: 0 4px 16px
+            rgba($color: colors.$blueaccent, $alpha: 0.08);
+        }
+
+        .cv_flag {
+          font-size: 2rem;
+          line-height: 1;
+        }
+
+        .cv_info {
+          .cv_name {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.2;
+          }
+
+          .cv_code {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: rgba($color: colors.$textprimary, $alpha: 0.4);
+          }
+        }
+      }
+    }
+  }
+}

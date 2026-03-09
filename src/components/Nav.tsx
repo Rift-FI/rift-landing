@@ -5,7 +5,8 @@ export const Navbar = () => {
     <nav id="navbar">
       <div className="links">
         <a href="#features">Features</a>
-        <a href="#howitworks">How it Works</a>
+        <a href="#forbusiness">Business</a>
+        <a href="#usecases">Use Cases</a>
         <a href="#partners">Partners</a>
       </div>
 

@@ -41,15 +41,19 @@
     @include mixins.flexmixin(column, nowrap, flex-start, flex-start, 0.75rem);
     margin-top: 1rem;
 
-    @include mixins.desktop() {
+    @include mixins.tablet-landscape-up() {
       @include mixins.flexmixin(row, nowrap, center, space-between, 0);
       width: 100%;
-      height: 44rem;
+      height: 36rem;
       margin-top: 0.5rem;
     }
 
+    @include mixins.desktop() {
+      height: 44rem;
+    }
+
     .f_left {
-      @include mixins.desktop() {
+      @include mixins.tablet-landscape-up() {
         @include mixins.flexmixin(column, nowrap, flex-start, space-between, 0);
         width: 40%;
         height: 100%;
@@ -102,14 +106,14 @@
         0.75rem
       );
 
-      @include mixins.desktop() {
+      @include mixins.tablet-landscape-up() {
         @include mixins.flexmixin(column, nowrap, center, space-between, 0);
         width: 59%;
         height: 100%;
       }
 
       .feature {
-        @include mixins.desktop() {
+        @include mixins.tablet-landscape-up() {
           @include mixins.flexmixin(row, nowrap, flex-start, space-between, 0);
           width: 100%;
           height: 49%;

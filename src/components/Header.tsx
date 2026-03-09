@@ -12,27 +12,29 @@ export const Header = () => {
         </span>
 
         <p className="about">
-          Elevate your money,
+          Your money,
           <br />
-          Experience the
-          <br />
-          Future.
+          without borders.
         </p>
 
         <p className="info">
-          Rift gives you direct secure access to world class yield generating
-          assets <br />
-          with a single USD account to{" "}
-          <RotateText words={["Save.", "Pay.", "Build your wealth."]} />
+          A simple app that lets you move between local currency and digital
+          dollars — then{" "}
+          <RotateText words={["Save.", "Invest.", "Spend.", "Send globally."]} />
         </p>
 
-        <a
-          href="https://wallet.riftfi.xyz/"
-          target="_blank"
-          className="getstrated"
-        >
-          Get Started
-        </a>
+        <div className="header_actions">
+          <a
+            href="https://wallet.riftfi.xyz/"
+            target="_blank"
+            className="getstrated"
+          >
+            Get Started
+          </a>
+          <a href="mailto:admin@riftfi.xyz" className="contact_link">
+            Contact Sales
+          </a>
+        </div>
       </div>
 
       <div className="l2" />

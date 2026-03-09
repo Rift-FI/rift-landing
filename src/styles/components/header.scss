@@ -42,28 +42,59 @@
       color: rgba($color: colors.$textprimary, $alpha: 0.625);
     }
 
-    .getstrated {
-      width: 100%;
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.625rem 0;
-      border-radius: 2rem;
-      font-size: 1.025rem;
-      font-weight: 600;
-      text-align: center;
-      color: colors.$primarywhite;
-      background-color: colors.$textprimary;
-      transition: all ease-in-out 0.5s;
+    .header_actions {
+      @include mixins.flexmixin(column, nowrap, stretch, flex-start, 0.75rem);
+      margin-top: 1.5rem;
 
       @include mixins.desktop() {
-        width: fit-content;
-        padding: 0.875rem 6rem;
-        border-radius: 0.75rem;
+        @include mixins.flexmixin(row, nowrap, center, flex-start, 1rem);
       }
 
-      &:hover {
+      .getstrated {
+        width: 100%;
+        display: inline-block;
+        padding: 0.75rem 0;
         border-radius: 2rem;
-        background-color: colors.$blueaccent;
+        font-size: 1.025rem;
+        font-weight: 600;
+        text-align: center;
+        color: colors.$primarywhite;
+        background-color: colors.$textprimary;
+        transition: all ease-in-out 0.5s;
+
+        @include mixins.desktop() {
+          width: fit-content;
+          padding: 0.875rem 4rem;
+          border-radius: 0.75rem;
+        }
+
+        &:hover {
+          border-radius: 2rem;
+          background-color: colors.$blueaccent;
+        }
+      }
+
+      .contact_link {
+        display: inline-block;
+        padding: 0.75rem 0;
+        border-radius: 2rem;
+        font-size: 1.025rem;
+        font-weight: 600;
+        text-align: center;
+        color: colors.$textprimary;
+        border: 1px solid rgba($color: colors.$darkshark, $alpha: 0.15);
+        transition: all ease-in-out 0.3s;
+
+        @include mixins.desktop() {
+          padding: 0.875rem 3rem;
+          border-radius: 0.75rem;
+        }
+
+        &:hover {
+          border-radius: 2rem;
+          border-color: colors.$blueaccent;
+          color: colors.$blueaccent;
+        }
       }
     }
   }

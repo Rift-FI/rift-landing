@@ -2,61 +2,154 @@
 @use "../constants/mixins" as mixins;
 
 $textsecondary: rgba(
-  $color: colors.$primarywhite,
-  $alpha: 0.75,
+  $color: colors.$textprimary,
+  $alpha: 0.5,
 );
 
 #footer {
   width: 100%;
   margin-top: 1rem;
-  padding: 2rem;
+  padding: 2.5rem 1.5rem 1.5rem;
   border-radius: 2rem 2rem 0 0;
-  background-color: colors.$blueaccent;
+  background-color: colors.$primarywhite;
+  border-top: 1px solid rgba($color: colors.$textprimary, $alpha: 0.08);
 
   @include mixins.desktop() {
-    @include mixins.section-padding();
     margin-top: 2rem;
+    padding: 4rem 5rem 2rem;
     border-radius: 3rem 3rem 0 0;
   }
 
-  .f_title {
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: colors.$primarywhite;
+  .footer_top {
+    @include mixins.flexmixin(column, nowrap, flex-start, flex-start, 2.5rem);
 
     @include mixins.desktop() {
-      font-size: 3rem;
-    }
-  }
-
-  .f_desc {
-    font-size: 1.125rem;
-    font-weight: 400;
-    color: $textsecondary;
-  }
-
-  .links {
-    @include mixins.flexmixin(row, nowrap, center, flex-start, 1rem);
-    margin-top: 1rem;
-
-    @include mixins.desktop() {
-      gap: 1.5rem;
-      margin-top: 2rem;
+      @include mixins.flexmixin(row, nowrap, flex-start, space-between, 2rem);
     }
 
-    a {
-      font-size: 1.5rem;
-      color: colors.$primarywhite;
+    .footer_left {
+      @include mixins.desktop() {
+        width: 50%;
+      }
+
+      .f_title {
+        font-size: 1.75rem;
+        font-weight: 500;
+        color: colors.$textprimary;
+
+        @include mixins.desktop() {
+          font-size: 3rem;
+        }
+
+        span {
+          color: colors.$blueaccent;
+        }
+      }
+
+      .f_desc {
+        margin-top: 0.75rem;
+        font-size: 1.05rem;
+        font-weight: 400;
+        color: $textsecondary;
+        line-height: 1.7;
+      }
+
+      .footer_btns {
+        @include mixins.flexmixin(row, wrap, center, flex-start, 0.75rem);
+        margin-top: 1.5rem;
+
+        .f_btn {
+          display: inline-block;
+          padding: 0.75rem 2.5rem;
+          border-radius: 0.75rem;
+          font-size: 1rem;
+          font-weight: 600;
+          transition: all ease-in-out 0.3s;
+
+          &.primary {
+            background-color: colors.$blueaccent;
+            color: colors.$primarywhite;
+
+            &:hover {
+              border-radius: 2rem;
+            }
+          }
+
+          &.secondary {
+            border: 1px solid rgba($color: colors.$textprimary, $alpha: 0.15);
+            color: colors.$textprimary;
+
+            &:hover {
+              border-radius: 2rem;
+              border-color: rgba($color: colors.$textprimary, $alpha: 0.3);
+            }
+          }
+        }
+      }
+    }
+
+    .footer_right {
+      @include mixins.flexmixin(row, wrap, flex-start, flex-start, 3rem);
 
       @include mixins.desktop() {
-        font-size: 2rem;
+        gap: 5rem;
+      }
+
+      .footer_col {
+        @include mixins.flexmixin(column, nowrap, flex-start, flex-start, 0.5rem);
+
+        .col_title {
+          font-size: 0.8rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          color: rgba($color: colors.$textprimary, $alpha: 0.35);
+          margin-bottom: 0.25rem;
+        }
+
+        a {
+          font-size: 0.95rem;
+          font-weight: 400;
+          color: rgba($color: colors.$textprimary, $alpha: 0.6);
+          transition: color ease-in-out 0.2s;
+
+          &:hover {
+            color: colors.$textprimary;
+          }
+        }
       }
     }
   }
 
-  .copy {
-    @include mixins.flexmixin(row, nowrap, center, flex-start, 0.25rem);
-    font-weight: 500;
-    color: $textsecondary;
+  .footer_bottom {
+    @include mixins.flexmixin(column, nowrap, flex-start, flex-start, 1rem);
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba($color: colors.$textprimary, $alpha: 0.1);
+
+    @include mixins.desktop() {
+      @include mixins.flexmixin(row, nowrap, center, space-between, 0);
+    }
+
+    .social_icons {
+      @include mixins.flexmixin(row, nowrap, center, flex-start, 1rem);
+
+      a {
+        font-size: 1.25rem;
+        color: rgba($color: colors.$textprimary, $alpha: 0.35);
+        transition: color ease-in-out 0.2s;
+
+        &:hover {
+          color: colors.$blueaccent;
+        }
+      }
+    }
+
+    .copy {
+      @include mixins.flexmixin(row, nowrap, center, flex-start, 0.25rem);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba($color: colors.$textprimary, $alpha: 0.3);
+    }
   }
 }

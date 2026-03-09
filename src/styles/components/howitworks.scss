@@ -3,74 +3,94 @@
 
 #howitworks {
   @include mixins.section-padding();
-  color: colors.$primarywhite;
 
-  @include mixins.desktop() {
-    margin-top: 2rem;
+  .h_label {
+    @include mixins.flexmixin(row, nowrap, center, flex-start, 0.25rem);
+    font-weight: 500;
+    color: colors.$blueaccent;
+    text-transform: uppercase;
+    font-size: 0.875rem;
   }
 
-  .howitworks__ctr {
-    padding: 1rem;
-    border-radius: 2rem;
-    background-color: colors.$darkshark;
+  .h_heading {
+    font-size: 2rem;
+    font-weight: 500;
 
     @include mixins.desktop() {
-      padding: 3rem 5rem;
+      font-size: 3.5rem;
     }
 
-    .h_title {
-      @include mixins.flexmixin(row, nowrap, center, flex-start, 0.25rem);
-      font-weight: 500;
-      color: colors.$sucesslight;
-      text-transform: uppercase;
+    span {
+      color: colors.$blueaccent;
+    }
+  }
+
+  .steps_grid {
+    @include mixins.flexmixin(column, nowrap, stretch, flex-start, 0.75rem);
+    margin-top: 2rem;
+
+    @include mixins.desktop() {
+      @include mixins.flexmixin(row, nowrap, stretch, flex-start, 1.25rem);
     }
 
-    .h_sub {
-      font-size: 1.5rem;
+    .step_card {
+      width: 100%;
+      padding: 2rem 1.5rem;
+      border-radius: 1.5rem;
+      background-color: colors.$secondary;
+      border: 1px solid rgba($color: colors.$darkshark, $alpha: 0.06);
+      transition: all ease-in-out 0.3s;
 
       @include mixins.desktop() {
-        font-size: 2.5rem;
+        width: calc(33.333% - 0.833rem);
+        padding: 2.5rem 2rem;
       }
-    }
 
-    .h__sub {
-      margin-top: 0.5rem;
-      font-size: 1.1 25rem;
-      font-weight: 400;
-      color: rgba($color: colors.$primarywhite, $alpha: 0.6);
-    }
+      &:hover {
+        border-color: rgba($color: colors.$blueaccent, $alpha: 0.15);
+        box-shadow: 0 8px 30px rgba($color: colors.$textprimary, $alpha: 0.04);
+        transform: translateY(-2px);
+      }
 
-    .step {
-      border-bottom: 1px solid rgba($color: colors.$primarywhite, $alpha: 0.05);
-      padding-bottom: 0.75rem;
-      margin-top: 2rem;
-
-      .counter {
-        padding: 0.25rem 0.625rem;
-        border-radius: 0.625rem;
+      .step_icon {
+        @include mixins.flexmixin(row, nowrap, center, center, 0);
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1rem;
         font-size: 1.25rem;
-        font-weight: 500;
-        color: colors.$textprimary;
-        background-color: colors.$primarywhite;
+        background-color: rgba($color: colors.$blueaccent, $alpha: 0.08);
+        color: colors.$blueaccent;
       }
 
-      .s_title {
-        margin-top: 1rem;
-        font-size: 1.5rem;
-        font-weight: 500;
+      .step_counter {
+        display: block;
+        margin-top: 1.5rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        color: rgba($color: colors.$textprimary, $alpha: 0.25);
+      }
+
+      .step_title {
+        margin-top: 0.25rem;
+        font-size: 1.375rem;
+        font-weight: 600;
+
+        @include mixins.desktop() {
+          font-size: 1.5rem;
+        }
 
         span {
-          color: colors.$buttonlime;
+          color: colors.$blueaccent;
         }
       }
 
-      .s_desc {
-        font-size: 1.125rem;
-        color: rgba($color: colors.$primarywhite, $alpha: 0.75);
-      }
-
-      &.last {
-        border: 0;
+      .step_desc {
+        margin-top: 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.7;
+        color: rgba($color: colors.$textprimary, $alpha: 0.55);
       }
     }
   }

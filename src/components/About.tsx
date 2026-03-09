@@ -10,15 +10,15 @@ export const About = () => {
                 </p>
 
                 <p className="desc">
-                    Where money meets
+                    The bridge between
                     <br />
-                    Innovation and Growth.
+                    your money and the world.
                 </p>
 
                 <p className="_desc">
-                    Rift is more than a payments platform,
+                    Stablecoins are the most important financial innovation for
                     <br />
-                    we enable you to bank globally and grow your wealth.
+                    emerging markets — Rift makes them simple, useful, and accessible to everyone.
                 </p>
             </div>
         </div>
