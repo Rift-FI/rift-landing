@@ -1,35 +1,10 @@
-@use "./constants/colors" as colors;
-@use "./constants/mixins" as mixins;
+@use "./rift-infra";
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  -ms-overflow-style: none;
-  scrollbar-width: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
-}
-
-body {
-  @include mixins.usebasefont();
-  color: colors.$textprimary;
-  font-weight: 300;
-  background-color: colors.$primarywhite;
-}
-
-a {
-  outline: none;
-  outline-color: transparent;
-  text-decoration: none;
-  color: colors.$textprimary;
-}
-
-::-webkit-scrollbar {
-  display: none !important;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

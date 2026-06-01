@@ -1,0 +1,369 @@
+@use "../../constants/colors" as colors;
+@use "../../constants/mixins" as mixins;
+
+#blog-page {
+  .bl-hero {
+    @include mixins.section-padding();
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(50% 50% at 80% 0%, rgba(0, 147, 178, 0.10), transparent 60%),
+        radial-gradient(50% 50% at 0% 100%, rgba(195, 247, 9, 0.10), transparent 60%);
+      pointer-events: none;
+    }
+
+    > * {
+      position: relative;
+    }
+
+    @include mixins.desktop() {
+      padding-top: 5rem;
+      padding-bottom: 3rem;
+    }
+
+    .bl-eyebrow {
+      display: inline-block;
+      padding: 0.35rem 0.875rem;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid rgba(colors.$textprimary, 0.08);
+      box-shadow: 0 12px 30px -16px rgba(colors.$textprimary, 0.15);
+      color: colors.$blueaccent;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .bl-h1 {
+      margin-top: 1rem;
+      font-size: 2.25rem;
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+
+      @include mixins.desktop() {
+        font-size: 4rem;
+      }
+
+      span {
+        background: linear-gradient(120deg, colors.$blueaccent, #6fe2c4);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    .bl-sub {
+      margin: 1rem auto 0;
+      max-width: 36rem;
+      font-size: 1rem;
+      color: rgba(colors.$textprimary, 0.65);
+    }
+
+    .bl-search {
+      margin: 1.75rem auto 0;
+      max-width: 28rem;
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 0.625rem 1rem;
+      background: #fff;
+      border: 1px solid rgba(colors.$textprimary, 0.08);
+      border-radius: 999px;
+      box-shadow: 0 14px 30px -16px rgba(colors.$textprimary, 0.12);
+
+      &:focus-within {
+        border-color: colors.$blueaccent;
+        box-shadow: 0 0 0 4px rgba(0, 147, 178, 0.12);
+      }
+
+      svg {
+        color: rgba(colors.$textprimary, 0.5);
+        flex-shrink: 0;
+      }
+
+      input {
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 0.95rem;
+        font-family: inherit;
+        width: 100%;
+        color: colors.$textprimary;
+
+        &::placeholder {
+          color: rgba(colors.$textprimary, 0.4);
+        }
+      }
+    }
+
+    .bl-tags {
+      margin: 1.25rem auto 0;
+      max-width: 42rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem;
+
+      .bl-tag {
+        padding: 0.4rem 0.875rem;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid rgba(colors.$textprimary, 0.08);
+        font-size: 0.825rem;
+        font-weight: 500;
+        color: rgba(colors.$textprimary, 0.75);
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          border-color: colors.$blueaccent;
+          color: colors.$blueaccent;
+        }
+
+        &.active {
+          background: colors.$textprimary;
+          color: #fff;
+          border-color: colors.$textprimary;
+        }
+      }
+    }
+  }
+
+  .bl-empty {
+    @include mixins.section-padding();
+    text-align: center;
+    padding: 4rem 1rem;
+    color: rgba(colors.$textprimary, 0.6);
+  }
+
+  .bl-featured {
+    @include mixins.section-padding();
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    .bl-featured-card {
+      display: block;
+    }
+
+    .bl-featured-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      border-radius: 1.5rem;
+      background: #fff;
+      border: 1px solid rgba(colors.$textprimary, 0.06);
+      box-shadow: 0 20px 40px -24px rgba(colors.$textprimary, 0.15);
+      transition: border-color 0.25s ease;
+      overflow: hidden;
+
+      &:hover {
+        border-color: rgba(colors.$blueaccent, 0.4);
+      }
+
+      @include mixins.desktop() {
+        grid-template-columns: 1.1fr 0.9fr;
+        padding: 2rem;
+        gap: 2rem;
+      }
+    }
+
+    .bl-featured-pill {
+      display: inline-block;
+      padding: 0.2rem 0.625rem;
+      border-radius: 999px;
+      background: colors.$buttonlime;
+      color: colors.$textprimary;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .bl-featured-text {
+      h2 {
+        margin-top: 0.75rem;
+        font-size: 1.75rem;
+        font-weight: 600;
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+        color: colors.$textprimary;
+
+        @include mixins.desktop() {
+          font-size: 2.25rem;
+        }
+      }
+      p {
+        margin-top: 0.5rem;
+        color: rgba(colors.$textprimary, 0.65);
+        font-size: 1rem;
+      }
+    }
+
+    .bl-featured-art {
+      position: relative;
+      min-height: 13rem;
+      border-radius: 1.25rem;
+      background: linear-gradient(160deg, #0c0f12 0%, #14181c 100%);
+      overflow: hidden;
+
+      .art-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+        background-size: 28px 28px;
+        mask-image: radial-gradient(60% 60% at 50% 50%, #000 30%, transparent 80%);
+      }
+      .art-glow {
+        position: absolute;
+        width: 14rem;
+        height: 14rem;
+        border-radius: 50%;
+        filter: blur(60px);
+
+        &.a {
+          left: -3rem;
+          top: -3rem;
+          background: rgba(0, 147, 178, 0.55);
+        }
+        &.b {
+          right: -3rem;
+          bottom: -3rem;
+          background: rgba(195, 247, 9, 0.55);
+        }
+      }
+    }
+  }
+
+  .bl-grid-section {
+    @include mixins.section-padding();
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+  }
+
+  .bl-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+    @include mixins.tablet-landscape-up() {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include mixins.desktop() {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .bl-card {
+      display: block;
+      height: 100%;
+    }
+
+    article {
+      height: 100%;
+      border-radius: 1.25rem;
+      background: #fff;
+      border: 1px solid rgba(colors.$textprimary, 0.06);
+      overflow: hidden;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+      &:hover {
+        border-color: rgba(colors.$blueaccent, 0.3);
+        box-shadow: 0 16px 32px -16px rgba(colors.$textprimary, 0.15);
+      }
+    }
+
+    .bl-card-cover {
+      position: relative;
+      height: 9rem;
+      overflow: hidden;
+      background: linear-gradient(160deg, #0c0f12 0%, #14181c 100%);
+
+      .bl-card-hue {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(50% 60% at 20% 20%, rgba(0, 147, 178, 0.45), transparent 60%),
+          radial-gradient(50% 60% at 80% 80%, rgba(195, 247, 9, 0.35), transparent 60%);
+        filter: blur(10px);
+      }
+
+      .bl-card-emoji {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 3rem;
+        text-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    .bl-card-body {
+      padding: 1.1rem 1.25rem 1.25rem;
+
+      h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        line-height: 1.25;
+        color: colors.$textprimary;
+      }
+      p {
+        margin-top: 0.375rem;
+        font-size: 0.9rem;
+        color: rgba(colors.$textprimary, 0.65);
+        line-height: 1.55;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+
+    .bl-card-tags {
+      margin-top: 0.625rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.375rem;
+
+      span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.2rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 999px;
+        background: rgba(colors.$textprimary, 0.05);
+        font-size: 0.7rem;
+        color: rgba(colors.$textprimary, 0.65);
+      }
+    }
+  }
+
+  .bl-meta {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    font-size: 0.825rem;
+    color: rgba(colors.$textprimary, 0.55);
+
+    span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+  }
+}

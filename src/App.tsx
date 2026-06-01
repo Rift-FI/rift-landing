@@ -1,30 +1,24 @@
-import { Fragment } from "react";
-import { Navbar } from "./components/Nav";
-import { Header } from "./components/Header";
-
-import { Features } from "./components/Features";
-import { ForBusiness } from "./components/ForBusiness";
-import { HowItWorks } from "./components/HowItWorks";
-import { UseCases } from "./components/UseCases";
-import { WhyRift } from "./components/WhyRift";
-import { Coverage } from "./components/Coverage";
-import { Partners } from "./components/Partners";
-import { Footer } from "./components/Footer";
+import { Routes, Route } from "react-router-dom";
+import { Nav } from "./components/rift/Nav";
+import { Footer } from "./components/rift/sections";
+import { ScrollToTop } from "./components/motion/ScrollToTop";
+import { Home } from "./pages/Home";
+import { Blog } from "./pages/Blog";
+import { BlogPost } from "./pages/BlogPost";
 
 function App() {
   return (
-    <Fragment>
-      <Navbar />
-      <Header />
-      <Features />
-      <ForBusiness />
-      <HowItWorks />
-      <UseCases />
-      <WhyRift />
-      <Coverage />
-      <Partners />
+    <>
+      <ScrollToTop />
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
       <Footer />
-    </Fragment>
+    </>
   );
 }
 

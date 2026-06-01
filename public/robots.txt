@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Allow common crawlers explicitly
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+Sitemap: https://riftfi.xyz/sitemap.xml
