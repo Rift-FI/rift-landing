@@ -1,13 +1,14 @@
-import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type ReactNode, type CSSProperties, type ElementType } from "react";
 
 interface Props {
   children: ReactNode;
   className?: string;
   style?: CSSProperties;
+  as?: ElementType;
 }
 
-export const Reveal = ({ children, className = "", style }: Props) => {
-  const ref = useRef<HTMLDivElement | null>(null);
+export const Reveal = ({ children, className = "", style, as: Tag = "div" }: Props) => {
+  const ref = useRef<HTMLElement | null>(null);
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
@@ -20,15 +21,15 @@ export const Reveal = ({ children, className = "", style }: Props) => {
           io.disconnect();
         }
       },
-      { threshold: 0.12 }
+      { threshold: 0.1 }
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
   return (
-    <div ref={ref} className={`rv ${shown ? "in " : ""}${className}`} style={style}>
+    <Tag ref={ref as never} className={`rv ${shown ? "in " : ""}${className}`} style={style}>
       {children}
-    </div>
+    </Tag>
   );
 };

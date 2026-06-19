@@ -1,44 +1,44 @@
-import { useEffect, useState } from "react";
 import { I } from "../../lib/rift-data";
 
-const ROT_WORDS = ["stablecoins", "crypto", "wallets", "yield"];
-
-const RotatingWord = () => {
-  const [i, setI] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setI((p) => (p + 1) % ROT_WORDS.length), 2400);
-    return () => clearInterval(t);
-  }, []);
-  return (
-    <span className="rot grad" key={i}>
-      {ROT_WORDS[i]}
-    </span>
-  );
-};
-
-export const Hero = () => {
-  return (
-    <header className="hero dark" id="top">
-      <div className="wrap hero-in">
+export const Hero = () => (
+  <header className="hero" id="top">
+    <div className="hero-aurora" aria-hidden="true">
+      <div className="ribbon r1" />
+      <div className="ribbon r2" />
+      <div className="aurora-grain" />
+    </div>
+    <div className="wrap hero-in">
+      <div className="hero-copy">
+        <span className="kicker grey">Stablecoin infrastructure for institutions</span>
         <h1>
-          Embed <RotatingWord />
-          <br />
-          into anything.
+          <span className="h1-strong">The compliant, identity and settlement rail for </span>
+          <span className="h1-muted">programmable money.</span>
         </h1>
-        <p className="lede">
-          Rift is the infrastructure layer for fintechs, neobanks and startups to embed wallets,
-          on/off-ramps and stablecoin payments across 10+ chains and 150+ countries.
-          Gas, signing and chains, fully abstracted.
+        <p className="hero-lead">
+          Spin up compliant wallets, hold any major stablecoin, and move money across chains or out
+          to local currency. All through one API, with compliance and AML built in.
         </p>
         <div className="hero-cta">
-          <a className="btn btn-mint btn-lg" href="https://portal.riftfi.xyz/docs" target="_blank" rel="noopener noreferrer">
-            Start building {I.arrow}
+          <a className="btn btn-primary btn-lg" href="mailto:admin@riftfi.xyz">
+            Talk to us {I.arrow}
           </a>
-          <a className="btn btn-ghost btn-lg" href="mailto:admin@riftfi.xyz">
-            Talk to sales
+          <a className="btn btn-secondary btn-lg" href="#outcomes">
+            See what you can launch {I.arrowR}
           </a>
         </div>
       </div>
-    </header>
-  );
-};
+    </div>
+  </header>
+);
+
+export const TrustStatement = () => (
+  <section className="trust" aria-label="Positioning">
+    <div className="wrap" style={{ textAlign: "center" }}>
+      <p style={{ marginLeft: "auto", marginRight: "auto" }}>
+        We issue KYC and AML-enabled wallets and set the standards for how stablecoins move,
+        in commerce and across borders. We never hold your funds or your keys. The infrastructure
+        your risk and compliance teams can sign off on.
+      </p>
+    </div>
+  </section>
+);

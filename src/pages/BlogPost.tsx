@@ -62,32 +62,80 @@ export const BlogPost = () => {
   return (
     <main id="blog-post">
       <Helmet>
+        <html lang="en" />
         <title>{`${post.title} — Rift Blog`}</title>
         <meta name="description" content={post.description} />
         <link rel="canonical" href={`https://riftfi.xyz/blog/${post.slug}`} />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.description} />
         <meta property="og:url" content={`https://riftfi.xyz/blog/${post.slug}`} />
+        <meta property="og:image" content="https://riftfi.xyz/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Rift Finance" />
         <meta property="article:published_time" content={post.date} />
+        <meta property="article:modified_time" content={post.date} />
+        <meta property="article:section" content="Essay" />
         {post.author && <meta property="article:author" content={post.author} />}
         {post.tags?.map((t) => (
           <meta key={t} property="article:tag" content={t} />
         ))}
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@tryrift" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.description} />
+        <meta name="twitter:image" content="https://riftfi.xyz/og-image.png" />
+
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BlogPosting",
           "headline": post.title,
           "description": post.description,
           "datePublished": post.date,
-          "author": { "@type": "Person", "name": post.author || "Rift Team" },
+          "dateModified": post.date,
+          "author": {
+            "@type": "Person",
+            "name": post.author || "Rift Team",
+            "url": "https://riftfi.xyz/blog"
+          },
           "publisher": {
             "@type": "Organization",
             "name": "Rift Finance",
-            "logo": { "@type": "ImageObject", "url": "https://riftfi.xyz/icon.png" }
+            "url": "https://riftfi.xyz/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://riftfi.xyz/assets/rift-logo.png",
+              "width": 512,
+              "height": 512
+            }
           },
-          "mainEntityOfPage": `https://riftfi.xyz/blog/${post.slug}`,
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://riftfi.xyz/blog/${post.slug}`
+          },
+          "url": `https://riftfi.xyz/blog/${post.slug}`,
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://riftfi.xyz/og-image.png",
+            "width": 1200,
+            "height": 630
+          },
+          "wordCount": post.content.trim().split(/\s+/).length,
+          "articleSection": post.tags?.[0] || "Essay",
           "keywords": post.tags?.join(", ")
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://riftfi.xyz/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://riftfi.xyz/blog" },
+            { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://riftfi.xyz/blog/${post.slug}` }
+          ]
         })}</script>
       </Helmet>
 
