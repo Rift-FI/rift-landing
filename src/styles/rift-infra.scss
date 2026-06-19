@@ -60,7 +60,8 @@ p { text-wrap: pretty; }
 .kicker.grey { color: var(--grey); }
 
 .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gut); }
-@media (max-width: 720px) { :root { --gut: 22px; } body { font-size: 17px; } }
+@media (max-width: 720px) { :root { --gut: 28px; } body { font-size: 17px; } }
+@media (max-width: 400px) { :root { --gut: 22px; } }
 
 /* ---------- buttons ---------- */
 .btn {

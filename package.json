@@ -5,12 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && npm run seo",
-    "build:fast": "tsc -b && vite build",
-    "seo": "node scripts/build-seo.mjs",
+    "build": "tsc -b && vite build && npm run seo:lite",
+    "build:full": "tsc -b && vite build && npm run seo:lite && npm run seo:render",
+    "seo:lite": "node scripts/build-seo-lite.mjs",
+    "seo:render": "node scripts/build-seo.mjs",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "postinstall": "npx --yes playwright install chromium || true"
+    "preview": "vite preview"
   },
   "dependencies": {
     "framer-motion": "^12.40.0",
