@@ -171,18 +171,22 @@ section { border-top: 1px solid var(--hair); }
 
 /* ---------- hero (Stripe-style, brand aurora) ---------- */
 .hero { border-top: none; position: relative; overflow: hidden; background: var(--paper); }
-.hero-in { position: relative; z-index: 2; display: block; padding: clamp(48px, 11vw, 150px) 0 clamp(56px, 10vw, 136px); }
-.hero-copy { max-width: 660px; }
+.hero-in {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 48px;
+  padding: clamp(48px, 11vw, 150px) 0 clamp(56px, 10vw, 136px);
+}
+.hero-copy { grid-column: 1; max-width: 620px; min-width: 0; }
 .hero h1 { font-size: clamp(30px, 4.4vw, 52px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; margin-top: 22px; }
 .hero h1 .h1-strong { color: var(--ink); }
 .hero h1 .h1-muted { color: var(--brand-text); font-weight: 700; }
-.hero-lead { margin-top: 20px; max-width: 50ch; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.55; color: #2a3b3e; }
+.hero-lead { margin-top: 20px; max-width: 48ch; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.55; color: #2a3b3e; }
 .hero-cta { margin-top: 32px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 
 /* flowing aurora ribbon, clipped diagonally into the top-right */
 .hero-aurora {
-  position: absolute; top: 0; right: 0; bottom: 0; width: 64%; z-index: 1; pointer-events: none;
-  clip-path: polygon(26% 0, 100% 0, 100% 100%, 62% 100%);
+  position: absolute; top: 0; right: 0; bottom: 0; width: 56%; z-index: 1; pointer-events: none;
+  clip-path: polygon(42% 0, 100% 0, 100% 100%, 72% 100%);
 }
 .hero-aurora .ribbon { position: absolute; inset: -55%; will-change: transform; }
 .hero-aurora .r1 {
@@ -213,7 +217,7 @@ section { border-top: 1px solid var(--hair); }
 @keyframes auroraB { to { transform: rotate(360deg) scale(1.12); } }
 @media (max-width: 860px) {
   .hero-aurora { width: 100%; bottom: auto; height: 180px; clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%); }
-  .hero-in { padding-top: 210px; }
+  .hero-in { grid-template-columns: 1fr; column-gap: 0; padding-top: 210px; }
   .hero-copy { max-width: 100%; }
 }
 @media (max-width: 560px) {
