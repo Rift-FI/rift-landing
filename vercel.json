@@ -4,10 +4,9 @@
   "installCommand": "npm install",
   "outputDirectory": "dist",
   "framework": "vite",
-  "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!assets/|sitemap\\.xml|feed\\.xml|robots\\.txt|manifest\\.webmanifest|favicon\\.ico).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
