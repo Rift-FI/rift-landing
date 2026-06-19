@@ -308,6 +308,35 @@ export const Orchestration = () => {
         </div>
 
         <div className={"orch" + (draw ? " draw" : "")} ref={ref}>
+          <div className="orch-mobile" aria-hidden="true">
+            <div className="orch-mobile-grid">
+              {ORCH_TOP.map(([icon, h, sub], i) => (
+                <div className="orch-mobile-node" key={`mt${i}`}>
+                  <div className="orch-mobile-ic">{icon}</div>
+                  <div>
+                    <div className="orch-mobile-h">{h}</div>
+                    <div className="orch-mobile-sub">{sub}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="orch-mobile-center">
+              <img src="/assets/rift-logo.png" alt="" />
+              <div className="orch-mobile-rift">RIFT</div>
+              <div className="orch-mobile-tag">compliance · treasury · settlement</div>
+            </div>
+            <div className="orch-mobile-grid">
+              {ORCH_BOT.map(([icon, h, sub], i) => (
+                <div className="orch-mobile-node" key={`mb${i}`}>
+                  <div className="orch-mobile-ic">{icon}</div>
+                  <div>
+                    <div className="orch-mobile-h">{h}</div>
+                    <div className="orch-mobile-sub">{sub}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
           <div className="orch-scroll">
             <svg className="orch-svg" viewBox="0 0 1100 560" role="img" aria-label="Rift connects core banking, ERP, treasury, payroll, POS terminals, card issuing, mobile money and custody systems through one API.">
               {cxs.map((cx, i) => (
