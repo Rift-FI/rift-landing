@@ -1,11 +1,25 @@
 import { I } from "../../lib/rift-data";
 
+const PINS: { code: string; city: string; pos: string }[] = [
+  { code: "ng", city: "Lagos", pos: "a" },
+  { code: "ke", city: "Nairobi", pos: "b" },
+  { code: "gb", city: "London", pos: "c" },
+  { code: "br", city: "São Paulo", pos: "d" },
+];
+
 export const Hero = () => (
   <header className="hero" id="top">
-    <div className="hero-aurora" aria-hidden="true">
-      <div className="ribbon r1" />
-      <div className="ribbon r2" />
-      <div className="aurora-grain" />
+    <div className="hero-bg" aria-hidden="true">
+      <div className="hero-tint" />
+      <div className="hero-globe" />
+      <div className="hero-pins">
+        {PINS.map((p) => (
+          <span className={`pin pin-${p.pos}`} key={p.pos}>
+            <img src={`https://flagcdn.com/${p.code}.svg`} alt="" loading="lazy" />
+            <span>{p.city}</span>
+          </span>
+        ))}
+      </div>
     </div>
     <div className="wrap hero-in">
       <div className="hero-copy">
