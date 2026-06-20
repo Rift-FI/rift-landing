@@ -2,10 +2,6 @@ import { I } from "../../lib/rift-data";
 
 export const Hero = () => (
   <header className="hero" id="top">
-    <div className="hero-bg" aria-hidden="true">
-      <div className="hero-tint" />
-      <div className="hero-map" />
-    </div>
     <div className="wrap hero-in">
       <div className="hero-copy">
         <span className="kicker grey">Stablecoin infrastructure for institutions</span>
