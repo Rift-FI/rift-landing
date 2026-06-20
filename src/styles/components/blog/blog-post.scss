@@ -76,14 +76,17 @@
 
     h1 {
       margin-top: 1rem;
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 7.5vw, 2rem);
       font-weight: 600;
-      line-height: 1.1;
+      line-height: 1.12;
       letter-spacing: -0.02em;
       color: colors.$textprimary;
+      text-wrap: balance;
+      overflow-wrap: break-word;
 
       @include mixins.desktop() {
         font-size: 3rem;
+        line-height: 1.1;
       }
     }
 
