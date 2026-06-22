@@ -15,7 +15,7 @@ const AUTHORS: Record<string, AuthorInfo> = {
   Amschel: {
     name: "Amschel",
     bio: "Cross-border trade, stablecoin and FX expert. Software engineer and CTO building derivatives and stablecoin rails.",
-    calendly: "https://calendly.com/art68401/30min",
+    calendly: "https://calendly.com/amschel-riftfi/30min",
     photo: "/amschel.jpeg",
   },
 };
