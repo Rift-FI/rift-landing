@@ -36,10 +36,10 @@ export const Nav = () => {
           <span className="wm">Rift</span>
         </Link>
         <div className="nav-links">
+          <a href={anchor("outcomes")}>Solutions</a>
           <a href={anchor("platform")}>Platform</a>
-          <a href={anchor("segments")}>Solutions</a>
-          <a href={anchor("connect")}>Integrations</a>
           <a href={anchor("security")}>Security</a>
+          <a href={anchor("coverage")}>Coverage</a>
           <a href={anchor("company")}>Company</a>
           <Link to="/blog">Blog</Link>
         </div>
@@ -72,10 +72,10 @@ export const Nav = () => {
       >
         <div className="nav-mobile-backdrop" onClick={closeMenu} />
         <div className="nav-mobile-panel">
+          <a href={anchor("outcomes")} onClick={closeMenu}>Solutions</a>
           <a href={anchor("platform")} onClick={closeMenu}>Platform</a>
-          <a href={anchor("segments")} onClick={closeMenu}>Solutions</a>
-          <a href={anchor("connect")} onClick={closeMenu}>Integrations</a>
           <a href={anchor("security")} onClick={closeMenu}>Security</a>
+          <a href={anchor("coverage")} onClick={closeMenu}>Coverage</a>
           <a href={anchor("company")} onClick={closeMenu}>Company</a>
           <Link to="/blog" onClick={closeMenu}>Blog</Link>
           <a

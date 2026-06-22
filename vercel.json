@@ -5,6 +5,13 @@
   "outputDirectory": "dist",
   "framework": "vite",
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/blog/black-market-is-a-price",
+      "destination": "/blog/parallel-market-is-a-price",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/((?!assets/|sitemap\\.xml|feed\\.xml|robots\\.txt|manifest\\.webmanifest|favicon\\.ico).*)", "destination": "/index.html" }
   ],

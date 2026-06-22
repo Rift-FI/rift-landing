@@ -32,6 +32,11 @@ function formatDate(iso: string) {
   }
 }
 
+// old slugs that moved — keep links alive
+const SLUG_REDIRECTS: Record<string, string> = {
+  "black-market-is-a-price": "parallel-market-is-a-price",
+};
+
 export const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getPost(slug) : undefined;
@@ -50,6 +55,7 @@ export const BlogPost = () => {
     return () => window.removeEventListener("scroll", handler);
   }, [post]);
 
+  if (slug && SLUG_REDIRECTS[slug]) return <Navigate to={`/blog/${SLUG_REDIRECTS[slug]}`} replace />;
   if (!post) return <Navigate to="/blog" replace />;
 
   const others = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
