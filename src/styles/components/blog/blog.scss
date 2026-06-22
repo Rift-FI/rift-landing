@@ -369,3 +369,80 @@
     }
   }
 }
+
+/* ============ dark theme (whole-site) ============ */
+.theme-dark #blog-page {
+  .bl-eyebrow {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: none;
+    color: #4ccbe0;
+  }
+  .bl-sub { color: rgba(234, 240, 247, 0.62); }
+  .bl-search {
+    background: #0e1626;
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+
+    svg { color: rgba(234, 240, 247, 0.5); }
+    input {
+      color: #eaf0f7;
+      &::placeholder { color: rgba(234, 240, 247, 0.4); }
+    }
+    &:focus-within { border-color: #4ccbe0; box-shadow: 0 0 0 4px rgba(0, 147, 178, 0.18); }
+  }
+  .bl-tags .bl-tag {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(234, 240, 247, 0.78);
+
+    &:hover { border-color: #4ccbe0; color: #4ccbe0; }
+    &.active { background: #eaf0f7; color: #06121a; border-color: #eaf0f7; }
+  }
+  .bl-empty { color: rgba(234, 240, 247, 0.6); }
+  .bl-featured-inner {
+    background: #0e1626;
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 28px 64px -44px rgba(0, 0, 0, 0.9);
+
+    &:hover { border-color: rgba(76, 203, 224, 0.4); }
+  }
+  .bl-featured-text {
+    h2 { color: #eaf0f7; }
+    p { color: rgba(234, 240, 247, 0.65); }
+  }
+  .bl-grid article {
+    background: #0e1626;
+    border-color: rgba(255, 255, 255, 0.08);
+
+    &:hover { border-color: rgba(76, 203, 224, 0.35); box-shadow: 0 16px 32px -16px rgba(0, 0, 0, 0.7); }
+  }
+  .bl-card-body {
+    h3 { color: #eaf0f7; }
+    p { color: rgba(234, 240, 247, 0.65); }
+  }
+  .bl-card-tags span { background: rgba(255, 255, 255, 0.06); color: rgba(234, 240, 247, 0.7); }
+  .bl-meta { color: rgba(234, 240, 247, 0.55); }
+}
+
+/* ============ video art + no-underline + neutral hover (overrides) ============ */
+.bl-art-video,
+.bl-art-img {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%; object-fit: cover; display: block; background: #000;
+}
+#blog-page .bl-featured-card,
+#blog-page .bl-card { text-decoration: none; }
+#blog-page .bl-featured-text h2,
+#blog-page .bl-featured-text p,
+#blog-page .bl-card-body h3,
+#blog-page .bl-card-body p { text-decoration: none; }
+
+/* don't flash a coloured border on hover — keep it neutral, just the lift */
+#blog-page .bl-featured-inner:hover,
+.theme-dark #blog-page .bl-featured-inner:hover { border-color: rgba(255, 255, 255, 0.1); }
+#blog-page .bl-grid article:hover,
+.theme-dark #blog-page .bl-grid article:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 32px -16px rgba(0, 0, 0, 0.7);
+}

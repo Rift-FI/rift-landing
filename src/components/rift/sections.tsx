@@ -11,10 +11,110 @@ import {
   STABLES,
   MARKS,
   FLAGS,
-  NUMS,
   SNIPPET,
   type Tok,
 } from "../../lib/rift-data";
+
+/* ============ Partners & featured in ============ */
+const PARTNERS: { img: string; n: string }[] = [
+  { img: "/assets/pretium.png", n: "Pretium" },
+  { img: "/assets/sasapay.png", n: "SasaPay" },
+  { img: "/assets/web3clubs.png", n: "Web3Clubs" },
+  { img: "/assets/aya.png", n: "Aya" },
+];
+
+export const Partners = () => (
+  <section className="partners" aria-label="Partners and featured in">
+    <div className="wrap">
+      <p className="partners-label">Partners &amp; featured in</p>
+      <div className="partners-row">
+        {PARTNERS.map((p) => (
+          <img key={p.n} src={p.img} alt={p.n} loading="lazy" />
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+/* ============ Real-world commerce (video cards) ============ */
+const CMEDIA: { src: string; poster: string; k: string; d: string }[] = [
+  { src: "/crossborder.mp4", poster: "/crossborder-poster.jpg", k: "In person", d: "POS & terminal acceptance" },
+  { src: "/commerce.mp4", poster: "/commerce-poster.jpg", k: "Online", d: "Checkout, wallets & cards" },
+];
+
+export const CommerceBand = () => (
+  <section className="band" aria-label="Real-world money movement">
+    <div className="wrap">
+      <div className="head-2col">
+        <div>
+          <span className="kicker grey">Real-world flows</span>
+          <h2 style={{ marginTop: 18 }}>
+            Money moving,
+            <br />
+            everywhere it happens.
+          </h2>
+        </div>
+        <p className="lead measure">
+          From a card tap at a terminal to a checkout on a phone, the same compliant rail settles
+          it underneath, in stablecoins, out to local currency.
+        </p>
+      </div>
+      <div className="cmedia">
+        {CMEDIA.map((c) => (
+          <Reveal
+            key={c.k}
+            className="cmedia-card"
+            style={{ backgroundImage: `url(${c.poster})` }}
+          >
+            <video
+              className="cmedia-video"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="none"
+              poster={c.poster}
+              aria-hidden="true"
+            >
+              <source src={c.src} type="video/mp4" />
+            </video>
+            <div className="cmedia-scrim" aria-hidden="true" />
+            <div className="cmedia-cap">
+              <span className="cm-k">{c.k}</span>
+              <span className="cm-d">{c.d}</span>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+/* ============ Money in motion (video band) ============ */
+export const MotionBand = () => (
+  <section className="motion" aria-label="Money in motion">
+    <video
+      className="motion-video"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      poster="/traffic-poster.jpg"
+      aria-hidden="true"
+    >
+      <source src="/traffic.mp4" type="video/mp4" />
+    </video>
+    <div className="motion-overlay" aria-hidden="true" />
+    <div className="wrap motion-in">
+      <h2>Money is always moving.</h2>
+      <p>
+        Across borders, chains and currencies, value never stops. Rift is the compliant rail it
+        settles on, every second of every day.
+      </p>
+    </div>
+  </section>
+);
 
 /* ============ Outcomes ============ */
 export const Outcomes = () => (
@@ -392,13 +492,20 @@ export const Orchestration = () => {
 };
 
 /* ============ Security ============ */
+const SEC_MEDIA: { src: string; poster: string }[] = [
+  { src: "/key.mp4", poster: "/key-poster.jpg" }, // MPC key management
+  { src: "/identity.mp4", poster: "/identity-poster.jpg" }, // Identity and screening
+  { src: "/encrypt.mp4", poster: "/encrypt-poster.jpg" }, // Encrypted by default
+  { src: "/audit.mp4", poster: "/audit-poster.jpg" }, // Auditable by default
+];
+
 export const Security = () => (
   <section className="band" id="security">
     <div className="wrap">
       <div className="head-2col">
         <div>
           <span className="kicker">
-            <span className="n">07</span> Security and compliance
+            <span className="n">04</span> Security and compliance
           </span>
           <h2 style={{ marginTop: 18 }}>
             The controls your risk
@@ -411,13 +518,27 @@ export const Security = () => (
           instead of building them.
         </p>
       </div>
-      <div className="list-grid">
-        {SECURITY.map((r) => (
-          <Reveal key={r.n} className="list-row">
-            <span className="lr-n">{r.n}</span>
-            <div>
-              <div className="lr-h">{r.h}</div>
-              <div className="lr-d">{r.d}</div>
+      <div className="sec-grid">
+        {SECURITY.map((r, i) => (
+          <Reveal key={r.n} className="sec-card">
+            <div className="sec-card-media">
+              <video
+                className="sec-card-video"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="none"
+                poster={SEC_MEDIA[i]?.poster}
+                aria-hidden="true"
+              >
+                <source src={SEC_MEDIA[i]?.src} type="video/mp4" />
+              </video>
+            </div>
+            <div className="sec-card-body">
+              <span className="sec-card-n mono">{r.n}</span>
+              <div className="sec-card-h">{r.h}</div>
+              <div className="sec-card-d">{r.d}</div>
             </div>
           </Reveal>
         ))}
@@ -433,7 +554,7 @@ export const Proof = () => (
       <div className="head-2col">
         <div>
           <span className="kicker">
-            <span className="n">08</span> Coverage
+            <span className="n">05</span> Coverage
           </span>
           <h2 style={{ marginTop: 18 }}>
             Every regulated stablecoin.
@@ -479,14 +600,6 @@ export const Proof = () => (
           </div>
         </div>
       </div>
-      <div className="nums" style={{ marginTop: 56 }}>
-        {NUMS.map((n) => (
-          <div className="num" key={n.k}>
-            <div className="stat-v">{n.v}</div>
-            <div className="stat-k">{n.k}</div>
-          </div>
-        ))}
-      </div>
     </div>
   </section>
 );
@@ -498,7 +611,7 @@ export const Wallet = () => (
       <div className="prose-grid">
         <div>
           <span className="kicker">
-            <span className="n">09</span> Built on Rift
+            <span className="n">06</span> Built on Rift
           </span>
           <h2 style={{ marginTop: 18 }}>See the rail in action.</h2>
         </div>
@@ -599,27 +712,30 @@ export const Developers = () => (
   </section>
 );
 
-/* ============ Final CTA ============ */
+/* ============ Book a call (brand card) ============ */
 export const FinalCTA = () => (
-  <section className="cta invert">
+  <section className="cta">
     <div className="wrap">
-      <h2>Launch stablecoin money, compliantly.</h2>
-      <p className="lead">
-        Tell us what you want to issue, disburse or settle. We will show you how fast you can go
-        live.
-      </p>
-      <div className="cta-btns">
-        <a className="btn btn-primary btn-lg" href="mailto:admin@riftfi.xyz">
-          Talk to us {I.arrow}
-        </a>
-        <a
-          className="btn btn-secondary btn-lg"
-          href="https://portal.riftfi.xyz/docs"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Read the docs
-        </a>
+      <div className="cta-card">
+        <span className="cta-eyebrow">Schedule</span>
+        <h2>Book a call with us</h2>
+        <p>
+          Tell us what you want to issue, disburse or settle. We will walk you through Rift, answer
+          your questions, and show you how fast you can go live.
+        </p>
+        <div className="cta-btns">
+          <a className="btn cta-btn btn-lg" href="mailto:admin@riftfi.xyz">
+            Book a Call {I.arrow}
+          </a>
+          <a
+            className="tlink cta-tlink"
+            href="https://portal.riftfi.xyz/docs"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read the docs {I.arrowR}
+          </a>
+        </div>
       </div>
     </div>
   </section>

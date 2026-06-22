@@ -1,13 +1,13 @@
 import { Fragment } from "react";
 import { Helmet } from "react-helmet-async";
-import { Hero, TrustStatement } from "../components/rift/Hero";
+import { Hero } from "../components/rift/Hero";
 import {
+  MotionBand,
+  Partners,
+  CommerceBand,
   Outcomes,
   Platform,
   Pillars,
-  WhyRift,
-  HowItWorks,
-  Orchestration,
   Security,
   Proof,
   Wallet,
@@ -79,13 +79,12 @@ export const Home = () => (
       })}</script>
     </Helmet>
     <Hero />
-    <TrustStatement />
+    <Partners />
+    <MotionBand />
     <Outcomes />
+    <CommerceBand />
     <Platform />
     <Pillars />
-    <WhyRift />
-    <HowItWorks />
-    <Orchestration />
     <Security />
     <Proof />
     <Wallet />

@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { FiSearch, FiCalendar, FiClock, FiTag } from "react-icons/fi";
 import { Reveal, StaggerGroup, StaggerItem } from "../components/motion/Reveal";
+import { CoverArt } from "../components/blog/CoverArt";
 import { posts } from "../lib/posts";
 import "../styles/components/blog/blog.scss";
 
@@ -136,8 +137,8 @@ export const Blog = () => {
         </Reveal>
         <Reveal delay={0.15}>
           <p className="bl-sub">
-            Essays, technical deep dives, and product updates from the people
-            building Rift — for users and the developers building on top of us.
+            Moving money across emerging markets where dollars are scarce. Essays and notes from the
+            people building Rift.
           </p>
         </Reveal>
 
@@ -203,9 +204,15 @@ export const Blog = () => {
                       </div>
                     </div>
                     <div className="bl-featured-art">
-                      <div className="art-grid" />
-                      <div className="art-glow a" />
-                      <div className="art-glow b" />
+                      {featured.cover ? (
+                        <CoverArt cover={featured.cover} eager />
+                      ) : (
+                        <>
+                          <div className="art-grid" />
+                          <div className="art-glow a" />
+                          <div className="art-glow b" />
+                        </>
+                      )}
                     </div>
                   </motion.div>
                 </Link>
@@ -224,10 +231,16 @@ export const Blog = () => {
                         transition={{ duration: 0.25 }}
                       >
                         <div className="bl-card-cover">
-                          <div className="bl-card-hue" />
-                          <span className="bl-card-emoji">
-                            {p.tags?.[0]?.charAt(0).toUpperCase() || "R"}
-                          </span>
+                          {p.cover ? (
+                            <CoverArt cover={p.cover} />
+                          ) : (
+                            <>
+                              <div className="bl-card-hue" />
+                              <span className="bl-card-emoji">
+                                {p.tags?.[0]?.charAt(0).toUpperCase() || "R"}
+                              </span>
+                            </>
+                          )}
                         </div>
                         <div className="bl-card-body">
                           <h3>{p.title}</h3>

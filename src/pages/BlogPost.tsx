@@ -4,9 +4,21 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { FiArrowLeft, FiCalendar, FiClock, FiTag, FiShare2 } from "react-icons/fi";
 import { Markdown } from "../components/blog/Markdown";
+import { CoverArt } from "../components/blog/CoverArt";
 import { Reveal } from "../components/motion/Reveal";
 import { getPost, posts } from "../lib/posts";
 import "../styles/components/blog/blog-post.scss";
+
+type AuthorInfo = { name: string; bio: string; calendly?: string; photo?: string };
+
+const AUTHORS: Record<string, AuthorInfo> = {
+  Amschel: {
+    name: "Amschel",
+    bio: "Cross-border trade, stablecoin and FX expert. Software engineer and CTO building derivatives and stablecoin rails.",
+    calendly: "https://calendly.com/art68401/30min",
+    photo: "/amschel.jpeg",
+  },
+};
 
 function formatDate(iso: string) {
   try {
@@ -41,6 +53,7 @@ export const BlogPost = () => {
   if (!post) return <Navigate to="/blog" replace />;
 
   const others = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const authorInfo = post.author ? AUTHORS[post.author] : undefined;
 
   const onShare = async () => {
     const url = window.location.href;
@@ -170,6 +183,12 @@ export const BlogPost = () => {
           </header>
         </Reveal>
 
+        {post.cover && (
+          <div className="bp-art">
+            <CoverArt cover={post.cover} eager />
+          </div>
+        )}
+
         <motion.div
           className="bp-body"
           initial={{ opacity: 0, y: 12 }}
@@ -179,6 +198,37 @@ export const BlogPost = () => {
           <Markdown content={post.content} />
         </motion.div>
       </article>
+
+      {authorInfo && (
+        <section className="bp-author">
+          <Reveal>
+            <div className="bp-author-card">
+              {authorInfo.photo ? (
+                <img className="bp-author-avatar" src={authorInfo.photo} alt={authorInfo.name} />
+              ) : (
+                <div className="bp-author-avatar" aria-hidden="true">
+                  {authorInfo.name.charAt(0)}
+                </div>
+              )}
+              <div className="bp-author-info">
+                <span className="bp-author-label">Written by</span>
+                <h3>{authorInfo.name}</h3>
+                <p>{authorInfo.bio}</p>
+                {authorInfo.calendly && (
+                  <a
+                    className="bp-author-cta"
+                    href={authorInfo.calendly}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FiCalendar /> Schedule a 30-min call
+                  </a>
+                )}
+              </div>
+            </div>
+          </Reveal>
+        </section>
+      )}
 
       {others.length > 0 && (
         <section className="bp-more">

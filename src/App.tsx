@@ -7,8 +7,9 @@ import { Blog } from "./pages/Blog";
 import { BlogPost } from "./pages/BlogPost";
 
 function App() {
+  // dark theme only — no switching
   return (
-    <>
+    <div className="theme-dark">
       <ScrollToTop />
       <Nav />
       <Routes>
@@ -18,7 +19,7 @@ function App() {
         <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 
