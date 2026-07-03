@@ -1,149 +1,99 @@
-import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Reveal } from "./Reveal";
-import {
-  I,
-  OUTCOMES,
-  PILLARS,
-  FLOW,
-  WHY,
-  SECURITY,
-  STABLES,
-  MARKS,
-  FLAGS,
-  SNIPPET,
-  type Tok,
-} from "../../lib/rift-data";
+import { I } from "../../lib/rift-data";
 
-/* ============ Partners & featured in ============ */
-const PARTNERS: { img: string; n: string }[] = [
-  { img: "/assets/pretium.png", n: "Pretium" },
-  { img: "/assets/sasapay.png", n: "SasaPay" },
-  { img: "/assets/web3clubs.png", n: "Web3Clubs" },
-  { img: "/assets/aya.png", n: "Aya" },
-];
-
-export const Partners = () => (
-  <section className="partners" aria-label="Partners and featured in">
-    <div className="wrap">
-      <p className="partners-label">Partners &amp; featured in</p>
-      <div className="partners-row">
-        {PARTNERS.map((p) => (
-          <img key={p.n} src={p.img} alt={p.n} loading="lazy" />
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-/* ============ Real-world commerce (video cards) ============ */
-const CMEDIA: { src: string; poster: string; k: string; d: string }[] = [
-  { src: "/crossborder.mp4", poster: "/crossborder-poster.jpg", k: "In person", d: "POS & terminal acceptance" },
-  { src: "/commerce.mp4", poster: "/commerce-poster.jpg", k: "Online", d: "Checkout, wallets & cards" },
-];
-
-export const CommerceBand = () => (
-  <section className="band" aria-label="Real-world money movement">
-    <div className="wrap">
-      <div className="head-2col">
-        <div>
-          <span className="kicker grey">Real-world flows</span>
-          <h2 style={{ marginTop: 18 }}>
-            Money moving,
-            <br />
-            everywhere it happens.
-          </h2>
-        </div>
-        <p className="lead measure">
-          From a card tap at a terminal to a checkout on a phone, the same compliant rail settles
-          it underneath, in stablecoins, out to local currency.
-        </p>
-      </div>
-      <div className="cmedia">
-        {CMEDIA.map((c) => (
-          <Reveal
-            key={c.k}
-            className="cmedia-card"
-            style={{ backgroundImage: `url(${c.poster})` }}
-          >
-            <video
-              className="cmedia-video"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="none"
-              poster={c.poster}
-              aria-hidden="true"
-            >
-              <source src={c.src} type="video/mp4" />
-            </video>
-            <div className="cmedia-scrim" aria-hidden="true" />
-            <div className="cmedia-cap">
-              <span className="cm-k">{c.k}</span>
-              <span className="cm-d">{c.d}</span>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-/* ============ Money in motion (video band) ============ */
-export const MotionBand = () => (
-  <section className="motion" aria-label="Money in motion">
-    <video
-      className="motion-video"
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="metadata"
-      poster="/traffic-poster.jpg"
-      aria-hidden="true"
-    >
-      <source src="/traffic.mp4" type="video/mp4" />
-    </video>
-    <div className="motion-overlay" aria-hidden="true" />
-    <div className="wrap motion-in">
-      <h2>Money is always moving.</h2>
-      <p>
-        Across borders, chains and currencies, value never stops. Rift is the compliant rail it
-        settles on, every second of every day.
-      </p>
-    </div>
-  </section>
-);
-
-/* ============ Outcomes ============ */
-export const Outcomes = () => (
-  <section className="band" id="outcomes">
+/* ============ Problem section (directly under hero) ============ */
+export const Problem = () => (
+  <section className="band" id="problem">
     <div className="wrap">
       <div className="head-2col">
         <div>
           <span className="kicker">
-            <span className="n">01</span> What you can launch
+            <span className="n">01</span> The gap
           </span>
           <h2 style={{ marginTop: 18 }}>
-            Ship the product.
+            Billions are moving.
             <br />
-            We are the rail beneath it.
+            Your institution can't see it.
           </h2>
         </div>
         <p className="lead measure">
-          One integration, many products. Whatever your institution moves, Rift is the compliant
-          infrastructure it runs on.
+          Cross-border payments between African businesses increasingly
+          run on stablecoins, outside the banking system. Banks lose
+          the transaction fees, tie up capital in pre-funded accounts
+          overseas, and can't lend to businesses whose cash flow they
+          can't see. The flow isn't coming back to the old rails. The
+          rails have to come to the flow.
         </p>
       </div>
-      <div className="segs">
-        <div className="seg-head-row">
-          <span>You are</span>
-          <span>What you launch</span>
+    </div>
+  </section>
+);
+
+/* ============ What your institution gets (bank pitch) ============ */
+
+const INST_BENEFITS: { h: string; d: string }[] = [
+  {
+    h: "Serve clients instantly.",
+    d: "Cross-border payments in minutes, not days.",
+  },
+  {
+    h: "New revenue.",
+    d: "Transaction fees on flows that currently bypass you.",
+  },
+  {
+    h: "Freed capital.",
+    d: "Cut the cash locked away overseas to handle international payments.",
+  },
+  {
+    h: "Lend with visibility.",
+    d: "Real-time cash flow on businesses you could never underwrite before.",
+  },
+];
+
+export const InstitutionBenefits = () => (
+  <section className="band" id="banks">
+    <div className="wrap">
+      <div className="head-2col">
+        <div>
+          <span className="kicker">
+            <span className="n">02</span> For banks and fintechs
+          </span>
+          <h2 style={{ marginTop: 18 }}>
+            What your institution
+            <br />
+            gets.
+          </h2>
         </div>
-        {OUTCOMES.map((s) => (
-          <Reveal key={s.k} className="seg">
-            <div className="seg-name">{s.k}</div>
+        <p className="lead measure">
+          African businesses are moving billions across borders in
+          stablecoins because it's cheaper and faster, but that
+          transaction history sits outside the banking system,
+          invisible to the institutions that could lend against it.
+          Rift's wallet and liquidity infrastructure plugs your
+          institution directly into that flow. You can now help your
+          clients move money instantly, earn entirely new transaction
+          fees, free up the cash your bank usually has to lock away
+          overseas to handle international payments, and gain the
+          real-time visibility you need to safely lend to customers
+          whose repayment behavior you can finally see.
+        </p>
+      </div>
+      <p
+        style={{
+          fontFamily: "Archivo, sans-serif",
+          fontWeight: 700,
+          fontSize: 22,
+          marginTop: 32,
+          color: "var(--ink)",
+        }}
+      >
+        The money is already moving. We make sure it moves through you.
+      </p>
+      <div className="segs" style={{ marginTop: 40 }}>
+        {INST_BENEFITS.map((b, i) => (
+          <Reveal key={b.h} className="seg">
+            <div className="seg-name">{`0${i + 1}`}</div>
             <div className="seg-d">
               <strong
                 style={{
@@ -152,9 +102,9 @@ export const Outcomes = () => (
                   fontWeight: 700,
                 }}
               >
-                {s.p}.
+                {b.h}
               </strong>{" "}
-              {s.d}
+              {b.d}
             </div>
           </Reveal>
         ))}
@@ -163,470 +113,211 @@ export const Outcomes = () => (
   </section>
 );
 
-/* ============ Platform ============ */
-export const Platform = () => (
-  <section className="band" id="platform">
-    <div className="wrap">
-      <div className="prose-grid">
-        <div>
-          <span className="kicker">
-            <span className="n">02</span> The platform
-          </span>
-          <h2 style={{ marginTop: 18 }}>
-            The layer everything
-            <br />
-            runs on.
-          </h2>
-        </div>
-        <div className="body">
-          <p>
-            Rift is the infrastructure beneath institutional stablecoin money. Compliance, treasury,
-            settlement and the standards for how stablecoins move, in commerce and across borders,
-            come as one rail, not a stack of vendors you stitch together yourself.
-          </p>
-        </div>
-      </div>
-      <div className="spine">
-        <span>
-          Build on <em>Rift</em>.
-        </span>
-        <span>
-          Operate on <em>Rift</em>.
-        </span>
-        <span>
-          Settle across <em>Rift</em>.
-        </span>
-      </div>
-    </div>
-  </section>
-);
+/* ============ Product / trust (compliance lives here) ============ */
 
-/* ============ Pillars ============ */
-export const Pillars = () => (
+const CAPABILITIES: string[] = [
+  "Wallets with passkey and Google auth, KYC'd onboarding built in",
+  "Key generation and transaction signing inside secure enclaves, non-custodial by architecture",
+  "In-country deployment on any enclave-supporting server, shipped as a signed, verifiable build",
+  "Fiat on-ramps and off-ramps",
+  "Local-currency stablecoin issuance support",
+  "Treasury and money movement: stablecoin to stablecoin, to local currency, across chains",
+  "One API for all of it",
+];
+
+export const OneStack = () => (
   <section className="band" id="stack">
     <div className="wrap">
       <div className="head-2col">
         <div>
           <span className="kicker">
-            <span className="n">03</span> The platform, in layers
+            <span className="n">03</span> The stack
           </span>
           <h2 style={{ marginTop: 18 }}>
-            One rail.
+            One stack, built
             <br />
-            Every layer you need.
+            for the regulated era.
           </h2>
         </div>
         <p className="lead measure">
-          Use one layer or the whole stack, through a single API. Compliance leads, because the
-          regulator does.
+          Everything an institution needs to capture the flow, and
+          everything its risk team needs to say yes.
         </p>
       </div>
-      <div className="pillars">
-        {PILLARS.map((p) => (
-          <Reveal key={p.h} className="pillar">
-            <div className="p-top">
-              <span className="p-ic">{p.ic}</span>
-              <span className="p-tag">{p.tag}</span>
-            </div>
-            <h3>{p.h}</h3>
-            <p className="p-d">{p.d}</p>
-            <ul>
-              {p.pts.map((x) => (
-                <li key={x}>{x}</li>
-              ))}
-            </ul>
-          </Reveal>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-/* ============ Why Rift ============ */
-export const WhyRift = () => (
-  <section className="band">
-    <div className="wrap">
-      <div className="head-2col">
-        <div>
-          <span className="kicker">
-            <span className="n">04</span> Why Rift
-          </span>
-          <h2 style={{ marginTop: 18 }}>
-            Built for
-            <br />
-            the institution.
-          </h2>
-        </div>
-        <p className="lead measure">
-          Everything an institution needs to operate in stablecoins, and nothing it has to build
-          itself.
-        </p>
-      </div>
-      <div className="list-grid">
-        {WHY.map((r) => (
-          <Reveal key={r.n} className="list-row">
-            <span className="lr-n">{r.n}</span>
+      <div
+        className="list-grid"
+        style={{ marginTop: 40 }}
+      >
+        {CAPABILITIES.map((c, i) => (
+          <Reveal key={c} className="list-row">
+            <span className="lr-n">{`0${i + 1}`}</span>
             <div>
-              <div className="lr-h">{r.h}</div>
-              <div className="lr-d">{r.d}</div>
+              <div className="lr-h">{c}</div>
             </div>
           </Reveal>
         ))}
+      </div>
+      <div
+        style={{
+          marginTop: 48,
+          textAlign: "center",
+          fontFamily: "Archivo, sans-serif",
+          fontWeight: 600,
+          fontSize: 16,
+          color: "var(--muted)",
+          fontStyle: "italic",
+        }}
+      >
+        Compliant by architecture, not by promise.
       </div>
     </div>
   </section>
 );
 
-/* ============ How it works ============ */
-export const HowItWorks = () => (
-  <section className="band" id="how">
+/* ============ Data + credit story ============ */
+export const DataCredit = () => (
+  <section className="band" id="data">
     <div className="wrap">
       <div className="head-2col">
         <div>
           <span className="kicker">
-            <span className="n">05</span> How it works
+            <span className="n">04</span> Credit and data
           </span>
           <h2 style={{ marginTop: 18 }}>
-            From integration
+            Every payment builds
             <br />
-            to settlement.
+            a financial identity.
           </h2>
         </div>
         <p className="lead measure">
-          Integrate once and launch. We run the chains, custody, gas and settlement underneath, so
-          your team ships product.
+          Businesses on Rift don't just move money, they build verified
+          payment histories they can choose to share with their bank.
+          For the business, that's the credit reputation informal
+          channels never gave them. For your institution, it's
+          underwriting data on customers who were invisible before.
+          Consent-based, both sides win.
         </p>
-      </div>
-      <div className="flow">
-        {FLOW.map((s, i) => (
-          <Reveal key={s.h} className="flow-step" style={{ transitionDelay: `${i * 0.05}s` }}>
-            <div className="fs-n">{s.n}</div>
-            <div className="fs-ic">{s.ic}</div>
-            <div className="fs-h">{s.h}</div>
-            <div className="fs-d">{s.d}</div>
-            {i < FLOW.length - 1 && <span className="fs-arrow">{I.arrowR}</span>}
-          </Reveal>
-        ))}
       </div>
     </div>
   </section>
 );
 
-/* ============ Orchestration diagram ============ */
-type IconCfg = [React.ReactElement, string, string];
-
-const ORCH_TOP: IconCfg[] = [
-  [I.bank, "Core banking", "ledger sync"],
-  [I.layers, "ERP & ledger", "reconciliation"],
-  [I.coins, "Treasury", "balances"],
-  [I.users, "Payroll", "disbursement"],
-];
-const ORCH_BOT: IconCfg[] = [
-  [I.store, "POS terminals", "acceptance"],
-  [I.card, "Card issuing", "spend"],
-  [I.phone, "Mobile money", "on / off-ramp"],
-  [I.lock, "Custody", "keys"],
-];
-
-const OrchNode = ({ cx, y, cfg }: { cx: number; y: number; cfg: IconCfg }) => {
-  const [icon, h, sub] = cfg;
-  const NW = 244;
-  const NH = 70;
-  const ix = cx - NW / 2 + 20;
-  const tx = cx - NW / 2 + 56;
-  return (
-    <g>
-      <rect className="on-rect" x={cx - NW / 2} y={y} width={NW} height={NH} rx={2} />
-      <foreignObject x={ix} y={y + NH / 2 - 13} width={26} height={26}>
-        <div className="on-ic" style={{ width: 26, height: 26, color: "var(--brand)" }}>
-          {icon}
-        </div>
-      </foreignObject>
-      <text className="on-h" x={tx} y={y + 30}>
-        {h}
-      </text>
-      <text className="on-sub" x={tx} y={y + 49}>
-        {sub}
-      </text>
-    </g>
-  );
-};
-
-export const Orchestration = () => {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [draw, setDraw] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setDraw(true);
-          io.disconnect();
-        }
-      },
-      { threshold: 0.25 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  const cxs = [152, 417, 682, 947];
-  const NH = 70;
-  const topY = 26;
-  const botY = 464;
-  const cW = 250;
-  const cH = 94;
-  const cCx = 550;
-  const cY = 244;
-  const cX = cCx - cW / 2;
-  const cTop = cY;
-  const cBot = cY + cH;
-  const topBus = 184;
-  const botBus = 404;
-
-  return (
-    <section className="band" id="connect">
-      <div className="wrap">
-        <div className="head-2col">
-          <div>
-            <span className="kicker">
-              <span className="n">06</span> Integrations
-            </span>
-            <h2 style={{ marginTop: 18 }}>
-              Connect to the systems
-              <br />
-              you already run.
-            </h2>
-          </div>
-          <p className="lead measure">
-            One integration sits between your existing stack and stablecoin money. Connect core
-            banking, treasury, payroll, commerce and custody through a single API, with compliance
-            enforced on every flow.
-          </p>
-        </div>
-
-        <div className={"orch" + (draw ? " draw" : "")} ref={ref}>
-          <div className="orch-mobile" aria-hidden="true">
-            <div className="orch-mobile-grid">
-              {ORCH_TOP.map(([icon, h, sub], i) => (
-                <div className="orch-mobile-node" key={`mt${i}`}>
-                  <div className="orch-mobile-ic">{icon}</div>
-                  <div>
-                    <div className="orch-mobile-h">{h}</div>
-                    <div className="orch-mobile-sub">{sub}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="orch-mobile-center">
-              <img src="/assets/rift-logo.png" alt="" />
-              <div className="orch-mobile-rift">RIFT</div>
-              <div className="orch-mobile-tag">compliance · treasury · settlement</div>
-            </div>
-            <div className="orch-mobile-grid">
-              {ORCH_BOT.map(([icon, h, sub], i) => (
-                <div className="orch-mobile-node" key={`mb${i}`}>
-                  <div className="orch-mobile-ic">{icon}</div>
-                  <div>
-                    <div className="orch-mobile-h">{h}</div>
-                    <div className="orch-mobile-sub">{sub}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="orch-scroll">
-            <svg className="orch-svg" viewBox="0 0 1100 560" role="img" aria-label="Rift connects core banking, ERP, treasury, payroll, POS terminals, card issuing, mobile money and custody systems through one API.">
-              {cxs.map((cx, i) => (
-                <path
-                  key={`t${i}`}
-                  className="on-link"
-                  d={`M ${cx} ${topY + NH} V ${topBus} H ${cCx} V ${cTop}`}
-                />
-              ))}
-              {cxs.map((cx, i) => (
-                <path
-                  key={`b${i}`}
-                  className="on-link"
-                  d={`M ${cx} ${botY} V ${botBus} H ${cCx} V ${cBot}`}
-                />
-              ))}
-
-              <text className="on-trunk" x={cCx + 16} y={topBus - 12}>
-                REST · SDKs
-              </text>
-              <text className="on-trunk" x={cCx + 16} y={botBus + 22}>
-                Webhooks · events
-              </text>
-
-              {ORCH_TOP.map((cfg, i) => (
-                <OrchNode key={`tn${i}`} cx={cxs[i]} y={topY} cfg={cfg} />
-              ))}
-              {ORCH_BOT.map((cfg, i) => (
-                <OrchNode key={`bn${i}`} cx={cxs[i]} y={botY} cfg={cfg} />
-              ))}
-
-              {cxs.map((cx, i) => (
-                <circle key={`td${i}`} className="on-dot" cx={cx} cy={topY + NH} r={3} />
-              ))}
-              {cxs.map((cx, i) => (
-                <circle key={`bd${i}`} className="on-dot" cx={cx} cy={botY} r={3} />
-              ))}
-
-              <rect className="on-center" x={cX} y={cY} width={cW} height={cH} rx={2} />
-              <image href="/assets/rift-logo.png" x={cCx - 58} y={cY + 22} width={32} height={32} />
-              <text className="on-center-h" x={cCx - 18} y={cY + 45}>
-                RIFT
-              </text>
-              <text className="on-center-sub" x={cCx} y={cY + 72} textAnchor="middle">
-                compliance · treasury · settlement
-              </text>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-/* ============ Security ============ */
-const SEC_MEDIA: { src: string; poster: string }[] = [
-  { src: "/key.mp4", poster: "/key-poster.jpg" }, // MPC key management
-  { src: "/identity.mp4", poster: "/identity-poster.jpg" }, // Identity and screening
-  { src: "/encrypt.mp4", poster: "/encrypt-poster.jpg" }, // Encrypted by default
-  { src: "/audit.mp4", poster: "/audit-poster.jpg" }, // Auditable by default
-];
-
-export const Security = () => (
-  <section className="band" id="security">
+/* ============ Vision section ============ */
+export const Vision = () => (
+  <section className="band" id="vision">
     <div className="wrap">
       <div className="head-2col">
         <div>
           <span className="kicker">
-            <span className="n">04</span> Security and compliance
+            <span className="n">05</span> Where this goes
           </span>
           <h2 style={{ marginTop: 18 }}>
-            The controls your risk
+            The clearing layer
             <br />
-            team will sign off.
+            Africa never built.
           </h2>
         </div>
         <p className="lead measure">
-          Compliance and key security are built into every layer, so you inherit the controls
-          instead of building them.
+          The wallet layer is the door into the bigger thing. Once
+          institutions in different countries run on Rift, we connect
+          them, so a bank in Kenya and one in Tanzania settle in local
+          currency, flows netting against each other, with only the
+          small residual ever touching dollars. Cross-border payments
+          in Africa detour through scarce dollars not because they have
+          to, but because nobody built the clearing layer. That is the
+          company we are building.
         </p>
-      </div>
-      <div className="sec-grid">
-        {SECURITY.map((r, i) => (
-          <Reveal key={r.n} className="sec-card">
-            <div className="sec-card-media">
-              <video
-                className="sec-card-video"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="none"
-                poster={SEC_MEDIA[i]?.poster}
-                aria-hidden="true"
-              >
-                <source src={SEC_MEDIA[i]?.src} type="video/mp4" />
-              </video>
-            </div>
-            <div className="sec-card-body">
-              <span className="sec-card-n mono">{r.n}</span>
-              <div className="sec-card-h">{r.h}</div>
-              <div className="sec-card-d">{r.d}</div>
-            </div>
-          </Reveal>
-        ))}
       </div>
     </div>
   </section>
 );
 
-/* ============ Proof / Coverage ============ */
-export const Proof = () => (
-  <section className="band" id="coverage">
+/* ============ Design partners (honest replacement for Partners) ============ */
+
+/**
+ * Only real names go here. Per the positioning spec: no invented logos,
+ * no "trusted by 100+ institutions", no volume numbers. With a thin
+ * list we frame as "design partners" rather than pretending to be at
+ * scale we're not.
+ */
+const DESIGN_PARTNERS: string[] = ["Peoples Markets", "Blockfinax"];
+
+export const DesignPartners = () => (
+  <section className="partners" aria-label="Design partners">
     <div className="wrap">
-      <div className="head-2col">
-        <div>
-          <span className="kicker">
-            <span className="n">05</span> Coverage
+      <p className="partners-label">Design partners</p>
+      <div
+        className="partners-row"
+        style={{
+          display: "flex",
+          gap: 40,
+          alignItems: "center",
+          flexWrap: "wrap",
+          justifyContent: "center",
+        }}
+      >
+        {DESIGN_PARTNERS.map((name) => (
+          <span
+            key={name}
+            style={{
+              fontFamily: "Archivo, sans-serif",
+              fontWeight: 600,
+              fontSize: 18,
+              color: "var(--muted)",
+              letterSpacing: "0.02em",
+            }}
+          >
+            {name}
           </span>
-          <h2 style={{ marginTop: 18 }}>
-            Every regulated stablecoin.
-            <br />
-            Everywhere your money moves.
-          </h2>
-        </div>
-        <p className="lead measure">
-          One rail across stablecoin types, chains and markets. Local-currency, dollar and regulated
-          private stablecoins, settling where your users are.
-        </p>
-      </div>
-      <div className="types">
-        {STABLES.map((s, i) => (
-          <Reveal key={s.h} className="type" style={{ transitionDelay: `${i * 0.06}s` }}>
-            <div className="ty-n mono">{`0${i + 1}`}</div>
-            <div className="ty-h">{s.h}</div>
-            <div className="ty-d">{s.d}</div>
-          </Reveal>
         ))}
       </div>
-      <div className="cov-grid" style={{ marginTop: 56 }}>
-        <div>
-          <h3 style={{ marginBottom: 18 }}>Settling where your users are</h3>
-          <div className="cov-flags">
-            {FLAGS.map(([code, name]) => (
-              <span className="cf" key={code}>
-                <img src={`https://flagcdn.com/${code}.svg`} alt="" />
-                {name}
-              </span>
-            ))}
-          </div>
-        </div>
-        <div>
-          <h3 style={{ marginBottom: 18 }}>Across the chains that matter</h3>
-          <div className="logo-wall">
-            {MARKS.map((m) => (
-              <div className="lw" key={m.n}>
-                <img src={m.img} alt={m.n} />
-                <span>{m.n}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <p
+        style={{
+          marginTop: 20,
+          textAlign: "center",
+          fontSize: 13,
+          color: "var(--muted)",
+        }}
+      >
+        Currently onboarding design partners across East Africa.
+      </p>
     </div>
   </section>
 );
 
-/* ============ Wallet ============ */
+/* ============ Wallet section (proof the rails work) ============ */
 export const Wallet = () => (
   <section className="band">
     <div className="wrap">
       <div className="prose-grid">
         <div>
           <span className="kicker">
-            <span className="n">06</span> Built on Rift
+            <span className="n">06</span> Proof
           </span>
-          <h2 style={{ marginTop: 18 }}>See the rail in action.</h2>
+          <h2 style={{ marginTop: 18 }}>See the rails in action.</h2>
         </div>
         <div className="body">
           <p>
-            The Rift Wallet is a full consumer wallet we built on the same APIs we give you. It
-            buys stablecoins with local currency, cashes out to more than ten currencies, and
-            onboards with Google, email or phone, no seed phrase. Proof the rails are ready for
-            production.
+            The Rift Wallet is a full consumer wallet we built on the
+            same APIs we give you. It onboards with Google, email, or
+            phone, no seed phrase. It moves real funds across borders
+            today. Proof the rails are ready.
           </p>
           <div className="hero-cta" style={{ marginTop: 28 }}>
-            <a className="btn btn-secondary" href="https://wallet.riftfi.xyz/" target="_blank" rel="noopener noreferrer">
+            <a
+              className="btn btn-secondary"
+              href="https://wallet.riftfi.xyz/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Open the Rift Wallet {I.arrow}
             </a>
-            <a className="tlink" href="https://wallet.riftfi.xyz/" target="_blank" rel="noopener noreferrer">
+            <a
+              className="tlink"
+              href="https://wallet.riftfi.xyz/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               wallet.riftfi.com {I.arrowR}
             </a>
           </div>
@@ -636,83 +327,7 @@ export const Wallet = () => (
   </section>
 );
 
-/* ============ Developers (code block) ============ */
-const CodeLine = ({ toks }: { toks: Tok[] }) => {
-  if (toks.length === 1 && toks[0][1] === "") return <span>{"\n"}</span>;
-  return (
-    <span>
-      {toks.map((t, i) => {
-        const [k, v] = t;
-        if (k === "i") return <span key={i}>{v}</span>;
-        const cls: Record<string, string> = {
-          c: "tk-c",
-          k: "tk-k",
-          f: "tk-f",
-          s: "tk-s",
-          n: "tk-n",
-          p: "tk-p",
-          pr: "tk-pr",
-        };
-        return (
-          <span key={i} className={cls[k] || "tk-p"}>
-            {v}
-          </span>
-        );
-      })}
-      {"\n"}
-    </span>
-  );
-};
-
-export const Developers = () => (
-  <section className="band" id="developers">
-    <div className="wrap">
-      <div className="dev-grid">
-        <div>
-          <span className="kicker">
-            <span className="n">09</span> For developers
-          </span>
-          <h2 style={{ marginTop: 18 }}>
-            Stablecoin money
-            <br />
-            in a few lines.
-          </h2>
-          <p className="lead measure" style={{ marginTop: 22 }}>
-            Issue wallets, move value and settle through one API. Identity, gas and compliance are
-            built in, so you ship the product, not the regulation.
-          </p>
-          <div className="hero-cta" style={{ marginTop: 30 }}>
-            <a className="btn btn-secondary" href="https://portal.riftfi.xyz/docs" target="_blank" rel="noopener noreferrer">
-              Read the docs {I.arrow}
-            </a>
-            <a className="tlink" href="https://portal.riftfi.xyz/docs" target="_blank" rel="noopener noreferrer">
-              Get API access {I.arrowR}
-            </a>
-          </div>
-        </div>
-        <div className="code">
-          <div className="code-bar">
-            <span className="cf-l">rift.ts</span>
-            <span className="dots">
-              <i />
-              <i />
-              <i />
-            </span>
-          </div>
-          <div className="code-body">
-            <pre>
-              {SNIPPET.map((l, i) => (
-                <CodeLine key={i} toks={l} />
-              ))}
-            </pre>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-/* ============ Book a call (brand card) ============ */
+/* ============ Book a call ============ */
 export const FinalCTA = () => (
   <section className="cta">
     <div className="wrap">
@@ -720,12 +335,13 @@ export const FinalCTA = () => (
         <span className="cta-eyebrow">Schedule</span>
         <h2>Book a call with us</h2>
         <p>
-          Tell us what you want to issue, disburse or settle. We will walk you through Rift, answer
-          your questions, and show you how fast you can go live.
+          Tell us what your institution wants to capture from the flow.
+          We will walk you through Rift, answer your questions, and
+          show you how fast you can go live.
         </p>
         <div className="cta-btns">
           <a className="btn cta-btn btn-lg" href="mailto:admin@riftfi.xyz">
-            Book a Call {I.arrow}
+            Book a call {I.arrow}
           </a>
           <a
             className="tlink cta-tlink"
@@ -747,19 +363,17 @@ export const Footer = () => {
     {
       h: "Product",
       links: [
-        ["Embedded wallets", "#stack"],
-        ["On & off-ramps", "#stack"],
-        ["Cross-chain movement", "#stack"],
+        ["The stack", "/#stack"],
+        ["Data and credit", "/#data"],
         ["Rift Wallet", "https://wallet.riftfi.xyz/"],
       ],
     },
     {
-      h: "Solutions",
+      h: "For",
       links: [
-        ["Neobanks", "#segments"],
-        ["Fintechs & PSPs", "#segments"],
-        ["Startups", "#segments"],
-        ["Coverage", "#coverage"],
+        ["Banks and fintechs", "/#banks"],
+        ["Businesses", "/businesses"],
+        ["Where this goes", "/#vision"],
       ],
     },
     {
@@ -774,7 +388,6 @@ export const Footer = () => {
       h: "Company",
       links: [
         ["Blog", "/blog"],
-        ["Security", "#security"],
         ["Contact", "mailto:admin@riftfi.xyz"],
       ],
     },
@@ -797,14 +410,19 @@ export const Footer = () => {
               <img className="mark" src="/assets/rift-logo.png" alt="" />
               <span className="wm">Rift</span>
             </Link>
-            <p>The compliance, treasury and settlement infrastructure for the stablecoin era.</p>
+            <p>
+              Rift powers businesses moving money across African
+              borders, and gives banks the rails and the data to
+              finally see, serve, and lend to them.
+            </p>
           </div>
           {cols.map((c) => (
             <div className="foot-col" key={c.h}>
               <h5>{c.h}</h5>
               {c.links.map(([label, href]) => {
-                const isExternal = href.startsWith("http") || href.startsWith("mailto:");
-                if (!isExternal && href.startsWith("/")) {
+                const isExternal =
+                  href.startsWith("http") || href.startsWith("mailto:");
+                if (!isExternal && href.startsWith("/") && !href.startsWith("/#")) {
                   return (
                     <Link key={label} to={href}>
                       {label}
@@ -815,7 +433,11 @@ export const Footer = () => {
                   <a
                     key={label}
                     href={href}
-                    target={isExternal && !href.startsWith("mailto:") ? "_blank" : undefined}
+                    target={
+                      isExternal && !href.startsWith("mailto:")
+                        ? "_blank"
+                        : undefined
+                    }
                     rel="noopener noreferrer"
                   >
                     {label}
@@ -827,18 +449,34 @@ export const Footer = () => {
         </div>
         <div className="foot-bottom">
           <span className="disc">
-            © {new Date().getUTCFullYear()} Rift Finance. Rift provides infrastructure software and
-            does not issue stablecoins or hold customer funds. Stablecoin and money-movement
-            services are provided by licensed partners.
+            © {new Date().getUTCFullYear()} Rift Finance. Rift provides
+            infrastructure software and does not issue stablecoins or
+            hold customer funds. Stablecoin and money-movement services
+            are provided by licensed partners. Nairobi.
           </span>
           <div className="socials">
-            <a href="https://x.com/tryrift" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <a
+              href="https://x.com/tryrift"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="X"
+            >
               {I.x}
             </a>
-            <a href="https://t.me/+B8abU5EjpTsyMWE8" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+            <a
+              href="https://t.me/+B8abU5EjpTsyMWE8"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Telegram"
+            >
               {I.tg}
             </a>
-            <a href="https://portal.riftfi.xyz/docs" target="_blank" rel="noopener noreferrer" aria-label="Docs">
+            <a
+              href="https://portal.riftfi.xyz/docs"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Docs"
+            >
               {I.book}
             </a>
           </div>

@@ -3,6 +3,7 @@ import { Nav } from "./components/rift/Nav";
 import { Footer } from "./components/rift/sections";
 import { ScrollToTop } from "./components/motion/ScrollToTop";
 import { Home } from "./pages/Home";
+import { Businesses } from "./pages/Businesses";
 import { Blog } from "./pages/Blog";
 import { BlogPost } from "./pages/BlogPost";
 
@@ -14,6 +15,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/businesses" element={<Businesses />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="*" element={<Home />} />

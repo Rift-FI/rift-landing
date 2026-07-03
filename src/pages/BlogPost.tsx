@@ -32,7 +32,7 @@ function formatDate(iso: string) {
   }
 }
 
-// old slugs that moved — keep links alive
+// old slugs that moved. Keep links alive.
 const SLUG_REDIRECTS: Record<string, string> = {
   "black-market-is-a-price": "parallel-market-is-a-price",
 };
@@ -82,7 +82,7 @@ export const BlogPost = () => {
     <main id="blog-post">
       <Helmet>
         <html lang="en" />
-        <title>{`${post.title} — Rift Blog`}</title>
+        <title>{`${post.title}. Rift Blog.`}</title>
         <meta name="description" content={post.description} />
         <link rel="canonical" href={`https://riftfi.xyz/blog/${post.slug}`} />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />

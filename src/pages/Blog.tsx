@@ -65,7 +65,7 @@ export const Blog = () => {
   return (
     <main id="blog-page">
       <Helmet>
-        <title>Rift Blog — Stablecoins, emerging markets & fintech</title>
+        <title>Rift Blog. Stablecoins, emerging markets, and fintech.</title>
         <html lang="en" />
         <meta
           name="description"
@@ -76,7 +76,7 @@ export const Blog = () => {
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Rift Journal — Notes on money without borders" />
+        <meta property="og:title" content="Rift Journal. Notes on money without borders." />
         <meta property="og:description" content="Essays from the Rift team on stablecoins, emerging markets and the future of programmable money." />
         <meta property="og:url" content="https://riftfi.xyz/blog" />
         <meta property="og:image" content="https://riftfi.xyz/og-image.png" />

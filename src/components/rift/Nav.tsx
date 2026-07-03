@@ -36,11 +36,10 @@ export const Nav = () => {
           <span className="wm">Rift</span>
         </Link>
         <div className="nav-links">
-          <a href={anchor("outcomes")}>Solutions</a>
-          <a href={anchor("platform")}>Platform</a>
-          <a href={anchor("security")}>Security</a>
-          <a href={anchor("coverage")}>Coverage</a>
-          <a href={anchor("company")}>Company</a>
+          <a href={anchor("banks")}>For banks</a>
+          <Link to="/businesses">For businesses</Link>
+          <a href={anchor("stack")}>The stack</a>
+          <a href={anchor("vision")}>Vision</a>
           <Link to="/blog">Blog</Link>
         </div>
         <div className="nav-cta">
@@ -72,11 +71,10 @@ export const Nav = () => {
       >
         <div className="nav-mobile-backdrop" onClick={closeMenu} />
         <div className="nav-mobile-panel">
-          <a href={anchor("outcomes")} onClick={closeMenu}>Solutions</a>
-          <a href={anchor("platform")} onClick={closeMenu}>Platform</a>
-          <a href={anchor("security")} onClick={closeMenu}>Security</a>
-          <a href={anchor("coverage")} onClick={closeMenu}>Coverage</a>
-          <a href={anchor("company")} onClick={closeMenu}>Company</a>
+          <a href={anchor("banks")} onClick={closeMenu}>For banks</a>
+          <Link to="/businesses" onClick={closeMenu}>For businesses</Link>
+          <a href={anchor("stack")} onClick={closeMenu}>The stack</a>
+          <a href={anchor("vision")} onClick={closeMenu}>Vision</a>
           <Link to="/blog" onClick={closeMenu}>Blog</Link>
           <a
             href="https://portal.riftfi.xyz/docs"
