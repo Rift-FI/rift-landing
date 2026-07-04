@@ -13,7 +13,7 @@
     }
   ],
   "rewrites": [
-    { "source": "/((?!assets/|sitemap\\.xml|feed\\.xml|robots\\.txt|manifest\\.webmanifest|favicon\\.ico).*)", "destination": "/index.html" }
+    { "source": "/((?!assets/|sitemap\\.xml|feed\\.xml|robots\\.txt|manifest\\.webmanifest|favicon\\.ico|rift-terms\\.pdf|rift-privacy\\.pdf).*)", "destination": "/index.html" }
   ],
   "headers": [
     {

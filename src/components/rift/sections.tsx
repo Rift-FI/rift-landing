@@ -500,9 +500,8 @@ export const Footer = () => {
     {
       h: "Legal",
       links: [
-        ["Privacy", "#"],
-        ["Terms", "#"],
-        ["Disclosures", "#"],
+        ["Privacy", "/privacy"],
+        ["Terms", "/terms"],
       ],
     },
   ];
@@ -554,8 +553,7 @@ export const Footer = () => {
         </div>
         <div className="foot-bottom">
           <span className="disc">
-            © {new Date().getUTCFullYear()} Rift Finance. Software only. Money
-            services provided by licensed partners. Nairobi.
+            © {new Date().getUTCFullYear()} Sphere Ramp LTD.
           </span>
           <div className="socials">
             <a

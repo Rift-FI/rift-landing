@@ -9,6 +9,9 @@
     "build:full": "tsc -b && vite build && npm run seo:lite && npm run seo:render",
     "seo:lite": "node scripts/build-seo-lite.mjs",
     "seo:render": "node scripts/build-seo.mjs",
+    "legal:terms": "node scripts/build-terms-pdf.mjs",
+    "legal:privacy": "node scripts/build-privacy-pdf.mjs",
+    "legal": "npm run legal:terms && npm run legal:privacy",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -36,6 +39,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.2.0",
+    "pdfkit": "^0.19.1",
     "playwright": "^1.61.0",
     "sass-embedded": "^1.93.3",
     "typescript": "~5.8.3",

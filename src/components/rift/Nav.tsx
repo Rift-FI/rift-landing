@@ -82,7 +82,7 @@ export const Nav = () => {
           >
             Read the docs
           </a>
-          <a className="btn btn-primary btn-lg nav-mobile-cta" href="mailto:admin@riftfi.xyz" onClick={closeMenu}>
+          <a href="mailto:admin@riftfi.xyz" onClick={closeMenu}>
             Talk to us
           </a>
         </div>
