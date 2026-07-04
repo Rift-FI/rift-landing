@@ -2,42 +2,44 @@ import { Fragment } from "react";
 import { Helmet } from "react-helmet-async";
 import { Hero } from "../components/rift/Hero";
 import {
-  Problem,
-  InstitutionBenefits,
+  MotionBand,
+  FlowVisuals,
+  BusinessBenefits,
+  BankableCredit,
+  InstitutionReveal,
   OneStack,
-  DataCredit,
-  Vision,
+  SecurityCards,
+  Coverage,
   DesignPartners,
   Wallet,
   FinalCTA,
 } from "../components/rift/sections";
 
 /**
- * Home page. Section order tracks the positioning spec:
- *   Hero            The money is already moving.
- *   Problem         Billions are moving, your institution can't see it.
- *   InstitutionBenefits  Bank pitch verbatim + 4 benefit cards.
- *   OneStack        Product + trust. Only place compliance vocabulary
- *                   appears above the fold.
- *   DataCredit      Every payment builds a financial identity.
- *   Vision          The clearing layer Africa never built.
- *   DesignPartners  Real names only. Honest framing.
- *   Wallet          Proof the rails work today.
- *   FinalCTA        Book a call.
- *
- * Compliance vocabulary does NOT appear in the hero, in any H1, or in
- * the meta title. Placement rule per the positioning spec.
+ * Home. Business-first order. Institution pitch is behind a click.
+ *   Hero              Pay across African borders in minutes.
+ *   MotionBand        Traffic video.
+ *   FlowVisuals       Cross-border + commerce videos.
+ *   BusinessBenefits  Short benefit tiles.
+ *   InstitutionReveal Click to expand bank/fintech pitch + orchestration.
+ *   OneStack          Product + trust list.
+ *   SecurityCards     Four enclave/KYC/deploy/build videos.
+ *   Coverage          Flags + chain logos.
+ *   Vision            The clearing layer Africa never built.
+ *   DesignPartners    Peoples Markets, Blockfinax.
+ *   Wallet            Live rails proof.
+ *   FinalCTA          Book a call.
  */
 export const Home = () => (
   <Fragment>
     <Helmet>
       <html lang="en" />
       <title>
-        Rift. The infrastructure banks use to capture Africa's cross-border flow.
+        Rift. Pay across African borders in minutes.
       </title>
       <meta
         name="description"
-        content="African businesses move billions across borders in stablecoins. Rift plugs banks and fintechs into that flow: instant payments, new fee revenue, freed capital, and the visibility to lend. Built compliant from day one."
+        content="Cross-border payments in minutes. Local currency in, local currency out. On rails your bank will sign off."
       />
       <link rel="canonical" href="https://riftfi.xyz/" />
       <meta
@@ -46,17 +48,17 @@ export const Home = () => (
       />
       <meta
         name="keywords"
-        content="cross-border payments Africa, stablecoin infrastructure, bank payment infrastructure, SME credit data, liquidity infrastructure, embedded wallets, compliant stablecoins, KYC AML stablecoins"
+        content="cross-border payments Africa, stablecoin infrastructure, bank payment infrastructure, SME credit data, liquidity infrastructure, embedded wallets"
       />
 
       <meta property="og:type" content="website" />
       <meta
         property="og:title"
-        content="Rift. The infrastructure banks use to capture Africa's cross-border flow."
+        content="Rift. Pay across African borders in minutes."
       />
       <meta
         property="og:description"
-        content="Rift powers businesses moving money across African borders, and gives banks the rails and the data to see, serve, and lend to them."
+        content="Cross-border payments in minutes. Local currency in, local currency out. On rails your bank will sign off."
       />
       <meta property="og:url" content="https://riftfi.xyz/" />
       <meta property="og:image" content="https://riftfi.xyz/og-image.png" />
@@ -68,21 +70,21 @@ export const Home = () => (
       <meta name="twitter:site" content="@tryrift" />
       <meta
         name="twitter:title"
-        content="Rift. Cross-border payment infrastructure for African banks."
+        content="Rift. Pay across African borders in minutes."
       />
       <meta
         name="twitter:description"
-        content="Rift powers businesses moving money across African borders, and gives banks the rails and the data to see, serve, and lend to them."
+        content="Cross-border payments in minutes. Local currency in, local currency out."
       />
       <meta name="twitter:image" content="https://riftfi.xyz/og-image.png" />
 
       <script type="application/ld+json">{JSON.stringify({
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "Rift. The infrastructure banks use to capture Africa's cross-border flow.",
+        "name": "Rift. Pay across African borders in minutes.",
         "url": "https://riftfi.xyz/",
         "description":
-          "Rift powers businesses moving money across African borders, and gives banks the rails and the data to see, serve, and lend to them.",
+          "Cross-border payments in minutes. Local currency in, local currency out. On rails your bank will sign off.",
         "primaryImageOfPage": {
           "@type": "ImageObject",
           "url": "https://riftfi.xyz/og-image.png",
@@ -110,17 +112,20 @@ export const Home = () => (
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Web, iOS, Android",
         "description":
-          "Cross-border payment infrastructure for African banks and fintechs. Wallets, ramps, treasury and settlement through one API.",
+          "Cross-border payments for African businesses. Wallets, ramps, treasury and settlement through one API.",
         "url": "https://riftfi.xyz/",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       })}</script>
     </Helmet>
     <Hero />
-    <Problem />
-    <InstitutionBenefits />
+    <MotionBand />
+    <FlowVisuals />
+    <BusinessBenefits />
+    <BankableCredit />
+    <InstitutionReveal />
     <OneStack />
-    <DataCredit />
-    <Vision />
+    <SecurityCards />
+    <Coverage />
     <DesignPartners />
     <Wallet />
     <FinalCTA />

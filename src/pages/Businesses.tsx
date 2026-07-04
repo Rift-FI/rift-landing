@@ -67,6 +67,30 @@ export const Businesses = () => (
       </div>
     </header>
 
+    <section className="motion" aria-label="Money moving across borders">
+      <video
+        className="motion-video"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster="/crossborder-poster.jpg"
+        aria-hidden="true"
+      >
+        <source src="/crossborder.mp4" type="video/mp4" />
+      </video>
+      <div className="motion-overlay" aria-hidden="true" />
+      <div className="wrap motion-in">
+        <h2>Nairobi to Lagos, in minutes.</h2>
+        <p>
+          Local currency in, local currency out. No correspondent bank,
+          no dollar detour, no waiting five days for a supplier to
+          confirm.
+        </p>
+      </div>
+    </section>
+
     <section className="band" id="how">
       <div className="wrap">
         <div className="head-2col">

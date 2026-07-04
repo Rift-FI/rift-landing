@@ -1,99 +1,104 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Reveal } from "./Reveal";
-import { I } from "../../lib/rift-data";
+import { I, MARKS, FLAGS } from "../../lib/rift-data";
 
-/* ============ Problem section (directly under hero) ============ */
-export const Problem = () => (
-  <section className="band" id="problem">
+/* ============ Motion band (flow always moving) ============ */
+export const MotionBand = () => (
+  <section className="motion" aria-label="Money is already moving">
+    <video
+      className="motion-video"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      poster="/traffic-poster.jpg"
+      aria-hidden="true"
+    >
+      <source src="/traffic.mp4" type="video/mp4" />
+    </video>
+    <div className="motion-overlay" aria-hidden="true" />
+    <div className="wrap motion-in">
+      <h2>African business, in motion.</h2>
+    </div>
+  </section>
+);
+
+/* ============ Flow visuals (where money actually moves) ============ */
+const FLOW_MEDIA: { src: string; poster: string; k: string; d: string }[] = [
+  {
+    src: "/crossborder.mp4",
+    poster: "/crossborder-poster.jpg",
+    k: "Across borders",
+    d: "Nairobi to Lagos, minutes.",
+  },
+  {
+    src: "/commerce.mp4",
+    poster: "/commerce-poster.jpg",
+    k: "In everyday commerce",
+    d: "Payroll, suppliers, checkout.",
+  },
+];
+
+export const FlowVisuals = () => (
+  <section className="band band--tight" aria-label="Where money moves">
     <div className="wrap">
-      <div className="head-2col">
-        <div>
-          <span className="kicker">
-            <span className="n">01</span> The gap
-          </span>
-          <h2 style={{ marginTop: 18 }}>
-            Billions are moving.
-            <br />
-            Your institution can't see it.
-          </h2>
-        </div>
-        <p className="lead measure">
-          Cross-border payments between African businesses increasingly
-          run on stablecoins, outside the banking system. Banks lose
-          the transaction fees, tie up capital in pre-funded accounts
-          overseas, and can't lend to businesses whose cash flow they
-          can't see. The flow isn't coming back to the old rails. The
-          rails have to come to the flow.
-        </p>
+      <div className="cmedia">
+        {FLOW_MEDIA.map((c) => (
+          <Reveal
+            key={c.k}
+            className="cmedia-card"
+            style={{ backgroundImage: `url(${c.poster})` }}
+          >
+            <video
+              className="cmedia-video"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="none"
+              poster={c.poster}
+              aria-hidden="true"
+            >
+              <source src={c.src} type="video/mp4" />
+            </video>
+            <div className="cmedia-scrim" aria-hidden="true" />
+            <div className="cmedia-cap">
+              <span className="cm-k">{c.k}</span>
+              <span className="cm-d">{c.d}</span>
+            </div>
+          </Reveal>
+        ))}
       </div>
     </div>
   </section>
 );
 
-/* ============ What your institution gets (bank pitch) ============ */
-
-const INST_BENEFITS: { h: string; d: string }[] = [
-  {
-    h: "Serve clients instantly.",
-    d: "Cross-border payments in minutes, not days.",
-  },
-  {
-    h: "New revenue.",
-    d: "Transaction fees on flows that currently bypass you.",
-  },
-  {
-    h: "Freed capital.",
-    d: "Cut the cash locked away overseas to handle international payments.",
-  },
-  {
-    h: "Lend with visibility.",
-    d: "Real-time cash flow on businesses you could never underwrite before.",
-  },
+/* ============ Business benefits (short, tile-based) ============ */
+const BIZ_BENEFITS: { n: string; h: string; d: string }[] = [
+  { n: "01", h: "Minutes, not days", d: "Suppliers paid before end of day." },
+  { n: "02", h: "Local currency, both sides", d: "Send and receive in what your business runs on." },
+  { n: "03", h: "Regulated rails", d: "Safe. Defensible. Compliant." },
+  { n: "04", h: "Real credit history", d: "Every payment, verifiable to your bank." },
 ];
 
-export const InstitutionBenefits = () => (
-  <section className="band" id="banks">
+export const BusinessBenefits = () => (
+  <section className="band" id="business">
     <div className="wrap">
       <div className="head-2col">
         <div>
-          <span className="kicker">
-            <span className="n">02</span> For banks and fintechs
-          </span>
-          <h2 style={{ marginTop: 18 }}>
-            What your institution
-            <br />
-            gets.
-          </h2>
+          <span className="kicker">For businesses</span>
+          <h2 style={{ marginTop: 18 }}>Faster payments.<br />Real credit history.</h2>
         </div>
         <p className="lead measure">
-          African businesses are moving billions across borders in
-          stablecoins because it's cheaper and faster, but that
-          transaction history sits outside the banking system,
-          invisible to the institutions that could lend against it.
-          Rift's wallet and liquidity infrastructure plugs your
-          institution directly into that flow. You can now help your
-          clients move money instantly, earn entirely new transaction
-          fees, free up the cash your bank usually has to lock away
-          overseas to handle international payments, and gain the
-          real-time visibility you need to safely lend to customers
-          whose repayment behavior you can finally see.
+          Pay across borders in minutes. Build a payment history your bank can lend against.
         </p>
       </div>
-      <p
-        style={{
-          fontFamily: "Archivo, sans-serif",
-          fontWeight: 700,
-          fontSize: 22,
-          marginTop: 32,
-          color: "var(--ink)",
-        }}
-      >
-        The money is already moving. We make sure it moves through you.
-      </p>
       <div className="segs" style={{ marginTop: 40 }}>
-        {INST_BENEFITS.map((b, i) => (
-          <Reveal key={b.h} className="seg">
-            <div className="seg-name">{`0${i + 1}`}</div>
+        {BIZ_BENEFITS.map((b) => (
+          <Reveal key={b.n} className="seg">
+            <div className="seg-name">{b.n}</div>
             <div className="seg-d">
               <strong
                 style={{
@@ -102,7 +107,7 @@ export const InstitutionBenefits = () => (
                   fontWeight: 700,
                 }}
               >
-                {b.h}
+                {b.h}.
               </strong>{" "}
               {b.d}
             </div>
@@ -113,16 +118,147 @@ export const InstitutionBenefits = () => (
   </section>
 );
 
-/* ============ Product / trust (compliance lives here) ============ */
+/* ============ Bankable credit (volume becomes credit) ============ */
+export const BankableCredit = () => (
+  <section className="band" id="bankable">
+    <div className="wrap">
+      <div className="head-2col">
+        <div>
+          <span className="kicker">Your volume, made bankable</span>
+          <h2 style={{ marginTop: 18 }}>
+            Every payment counts.<br />
+            <span style={{ color: "var(--muted)" }}>Toward the credit you need.</span>
+          </h2>
+        </div>
+        <p className="lead measure">
+          Cross-border payments on Rift build a verified track record. Your bank
+          sees the volume, the consistency, and the repayment. That becomes credit
+          you can actually draw on.
+        </p>
+      </div>
+      <div className="bankable-shot" style={{ marginTop: 40 }}>
+        <img
+          className="bankable-shot-img"
+          src="/bankable.jpeg"
+          alt="Your cross-border volume becomes bankable credit — a credit score of 782, a $250,000 credit limit, driven by $1.25M of cross-border volume."
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+);
 
-const CAPABILITIES: string[] = [
-  "Wallets with passkey and Google auth, KYC'd onboarding built in",
-  "Key generation and transaction signing inside secure enclaves, non-custodial by architecture",
-  "In-country deployment on any enclave-supporting server, shipped as a signed, verifiable build",
-  "Fiat on-ramps and off-ramps",
-  "Local-currency stablecoin issuance support",
-  "Treasury and money movement: stablecoin to stablecoin, to local currency, across chains",
-  "One API for all of it",
+/* ============ Institution reveal (click to expand bank pitch) ============ */
+
+const INST_BENEFITS: { h: string; d: string }[] = [
+  { h: "Move money in minutes", d: "For clients you serve today." },
+  { h: "Earn on flow that leaves you", d: "New fees on cross-border payments." },
+  { h: "Free the cash you park abroad", d: "No more pre-funded overseas balances." },
+  { h: "Lend to customers you couldn't", d: "Real payment history, in real time." },
+];
+
+export const InstitutionReveal = () => {
+  const [open, setOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (open && panelRef.current) {
+      panelRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [open]);
+
+  useEffect(() => {
+    const openFromHash = () => {
+      if (window.location.hash === "#institutions") {
+        setOpen(true);
+        requestAnimationFrame(() => {
+          sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+    };
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+    return () => window.removeEventListener("hashchange", openFromHash);
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="band" id="institutions">
+      <div className="wrap">
+        <div className="head-2col">
+          <div>
+            <span className="kicker">For fintechs</span>
+            <h2 style={{ marginTop: 18 }}>
+              The money is already moving.<br />We make sure it moves through you.
+            </h2>
+          </div>
+          {open && (
+            <p className="lead measure">
+              Billions moving across African borders in stablecoins. Rift plugs
+              your institution in.
+            </p>
+          )}
+        </div>
+
+        {!open ? (
+          <button
+            type="button"
+            className="inst-shot"
+            onClick={() => setOpen(true)}
+            aria-expanded={open}
+            aria-controls="inst-panel"
+          >
+            <img
+              className="inst-shot-img"
+              src="/moneymoves.jpeg"
+              alt="Stablecoin flows from around the world funnel through Rift into your institution."
+            />
+            <span className="inst-shot-cta">
+              See the offer {I.arrow}
+            </span>
+          </button>
+        ) : (
+          <div id="inst-panel" ref={panelRef} className="inst-panel">
+            <div className="segs" style={{ marginTop: 40 }}>
+              {INST_BENEFITS.map((b, i) => (
+                <Reveal key={b.h} className="seg">
+                  <div className="seg-name">{`0${i + 1}`}</div>
+                  <div className="seg-d">
+                    <strong
+                      style={{
+                        color: "var(--ink)",
+                        fontFamily: "Archivo, sans-serif",
+                        fontWeight: 700,
+                      }}
+                    >
+                      {b.h}.
+                    </strong>{" "}
+                    {b.d}
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+            <div className="hero-cta" style={{ marginTop: 40, justifyContent: "center" }}>
+              <a className="btn btn-primary btn-lg" href="mailto:admin@riftfi.xyz">
+                Book a call {I.arrow}
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
+/* ============ What you can do with Rift ============ */
+
+const OFFERS: string[] = [
+  "Pay a supplier in another country in minutes",
+  "Get paid in local currency from anywhere",
+  "Hold and spend without touching dollars",
+  "Cash in and cash out with mobile money",
+  "Send at the terminal, at the counter, at the checkout",
+  "Build a payment history your bank can lend against",
 ];
 
 export const OneStack = () => (
@@ -130,116 +266,115 @@ export const OneStack = () => (
     <div className="wrap">
       <div className="head-2col">
         <div>
-          <span className="kicker">
-            <span className="n">03</span> The stack
-          </span>
-          <h2 style={{ marginTop: 18 }}>
-            One stack, built
-            <br />
-            for the regulated era.
-          </h2>
+          <span className="kicker">What you can do</span>
+          <h2 style={{ marginTop: 18 }}>Move money the way<br />business actually moves.</h2>
         </div>
         <p className="lead measure">
-          Everything an institution needs to capture the flow, and
-          everything its risk team needs to say yes.
+          One place. One wallet. One API.
         </p>
       </div>
-      <div
-        className="list-grid"
-        style={{ marginTop: 40 }}
-      >
-        {CAPABILITIES.map((c, i) => (
+      <div className="list-grid" style={{ marginTop: 40 }}>
+        {OFFERS.map((c, i) => (
           <Reveal key={c} className="list-row">
             <span className="lr-n">{`0${i + 1}`}</span>
-            <div>
-              <div className="lr-h">{c}</div>
+            <div><div className="lr-h">{c}</div></div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+/* ============ Video cards: what you do with Rift ============ */
+
+const SEC_ITEMS: { n: string; h: string; d: string; src: string; poster: string }[] = [
+  { n: "01", h: "Send across borders", d: "Nairobi to Lagos. Kampala to Accra. Minutes.", src: "/crossborder.mp4", poster: "/crossborder-poster.jpg" },
+  { n: "02", h: "Onboard in seconds", d: "Google, phone, or email. No paperwork.", src: "/identity.mp4", poster: "/identity-poster.jpg" },
+  { n: "03", h: "Money that stays yours", d: "Only you can move it. Nobody else.", src: "/key.mp4", poster: "/key-poster.jpg" },
+  { n: "04", h: "Proof for your bank", d: "Every payment, a receipt they can lend against.", src: "/audit.mp4", poster: "/audit-poster.jpg" },
+];
+
+export const SecurityCards = () => (
+  <section className="band" id="what-you-do">
+    <div className="wrap">
+      <div className="head-2col">
+        <div>
+          <span className="kicker">The offer</span>
+          <h2 style={{ marginTop: 18 }}>Fast, safe, and<br />yours.</h2>
+        </div>
+        <p className="lead measure">
+          Money that moves at the speed of the internet, on rails that are safe to use.
+        </p>
+      </div>
+      <div className="sec-grid">
+        {SEC_ITEMS.map((r) => (
+          <Reveal key={r.n} className="sec-card">
+            <div className="sec-card-media">
+              <video
+                className="sec-card-video"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="none"
+                poster={r.poster}
+                aria-hidden="true"
+              >
+                <source src={r.src} type="video/mp4" />
+              </video>
+            </div>
+            <div className="sec-card-body">
+              <span className="sec-card-n mono">{r.n}</span>
+              <div className="sec-card-h">{r.h}</div>
+              <div className="sec-card-d">{r.d}</div>
             </div>
           </Reveal>
         ))}
       </div>
-      <div
-        style={{
-          marginTop: 48,
-          textAlign: "center",
-          fontFamily: "Archivo, sans-serif",
-          fontWeight: 600,
-          fontSize: 16,
-          color: "var(--muted)",
-          fontStyle: "italic",
-        }}
-      >
-        Compliant by architecture, not by promise.
-      </div>
     </div>
   </section>
 );
 
-/* ============ Data + credit story ============ */
-export const DataCredit = () => (
-  <section className="band" id="data">
+/* ============ Coverage: currencies + chains ============ */
+export const Coverage = () => (
+  <section className="band" id="coverage">
     <div className="wrap">
       <div className="head-2col">
         <div>
-          <span className="kicker">
-            <span className="n">04</span> Credit and data
-          </span>
-          <h2 style={{ marginTop: 18 }}>
-            Every payment builds
-            <br />
-            a financial identity.
-          </h2>
+          <span className="kicker">Coverage</span>
+          <h2 style={{ marginTop: 18 }}>Currencies and chains<br />money already moves on.</h2>
         </div>
-        <p className="lead measure">
-          Businesses on Rift don't just move money, they build verified
-          payment histories they can choose to share with their bank.
-          For the business, that's the credit reputation informal
-          channels never gave them. For your institution, it's
-          underwriting data on customers who were invisible before.
-          Consent-based, both sides win.
-        </p>
+        <p className="lead measure" />
       </div>
-    </div>
-  </section>
-);
-
-/* ============ Vision section ============ */
-export const Vision = () => (
-  <section className="band" id="vision">
-    <div className="wrap">
-      <div className="head-2col">
+      <div className="cov-grid" style={{ marginTop: 56 }}>
         <div>
-          <span className="kicker">
-            <span className="n">05</span> Where this goes
-          </span>
-          <h2 style={{ marginTop: 18 }}>
-            The clearing layer
-            <br />
-            Africa never built.
-          </h2>
+          <h3 style={{ marginBottom: 18 }}>Local currencies</h3>
+          <div className="cov-flags">
+            {FLAGS.map(([code, name]) => (
+              <span className="cf" key={code}>
+                <img src={`https://flagcdn.com/${code}.svg`} alt="" />
+                {name}
+              </span>
+            ))}
+          </div>
         </div>
-        <p className="lead measure">
-          The wallet layer is the door into the bigger thing. Once
-          institutions in different countries run on Rift, we connect
-          them, so a bank in Kenya and one in Tanzania settle in local
-          currency, flows netting against each other, with only the
-          small residual ever touching dollars. Cross-border payments
-          in Africa detour through scarce dollars not because they have
-          to, but because nobody built the clearing layer. That is the
-          company we are building.
-        </p>
+        <div>
+          <h3 style={{ marginBottom: 18 }}>Chains and assets</h3>
+          <div className="logo-wall">
+            {MARKS.map((m) => (
+              <div className="lw" key={m.n}>
+                <img src={m.img} alt={m.n} />
+                <span>{m.n}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   </section>
 );
 
-/* ============ Design partners (honest replacement for Partners) ============ */
-
-/**
- * Only real names go here. Per the positioning spec: no invented logos,
- * no "trusted by 100+ institutions", no volume numbers. With a thin
- * list we frame as "design partners" rather than pretending to be at
- * scale we're not.
- */
+/* ============ Design partners ============ */
 const DESIGN_PARTNERS: string[] = ["Peoples Markets", "Blockfinax"];
 
 export const DesignPartners = () => (
@@ -271,38 +406,21 @@ export const DesignPartners = () => (
           </span>
         ))}
       </div>
-      <p
-        style={{
-          marginTop: 20,
-          textAlign: "center",
-          fontSize: 13,
-          color: "var(--muted)",
-        }}
-      >
-        Currently onboarding design partners across East Africa.
-      </p>
     </div>
   </section>
 );
 
-/* ============ Wallet section (proof the rails work) ============ */
+/* ============ Wallet ============ */
 export const Wallet = () => (
   <section className="band">
     <div className="wrap">
       <div className="prose-grid">
         <div>
-          <span className="kicker">
-            <span className="n">06</span> Proof
-          </span>
-          <h2 style={{ marginTop: 18 }}>See the rails in action.</h2>
+          <span className="kicker">Proof</span>
+          <h2 style={{ marginTop: 18 }}>The rails, live today.</h2>
         </div>
         <div className="body">
-          <p>
-            The Rift Wallet is a full consumer wallet we built on the
-            same APIs we give you. It onboards with Google, email, or
-            phone, no seed phrase. It moves real funds across borders
-            today. Proof the rails are ready.
-          </p>
+          <p>Open the Rift Wallet. Onboard with Google. Send across borders.</p>
           <div className="hero-cta" style={{ marginTop: 28 }}>
             <a
               className="btn btn-secondary"
@@ -311,14 +429,6 @@ export const Wallet = () => (
               rel="noopener noreferrer"
             >
               Open the Rift Wallet {I.arrow}
-            </a>
-            <a
-              className="tlink"
-              href="https://wallet.riftfi.xyz/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              wallet.riftfi.com {I.arrowR}
             </a>
           </div>
         </div>
@@ -333,12 +443,8 @@ export const FinalCTA = () => (
     <div className="wrap">
       <div className="cta-card">
         <span className="cta-eyebrow">Schedule</span>
-        <h2>Book a call with us</h2>
-        <p>
-          Tell us what your institution wants to capture from the flow.
-          We will walk you through Rift, answer your questions, and
-          show you how fast you can go live.
-        </p>
+        <h2>Book a call.</h2>
+        <p>15 minutes. We walk you through Rift and answer your questions.</p>
         <div className="cta-btns">
           <a className="btn cta-btn btn-lg" href="mailto:admin@riftfi.xyz">
             Book a call {I.arrow}
@@ -364,16 +470,16 @@ export const Footer = () => {
       h: "Product",
       links: [
         ["The stack", "/#stack"],
-        ["Data and credit", "/#data"],
+        ["Trust", "/#security"],
+        ["Coverage", "/#coverage"],
         ["Rift Wallet", "https://wallet.riftfi.xyz/"],
       ],
     },
     {
       h: "For",
       links: [
-        ["Banks and fintechs", "/#banks"],
-        ["Businesses", "/businesses"],
-        ["Where this goes", "/#vision"],
+        ["Businesses", "/#business"],
+        ["Fintechs", "/#institutions"],
       ],
     },
     {
@@ -411,9 +517,8 @@ export const Footer = () => {
               <span className="wm">Rift</span>
             </Link>
             <p>
-              Rift powers businesses moving money across African
-              borders, and gives banks the rails and the data to
-              finally see, serve, and lend to them.
+              Cross-border payments for African businesses. The rails and data
+              banks use to serve, settle, and lend.
             </p>
           </div>
           {cols.map((c) => (
@@ -449,10 +554,8 @@ export const Footer = () => {
         </div>
         <div className="foot-bottom">
           <span className="disc">
-            © {new Date().getUTCFullYear()} Rift Finance. Rift provides
-            infrastructure software and does not issue stablecoins or
-            hold customer funds. Stablecoin and money-movement services
-            are provided by licensed partners. Nairobi.
+            © {new Date().getUTCFullYear()} Rift Finance. Software only. Money
+            services provided by licensed partners. Nairobi.
           </span>
           <div className="socials">
             <a

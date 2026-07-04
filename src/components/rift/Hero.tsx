@@ -1,11 +1,9 @@
 import { I } from "../../lib/rift-data";
 
 /**
- * Hero. Positioning is "the money is already moving, we make sure it
- * moves through you." Compliance vocabulary is deliberately absent
- * from H1 and subhead. That copy lives in the product/trust section
- * further down. Do not paraphrase the subhead; it is verbatim per the
- * approved positioning spec.
+ * Home hero — business-led. Copy is minimal, the moneyo product image
+ * carries the story. The banks/fintech line lives inside the reveal
+ * further down; do not repeat it here.
  */
 export const Hero = () => (
   <header className="hero hero--center" id="top">
@@ -16,27 +14,37 @@ export const Hero = () => (
         target="_blank"
         rel="noopener noreferrer"
       >
-        Try the Rift Wallet {I.arrowR}
+        Open the Rift Wallet {I.arrowR}
       </a>
       <h1>
-        <span className="h1-strong">The money is already moving. </span>
-        <span className="h1-muted">We make sure it moves through you.</span>
+        <span className="h1-strong">Pay across African borders </span>
+        <span className="h1-muted">in minutes.</span>
       </h1>
       <p className="hero-lead">
-        African businesses move billions across borders in stablecoins
-        because it's cheaper and faster. Rift is the wallet and
-        liquidity infrastructure that plugs banks and fintechs into
-        that flow: instant payments, new fee revenue, freed-up capital,
-        and the visibility to lend. Live in weeks, not years.
+        Local currency in, local currency out. On rails your bank will sign off.
       </p>
       <div className="hero-cta">
-        <a className="btn btn-primary btn-lg" href="mailto:admin@riftfi.xyz">
-          Talk to us {I.arrow}
+        <a
+          className="btn btn-primary btn-lg"
+          href="https://wallet.riftfi.xyz/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Start moving money {I.arrow}
         </a>
-        <a className="btn btn-secondary btn-lg" href="/businesses">
-          For businesses {I.arrowR}
+        <a className="btn btn-secondary btn-lg" href="#institutions">
+          For banks and fintechs {I.arrowR}
         </a>
       </div>
+    </div>
+    <div className="hero-shot" aria-hidden="true">
+      <img
+        className="hero-shot-img"
+        src="/moneyo.jpeg"
+        alt=""
+        loading="eager"
+      />
+      <div className="hero-shot-fade" />
     </div>
   </header>
 );
