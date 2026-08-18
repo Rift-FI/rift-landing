@@ -1,25 +1,23 @@
 ---
-title: "Compressing the Dollar: A Netting Framework for African Cross-Border Payments"
-description: Why faster messaging has not solved cross-border payment costs in Africa, and how corridor-level netting can reduce dollar liquidity requirements by 40 to 60 percent.
+title: Compressing the Dollar
+description: African cross-border payments do not have a messaging problem. They have a dollar problem. Netting is how you shrink it.
 date: 2026-08-18
 author: Amschel
-cover: /money2.jpg
-tags: [Research, Netting, Settlement, Africa]
+cover: /tally.jpg
+tags: [Essay, Netting, Settlement, Africa]
 ---
 
-A Rift Research working paper on why faster messaging has not solved cross-border payment costs in Africa, and how corridor-level netting can reduce dollar liquidity requirements by 40 to 60 percent.
-
-**Abstract.** Cross-border payments within Africa remain expensive and slow despite a decade of fintech innovation. This paper argues that the persistent friction is not a messaging problem but a liquidity problem: African cross-border settlement requires dollars, and dollars are structurally scarce on the continent. Recent stablecoin-based payment infrastructure has accelerated messaging but has not reduced the aggregate dollar liquidity required by the system. We describe an alternative architecture based on multilateral netting at the corridor level, drawing on principles used by clearing houses since the 18th century. Applied to the Kenya-Tanzania corridor, this framework compresses dollar liquidity requirements by an estimated 40 to 60 percent while addressing the specific timing and counterparty risks introduced by delayed settlement.
+Send $1,000 from Nairobi to Dar es Salaam today and somewhere between $50 and $100 of it disappears into fees, spread and delay. That has been true for decades, through every wave of fintech that promised to fix it. It is worth being precise about why.
 
 ## The problem is not messaging
 
-A payment of $1,000 sent from Nairobi to Dar es Salaam today loses between $50 and $100 in fees, exchange rate spreads, and delays. This friction has persisted for decades and has proven remarkably resistant to technological innovation. Understanding why requires distinguishing between two very different problems.
+There are two problems hiding inside every cross-border payment, and they get confused constantly.
 
-The first problem is *messaging*: how instructions to move money get transmitted between financial institutions. Traditional correspondent banking uses SWIFT, which is functional but slow. Stablecoin-based payment infrastructure uses blockchains, which are dramatically faster. Over the last five years, companies including Bridge (recently acquired by Stripe for $1.1 billion), BvnK, Conduit, and others have made significant progress on this messaging problem. Cross-border payment settlement times have compressed from days to minutes for participants using these rails.
+The first is messaging: how the instruction to move money travels between banks. Correspondent banking does this over SWIFT, which works but is slow. Stablecoin rails do it over blockchains, which are fast. This is the problem the last five years actually solved. Bridge, bought by Stripe for $1.1 billion, along with BvnK, Conduit and others, compressed settlement times from days to minutes for anyone on their rails. That is real progress and worth saying plainly.
 
-The second problem is *liquidity*: the actual dollars, held on real balance sheets, that must exist somewhere in the system for value to move between parties. This problem has not been solved by faster messaging. If anything, it has been obscured.
+The second is liquidity: the actual dollars, sitting on somebody's real balance sheet, that have to exist somewhere for value to move at all. Nobody solved this one. Speed just made it easier to stop looking at it.
 
-Consider a payment from a Kenyan importer to a Tanzanian supplier. In the traditional banking system, the Kenyan bank converts shillings to dollars, sends those dollars through a correspondent bank in New York or London, and instructs the Tanzanian bank to release the equivalent in Tanzanian shillings. The payment technically routes Nairobi to New York to Dar es Salaam, even though the two African cities are 700 kilometres apart.
+Watch what happens when a Kenyan importer pays a Tanzanian supplier. The Kenyan bank sells shillings for dollars, ships those dollars through a correspondent bank in New York or London, then tells the Tanzanian bank to release shillings on the other side. Nairobi to New York to Dar es Salaam, for two cities 700 kilometres apart.
 
 ```mermaid
 flowchart LR
@@ -28,31 +26,31 @@ flowchart LR
     NBO -. "no direct route" .-> DAR
 ```
 
-*Figure 1. Cross-border payment flow: Nairobi to Dar es Salaam via New York. Three to five days, $50 to $100 in fees on a $10,000 payment.*
+*The route the money actually takes. Three to five days, $50 to $100 on a $10,000 payment.*
 
-This routing exists because there is no meaningful direct market between the Kenyan shilling and the Tanzanian shilling. Both currencies trade against the dollar but do not trade meaningfully against each other. The dollar functions as the intermediary currency that every counterparty in the global banking system trusts and accepts. The same pattern holds across most African corridor pairs: Nigerian naira to Ghanaian cedi, Kenyan shilling to Ugandan shilling, Rwandan franc to Tanzanian shilling. All route through the dollar.
+The detour exists because there is no real market between the Kenyan shilling and the Tanzanian shilling. Both trade against the dollar. Neither trades meaningfully against the other. So the dollar becomes the bridge by default, because it is the one currency every counterparty in the chain will accept. Naira to cedi, Kenyan shilling to Ugandan shilling, Rwandan franc to Tanzanian shilling: same story, same detour.
 
-### Why stablecoins have not solved this
+### Stablecoins moved the problem, they did not remove it
 
-Stablecoin-based payment infrastructure replaces the slow correspondent banking messaging with fast blockchain messaging. What it does not replace is the dollars themselves. Every stablecoin cross-border payment still requires dollars on both sides: the source-country payer needs dollars (or dollar-equivalents) to fund the stablecoin, and the destination-country recipient needs dollars to exit the stablecoin into local currency.
+Stablecoin infrastructure swaps slow correspondent messaging for fast blockchain messaging. What it does not swap out is the dollars. Every stablecoin payment across a border still needs dollars on both ends: the payer needs them to fund the coin, the recipient needs them to get out of the coin and into local currency.
 
-Under the hood, stablecoin payment companies solve this by maintaining large pools of USDC or USDT in accounts across multiple countries. When a payment is initiated, the company draws from a source-country pool and releases from a destination-country pool. The end user experiences the payment as instant, but the aggregate dollar liquidity requirement for the system has not decreased. It has been transferred from correspondent banks onto the balance sheets of stablecoin payment providers.
+The way this works underneath is that stablecoin companies keep large pools of USDC or USDT sitting in accounts in every country they serve. A payment draws from the pool on one side and releases from the pool on the other. To the user it feels instant. But the total dollars the system needs did not fall by a cent. They moved off correspondent bank balance sheets and onto stablecoin company balance sheets.
 
-> The messaging got faster. The dollar dependency did not go away. It was transferred from correspondent bank balance sheets to stablecoin-provider balance sheets.
+> The messaging got faster. The dollar dependency did not go away. It moved from correspondent bank balance sheets to stablecoin provider balance sheets.
 
-This explains the unit economics of stablecoin payment companies. They are being compensated to hold the dollar liquidity that the system requires. Their margins reflect the cost and risk of that liquidity provisioning. But the total dollars required for African cross-border payment flows have not been reduced. They have simply been redistributed.
+This is also the honest explanation of how those companies make money. They are being paid to hold dollar liquidity the system requires, and their margin is the cost and risk of holding it. Useful work. But the dollars required by African cross-border flows have not been reduced, only redistributed.
 
-This distinction matters because in African markets, aggregate dollar liquidity is a binding constraint. The continent runs chronic trade deficits with the rest of the world and has limited access to dollar reserves. Solutions that simply relocate the dollar requirement to a different balance sheet do not address the underlying scarcity. Solutions that reduce the aggregate requirement do.
+That distinction matters more here than almost anywhere else, because in African markets dollar liquidity is the binding constraint. The continent runs persistent trade deficits with the rest of the world and has limited access to reserves. Moving the dollar requirement to a different balance sheet does nothing about the scarcity. Reducing the requirement does.
 
-## Netting as a compression technology
+## Netting is a compression technology
 
-Netting is a mechanism for reducing the total value of payments that must be settled by matching offsetting obligations. Instead of settling each transaction individually, a netting system records multiple obligations on a shared ledger and settles only the net residual difference at defined intervals. The principle is simple but the compression effect is substantial when applied to balanced corridors.
+Netting cuts the total value that has to settle by cancelling obligations that point in opposite directions. Rather than settling every transaction on its own, you record them all on a shared ledger and settle only the difference, at whatever interval you choose. Simple idea. The compression is large whenever a corridor has real two way trade.
 
 ### A worked example
 
-Consider a stylised day of trade activity between three Kenyan businesses paying three Tanzanian suppliers, and three Tanzanian businesses paying three Kenyan suppliers.
+Take a day of trade between three Kenyan businesses paying three Tanzanian suppliers, and three Tanzanian businesses paying three Kenyan suppliers.
 
-**Flows from Kenya to Tanzania**
+**Kenya to Tanzania**
 
 | Payer | Recipient | Amount |
 | --- | --- | --- |
@@ -61,7 +59,7 @@ Consider a stylised day of trade activity between three Kenyan businesses paying
 | Business C (Nairobi) | Supplier Z (Mwanza) | $12,000 |
 | **Total** | | **$25,000** |
 
-**Flows from Tanzania to Kenya**
+**Tanzania to Kenya**
 
 | Payer | Recipient | Amount |
 | --- | --- | --- |
@@ -70,7 +68,7 @@ Consider a stylised day of trade activity between three Kenyan businesses paying
 | Supplier Z (Mwanza) | Business O (Nairobi) | $8,000 |
 | **Total** | | **$24,000** |
 
-In the current system, all six payments settle individually. Each requires currency conversion, correspondent banking transit, and independent settlement. The aggregate dollar volume that must move through the system to complete these six payments is $49,000. At a representative all-in cost of five percent, aggregate fees total approximately $2,450.
+Today all six settle separately. Each one converts currency, crosses correspondent banking, and settles on its own. To complete six payments, $49,000 has to move through the system. At a fairly typical all in cost of five percent, that is about $2,450 in fees.
 
 ```mermaid
 flowchart LR
@@ -82,9 +80,9 @@ flowchart LR
     Z2["Supplier Z<br/>Tanzania"] -->|"$8,000"| O["Business O<br/>Kenya"]
 ```
 
-*Figure 2. Without netting: six independent payments totalling $49,000 in gross dollar flows.*
+*Six payments, six settlements, $49,000 of gross dollar flow.*
 
-Under a netting architecture, the same six payments are recorded on a shared ledger. The ledger observes that Kenyan participants collectively owe Tanzanian participants $25,000, while Tanzanian participants collectively owe Kenyan participants $24,000. The net position is $1,000 flowing from Kenya to Tanzania. Only this $1,000 residual actually requires settlement in dollars. The remaining $48,000 of obligations cancel out through the netting mechanism.
+Now record the same six on a shared ledger. Kenyan participants owe Tanzanian participants $25,000. Tanzanian participants owe Kenyan participants $24,000. The net is $1,000 going from Kenya to Tanzania, and that $1,000 is the only thing that needs to settle in dollars. The other $48,000 cancels.
 
 ```mermaid
 flowchart LR
@@ -93,80 +91,78 @@ flowchart LR
     KE -->|"$1,000"| TZ
 ```
 
-*Figure 3. With netting: a $1,000 residual settlement replaces $49,000 of individual payment flows. Liquidity requirement compressed by 98 percent.*
+*The same six payments, netted. One settlement of $1,000 replaces $49,000 of flow.*
 
-All six recipients receive their full payment. All six payers pay their full obligation. But at the system level, dollar liquidity requirements have been compressed by 98 percent in this stylised example. In real corridors where flows are less perfectly balanced, compression rates typically fall in the 40 to 60 percent range. This remains a substantial reduction in the aggregate dollar liquidity the system must hold.
+Every recipient is paid in full. Every payer pays in full. Nobody gets less. But the dollars the system had to hold fell by 98 percent.
 
-> The core insight: the dollar liquidity required by the payments system is not fixed. It is a function of how efficiently offsetting obligations are matched. Better matching reduces the aggregate requirement.
+That number is flattering because the example is tidy. Real corridors are never that balanced, and real compression lands somewhere between 40 and 60 percent. Cutting the dollars a corridor needs by half is still an enormous change in what it costs to run.
 
-## Historical precedent
+> The dollar liquidity a payments system needs is not a fixed quantity. It is a function of how well you match obligations that cancel. Match them better and you need fewer dollars.
 
-Netting is not a novel financial innovation. It is one of the oldest technologies in banking, with continuous application spanning more than two centuries. The London Bankers' Clearing House began netting inter-bank obligations in the 1770s. The New York Clearing House Association has done the same since 1853. Modern equivalents include CHIPS in the United States (which nets high-value dollar payments between banks), various central bank real-time gross settlement systems, and every major card network (Visa, Mastercard), which net inter-bank obligations daily rather than settling each cardholder transaction individually.
+## None of this is new
 
-The reason netting has not been applied at scale to African cross-border payments is not technical. It is that three specific conditions had to converge before the model became viable in this context.
+Netting is one of the oldest tricks in banking. The London Bankers' Clearing House was netting between banks in the 1770s. The New York Clearing House Association has done it since 1853. CHIPS nets high value dollar payments between American banks today. Every central bank settlement system uses it. Visa and Mastercard net between banks daily rather than settling your card transactions one by one, which is the only reason card economics work at all.
 
-**First**, corridor volumes must be sufficient and roughly balanced for netting arithmetic to produce meaningful compression. A corridor where Kenya-to-Tanzania flows are $100 million and Tanzania-to-Kenya flows are $1 million would compress only $1 million out of $101 million in total flows. Meaningful compression requires corridors with substantial two-way trade. Kenya-Tanzania bilateral trade is approximately $900 million to $1.1 billion annually and roughly balanced in both directions, making it a suitable initial corridor.
+So the interesting question is not whether netting works. It is why nobody has run it across African corridors at scale. The answer is not technical. Three things had to line up first.
 
-**Second**, the settlement infrastructure must support programmable obligation recording and fast residual settlement. Traditional banking rails are too slow and too expensive to support continuous corridor-level netting economically. Blockchain-based settlement infrastructure, using USDC as the residual settlement asset, makes this economically viable at scale for the first time.
+**Volume and balance.** Netting only compresses if flows run both ways. A corridor with $100 million going out and $1 million coming back nets away $1 million out of $101 million, which is nothing. You need real two way trade. Kenya and Tanzania do roughly $900 million to $1.1 billion a year and it runs fairly evenly in both directions, which is why it is the right corridor to start in.
 
-**Third**, regulatory frameworks must permit the entities operating netting networks to hold and settle obligations at the required scale. Kenya's Virtual Asset Service Providers Regulations, gazetted in July 2026, provide the first clear legal framework in East Africa for exactly this category of infrastructure. Comparable frameworks are emerging in Nigeria, Ghana, and South Africa.
+**Infrastructure.** Somebody has to record obligations programmatically and settle the residual quickly. Traditional rails are too slow and too expensive to net a corridor continuously and still make the economics work. Blockchain settlement with USDC as the residual asset is the first thing that makes it cheap enough.
 
-These three conditions converged only in the last 18 to 24 months. This explains why corridor-level netting is only now being applied to African payments despite being a well-understood financial mechanism for over 200 years.
+**Regulation.** Whoever operates the network has to be allowed to hold and settle obligations at scale. Kenya's Virtual Asset Service Providers Regulations, gazetted in July 2026, are the first clear legal framework in East Africa for exactly this kind of infrastructure. Nigeria, Ghana and South Africa are moving the same way.
 
-## Timing and counterparty risk
+All three converged in the last 18 to 24 months. That is the whole reason a 250 year old mechanism is only now showing up in African payments.
 
-Netting introduces a specific risk that gross settlement systems do not have: the period between obligation submission and actual settlement. During this window, participants have received confirmation of payment but the underlying settlement has not yet occurred. Three distinct risks operate during this window and each requires specific mitigation.
+## What netting actually costs you
 
-### Counterparty default risk
+Netting buys compression by delaying settlement, and that delay is a real cost. Between the moment an obligation is submitted and the moment it settles, someone is exposed. Three different things can go wrong in that window, and each has a specific answer.
 
-If a participant defaults between obligation submission and settlement, the counterparty they were paying is exposed. If Kenyan Business A submits an $8,000 payment obligation at 10:00 AM and becomes insolvent before end-of-day settlement, the Tanzanian recipient has received confirmation of a payment that will not settle.
+### The payer defaults
 
-The standard mitigation is pre-funding. Participants must fund their obligations before those obligations are recorded on the netting ledger. The Tanzanian recipient sees the obligation only after the source-country funds have been secured in the network operator's operational account. A default by Business A at 11:00 AM does not affect the Tanzanian recipient because the funds are already held by the network operator.
+If a participant goes under before settlement, whoever they were paying is holding nothing. Business A submits an $8,000 obligation at 10:00 and is insolvent by noon. The Tanzanian supplier has a confirmation for a payment that will never arrive.
 
-### Operational risk
+The answer is pre funding. You fund the obligation before it is recorded, not after. The recipient never sees it until the money is already secured with the network operator. Business A can fail at 11:00 and it changes nothing on the Tanzanian side, because those funds stopped being Business A's an hour earlier.
 
-The netting network itself can experience outages, ledger integrity issues, or algorithmic errors during the settlement window. If the network fails to execute settlement as expected, participants on both sides are affected.
+### The network breaks
 
-Standard mitigations include cryptographic integrity guarantees on the ledger (making tampering detectable), deterministic and testable netting algorithms, third-party security audits, formal certification against international standards (ISO 27001, SOC 2), and clearly defined operational SLAs with defined recourse procedures. These are engineering and process disciplines rather than novel financial innovations.
+The netting system itself can go down, corrupt its ledger, or net wrongly. If settlement does not execute, everyone in the window is affected.
 
-### Currency risk
+The answers here are boring engineering. Cryptographic integrity on the ledger so tampering is detectable. Netting logic that is deterministic and testable. Outside security audits. ISO 27001 and SOC 2. Operational SLAs with actual recourse when they are missed. None of it is clever finance, and that is the point.
 
-Exchange rates between the source and destination currencies can move between obligation submission and residual settlement. Someone in the system must bear the cost or benefit of these movements.
+### The rate moves
 
-The standard mitigation is fixing the exchange rate at the moment of obligation submission. Both counterparties transact at the rate available at the time the payment is initiated. Rate movements after that point are absorbed by the network operator, whose exposure is limited to the small residual amount that actually requires dollar settlement, and whose settlement window is designed to be short (typically end-of-day) to minimise exposure.
+Currencies move between submission and settlement, and somebody has to absorb it.
 
-> Timing risk in a netting system is real but structurally different from timing risk in traditional cross-border payment. The window is shorter (hours rather than days), the failure modes are clearer, and the mitigations are concrete engineering problems rather than fundamental limitations.
+Fix the rate when the payment is initiated. Both sides transact at the rate they saw. Anything that moves afterwards lands on the network operator, whose exposure is only the small residual that actually settles in dollars, over a window kept deliberately short.
 
-## Positioning relative to PAPSS
+> The timing risk is real, but it is a different shape from the timing risk you already accept in correspondent banking. The window is hours instead of days, the failure modes are enumerable, and the fixes are engineering problems rather than facts of life.
 
-The Pan-African Payment and Settlement System, launched by Afreximbank and the African Union in 2022, is the most prominent existing effort to reduce dollar dependence in African cross-border payments. PAPSS operates at the central bank level, netting payments between participating central banks on a daily basis and settling residuals through Afreximbank as the central settlement agent.
+## Where this sits next to PAPSS
 
-PAPSS and corridor-level netting infrastructure (of the kind described in this paper) are complementary rather than competing. They operate at different layers of the payment stack and serve different market segments.
+The Pan-African Payment and Settlement System, launched by Afreximbank and the African Union in 2022, is the most serious existing attempt to get the dollar out of African payments. It nets between participating central banks daily and settles the residual through Afreximbank.
 
-PAPSS depends on central bank participation, which is negotiated country by country and expands at the pace of central bank coordination. As of 2026, participating central banks include Ghana, Nigeria, Kenya, Egypt, Zambia, and several others, with progressive expansion continuing. PAPSS residual settlement occurs in hard currency through Afreximbank, which functions as a hub with associated concentration and liquidity requirements.
+PAPSS and corridor level netting are not competitors. They sit at different layers and serve different people.
 
-Corridor-level netting networks operating at the business-to-business layer can scale independently of central bank participation and can settle residuals in stablecoin assets rather than hard currency. This allows faster corridor expansion and more programmable settlement, at the cost of operating outside the central bank framework.
+PAPSS runs on central bank participation, which is negotiated country by country and grows at the speed of central bank coordination. As of 2026 that includes Ghana, Nigeria, Kenya, Egypt, Zambia and others, still expanding. Its residual settles in hard currency through Afreximbank, which makes Afreximbank a hub, with the concentration and liquidity requirements that implies.
 
-The long-term architecture is likely to include both layers. Central-bank-level netting for large inter-bank flows and formal financial system integration, and business-level netting for commercial cross-border trade at the corridor level. Rift operates in the latter category.
+A corridor level network operating between businesses can add corridors without waiting for anyone's central bank, and can settle its residual in stablecoins instead of hard currency. That buys speed and programmability. What it gives up is standing inside the central bank framework.
 
-## Market context
+The end state almost certainly has both. Central bank netting for large interbank flows and formal integration, business level netting for commercial trade at the corridor level. Rift is building the second one.
 
-Africa's chronic underdevelopment of intra-regional trade is well documented. Intra-African trade represents approximately 15 percent of the continent's total trade, compared to over 60 percent for intra-European trade and approximately 50 percent for intra-Asian trade. This gap is not primarily explained by lack of political will (the African Continental Free Trade Area exists specifically to address it) or lack of complementary economic bases. It is substantially explained by the cost and complexity of moving money between African countries.
+## Why any of this matters
 
-Cross-border payment friction functions as a hidden tax on intra-African trade. A Kenyan business considering whether to source inputs from Tanzania or from China faces different transaction costs on payment for each option. The dollar-detour structure of intra-African payments means the Tanzanian option carries payment costs that the China option often does not, despite the shorter physical distance and existing trade agreements. This structural bias tilts sourcing decisions away from intra-African trade.
+Intra-African trade is about 15 percent of the continent's total trade. Intra-European is over 60 percent. Intra-Asian is around 50 percent. That gap is not really about political will, since the African Continental Free Trade Area exists precisely to close it, and it is not about economies that have nothing to sell each other. A large part of it is simply how hard and expensive it is to move money between African countries.
 
-Reducing cross-border payment friction is therefore not only a fintech opportunity but a piece of the broader continental development agenda. Infrastructure that meaningfully compresses the cost of moving money between African countries would contribute to the conditions under which intra-African trade could grow toward the levels observed in Europe and Asia.
+Payment friction works as a quiet tax on trade between neighbours. A Kenyan business deciding whether to buy inputs from Tanzania or from China pays different costs to settle each one, and the Tanzanian option is often the more expensive one to pay for, despite being closer and covered by trade agreements. That bias is structural, and it pushes sourcing away from the continent.
 
-## Conclusion
+So compressing the cost of moving money between African countries is not only a fintech opportunity. It removes one of the specific reasons intra-African trade stays small.
 
-Cross-border payment costs in Africa have proven resistant to a decade of fintech innovation because the innovation has focused on the wrong constraint. Faster messaging via stablecoin infrastructure has produced meaningful improvements in payment speed but has not addressed the underlying scarcity of dollar liquidity that determines the aggregate cost of the system.
+## The point
 
-Multilateral netting at the corridor and business level offers a structurally different approach. By matching offsetting obligations and settling only residuals, netting compresses the dollar liquidity required by the system rather than redistributing it. The mechanism is well-established in financial history, having been applied continuously in clearing house contexts for over two centuries. What is new is the combination of programmable settlement infrastructure, sufficient corridor volume, and regulatory clarity that makes the model economically viable for African corridors.
+Cross-border payments in Africa resisted a decade of fintech because the fintech was aimed at the wrong constraint. Faster messaging genuinely made payments quicker. It did nothing about the scarce dollars that set what the system costs.
 
-The practical constraints on this approach are non-trivial. Netting requires corridor volume balance, participant pre-funding, engineering discipline in operating the underlying infrastructure, and regulatory operating environments that permit the required scale. Meeting these conditions is engineering and operational work rather than fundamental financial innovation. The question for the next several years is whether operators can build the required infrastructure and demonstrate the compression effects at scale.
+Netting is a different move. Match the obligations that cancel, settle only what is left, and the dollars the system needs actually fall rather than moving to someone else's balance sheet. The mechanism has been running in clearing houses for over two centuries. What is new is that programmable settlement, corridor volume and regulatory clarity finally showed up in the same place at the same time.
 
-Rift is one operator pursuing this approach, initially in the Kenya-Tanzania corridor, with expansion planned into adjacent corridors as the netting graph grows. Other operators are likely to enter this category as the underlying conditions continue to mature. The relevant question for the industry is not whether netting-based settlement will play a role in African cross-border payments infrastructure. The question is which operators will build it, how quickly, and with what quality of execution.
+The constraints are real. You need balanced corridors, participants who pre fund, disciplined engineering, and somewhere legal to operate. All of that is work, not invention. Which means the open question is not whether netting belongs in African payments infrastructure. It is who builds it, how fast, and how well.
 
----
-
-**About Rift Research.** Rift Research is the publications arm of Rift, a settlement infrastructure company for African cross-border payments based in Nairobi. Working papers reflect the analytical work underlying Rift's product development and are published to contribute to the broader industry conversation. Correspondence to [research@riftfi.com](mailto:research@riftfi.com). For company information, [riftfi.com](https://riftfi.com).
+We are building it, starting with Kenya and Tanzania, and adding corridors as the graph fills in. If you move money across these borders and want to talk about it, I am at [amschel@riftfi.com](mailto:amschel@riftfi.com).
