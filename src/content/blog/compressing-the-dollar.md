@@ -7,7 +7,13 @@ cover: /tally.jpg
 tags: [Essay, Netting, Settlement, Africa]
 ---
 
-Send $1,000 from Nairobi to Dar es Salaam today and somewhere between $50 and $100 of it disappears into fees, spread and delay. That has been true for decades, through every wave of fintech that promised to fix it. It is worth being precise about why.
+Small cross-border payments in East Africa mostly work now. Mobile money made sending a modest amount from Nairobi to Dar es Salaam quick and cheap enough that most people have stopped thinking about it, and that is a real achievement.
+
+Now send half a million dollars.
+
+A Kenyan importer settling an invoice with a Tanzanian supplier at that size is not on mobile money. That payment goes through correspondent banks. It takes days, it is quoted at a spread that scales with the amount, and it lands when it lands. Businesses that move serious money across African borders plan around this the way you plan around weather.
+
+That gap is the thing worth explaining. It is not that nobody built good payment technology here. It is that the technology solved a different problem from the one large payments actually run into.
 
 ## The problem is not messaging
 
@@ -21,12 +27,12 @@ Watch what happens when a Kenyan importer pays a Tanzanian supplier. The Kenyan 
 
 ```mermaid
 flowchart LR
-    NBO["Nairobi<br/>KES 1,300,000"] --> NYC["New York<br/>USD 10,000"]
-    NYC --> DAR["Dar es Salaam<br/>TZS 25,000,000"]
+    NBO["Nairobi<br/>KES 65,000,000"] --> NYC["New York<br/>USD 500,000"]
+    NYC --> DAR["Dar es Salaam<br/>TZS 1,250,000,000"]
     NBO -. "no direct route" .-> DAR
 ```
 
-*The route the money actually takes. Three to five days, $50 to $100 on a $10,000 payment.*
+*The route the money actually takes. Two conversions, a spread on each, and days spent in transit.*
 
 The detour exists because there is no real market between the Kenyan shilling and the Tanzanian shilling. Both trade against the dollar. Neither trades meaningfully against the other. So the dollar becomes the bridge by default, because it is the one currency every counterparty in the chain will accept. Naira to cedi, Kenyan shilling to Ugandan shilling, Rwandan franc to Tanzanian shilling: same story, same detour.
 
@@ -62,44 +68,44 @@ Take a day of trade between three Kenyan businesses paying three Tanzanian suppl
 
 | Payer | Recipient | Amount |
 | --- | --- | --- |
-| Business A (Nairobi) | Supplier X (Dar es Salaam) | $8,000 |
-| Business B (Nairobi) | Supplier Y (Arusha) | $5,000 |
-| Business C (Nairobi) | Supplier Z (Mwanza) | $12,000 |
-| **Total** | | **$25,000** |
+| Business A (Nairobi) | Supplier X (Dar es Salaam) | $80,000 |
+| Business B (Nairobi) | Supplier Y (Arusha) | $50,000 |
+| Business C (Nairobi) | Supplier Z (Mwanza) | $120,000 |
+| **Total** | | **$250,000** |
 
 **Tanzania to Kenya**
 
 | Payer | Recipient | Amount |
 | --- | --- | --- |
-| Supplier X (Dar es Salaam) | Business M (Nairobi) | $7,000 |
-| Supplier Y (Arusha) | Business N (Nairobi) | $9,000 |
-| Supplier Z (Mwanza) | Business O (Nairobi) | $8,000 |
-| **Total** | | **$24,000** |
+| Supplier X (Dar es Salaam) | Business M (Nairobi) | $70,000 |
+| Supplier Y (Arusha) | Business N (Nairobi) | $90,000 |
+| Supplier Z (Mwanza) | Business O (Nairobi) | $80,000 |
+| **Total** | | **$240,000** |
 
-Today all six settle separately. Each one converts currency, crosses correspondent banking, and settles on its own. To complete six payments, $49,000 has to move through the system. At a fairly typical all in cost of five percent, that is about $2,450 in fees.
-
-```mermaid
-flowchart LR
-    A["Business A<br/>Kenya"] -->|"$8,000"| X["Supplier X<br/>Tanzania"]
-    B["Business B<br/>Kenya"] -->|"$5,000"| Y["Supplier Y<br/>Tanzania"]
-    C["Business C<br/>Kenya"] -->|"$12,000"| Z["Supplier Z<br/>Tanzania"]
-    X2["Supplier X<br/>Tanzania"] -->|"$7,000"| M["Business M<br/>Kenya"]
-    Y2["Supplier Y<br/>Tanzania"] -->|"$9,000"| N["Business N<br/>Kenya"]
-    Z2["Supplier Z<br/>Tanzania"] -->|"$8,000"| O["Business O<br/>Kenya"]
-```
-
-*Six payments, six settlements, $49,000 of gross dollar flow.*
-
-Now record the same six on a shared ledger. Kenyan participants owe Tanzanian participants $25,000. Tanzanian participants owe Kenyan participants $24,000. The net is $1,000 going from Kenya to Tanzania, and that $1,000 is the only thing that needs to settle in dollars. The other $48,000 cancels.
+Today all six settle separately. Each one converts currency, crosses correspondent banking, and settles on its own. To complete six payments, $490,000 has to move through the system, and every dollar of that has to exist on somebody's balance sheet before it can move.
 
 ```mermaid
 flowchart LR
-    KE["<b>Kenya</b><br/>Owed out: $25,000<br/>Owed in: $24,000<br/>Net: -$1,000"]
-    TZ["<b>Tanzania</b><br/>Owed out: $24,000<br/>Owed in: $25,000<br/>Net: +$1,000"]
-    KE -->|"$1,000"| TZ
+    A["Business A<br/>Kenya"] -->|"$80,000"| X["Supplier X<br/>Tanzania"]
+    B["Business B<br/>Kenya"] -->|"$50,000"| Y["Supplier Y<br/>Tanzania"]
+    C["Business C<br/>Kenya"] -->|"$120,000"| Z["Supplier Z<br/>Tanzania"]
+    X2["Supplier X<br/>Tanzania"] -->|"$70,000"| M["Business M<br/>Kenya"]
+    Y2["Supplier Y<br/>Tanzania"] -->|"$90,000"| N["Business N<br/>Kenya"]
+    Z2["Supplier Z<br/>Tanzania"] -->|"$80,000"| O["Business O<br/>Kenya"]
 ```
 
-*The same six payments, netted. One settlement of $1,000 replaces $49,000 of flow.*
+*Six payments, six settlements, $490,000 of gross dollar flow.*
+
+Now record the same six on a shared ledger. Kenyan participants owe Tanzanian participants $250,000. Tanzanian participants owe Kenyan participants $240,000. The net is $10,000 going from Kenya to Tanzania, and that $10,000 is the only thing that needs to settle in dollars. The other $480,000 cancels.
+
+```mermaid
+flowchart LR
+    KE["<b>Kenya</b><br/>Owed out: $250,000<br/>Owed in: $240,000<br/>Net: -$10,000"]
+    TZ["<b>Tanzania</b><br/>Owed out: $240,000<br/>Owed in: $250,000<br/>Net: +$10,000"]
+    KE -->|"$10,000"| TZ
+```
+
+*The same six payments, netted. One settlement of $10,000 replaces $490,000 of flow.*
 
 Every recipient is paid in full. Every payer pays in full. Nobody gets less. But the dollars the system had to hold fell by 98 percent.
 
