@@ -173,13 +173,14 @@
     }
 
     a {
-      color: colors.$blueaccent;
+      color: colors.$textprimary;
       text-decoration: underline;
       text-decoration-thickness: 1px;
       text-underline-offset: 3px;
+      text-decoration-color: rgba(colors.$textprimary, 0.4);
 
       &:hover {
-        color: colors.$textprimary;
+        text-decoration-color: colors.$textprimary;
       }
     }
 
@@ -196,8 +197,8 @@
     blockquote {
       margin: 1.5rem 0;
       padding: 0.875rem 1.25rem;
-      border-left: 3px solid colors.$blueaccent;
-      background: rgba(0, 147, 178, 0.06);
+      border-left: 3px solid rgba(colors.$textprimary, 0.35);
+      background: rgba(colors.$textprimary, 0.04);
       border-radius: 0 0.5rem 0.5rem 0;
       color: rgba(colors.$textprimary, 0.8);
       font-style: italic;
@@ -266,9 +267,9 @@
     .mermaid-block {
       margin: 1.75rem 0;
       padding: 1.25rem;
-      border-radius: 1rem;
-      background: #fafbfc;
-      border: 1px solid rgba(colors.$textprimary, 0.06);
+      border-radius: 0.75rem;
+      background: #fafafa;
+      border: 1px solid rgba(colors.$textprimary, 0.12);
       display: flex;
       justify-content: center;
       overflow-x: auto;
@@ -276,6 +277,54 @@
       svg {
         max-width: 100%;
         height: auto;
+
+        /* Repaint the diagram in the surrounding text colour so it reads as
+           part of the prose rather than as a coloured illustration. */
+        .node rect,
+        .node polygon,
+        .node circle,
+        .node ellipse,
+        .cluster rect {
+          fill: none !important;
+          stroke: currentColor !important;
+          stroke-width: 1.25px !important;
+        }
+
+        .edgePath path,
+        path.flowchart-link,
+        .flowchart-link {
+          stroke: currentColor !important;
+          fill: none !important;
+        }
+
+        marker path,
+        .arrowheadPath,
+        .marker {
+          fill: currentColor !important;
+          stroke: currentColor !important;
+        }
+      }
+
+      /* Mermaid injects its own dark label colour inside the SVG, so these
+         need setting explicitly per theme rather than via currentColor. */
+      .nodeLabel,
+      .nodeLabel p,
+      .edgeLabel,
+      .edgeLabel span,
+      .edgeLabel p,
+      .cluster-label,
+      .cluster-label p {
+        color: colors.$textprimary !important;
+      }
+
+      /* Mermaid paints its own light background on every layer of the edge
+         label, which shows as a pale box on a dark panel. Match the panel. */
+      .edgeLabel,
+      .edgeLabel span,
+      .edgeLabel p,
+      .edgeLabel .labelBkg,
+      .edgeLabel foreignObject > div {
+        background: #fafafa !important;
       }
 
       /* Mermaid measures each label assuming one line per <br>, then fixes the
@@ -298,21 +347,19 @@
 
       .edgeLabel,
       .edgeLabel p {
-        color: rgba(colors.$textprimary, 0.7);
         font-size: 0.8125rem;
       }
 
       .cluster-label,
       .cluster-label p {
-        color: rgba(colors.$textprimary, 0.75);
         font-weight: 600;
       }
 
       &.mermaid-loading {
         min-height: 8rem;
         background:
-          linear-gradient(90deg, transparent, rgba(colors.$blueaccent, 0.06), transparent),
-          #fafbfc;
+          linear-gradient(90deg, transparent, rgba(colors.$textprimary, 0.06), transparent),
+          #fafafa;
         background-size: 200% 100%;
         animation: shimmer 1.4s linear infinite;
       }
@@ -524,12 +571,44 @@
 
     h2, h3, h4 { color: #eaf0f7; }
     p { color: rgba(234, 240, 247, 0.82); }
-    a { color: #4ccbe0; &:hover { color: #eaf0f7; } }
+    a {
+      color: #eaf0f7;
+      text-decoration-color: rgba(234, 240, 247, 0.45);
+      &:hover { text-decoration-color: #eaf0f7; }
+    }
     ul li, ol li { color: rgba(234, 240, 247, 0.82); }
     blockquote {
-      background: rgba(0, 147, 178, 0.1);
-      border-left-color: #4ccbe0;
+      background: rgba(255, 255, 255, 0.04);
+      border-left-color: rgba(234, 240, 247, 0.35);
       color: rgba(234, 240, 247, 0.85);
+    }
+    .mermaid-block {
+      background: #0f1319;
+      border-color: rgba(255, 255, 255, 0.12);
+
+      .nodeLabel,
+      .nodeLabel p,
+      .edgeLabel,
+      .edgeLabel span,
+      .edgeLabel p,
+      .cluster-label,
+      .cluster-label p {
+        color: #eaf0f7 !important;
+      }
+
+      .edgeLabel,
+      .edgeLabel span,
+      .edgeLabel p,
+      .edgeLabel .labelBkg,
+      .edgeLabel foreignObject > div {
+        background: #0f1319 !important;
+      }
+
+      &.mermaid-loading {
+        background:
+          linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent),
+          #0f1319;
+      }
     }
     hr { background: rgba(255, 255, 255, 0.1); }
     table {

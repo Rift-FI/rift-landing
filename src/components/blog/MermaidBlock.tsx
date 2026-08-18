@@ -10,14 +10,17 @@ function getMermaid() {
         startOnLoad: false,
         securityLevel: "strict",
         theme: "base",
+        // Monochrome baseline. The stylesheet then repaints the diagram in the
+        // body text colour via currentColor so it matches the prose in both
+        // the light and dark themes.
         themeVariables: {
-          primaryColor: "#0093b2",
+          primaryColor: "#ffffff",
           primaryTextColor: "#121212",
-          primaryBorderColor: "#0093b2",
-          lineColor: "#22262b",
-          secondaryColor: "#c3f709",
-          tertiaryColor: "#f6faff",
-          edgeLabelBackground: "#fafbfc",
+          primaryBorderColor: "#121212",
+          lineColor: "#121212",
+          secondaryColor: "#f4f4f4",
+          tertiaryColor: "#fafafa",
+          edgeLabelBackground: "#fafafa",
           fontFamily: "Figtree, sans-serif",
           fontSize: "14px",
         },

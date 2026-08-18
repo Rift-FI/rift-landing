@@ -30,6 +30,14 @@ flowchart LR
 
 The detour exists because there is no real market between the Kenyan shilling and the Tanzanian shilling. Both trade against the dollar. Neither trades meaningfully against the other. So the dollar becomes the bridge by default, because it is the one currency every counterparty in the chain will accept. Naira to cedi, Kenyan shilling to Ugandan shilling, Rwandan franc to Tanzanian shilling: same story, same detour.
 
+### Mobile money got furthest, and still hit it
+
+The most impressive answer to the messaging problem did not come from crypto, and it did not come from correspondent banking. It came from mobile money. M-PESA, Airtel Money and their peers reach hundreds of millions of people across the continent, move value between them in seconds, and already run across some cross-border corridors through operator partnerships. That is a genuine achievement, built here, and it set the expectation that sending money should feel instant.
+
+What it does not do is remove the settlement problem. It moves it upstream. Every cross-border mobile money transaction still needs the operators to hold pre funded pools of liquidity in both countries, and rebalancing those pools eventually runs into the same missing piece as everything else: an FX market between African currencies that does not meaningfully exist. Mobile money took the friction off the user and put it on the operator's balance sheet. The dollars the system has to hold did not fall.
+
+That is not a criticism. It is where the problem actually lives, one layer below the part mobile money fixed.
+
 ### Stablecoins moved the problem, they did not remove it
 
 Stablecoin infrastructure swaps slow correspondent messaging for fast blockchain messaging. What it does not swap out is the dollars. Every stablecoin payment across a border still needs dollars on both ends: the payer needs them to fund the coin, the recipient needs them to get out of the coin and into local currency.
