@@ -17,10 +17,20 @@ function getMermaid() {
           lineColor: "#22262b",
           secondaryColor: "#c3f709",
           tertiaryColor: "#f6faff",
+          edgeLabelBackground: "#fafbfc",
           fontFamily: "Figtree, sans-serif",
           fontSize: "14px",
         },
-        flowchart: { curve: "basis", htmlLabels: true },
+        // wrappingWidth defaults to 200px, which silently wraps and clips
+        // multi-line node labels. Widen it so figure labels stay on one line.
+        flowchart: {
+          curve: "basis",
+          htmlLabels: true,
+          wrappingWidth: 320,
+          // Mermaid under-measures multi-line labels, so keep the node padding
+          // generous enough that the widest line still fits inside the box.
+          padding: 24,
+        },
         sequence: { useMaxWidth: true },
       });
       return mermaid;
@@ -46,6 +56,10 @@ export const MermaidBlock = ({ code }: Props) => {
     (async () => {
       try {
         const mermaid = await getMermaid();
+        // Mermaid sizes every node by measuring its label. Measuring before the
+        // webfont lands sizes boxes against the fallback metrics, so the real
+        // text then overflows them. Wait for fonts before rendering.
+        await document.fonts?.ready;
         const { svg } = await mermaid.render(renderId, code.trim());
         if (!cancelled) {
           setSvg(svg);

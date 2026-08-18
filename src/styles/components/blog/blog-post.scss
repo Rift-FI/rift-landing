@@ -278,6 +278,36 @@
         height: auto;
       }
 
+      /* Mermaid measures each label assuming one line per <br>, then fixes the
+         foreignObject height. Body <p> styles above would otherwise add margins
+         and let the longest line wrap, overflowing that box and clipping text. */
+      foreignObject {
+        overflow: visible;
+
+        > div {
+          overflow: visible;
+        }
+      }
+
+      .nodeLabel p,
+      .edgeLabel p,
+      .cluster-label p {
+        margin: 0;
+        white-space: nowrap;
+      }
+
+      .edgeLabel,
+      .edgeLabel p {
+        color: rgba(colors.$textprimary, 0.7);
+        font-size: 0.8125rem;
+      }
+
+      .cluster-label,
+      .cluster-label p {
+        color: rgba(colors.$textprimary, 0.75);
+        font-weight: 600;
+      }
+
       &.mermaid-loading {
         min-height: 8rem;
         background:
