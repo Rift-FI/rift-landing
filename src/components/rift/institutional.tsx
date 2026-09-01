@@ -33,7 +33,7 @@ export const InstitutionalHero = () => (
         your own infrastructure.
       </p>
       <div className="hero-i-cta">
-        <a className="btn-i btn-i-primary" href="mailto:sales@riftfi.com">
+        <a className="btn-i btn-i-primary" href="mailto:amschel@riftfi.com">
           Talk to sales
         </a>
         <a
@@ -109,7 +109,7 @@ export const InstitutionalProducts = () => (
             <p className="i-product-body">{p.body}</p>
             <a
               className="i-product-link"
-              href="mailto:sales@riftfi.com"
+              href="mailto:amschel@riftfi.com"
             >
               Talk to sales <span aria-hidden="true">→</span>
             </a>
@@ -307,13 +307,13 @@ export const InstitutionalContact = () => (
       <div className="i-contact-r">
         <a
           className="i-contact-mail"
-          href="mailto:sales@riftfi.com?subject=Rift%20infrastructure%20enquiry"
+          href="mailto:amschel@riftfi.com?subject=Rift%20infrastructure%20enquiry"
         >
-          sales@riftfi.com
+          amschel@riftfi.com
         </a>
         <a
           className="btn-i btn-i-primary btn-i-primary--inv"
-          href="mailto:sales@riftfi.com?subject=Rift%20infrastructure%20enquiry"
+          href="mailto:amschel@riftfi.com?subject=Rift%20infrastructure%20enquiry"
         >
           Send an email
         </a>
