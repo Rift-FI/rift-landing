@@ -59,8 +59,14 @@ function escapeXml(s) {
 
 async function writeSitemap(posts) {
   const urls = [
+    // Institutional pitch is the primary landing after the 2026-08 pivot.
     { loc: `${BASE_URL}/`, priority: "1.0", changefreq: "weekly" },
+    // Business-facing page (SME cross-border payments) — still ranks for
+    // its own long-tail queries so it's kept indexable at 0.85.
+    { loc: `${BASE_URL}/businesses`, priority: "0.85", changefreq: "monthly" },
     { loc: `${BASE_URL}/blog`, priority: "0.9", changefreq: "weekly" },
+    { loc: `${BASE_URL}/terms`, priority: "0.3", changefreq: "yearly" },
+    { loc: `${BASE_URL}/privacy`, priority: "0.3", changefreq: "yearly" },
     ...posts.map((p) => ({
       loc: `${BASE_URL}/blog/${p.slug}`,
       priority: "0.8",

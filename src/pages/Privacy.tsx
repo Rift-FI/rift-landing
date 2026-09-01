@@ -207,7 +207,7 @@ const SECTIONS: Section[] = [
       },
       {
         kind: "p",
-        text: "sales@riftfi.com · privacy@riftfi.com",
+        text: "amschel@riftfi.com · privacy@riftfi.com",
       },
       {
         kind: "p",

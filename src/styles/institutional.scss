@@ -1,0 +1,360 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   INSTITUTIONAL HOME — the 2026-08 pivot. Ink on paper, restrained but
+   with real surface polish. Card layout is Circle-inspired: filled
+   background, top-left icon, product name, small category label, body,
+   underlined "Learn more" link. Not a memo, not a pitch deck.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --i-max: 1120px;
+  --i-gutter: clamp(20px, 4vw, 40px);
+  --i-hair: rgba(0, 0, 0, .10);
+  --i-hair-strong: rgba(0, 0, 0, .18);
+  --i-ink-muted: rgba(0, 0, 0, .58);
+  --i-ink-faint: rgba(0, 0, 0, .38);
+  /* soft-tinted section band — imperceptible individually, supplies
+     the rhythm that stops the page reading as one flat doc */
+  --i-soft: #f6f5f2;
+  /* card fill — deliberately DARKER than the section so cards read as
+     objects. In light mode we tint slightly warm off-white; in dark
+     mode we lighten the charcoal so cards float above the section bg. */
+  --i-card-bg: #ffffff;
+  --i-card-border: rgba(0, 0, 0, .09);
+  --i-card-icon-bg: rgba(0, 0, 0, .04);
+}
+.theme-dark {
+  --i-hair: rgba(255, 255, 255, .14);
+  --i-hair-strong: rgba(255, 255, 255, .24);
+  --i-ink-muted: rgba(255, 255, 255, .64);
+  --i-ink-faint: rgba(255, 255, 255, .42);
+  --i-soft: #0b0b0d;
+  --i-card-bg: #17171a;
+  --i-card-border: rgba(255, 255, 255, .10);
+  --i-card-icon-bg: rgba(255, 255, 255, .06);
+}
+
+/* ── HERO ─────────────────────────────────────────────────────────── */
+.hero-i {
+  padding: clamp(96px, 13vw, 172px) 0 clamp(76px, 10vw, 124px);
+  border-bottom: 1px solid var(--i-hair);
+}
+.hero-i-in { max-width: var(--i-max); padding: 0 var(--i-gutter); margin: 0 auto; }
+.hero-i-h1 {
+  font-family: "Archivo", sans-serif; font-weight: 600;
+  font-size: clamp(38px, 6.6vw, 88px);
+  letter-spacing: -0.036em; line-height: 1.03;
+  color: var(--ink);
+  max-width: 20ch;
+  margin: 0 0 34px 0;
+}
+.hero-i-sub {
+  font-family: "Inter", sans-serif; font-weight: 400;
+  font-size: clamp(17px, 1.55vw, 21px); line-height: 1.55;
+  color: var(--i-ink-muted);
+  max-width: 62ch;
+  margin: 0 0 42px 0;
+}
+.hero-i-cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+/* Button system */
+.btn-i {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 15px 28px; border-radius: 999px;
+  font-family: "Inter", sans-serif; font-weight: 500; font-size: 15px;
+  text-decoration: none;
+  transition: opacity .18s var(--ease), background .18s var(--ease), color .18s var(--ease), transform .18s var(--ease);
+  cursor: pointer;
+}
+.btn-i-primary { background: var(--ink); color: var(--paper); border: 1px solid var(--ink); }
+.btn-i-primary:hover { opacity: .90; transform: translateY(-1px); }
+.btn-i-secondary {
+  background: transparent; color: var(--ink);
+  border: 1px solid transparent;
+  padding: 15px 12px;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--i-hair-strong);
+}
+.btn-i-secondary:hover { text-decoration-color: var(--ink); }
+.btn-i-primary--inv { background: #ffffff; color: #000000; border-color: #ffffff; }
+.btn-i-primary--inv:hover { opacity: .92; }
+.btn-i-secondary--inv { color: #ffffff; text-decoration-color: rgba(255,255,255,.32); }
+.btn-i-secondary--inv:hover { text-decoration-color: #ffffff; }
+
+/* ── SECTION SCAFFOLDING ─────────────────────────────────────────── */
+.i-section {
+  padding: clamp(80px, 11vw, 132px) 0;
+  border-bottom: 1px solid var(--i-hair);
+  background: var(--paper);
+}
+.i-section--soft { background: var(--i-soft); }
+.i-section--tight { padding: clamp(56px, 8vw, 88px) 0; }
+.i-section .wrap { max-width: var(--i-max); padding: 0 var(--i-gutter); margin: 0 auto; }
+
+/* Section H2, used ALONE — no kicker above, no sub below. The heading
+   IS the section. This is what makes the layout read as editorial
+   rather than as a slide. */
+.i-h2 {
+  font-family: "Archivo", sans-serif; font-weight: 600;
+  font-size: clamp(32px, 4.2vw, 52px);
+  letter-spacing: -0.032em; line-height: 1.06;
+  color: var(--ink);
+  margin: 0 0 clamp(40px, 5vw, 64px) 0;
+}
+.i-section-h2-only { max-width: 24ch; }
+
+/* ── PRODUCTS (Circle-style cards) ───────────────────────────────── */
+.i-products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 900px) { .i-products { grid-template-columns: 1fr; gap: 14px; } }
+
+.i-product {
+  padding: 32px 32px 28px 32px;
+  background: var(--i-card-bg);
+  border: 1px solid var(--i-card-border);
+  border-radius: 20px;
+  display: flex; flex-direction: column;
+  transition: border-color .18s var(--ease), transform .18s var(--ease), box-shadow .18s var(--ease);
+}
+.i-product:hover {
+  border-color: var(--i-hair-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px -20px rgba(0, 0, 0, .18);
+}
+.theme-dark .i-product:hover { box-shadow: 0 14px 36px -20px rgba(0, 0, 0, .55); }
+
+.i-product-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px;
+  background: var(--i-card-icon-bg);
+  border-radius: 14px;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.i-product-icon svg { width: 26px; height: 26px; }
+
+.i-product-name {
+  font-family: "Archivo", sans-serif; font-weight: 700;
+  font-size: 26px; letter-spacing: -0.022em; line-height: 1.15;
+  color: var(--ink);
+  margin: 0 0 8px 0;
+}
+.i-product-cat {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--i-ink-muted);
+  display: block;
+  margin-bottom: 20px;
+}
+.i-product-body {
+  font-family: "Inter", sans-serif; font-size: 14.5px; line-height: 1.6;
+  color: var(--i-ink-muted);
+  margin: 0 0 26px 0;
+  flex: 1;
+}
+.i-product-link {
+  font-family: "Inter", sans-serif; font-size: 14px; font-weight: 500;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--i-hair-strong);
+  align-self: flex-start;
+  transition: text-decoration-color .18s var(--ease);
+}
+.i-product-link:hover { text-decoration-color: var(--ink); }
+
+/* ── DEPLOYMENT ─────────────────────────────────────────────────── */
+.i-deploy {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 900px) { .i-deploy { grid-template-columns: 1fr; } }
+.i-deploy-mode {
+  padding: 36px 32px;
+  background: var(--i-card-bg);
+  border: 1px solid var(--i-card-border);
+  border-radius: 20px;
+  display: flex; flex-direction: column;
+  transition: border-color .18s var(--ease);
+}
+.i-deploy-mode:hover { border-color: var(--i-hair-strong); }
+.i-deploy-head { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.i-deploy-n {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px; letter-spacing: .08em; color: var(--i-ink-faint);
+}
+.i-deploy-label {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px; letter-spacing: .10em; text-transform: uppercase;
+  color: var(--i-ink-muted);
+  padding: 4px 10px;
+  border: 1px solid var(--i-hair);
+  border-radius: 999px;
+}
+.i-deploy-title {
+  font-family: "Archivo", sans-serif; font-weight: 600;
+  font-size: 26px; letter-spacing: -0.02em; line-height: 1.1;
+  color: var(--ink);
+  margin: 0 0 16px 0;
+}
+.i-deploy-body {
+  font-family: "Inter", sans-serif; font-size: 15px; line-height: 1.6;
+  color: var(--i-ink-muted);
+  margin: 0 0 18px 0;
+}
+.i-deploy-fit {
+  font-family: "Inter", sans-serif; font-size: 13px; line-height: 1.5;
+  color: var(--i-ink-faint);
+  margin: auto 0 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--i-hair);
+  font-style: italic;
+}
+
+/* ── PARTNERS (logo strip) ───────────────────────────────────────── */
+.i-partners {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: clamp(28px, 5vw, 64px);
+  padding: 24px 0 4px 0;
+}
+/* Partner marks free-floating — no chip. On light theme the brand
+   colours read on the paper background naturally. On dark theme this
+   trades some contrast for design cleanliness; drop in a light-variant
+   asset for each brand if that becomes a problem. */
+.i-partner {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 12px;
+  transition: opacity .18s var(--ease);
+  opacity: .95;
+  text-decoration: none;
+}
+.i-partner:hover { opacity: 1; }
+.i-partner-img {
+  height: 40px; width: auto;
+  display: block;
+}
+/* Icon-only variant (e.g. BlockFinaX hex favicon) — square, paired
+   with .i-partner-name text so partners without a wordmark asset
+   still show their name in the strip. */
+.i-partner-icon {
+  height: 36px; width: 36px;
+}
+.i-partner-name {
+  font-family: "Archivo", sans-serif; font-weight: 700;
+  font-size: 22px; letter-spacing: -0.020em; line-height: 1;
+  color: var(--ink);
+}
+@media (max-width: 640px) {
+  .i-partner-img { height: 32px; }
+  .i-partner-icon { height: 30px; width: 30px; }
+  .i-partner-name { font-size: 19px; }
+}
+
+/* ── PROOF STRIP ─────────────────────────────────────────────────── */
+.i-proofs {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--i-hair);
+}
+.i-proof {
+  padding: 32px 24px 32px 0;
+  display: flex; flex-direction: column; gap: 14px;
+  border-right: 1px solid var(--i-hair);
+}
+.i-proof:last-child { border-right: none; padding-right: 0; }
+@media (max-width: 900px) {
+  .i-proofs { grid-template-columns: 1fr 1fr; }
+  .i-proof { border-right: 1px solid var(--i-hair); border-bottom: 1px solid var(--i-hair); padding: 28px 20px; }
+  .i-proof:nth-child(2n) { border-right: none; }
+}
+@media (max-width: 560px) {
+  .i-proofs { grid-template-columns: 1fr; }
+  .i-proof { border-right: none; border-bottom: 1px solid var(--i-hair); padding: 24px 0; }
+  .i-proof:last-child { border-bottom: none; }
+}
+.i-proof-v {
+  font-family: "Archivo", sans-serif; font-weight: 600;
+  font-size: clamp(28px, 3vw, 40px);
+  letter-spacing: -0.028em; line-height: 1;
+  color: var(--ink);
+}
+/* Proof-cell logo variant — free-floating, aligned to the same
+   vertical position as the .i-proof-v stat text. */
+.i-proof-logo {
+  display: inline-flex; align-items: center;
+  min-height: 40px;
+}
+.i-proof-logo img { height: 32px; width: auto; display: block; }
+@media (max-width: 640px) { .i-proof-logo img { height: 28px; } }
+.i-proof-label {
+  font-family: "Inter", sans-serif; font-size: 13.5px; line-height: 1.5;
+  color: var(--i-ink-muted);
+}
+
+/* ── CONTACT (always-dark panel, theme-independent) ──────────────── */
+.i-contact {
+  background: #0a0a0a;
+  color: #ffffff;
+  padding: clamp(88px, 11vw, 148px) 0;
+}
+.i-contact .wrap { max-width: var(--i-max); padding: 0 var(--i-gutter); margin: 0 auto; }
+.i-contact-in {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(40px, 6vw, 88px);
+  align-items: center;
+}
+@media (max-width: 800px) { .i-contact-in { grid-template-columns: 1fr; } }
+.i-contact-l { display: flex; flex-direction: column; gap: 14px; }
+.i-contact-h2 {
+  font-family: "Archivo", sans-serif; font-weight: 600;
+  font-size: clamp(32px, 4.2vw, 52px);
+  letter-spacing: -0.032em; line-height: 1.06;
+  color: #ffffff;
+  margin: 0;
+}
+.i-contact-lead {
+  font-family: "Inter", sans-serif; font-size: 15px; line-height: 1.6;
+  color: rgba(255, 255, 255, .74);
+  max-width: 44ch;
+  margin: 4px 0 0 0;
+}
+.i-contact-r { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+@media (min-width: 801px) { .i-contact-r { align-items: flex-end; } }
+.i-contact-mail {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 15px; color: #ffffff;
+  text-decoration: underline; text-underline-offset: 5px;
+  text-decoration-color: rgba(255, 255, 255, .35);
+  margin-bottom: 6px;
+  transition: text-decoration-color .18s var(--ease);
+}
+.i-contact-mail:hover { text-decoration-color: #ffffff; }
+
+/* ── FOOTER ──────────────────────────────────────────────────────── */
+.i-footer {
+  padding: 28px 0;
+  border-top: 1px solid var(--i-hair);
+  background: var(--paper);
+}
+.i-footer .wrap { max-width: var(--i-max); padding: 0 var(--i-gutter); margin: 0 auto; }
+.i-footer-in {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.i-footer-legal { font-family: "Inter", sans-serif; font-size: 12px; color: var(--i-ink-muted); }
+.i-footer-links { display: flex; gap: 22px; }
+.i-footer-links a {
+  font-family: "Inter", sans-serif; font-size: 12px;
+  color: var(--i-ink-muted);
+  text-decoration: none;
+  transition: color .18s var(--ease);
+}
+.i-footer-links a:hover { color: var(--ink); }

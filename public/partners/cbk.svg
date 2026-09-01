@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" fill="none" aria-hidden="true">
+  <!--
+    Central Bank of Kenya. Monogram + wordmark approximation — a
+    typographic mark styled as a bank identity, NOT the official CBK
+    coat-of-arms seal. Reproducing the seal risks implying endorsement
+    from a regulator we're only in engagement with. If we later get
+    clearance from CBK to use their crest, drop the licensed SVG in
+    at this path and remove this comment.
+
+    Kenyan flag green: #006644.
+  -->
+  <!-- circular monogram badge -->
+  <circle cx="24" cy="24" r="21" stroke="#006644" stroke-width="2.5" fill="none"/>
+  <text x="24" y="30" font-family="Archivo, Inter, sans-serif" font-size="16" font-weight="800" letter-spacing="-0.02em" fill="#006644" text-anchor="middle">CBK</text>
+  <!-- wordmark -->
+  <text x="56" y="21" font-family="Archivo, Inter, sans-serif" font-size="13" font-weight="700" letter-spacing="-0.010em" fill="#12315C">Central Bank</text>
+  <text x="56" y="37" font-family="Archivo, Inter, sans-serif" font-size="13" font-weight="700" letter-spacing="-0.010em" fill="#12315C">of Kenya</text>
+</svg>
