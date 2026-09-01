@@ -70,7 +70,7 @@ const PRODUCTS: Product[] = [
     name: "Rift Wallet",
     category: "Wallet Infrastructure",
     body:
-      "A wallet you drop into your app. Users hold their own USDC and sign their own payments, so your treasury never custodies. Ships as a white-label widget backed by hardware-isolated key storage, so nobody at Rift and nobody at your cloud provider can move a user's money.",
+      "A wallet you drop into your app. Users hold their own stablecoins and sign their own payments, so your treasury never custodies. Ships as a white-label widget backed by hardware-isolated key storage, so nobody at Rift and nobody at your cloud provider can move a user's money.",
     icon: <WalletIcon />,
   },
   {
@@ -78,7 +78,7 @@ const PRODUCTS: Product[] = [
     name: "Rift Ramps",
     category: "Liquidity Infrastructure",
     body:
-      "Turn shillings, cedis, and naira into USDC and back through licensed partners on both ends. Bank transfer, mobile money, and card, across Kenya, Tanzania, Ghana, and Nigeria. One API for all four markets. New corridors add without an API change.",
+      "Turn shillings, cedis, and naira into stablecoins and back through licensed partners on both ends. USD stablecoins (USDC, USDT), local stables, or whichever peg your corridor prefers. Bank transfer, mobile money, and card, across Kenya, Tanzania, Ghana, and Nigeria. One API for all four markets. New corridors add without an API change.",
     icon: <RampsIcon />,
   },
   {
@@ -219,7 +219,7 @@ const PROOFS = [
   { v: "$10M+", label: "Processed to date across corridors." },
   {
     v: "Circle Alliance",
-    label: "Member. USDC settlement rails integrated at the source.",
+    label: "Member. Stablecoin settlement rails integrated at the source.",
   },
   {
     v: "CBK · VASP",
