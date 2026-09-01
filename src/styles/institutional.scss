@@ -224,15 +224,24 @@
   padding: 24px 0 4px 0;
 }
 .i-partner {
-  color: var(--ink);
-  opacity: .82;
+  opacity: .88;
   transition: opacity .18s var(--ease);
   display: inline-flex; align-items: center;
 }
 .i-partner:hover { opacity: 1; }
-.i-partner-mark { display: inline-flex; align-items: center; }
-.i-partner-mark svg { height: 32px; width: auto; }
-@media (max-width: 640px) { .i-partner-mark svg { height: 28px; } }
+.i-partner-img {
+  height: 34px; width: auto;
+  display: block;
+}
+@media (max-width: 640px) { .i-partner-img { height: 28px; } }
+/* Dark-theme adjustment. Both partner SVGs use their brand navy fill,
+   which loses contrast on the near-black section background. Invert +
+   hue-rotate lifts the navy to a near-white while preserving the shape
+   fidelity. When we swap in the official brand SVGs (light + dark
+   variants), remove this filter and provide the two variants instead. */
+.theme-dark .i-partner-img {
+  filter: brightness(0) invert(1) opacity(.92);
+}
 
 /* ── PROOF STRIP ─────────────────────────────────────────────────── */
 .i-proofs {
@@ -262,6 +271,18 @@
   font-size: clamp(28px, 3vw, 40px);
   letter-spacing: -0.028em; line-height: 1;
   color: var(--ink);
+}
+/* Logo variant of a proof cell (Circle Alliance, CBK). Sits at the
+   same vertical position as the .i-proof-v stat text so cells align
+   visually across the row regardless of shape. */
+.i-proof-logo {
+  display: inline-flex; align-items: center;
+  min-height: 40px;
+}
+.i-proof-logo img { height: 34px; width: auto; display: block; }
+@media (max-width: 640px) { .i-proof-logo img { height: 30px; } }
+.theme-dark .i-proof-logo img {
+  filter: brightness(0) invert(1) opacity(.92);
 }
 .i-proof-label {
   font-family: "Inter", sans-serif; font-size: 13.5px; line-height: 1.5;

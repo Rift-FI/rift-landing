@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 48" fill="none" aria-hidden="true">
+  <!--
+    Circle partner mark. Recreation of Circle's C-mark + wordmark
+    in their brand navy. Swap for the licensed Circle brand SVG
+    (Circle Alliance partner asset pack) when it arrives — keep
+    this file path so the component reference doesn't change.
+  -->
+  <!-- C mark: circle with a gap on the right, thick round stroke -->
+  <path d="M27,7 A17,17 0 1 0 27,41 L36,41" stroke="#12315C" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <!-- wordmark -->
+  <text x="52" y="32" font-family="Archivo, Inter, sans-serif" font-size="24" font-weight="700" letter-spacing="-0.025em" fill="#12315C">Circle</text>
+</svg>

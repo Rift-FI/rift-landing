@@ -176,10 +176,15 @@ export const Deployment = () => (
 // ── Partners ────────────────────────────────────────────────────────────
 
 /**
- * Partners strip. Real logos, restrained. Circle (SDN / USDC alliance)
- * and Blockfinax (integrator). Logos are inline SVG so they resolve in
- * both light and dark theme via currentColor. When we add more partners,
- * keep the strip to at most six, sorted by recency of announcement.
+ * Partners strip. Brand logos served as static SVG assets from
+ * /public/partners so we can drop in the licensed brand-team files
+ * without touching this component. Current assets are in-house
+ * approximations sized to the strip and coloured in each brand's own
+ * navy — they read on the light section background, and the CSS class
+ * .i-partner-img boosts them in dark theme via a filter (see .scss).
+ *
+ * When we add more partners, keep the strip to at most six, sorted by
+ * recency of announcement.
  */
 export const InstitutionalPartners = () => (
   <section className="i-section i-section--tight" id="partners" aria-labelledby="partners-h">
@@ -196,16 +201,28 @@ export const InstitutionalPartners = () => (
           rel="noopener noreferrer"
           aria-label="Circle Alliance Program"
         >
-          <CircleLogo />
+          <img
+            className="i-partner-img"
+            src="/partners/circle.svg"
+            alt="Circle"
+            width="112"
+            height="34"
+          />
         </a>
         <a
           className="i-partner"
           href="https://www.blockfinax.com"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Blockfinax"
+          aria-label="BlockFinaX"
         >
-          <BlockfinaxLogo />
+          <img
+            className="i-partner-img"
+            src="/partners/blockfinax.svg"
+            alt="BlockFinaX"
+            width="160"
+            height="38"
+          />
         </a>
       </div>
     </div>
@@ -214,17 +231,30 @@ export const InstitutionalPartners = () => (
 
 // ── Proof strip ─────────────────────────────────────────────────────────
 
-const PROOFS = [
-  { v: "4", label: "Live markets. Kenya, Tanzania, Ghana, Nigeria." },
-  { v: "$10M+", label: "Processed to date across corridors." },
+type ProofItem =
+  | { kind: "stat"; v: string; label: string }
+  | { kind: "logo"; src: string; alt: string; label: string };
+
+/**
+ * Two proof-cell shapes: bare stats (a number + descriptor) and logo
+ * cells (a partner or regulator mark + descriptor). Using logos where
+ * the entity has one carries more weight than the entity's name in
+ * bold typography.
+ */
+const PROOFS: ProofItem[] = [
+  { kind: "stat", v: "4", label: "Live markets. Kenya, Tanzania, Ghana, Nigeria." },
+  { kind: "stat", v: "$10M+", label: "Processed to date across corridors." },
   {
-    v: "Circle Alliance",
+    kind: "logo",
+    src: "/partners/circle.svg",
+    alt: "Circle Alliance",
     label: "Member. Stablecoin settlement rails integrated at the source.",
   },
   {
-    v: "CBK · VASP",
-    label:
-      "Engaging with the Central Bank of Kenya under the Virtual Asset Service Providers Regulations 2026.",
+    kind: "logo",
+    src: "/partners/cbk.svg",
+    alt: "Central Bank of Kenya",
+    label: "Engaging under the Virtual Asset Service Providers Regulations 2026.",
   },
 ];
 
@@ -236,9 +266,15 @@ export const InstitutionalProof = () => (
       </h2>
 
       <ul className="i-proofs">
-        {PROOFS.map((p) => (
-          <li key={p.v} className="i-proof">
-            <span className="i-proof-v">{p.v}</span>
+        {PROOFS.map((p, i) => (
+          <li key={i} className="i-proof">
+            {p.kind === "stat" ? (
+              <span className="i-proof-v">{p.v}</span>
+            ) : (
+              <span className="i-proof-logo">
+                <img src={p.src} alt={p.alt} height="34" />
+              </span>
+            )}
             <span className="i-proof-label">{p.label}</span>
           </li>
         ))}
@@ -354,30 +390,5 @@ function SettlementIcon() {
   );
 }
 
-// Circle logomark, approximated inline so no external image request.
-// Uses currentColor so it inherits the strip's theme colour. Swap to
-// the official SVG when we get a licensed asset from Circle.
-function CircleLogo() {
-  return (
-    <span className="i-partner-mark">
-      <svg viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="16" cy="16" r="12" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M22 16a6 6 0 1 1 -6 -6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-        <text x="38" y="21" fontFamily="Archivo, Inter, sans-serif" fontSize="18" fontWeight="700" letterSpacing="-0.02em" fill="currentColor">Circle</text>
-      </svg>
-    </span>
-  );
-}
-
-// Blockfinax wordmark. Swap for a licensed SVG if/when one arrives.
-function BlockfinaxLogo() {
-  return (
-    <span className="i-partner-mark">
-      <svg viewBox="0 0 180 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect x="1" y="6" width="20" height="20" rx="4" stroke="currentColor" strokeWidth="2" />
-        <path d="M6 12h10M6 16h10M6 20h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <text x="28" y="22" fontFamily="Archivo, Inter, sans-serif" fontSize="20" fontWeight="700" letterSpacing="-0.02em" fill="currentColor">BlockFinaX</text>
-      </svg>
-    </span>
-  );
-}
+// Partner logos live at /public/partners/{circle,blockfinax}.svg so they
+// can be swapped for licensed brand assets without touching this file.
