@@ -223,25 +223,26 @@
   gap: clamp(28px, 5vw, 64px);
   padding: 24px 0 4px 0;
 }
+/* Each partner sits on a white "chip" so the logo always has its
+   original brand contrast, regardless of the surrounding theme. This
+   is the pattern Stripe / Modern Treasury use for their partner rows —
+   brand logos read correctly, no per-theme SVG variants needed, no
+   invert filter that turns wordmarks into silhouettes. */
 .i-partner {
-  opacity: .88;
-  transition: opacity .18s var(--ease);
-  display: inline-flex; align-items: center;
+  transition: opacity .18s var(--ease), transform .18s var(--ease);
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #ffffff;
+  padding: 14px 22px;
+  border-radius: 14px;
+  min-height: 62px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
 }
-.i-partner:hover { opacity: 1; }
+.i-partner:hover { transform: translateY(-1px); }
 .i-partner-img {
-  height: 34px; width: auto;
+  height: 30px; width: auto;
   display: block;
 }
-@media (max-width: 640px) { .i-partner-img { height: 28px; } }
-/* Dark-theme adjustment. Both partner SVGs use their brand navy fill,
-   which loses contrast on the near-black section background. Invert +
-   hue-rotate lifts the navy to a near-white while preserving the shape
-   fidelity. When we swap in the official brand SVGs (light + dark
-   variants), remove this filter and provide the two variants instead. */
-.theme-dark .i-partner-img {
-  filter: brightness(0) invert(1) opacity(.92);
-}
+@media (max-width: 640px) { .i-partner-img { height: 26px; } }
 
 /* ── PROOF STRIP ─────────────────────────────────────────────────── */
 .i-proofs {
@@ -272,18 +273,19 @@
   letter-spacing: -0.028em; line-height: 1;
   color: var(--ink);
 }
-/* Logo variant of a proof cell (Circle Alliance, CBK). Sits at the
-   same vertical position as the .i-proof-v stat text so cells align
-   visually across the row regardless of shape. */
+/* Logo variant of a proof cell — same white-chip pattern as .i-partner
+   so brand logos read correctly on any theme. Same vertical position
+   as .i-proof-v so cells align across the row regardless of shape. */
 .i-proof-logo {
-  display: inline-flex; align-items: center;
-  min-height: 40px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #ffffff;
+  padding: 12px 18px;
+  border-radius: 12px;
+  min-height: 56px;
+  align-self: flex-start;
 }
-.i-proof-logo img { height: 34px; width: auto; display: block; }
-@media (max-width: 640px) { .i-proof-logo img { height: 30px; } }
-.theme-dark .i-proof-logo img {
-  filter: brightness(0) invert(1) opacity(.92);
-}
+.i-proof-logo img { height: 26px; width: auto; display: block; }
+@media (max-width: 640px) { .i-proof-logo img { height: 22px; } }
 .i-proof-label {
   font-family: "Inter", sans-serif; font-size: 13.5px; line-height: 1.5;
   color: var(--i-ink-muted);
