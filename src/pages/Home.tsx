@@ -37,11 +37,11 @@ export const Home = () => (
  <Helmet>
  <html lang="en" />
  <title>
- Rift, wallet and liquidity infrastructure for African financial services
+ Rift, settlement infrastructure for African financial institutions
  </title>
  <meta
  name="description"
- content="Rift is the wallet and liquidity infrastructure for African financial services. One stack, wallets, ramps, settlement, for banks, PSPs, fintechs, stablecoin issuers and neobanks. Use our hosted API, or deploy on your own infrastructure."
+ content="Rift is settlement infrastructure for African financial institutions. Wallets, ramps and netting on stablecoin rails. Deployable inside your own infrastructure. Built for banks, PSPs, fintechs, stablecoin issuers and neobanks."
  />
  <meta
  name="keywords"
@@ -61,11 +61,11 @@ export const Home = () => (
  <meta property="og:site_name" content="Rift Finance" />
  <meta
  property="og:title"
- content="Rift, wallet and liquidity infrastructure for African financial services"
+ content="Rift, settlement infrastructure for African financial institutions"
  />
  <meta
  property="og:description"
- content="One stack for banks, PSPs, fintechs, stablecoin issuers and neobanks. Use our hosted API, or deploy on your own infrastructure."
+ content="Wallets, ramps and netting on stablecoin rails. Deployable inside your own infrastructure. For banks, PSPs, fintechs, stablecoin issuers and neobanks."
  />
  <meta property="og:url" content="https://riftfi.xyz/" />
  <meta property="og:image" content="https://riftfi.xyz/og-image.png" />
@@ -77,11 +77,11 @@ export const Home = () => (
  <meta name="twitter:site" content="@tryrift" />
  <meta
  name="twitter:title"
- content="Rift, wallet and liquidity infrastructure for African financial services"
+ content="Rift, settlement infrastructure for African financial institutions"
  />
  <meta
  name="twitter:description"
- content="One stack for banks, PSPs, fintechs, stablecoin issuers and neobanks. Use our hosted API, or self-host."
+ content="Wallets, ramps and netting on stablecoin rails. Deployable inside your own infrastructure."
  />
  <meta name="twitter:image" content="https://riftfi.xyz/og-image.png" />
 
@@ -97,7 +97,7 @@ export const Home = () => (
  url: "https://riftfi.xyz/",
  logo: "https://riftfi.xyz/assets/rift-logo.png",
  description:
- "Wallet and liquidity infrastructure for African financial services. One stack, wallets, ramps, settlement, for banks, PSPs, fintechs, stablecoin issuers and neobanks. Available as a hosted API or self-hosted deployment.",
+ "Settlement infrastructure for African financial institutions. Wallets, ramps and netting on stablecoin rails. Deployable inside your own infrastructure. Serves banks, PSPs, fintechs, stablecoin issuers and neobanks.",
  foundingLocation: {
  "@type": "Place",
  name: "Nairobi, Kenya",
@@ -139,9 +139,9 @@ export const Home = () => (
  "@type": "WebPage",
  "@id": "https://riftfi.xyz/#home",
  url: "https://riftfi.xyz/",
- name: "Rift, wallet and liquidity infrastructure for African financial services",
+ name: "Rift, settlement infrastructure for African financial institutions",
  description:
- "One stack, wallets, ramps, settlement, for banks, PSPs, fintechs, stablecoin issuers and neobanks moving money across African markets. Available as a hosted API or self-hosted deployment.",
+ "Settlement infrastructure for African financial institutions. Wallets, ramps and netting on stablecoin rails. Deployable inside your own infrastructure.",
  primaryImageOfPage: {
  "@type": "ImageObject",
  url: "https://riftfi.xyz/og-image.png",

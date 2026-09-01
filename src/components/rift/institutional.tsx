@@ -26,12 +26,11 @@ export const InstitutionalHero = () => (
   <header className="hero-i" id="top">
     <div className="wrap hero-i-in">
       <h1 className="hero-i-h1">
-        Stablecoin wallet and liquidity infrastructure for African financial services.
+        Settlement infrastructure for African financial institutions.
       </h1>
       <p className="hero-i-sub">
-        One stack for banks, PSPs, fintechs, stablecoin issuers, and
-        neobanks moving money across African markets. Use our hosted API
-        to get started, or deploy the same stack on your own infrastructure.
+        Wallets, ramps and netting on stablecoin rails. Deployable inside
+        your own infrastructure.
       </p>
       <div className="hero-i-cta">
         <a className="btn-i btn-i-primary" href="mailto:sales@riftfi.com">
