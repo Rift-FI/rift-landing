@@ -1,18 +1,18 @@
 /**
  * Institutional home surfaces — the sections that compose the Home page
  * post-2026-08 pivot from business-first ("pay across African borders in
- * minutes") to institution-first ("settlement infrastructure for banks").
+ * minutes") to institution-first ("infrastructure for banks and PSPs").
  *
- * Design rules (from the brief):
- *   - Ink on paper. No accent colour. No gradients. No videos.
- *   - Editorial. Generous whitespace. Anchor nav.
- *   - Every section scannable in ten seconds.
- *   - Six sections max on the page.
- *
- * Copy is the brief verbatim — do not paraphrase. It has been reviewed
- * for regulatory tone (avoids marketing claims about "crypto", never
- * says "web3", never uses "revolutionary", etc). Any wording change
- * needs sign-off.
+ * Design rules:
+ *   - Ink on paper. Restrained. No decorative gradients or floating
+ *     imagery.
+ *   - Product copy is plain-language, not technical spec. A CTO, head of
+ *     digital or compliance officer will read this — they know what
+ *     "smart account" or "KMS" means, but leading with jargon puts them
+ *     on the wrong footing about what this company is.
+ *   - Positioning covers BOTH hosted API and self-host. Do not lean on
+ *     "self-hosted" as the only story — many partners will pick hosted.
+ *   - Six sections max on the page (per brief).
  *
  * The current /businesses page keeps the older business-facing copy
  * unchanged; the two pages address separate audiences deliberately.
@@ -23,21 +23,21 @@ import { Reveal } from "./Reveal";
 // ── Hero ────────────────────────────────────────────────────────────────
 
 /**
- * Institutional hero. Left-anchored H1, ink on paper, single kicker
- * word above, two CTAs stacked-then-inline on desktop. No product
- * screenshot — the visual weight comes from typography and whitespace,
- * exactly the "Modern Treasury / Mercury" reference the brief calls out.
+ * Institutional hero. Left-anchored H1, ink on paper, two CTAs. No
+ * kicker line — earlier version had "Rift · settlement infrastructure"
+ * above the H1 which read as a duplicate of the H1 itself. The nav
+ * already carries the brand.
  */
 export const InstitutionalHero = () => (
   <header className="hero-i" id="top">
     <div className="wrap hero-i-in">
-      <span className="hero-i-kicker">Rift · settlement infrastructure</span>
       <h1 className="hero-i-h1">
-        Settlement infrastructure for African cross-border payments.
+        Wallet and liquidity infrastructure for African financial services.
       </h1>
       <p className="hero-i-sub">
-        Three products. Deployable on your own infrastructure. Built for
-        institutions that cannot use foreign SaaS.
+        One stack for banks, PSPs, fintechs, stablecoin issuers, and
+        neobanks moving money across African markets. Use our hosted API to
+        get started, or deploy the same stack on your own infrastructure.
       </p>
       <div className="hero-i-cta">
         <a className="btn-i btn-i-primary" href="mailto:amschel@riftfi.com">
@@ -62,52 +62,51 @@ interface Product {
   key: string;
   name: string;
   tag: string;
-  lede: string;
-  proof: string;
+  body: string;
 }
 
+/**
+ * Product cards. Plain-language description in one flow. Earlier version
+ * split each card into "lede" + "Technical" heading + tech proof, which
+ * read as a spec sheet. Merged into a single paragraph — same substance,
+ * softer edges.
+ */
 const PRODUCTS: Product[] = [
   {
     key: "wallet",
     name: "Rift Wallet",
-    tag: "Non-custodial wallet infrastructure",
-    lede: "White-label widget. Your users get ERC-4337 smart accounts.",
-    proof:
-      "Keys are generated inside AWS Nitro Enclaves and encrypted under a KMS key policy pinned to the enclave build measurement, so neither Rift nor AWS can extract them. Deployable on your own servers, in your own jurisdiction.",
+    tag: "White-label wallet infrastructure",
+    body:
+      "A wallet you drop into your app. Users hold their own funds and sign their own payments — your treasury never custodies. Ships as a widget you brand, backed by hardware-isolated key storage so nobody at Rift and nobody at your cloud provider can move a user's money.",
   },
   {
     key: "ramps",
     name: "Rift Ramps",
-    tag: "On- and off-ramp infrastructure",
-    lede: "Connecting local currency to stablecoins.",
-    proof:
-      "Bank transfer, mobile money and card rails across Kenya, Tanzania, Ghana and Nigeria. One API, licensed partners on both ends.",
+    tag: "Local currency in, local currency out",
+    body:
+      "Turn shillings, cedis, naira into dollars — and back — through licensed partners on both ends. Bank transfer, mobile money, card. One API for four markets: Kenya, Tanzania, Ghana, Nigeria. New corridors add without an API change.",
   },
   {
     key: "settlement",
     name: "Rift Settlement",
     tag: "Netting engine for cross-border corridors",
-    lede: "Only the residual settles.",
-    proof:
-      "Instead of settling every payment individually through the dollar, offsetting obligations are matched on a shared ledger and only the residual settles. Compresses the dollar liquidity a corridor requires by 40 to 60 percent.",
+    body:
+      "Most cross-border flow between African markets cancels out. Rift matches offsetting payments on a shared ledger before they touch the dollar — only the residual settles. Corridors that use it move the same volume with 40 to 60 percent less dollar float.",
   },
 ];
 
-/**
- * Products. Three cards, equal weight. Each card is ruled — kicker on
- * top, name, lede, and then a "Technical" small-caps heading over the
- * multi-line proof paragraph. The card is not a shadowed panel; it's a
- * column of type separated from siblings by a single hairline rule.
- * That's what makes it read as a document, not a marketing tile.
- */
 export const InstitutionalProducts = () => (
-  <section className="i-section" id="products" aria-labelledby="products-h">
+  <section className="i-section i-section--soft" id="products" aria-labelledby="products-h">
     <div className="wrap">
       <div className="i-section-head">
         <span className="i-kicker">Products</span>
         <h2 id="products-h" className="i-h2">
-          Three products, deployed independently or as a stack.
+          Three products. Take one, take all three.
         </h2>
+        <p className="i-section-sub">
+          Wallets, ramps, and settlement — each one useful on its own,
+          each one better with the others.
+        </p>
       </div>
 
       <div className="i-products">
@@ -116,10 +115,13 @@ export const InstitutionalProducts = () => (
             <div className="i-product-num">{`0${i + 1}`}</div>
             <h3 className="i-product-name">{p.name}</h3>
             <p className="i-product-tag">{p.tag}</p>
-            <p className="i-product-lede">{p.lede}</p>
-            <div className="i-product-rule" aria-hidden="true" />
-            <span className="i-product-tech-label">Technical</span>
-            <p className="i-product-proof">{p.proof}</p>
+            <p className="i-product-body">{p.body}</p>
+            <a
+              className="i-product-link"
+              href="mailto:amschel@riftfi.com?subject=Rift%20-%20{p.name}"
+            >
+              Talk to us →
+            </a>
           </Reveal>
         ))}
       </div>
@@ -127,58 +129,72 @@ export const InstitutionalProducts = () => (
   </section>
 );
 
-// ── Why self-hosted ─────────────────────────────────────────────────────
+// ── Deployment ──────────────────────────────────────────────────────────
 
-const SELF_HOSTED_POINTS = [
+interface DeployMode {
+  n: string;
+  title: string;
+  label: string;
+  body: string;
+  fit: string;
+}
+
+const DEPLOY_MODES: DeployMode[] = [
   {
     n: "01",
-    title: "Data residency and operational sovereignty.",
-    body: "Regulators increasingly require both. Payment data, key material, and audit logs stay inside your jurisdiction because they stay on your infrastructure.",
+    title: "Hosted API",
+    label: "Fastest to start",
+    body:
+      "Rift runs the stack, you make API calls. Test keys the same day, production keys once your compliance review is done. We handle uptime, upgrades, and security patches.",
+    fit: "Best for fintechs, PSPs, and partners already comfortable with third-party rails.",
   },
   {
     n: "02",
-    title: "Third-party risk that vendor committees will not approve.",
-    body: "Foreign SaaS creates a dependency your bank's vendor risk committee will not sign off on. Rift is not a foreign SaaS; it's a deployment inside your perimeter.",
-  },
-  {
-    n: "03",
-    title: "Under your control.",
-    body: "Rift deploys inside your VPC, on your KMS, behind your firewall. You own the keys, the logs, and the upgrade cadence. We ship the code.",
+    title: "Self-hosted",
+    label: "Deployed inside your perimeter",
+    body:
+      "The same stack, running on your infrastructure. Your VPC, your KMS keys, your audit logs. Rift ships the binary and supports it — you own the deployment. For institutions where data residency, sovereignty, or vendor-committee sign-off make foreign SaaS a non-starter.",
+    fit: "Best for banks and licensed VASPs subject to central-bank oversight.",
   },
 ];
 
 /**
- * Why self-hosted. Numbered editorial points, two-column layout on
- * desktop (kicker + hed on the left, body on the right). Reads as a
- * memorandum, not a feature list.
+ * Deployment section. Two modes side by side. Previously this was
+ * titled "Why self-hosted" with three points explaining why SaaS
+ * doesn't work — that framing missed the (larger) set of partners
+ * who will happily use the hosted API. Two lanes, equal weight, pick
+ * one; the copy on each lane names its ideal buyer.
  */
-export const WhySelfHosted = () => (
+export const Deployment = () => (
   <section
-    className="i-section i-section--tight"
-    id="self-hosted"
-    aria-labelledby="self-hosted-h"
+    className="i-section"
+    id="deployment"
+    aria-labelledby="deployment-h"
   >
     <div className="wrap">
       <div className="i-section-head">
-        <span className="i-kicker">Why self-hosted</span>
-        <h2 id="self-hosted-h" className="i-h2">
-          Foreign SaaS is not an option. That's the whole point.
+        <span className="i-kicker">Deployment</span>
+        <h2 id="deployment-h" className="i-h2">
+          Two ways to run it. Same product either way.
         </h2>
+        <p className="i-section-sub">
+          Move from one to the other later — the API surface is identical.
+        </p>
       </div>
 
-      <ol className="i-points">
-        {SELF_HOSTED_POINTS.map((p) => (
-          <li key={p.n} className="i-point">
-            <span className="i-point-n" aria-hidden="true">
-              {p.n}
-            </span>
-            <div className="i-point-body">
-              <h3 className="i-point-t">{p.title}</h3>
-              <p className="i-point-p">{p.body}</p>
+      <div className="i-deploy">
+        {DEPLOY_MODES.map((m) => (
+          <div key={m.n} className="i-deploy-mode">
+            <div className="i-deploy-head">
+              <span className="i-deploy-n">{m.n}</span>
+              <span className="i-deploy-label">{m.label}</span>
             </div>
-          </li>
+            <h3 className="i-deploy-title">{m.title}</h3>
+            <p className="i-deploy-body">{m.body}</p>
+            <p className="i-deploy-fit">{m.fit}</p>
+          </div>
         ))}
-      </ol>
+      </div>
     </div>
   </section>
 );
@@ -199,19 +215,17 @@ const PROOFS = [
   },
 ];
 
-/**
- * Proof strip. Four items in one row on desktop, two-by-two on tablet,
- * stacked on mobile. Each is a large stat/label pair with a hairline
- * top rule. Restrained; no logos, no country flags — the copy carries
- * the credibility.
- */
 export const InstitutionalProof = () => (
-  <section className="i-section" id="proof" aria-labelledby="proof-h">
+  <section
+    className="i-section i-section--soft"
+    id="proof"
+    aria-labelledby="proof-h"
+  >
     <div className="wrap">
       <div className="i-section-head">
         <span className="i-kicker">Proof</span>
         <h2 id="proof-h" className="i-h2">
-          Live infrastructure, licensed rails, regulator engagement.
+          Live rails, licensed partners, regulator engagement.
         </h2>
       </div>
 
@@ -230,24 +244,25 @@ export const InstitutionalProof = () => (
 // ── Contact ─────────────────────────────────────────────────────────────
 
 /**
- * Contact. Inverted panel (paper on ink) — the one place the layout
- * flips its palette, so the eye lands here at the end of the page.
- * Email + a plain mailto that pre-fills the subject. No form; forms
- * cost trust from a compliance officer's perspective (they wonder
- * where the data goes). A direct address is more legible.
+ * Contact. Always-dark panel — colours hardcoded (not theme-linked)
+ * because the earlier variable-based inversion broke in dark mode:
+ * with --ink flipped to light gray, the panel background became light
+ * and the "always white" text turned invisible. This section is the
+ * one deliberate always-inverted block on the page, so it doesn't need
+ * the theme flip.
  */
 export const InstitutionalContact = () => (
   <section className="i-contact" id="contact" aria-labelledby="contact-h">
     <div className="wrap i-contact-in">
       <div className="i-contact-l">
-        <span className="i-kicker i-kicker--inv">Contact</span>
-        <h2 id="contact-h" className="i-h2 i-h2--inv">
+        <span className="i-contact-kicker">Contact</span>
+        <h2 id="contact-h" className="i-contact-h2">
           Talk to a founder.
         </h2>
         <p className="i-contact-lead">
-          For architecture, procurement, or regulatory questions. We reply
-          from the same day and can share deployment references from
-          existing bank and PSP integrations.
+          For architecture, procurement or regulatory questions. We reply
+          the same day and can share references from banks and PSPs we
+          already work with.
         </p>
       </div>
       <div className="i-contact-r">
@@ -278,12 +293,6 @@ export const InstitutionalContact = () => (
 
 // ── Footer strip ───────────────────────────────────────────────────────
 
-/**
- * A single-line footer that carries jurisdiction + entity, so a
- * compliance reviewer sees what they need without scrolling into a
- * link farm. The Nav handles navigation; this only handles legal
- * facts. Links go to the existing legal pages.
- */
 export const InstitutionalFooter = () => (
   <footer className="i-footer">
     <div className="wrap i-footer-in">

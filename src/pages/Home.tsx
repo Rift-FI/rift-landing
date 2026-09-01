@@ -36,15 +36,15 @@ export const Home = () => (
     <Helmet>
       <html lang="en" />
       <title>
-        Rift — settlement infrastructure for African cross-border payments
+        Rift — wallet and liquidity infrastructure for African financial services
       </title>
       <meta
         name="description"
-        content="Rift is settlement infrastructure for African cross-border payments. Three products — Wallet, Ramps, Settlement — deployable on your own infrastructure. Built for banks, licensed VASPs and PSP fintechs that cannot use foreign SaaS."
+        content="Rift is the wallet and liquidity infrastructure for African financial services. One stack — wallets, ramps, settlement — for banks, PSPs, fintechs, stablecoin issuers and neobanks. Use our hosted API, or deploy on your own infrastructure."
       />
       <meta
         name="keywords"
-        content="African settlement infrastructure, cross-border payments Africa, non-custodial wallet infrastructure, ERC-4337 smart accounts, AWS Nitro Enclave, KMS attestation, stablecoin on-ramp Africa, off-ramp Kenya Tanzania Ghana Nigeria, netting engine, dollar liquidity compression, VASP regulations Kenya, Circle Alliance member, self-hosted payments infrastructure, bank vendor-approved crypto infrastructure"
+        content="African financial infrastructure, wallet infrastructure Africa, liquidity infrastructure Africa, cross-border payments Africa, embedded wallets for banks, stablecoin infrastructure for PSPs, on-ramp off-ramp Kenya Tanzania Ghana Nigeria, netting engine, self-hosted payments infrastructure, hosted payments API Africa, Circle Alliance member, VASP regulations Kenya"
       />
       <meta name="author" content="Rift Finance" />
       <meta
@@ -60,11 +60,11 @@ export const Home = () => (
       <meta property="og:site_name" content="Rift Finance" />
       <meta
         property="og:title"
-        content="Rift — settlement infrastructure for African cross-border payments"
+        content="Rift — wallet and liquidity infrastructure for African financial services"
       />
       <meta
         property="og:description"
-        content="Three products — Wallet, Ramps, Settlement — deployable on your own infrastructure. For institutions that cannot use foreign SaaS."
+        content="One stack for banks, PSPs, fintechs, stablecoin issuers and neobanks. Use our hosted API, or deploy on your own infrastructure."
       />
       <meta property="og:url" content="https://riftfi.xyz/" />
       <meta property="og:image" content="https://riftfi.xyz/og-image.png" />
@@ -76,11 +76,11 @@ export const Home = () => (
       <meta name="twitter:site" content="@tryrift" />
       <meta
         name="twitter:title"
-        content="Rift — settlement infrastructure for African cross-border payments"
+        content="Rift — wallet and liquidity infrastructure for African financial services"
       />
       <meta
         name="twitter:description"
-        content="Three products, deployable on your own infrastructure. Built for institutions that cannot use foreign SaaS."
+        content="One stack for banks, PSPs, fintechs, stablecoin issuers and neobanks. Use our hosted API, or self-host."
       />
       <meta name="twitter:image" content="https://riftfi.xyz/og-image.png" />
 
@@ -96,7 +96,7 @@ export const Home = () => (
         url: "https://riftfi.xyz/",
         logo: "https://riftfi.xyz/assets/rift-logo.png",
         description:
-          "Settlement infrastructure for African cross-border payments. Non-custodial wallets, licensed on/off ramps, and a netting engine — deployable on-premises for banks and licensed VASPs.",
+          "Wallet and liquidity infrastructure for African financial services. One stack — wallets, ramps, settlement — for banks, PSPs, fintechs, stablecoin issuers and neobanks. Available as a hosted API or self-hosted deployment.",
         foundingLocation: {
           "@type": "Place",
           name: "Nairobi, Kenya",
@@ -138,9 +138,9 @@ export const Home = () => (
         "@type": "WebPage",
         "@id": "https://riftfi.xyz/#home",
         url: "https://riftfi.xyz/",
-        name: "Rift — settlement infrastructure for African cross-border payments",
+        name: "Rift — wallet and liquidity infrastructure for African financial services",
         description:
-          "Three products — Wallet, Ramps, Settlement — deployable on your own infrastructure. Built for banks, licensed VASPs and PSP fintechs that cannot use foreign SaaS.",
+          "One stack — wallets, ramps, settlement — for banks, PSPs, fintechs, stablecoin issuers and neobanks moving money across African markets. Available as a hosted API or self-hosted deployment.",
         primaryImageOfPage: {
           "@type": "ImageObject",
           url: "https://riftfi.xyz/og-image.png",
@@ -205,10 +205,18 @@ export const Home = () => (
         mainEntity: [
           {
             "@type": "Question",
-            name: "Why is Rift self-hosted and not SaaS?",
+            name: "Can I use Rift as a hosted API, or do I have to self-host?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "African regulators increasingly require data residency and operational sovereignty. Foreign SaaS creates third-party risk that most bank vendor committees will not approve. Rift deploys inside your perimeter, under your control.",
+              text: "Both. Use the hosted API to get to production fastest — Rift runs the stack, you make API calls. Or run the same stack on your own infrastructure (your VPC, your KMS) when data residency, sovereignty or vendor-committee sign-off make foreign SaaS a non-starter. The API surface is identical, so you can move from one to the other later.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Who does Rift serve?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Banks, licensed payment service providers, fintechs, stablecoin issuers and neobanks moving money across African markets. The stack is the same regardless — wallets, ramps and settlement — deployed hosted or self-hosted.",
             },
           },
           {

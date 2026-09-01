@@ -37,7 +37,7 @@ export const Nav = () => {
         </Link>
         <div className="nav-links">
           <a href={anchor("products")}>Products</a>
-          <a href={anchor("self-hosted")}>Why self-hosted</a>
+          <a href={anchor("deployment")}>Deployment</a>
           <a href={anchor("proof")}>Proof</a>
           <Link to="/businesses">For businesses</Link>
           <Link to="/blog">Blog</Link>
@@ -72,7 +72,7 @@ export const Nav = () => {
         <div className="nav-mobile-backdrop" onClick={closeMenu} />
         <div className="nav-mobile-panel">
           <a href={anchor("products")} onClick={closeMenu}>Products</a>
-          <a href={anchor("self-hosted")} onClick={closeMenu}>Why self-hosted</a>
+          <a href={anchor("deployment")} onClick={closeMenu}>Deployment</a>
           <a href={anchor("proof")} onClick={closeMenu}>Proof</a>
           <Link to="/businesses" onClick={closeMenu}>For businesses</Link>
           <Link to="/blog" onClick={closeMenu}>Blog</Link>
