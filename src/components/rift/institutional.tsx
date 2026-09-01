@@ -203,7 +203,7 @@ export const InstitutionalPartners = () => (
         >
           <img
             className="i-partner-img"
-            src="/partners/circle.avif"
+            src="/partners/circle.png"
             alt="Circle"
             width="112"
             height="34"
