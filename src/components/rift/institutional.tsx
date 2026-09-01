@@ -203,7 +203,7 @@ export const InstitutionalPartners = () => (
         >
           <img
             className="i-partner-img"
-            src="/partners/circle.svg"
+            src="/partners/circle.avif"
             alt="Circle"
             width="112"
             height="34"
@@ -218,7 +218,7 @@ export const InstitutionalPartners = () => (
         >
           <img
             className="i-partner-img"
-            src="/partners/blockfinax.svg"
+            src="/partners/blockfinax.png"
             alt="BlockFinaX"
             width="160"
             height="38"
