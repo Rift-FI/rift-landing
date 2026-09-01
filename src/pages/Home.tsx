@@ -5,7 +5,6 @@ import {
  InstitutionalProducts,
  Deployment,
  InstitutionalPartners,
- InstitutionalProof,
  InstitutionalContact,
  InstitutionalFooter,
 } from "../components/rift/institutional";
@@ -251,7 +250,6 @@ export const Home = () => (
  <InstitutionalHero />
  <InstitutionalProducts />
  <Deployment />
- <InstitutionalProof />
  <InstitutionalPartners />
  <InstitutionalContact />
  <InstitutionalFooter />
