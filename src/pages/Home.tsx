@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import {
   InstitutionalHero,
   InstitutionalProducts,
-  WhySelfHosted,
+  Deployment,
   InstitutionalProof,
   InstitutionalContact,
   InstitutionalFooter,
@@ -249,7 +249,7 @@ export const Home = () => (
 
     <InstitutionalHero />
     <InstitutionalProducts />
-    <WhySelfHosted />
+    <Deployment />
     <InstitutionalProof />
     <InstitutionalContact />
     <InstitutionalFooter />
