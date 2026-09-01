@@ -1,47 +1,41 @@
 /**
- * Institutional home surfaces — the sections that compose the Home page
- * post-2026-08 pivot from business-first ("pay across African borders in
- * minutes") to institution-first ("infrastructure for banks and PSPs").
+ * Institutional home surfaces. Post-2026-08 pivot: from business-first
+ * ("pay across African borders in minutes") to institution-first
+ * ("stablecoin wallet and liquidity infrastructure").
+ *
+ * Copy rules:
+ *   - Plain language. No jargon in the first line of any card.
+ *   - No em dashes anywhere. Use commas or full stops.
+ *   - Stablecoin infrastructure is the category. Say it out loud.
+ *   - Cover both hosted API and self-host, equal weight.
  *
  * Design rules:
- *   - Ink on paper. Restrained. No decorative gradients or floating
- *     imagery.
- *   - Product copy is plain-language, not technical spec. A CTO, head of
- *     digital or compliance officer will read this — they know what
- *     "smart account" or "KMS" means, but leading with jargon puts them
- *     on the wrong footing about what this company is.
- *   - Positioning covers BOTH hosted API and self-host. Do not lean on
- *     "self-hosted" as the only story — many partners will pick hosted.
- *   - Six sections max on the page (per brief).
+ *   - Restrained but with real surface polish (filled cards with icons,
+ *     hover states, section rhythm). Not a memo, not a pitch deck.
+ *   - No kicker labels above section H2s, no marketing sub-lines below
+ *     them. The section IS its heading; extra words are noise.
  *
- * The current /businesses page keeps the older business-facing copy
- * unchanged; the two pages address separate audiences deliberately.
+ * The /businesses page keeps the older business-facing copy unchanged.
  */
 
 import { Reveal } from "./Reveal";
 
 // ── Hero ────────────────────────────────────────────────────────────────
 
-/**
- * Institutional hero. Left-anchored H1, ink on paper, two CTAs. No
- * kicker line — earlier version had "Rift · settlement infrastructure"
- * above the H1 which read as a duplicate of the H1 itself. The nav
- * already carries the brand.
- */
 export const InstitutionalHero = () => (
   <header className="hero-i" id="top">
     <div className="wrap hero-i-in">
       <h1 className="hero-i-h1">
-        Wallet and liquidity infrastructure for African financial services.
+        Stablecoin wallet and liquidity infrastructure for African financial services.
       </h1>
       <p className="hero-i-sub">
         One stack for banks, PSPs, fintechs, stablecoin issuers, and
-        neobanks moving money across African markets. Use our hosted API to
-        get started, or deploy the same stack on your own infrastructure.
+        neobanks moving money across African markets. Use our hosted API
+        to get started, or deploy the same stack on your own infrastructure.
       </p>
       <div className="hero-i-cta">
-        <a className="btn-i btn-i-primary" href="mailto:amschel@riftfi.com">
-          Talk to us
+        <a className="btn-i btn-i-primary" href="mailto:sales@riftfi.com">
+          Talk to sales
         </a>
         <a
           className="btn-i btn-i-secondary"
@@ -61,66 +55,64 @@ export const InstitutionalHero = () => (
 interface Product {
   key: string;
   name: string;
-  tag: string;
+  category: string;
   body: string;
+  icon: React.ReactNode;
 }
 
 /**
- * Product cards. Plain-language description in one flow. Earlier version
- * split each card into "lede" + "Technical" heading + tech proof, which
- * read as a spec sheet. Merged into a single paragraph — same substance,
- * softer edges.
+ * Product cards. Circle-inspired layout: icon top-left, product name,
+ * small category label, body copy, "Learn more" link at bottom. Filled
+ * background so each card reads as an object, not a doc column.
  */
 const PRODUCTS: Product[] = [
   {
     key: "wallet",
     name: "Rift Wallet",
-    tag: "White-label wallet infrastructure",
+    category: "Wallet Infrastructure",
     body:
-      "A wallet you drop into your app. Users hold their own funds and sign their own payments — your treasury never custodies. Ships as a widget you brand, backed by hardware-isolated key storage so nobody at Rift and nobody at your cloud provider can move a user's money.",
+      "A wallet you drop into your app. Users hold their own USDC and sign their own payments, so your treasury never custodies. Ships as a white-label widget backed by hardware-isolated key storage, so nobody at Rift and nobody at your cloud provider can move a user's money.",
+    icon: <WalletIcon />,
   },
   {
     key: "ramps",
     name: "Rift Ramps",
-    tag: "Local currency in, local currency out",
+    category: "Liquidity Infrastructure",
     body:
-      "Turn shillings, cedis, naira into dollars — and back — through licensed partners on both ends. Bank transfer, mobile money, card. One API for four markets: Kenya, Tanzania, Ghana, Nigeria. New corridors add without an API change.",
+      "Turn shillings, cedis, and naira into USDC and back through licensed partners on both ends. Bank transfer, mobile money, and card, across Kenya, Tanzania, Ghana, and Nigeria. One API for all four markets. New corridors add without an API change.",
+    icon: <RampsIcon />,
   },
   {
     key: "settlement",
     name: "Rift Settlement",
-    tag: "Netting engine for cross-border corridors",
+    category: "Settlement Infrastructure",
     body:
-      "Most cross-border flow between African markets cancels out. Rift matches offsetting payments on a shared ledger before they touch the dollar — only the residual settles. Corridors that use it move the same volume with 40 to 60 percent less dollar float.",
+      "Most cross-border flow between African markets cancels out. Rift matches offsetting payments on a shared ledger before they touch the dollar, so only the residual settles on chain. Corridors that use it move the same volume with 40 to 60 percent less dollar float.",
+    icon: <SettlementIcon />,
   },
 ];
 
 export const InstitutionalProducts = () => (
   <section className="i-section i-section--soft" id="products" aria-labelledby="products-h">
     <div className="wrap">
-      <div className="i-section-head">
-        <span className="i-kicker">Products</span>
-        <h2 id="products-h" className="i-h2">
-          Three products. Take one, take all three.
-        </h2>
-        <p className="i-section-sub">
-          Wallets, ramps, and settlement — each one useful on its own,
-          each one better with the others.
-        </p>
-      </div>
+      <h2 id="products-h" className="i-h2 i-section-h2-only">
+        The stack.
+      </h2>
 
       <div className="i-products">
-        {PRODUCTS.map((p, i) => (
+        {PRODUCTS.map((p) => (
           <Reveal key={p.key} className="i-product">
-            <div className="i-product-num">{`0${i + 1}`}</div>
+            <div className="i-product-icon" aria-hidden="true">
+              {p.icon}
+            </div>
             <h3 className="i-product-name">{p.name}</h3>
-            <p className="i-product-tag">{p.tag}</p>
+            <span className="i-product-cat">{p.category}</span>
             <p className="i-product-body">{p.body}</p>
             <a
               className="i-product-link"
-              href="mailto:amschel@riftfi.com?subject=Rift%20-%20{p.name}"
+              href="mailto:sales@riftfi.com"
             >
-              Talk to us →
+              Talk to sales <span aria-hidden="true">→</span>
             </a>
           </Reveal>
         ))}
@@ -151,36 +143,19 @@ const DEPLOY_MODES: DeployMode[] = [
   {
     n: "02",
     title: "Self-hosted",
-    label: "Deployed inside your perimeter",
+    label: "Runs in your perimeter",
     body:
-      "The same stack, running on your infrastructure. Your VPC, your KMS keys, your audit logs. Rift ships the binary and supports it — you own the deployment. For institutions where data residency, sovereignty, or vendor-committee sign-off make foreign SaaS a non-starter.",
+      "The same stack, running on your infrastructure. Your VPC, your KMS keys, your audit logs. Rift ships the binary and supports it, you own the deployment. For institutions where data residency, sovereignty, or vendor-committee sign-off make foreign SaaS a non-starter.",
     fit: "Best for banks and licensed VASPs subject to central-bank oversight.",
   },
 ];
 
-/**
- * Deployment section. Two modes side by side. Previously this was
- * titled "Why self-hosted" with three points explaining why SaaS
- * doesn't work — that framing missed the (larger) set of partners
- * who will happily use the hosted API. Two lanes, equal weight, pick
- * one; the copy on each lane names its ideal buyer.
- */
 export const Deployment = () => (
-  <section
-    className="i-section"
-    id="deployment"
-    aria-labelledby="deployment-h"
-  >
+  <section className="i-section" id="deployment" aria-labelledby="deployment-h">
     <div className="wrap">
-      <div className="i-section-head">
-        <span className="i-kicker">Deployment</span>
-        <h2 id="deployment-h" className="i-h2">
-          Two ways to run it. Same product either way.
-        </h2>
-        <p className="i-section-sub">
-          Move from one to the other later — the API surface is identical.
-        </p>
-      </div>
+      <h2 id="deployment-h" className="i-h2 i-section-h2-only">
+        Deployment.
+      </h2>
 
       <div className="i-deploy">
         {DEPLOY_MODES.map((m) => (
@@ -199,10 +174,49 @@ export const Deployment = () => (
   </section>
 );
 
+// ── Partners ────────────────────────────────────────────────────────────
+
+/**
+ * Partners strip. Real logos, restrained. Circle (SDN / USDC alliance)
+ * and Blockfinax (integrator). Logos are inline SVG so they resolve in
+ * both light and dark theme via currentColor. When we add more partners,
+ * keep the strip to at most six, sorted by recency of announcement.
+ */
+export const InstitutionalPartners = () => (
+  <section className="i-section i-section--tight" id="partners" aria-labelledby="partners-h">
+    <div className="wrap">
+      <h2 id="partners-h" className="i-h2 i-section-h2-only">
+        Partners.
+      </h2>
+
+      <div className="i-partners">
+        <a
+          className="i-partner"
+          href="https://www.circle.com/alliance-program"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Circle Alliance Program"
+        >
+          <CircleLogo />
+        </a>
+        <a
+          className="i-partner"
+          href="https://www.blockfinax.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Blockfinax"
+        >
+          <BlockfinaxLogo />
+        </a>
+      </div>
+    </div>
+  </section>
+);
+
 // ── Proof strip ─────────────────────────────────────────────────────────
 
 const PROOFS = [
-  { v: "4", label: "Live markets — Kenya, Tanzania, Ghana, Nigeria." },
+  { v: "4", label: "Live markets. Kenya, Tanzania, Ghana, Nigeria." },
   { v: "$10M+", label: "Processed to date across corridors." },
   {
     v: "Circle Alliance",
@@ -216,18 +230,11 @@ const PROOFS = [
 ];
 
 export const InstitutionalProof = () => (
-  <section
-    className="i-section i-section--soft"
-    id="proof"
-    aria-labelledby="proof-h"
-  >
+  <section className="i-section i-section--soft" id="proof" aria-labelledby="proof-h">
     <div className="wrap">
-      <div className="i-section-head">
-        <span className="i-kicker">Proof</span>
-        <h2 id="proof-h" className="i-h2">
-          Live rails, licensed partners, regulator engagement.
-        </h2>
-      </div>
+      <h2 id="proof-h" className="i-h2 i-section-h2-only">
+        Where we are today.
+      </h2>
 
       <ul className="i-proofs">
         {PROOFS.map((p) => (
@@ -244,23 +251,19 @@ export const InstitutionalProof = () => (
 // ── Contact ─────────────────────────────────────────────────────────────
 
 /**
- * Contact. Always-dark panel — colours hardcoded (not theme-linked)
- * because the earlier variable-based inversion broke in dark mode:
- * with --ink flipped to light gray, the panel background became light
- * and the "always white" text turned invisible. This section is the
- * one deliberate always-inverted block on the page, so it doesn't need
- * the theme flip.
+ * Always-dark panel. Colours hardcoded (not variable-linked) so it
+ * doesn't invert with the theme, which broke visibility in dark mode
+ * on the earlier version.
  */
 export const InstitutionalContact = () => (
   <section className="i-contact" id="contact" aria-labelledby="contact-h">
     <div className="wrap i-contact-in">
       <div className="i-contact-l">
-        <span className="i-contact-kicker">Contact</span>
         <h2 id="contact-h" className="i-contact-h2">
-          Talk to a founder.
+          Talk to sales.
         </h2>
         <p className="i-contact-lead">
-          For architecture, procurement or regulatory questions. We reply
+          For architecture, procurement, or regulatory questions. We reply
           the same day and can share references from banks and PSPs we
           already work with.
         </p>
@@ -268,13 +271,13 @@ export const InstitutionalContact = () => (
       <div className="i-contact-r">
         <a
           className="i-contact-mail"
-          href="mailto:amschel@riftfi.com?subject=Rift%20-%20infrastructure%20enquiry"
+          href="mailto:sales@riftfi.com?subject=Rift%20infrastructure%20enquiry"
         >
-          amschel@riftfi.com
+          sales@riftfi.com
         </a>
         <a
           className="btn-i btn-i-primary btn-i-primary--inv"
-          href="mailto:amschel@riftfi.com?subject=Rift%20-%20infrastructure%20enquiry"
+          href="mailto:sales@riftfi.com?subject=Rift%20infrastructure%20enquiry"
         >
           Send an email
         </a>
@@ -291,7 +294,7 @@ export const InstitutionalContact = () => (
   </section>
 );
 
-// ── Footer strip ───────────────────────────────────────────────────────
+// ── Footer ─────────────────────────────────────────────────────────────
 
 export const InstitutionalFooter = () => (
   <footer className="i-footer">
@@ -308,3 +311,74 @@ export const InstitutionalFooter = () => (
     </div>
   </footer>
 );
+
+// ── Icons ──────────────────────────────────────────────────────────────
+//
+// Small stroked line icons for product cards. `currentColor` so they
+// pick up whichever colour the card assigns them (dark-on-light in the
+// light theme, light-on-dark in the dark theme).
+
+function WalletIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="6" width="18" height="14" rx="2.5" />
+      <path d="M3 10h18" />
+      <circle cx="16.5" cy="15" r="1.2" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function RampsIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 4v14" />
+      <path d="M3 7l3 -3 3 3" />
+      <path d="M18 20v-14" />
+      <path d="M21 17l-3 3 -3 -3" />
+    </svg>
+  );
+}
+
+function SettlementIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="5" cy="6" r="2" />
+      <circle cx="19" cy="6" r="2" />
+      <circle cx="5" cy="18" r="2" />
+      <circle cx="19" cy="18" r="2" />
+      <circle cx="12" cy="12" r="2.4" />
+      <path d="M6.6 7.2l4 3.6" />
+      <path d="M17.4 7.2l-4 3.6" />
+      <path d="M6.6 16.8l4 -3.6" />
+      <path d="M17.4 16.8l-4 -3.6" />
+    </svg>
+  );
+}
+
+// Circle logomark, approximated inline so no external image request.
+// Uses currentColor so it inherits the strip's theme colour. Swap to
+// the official SVG when we get a licensed asset from Circle.
+function CircleLogo() {
+  return (
+    <span className="i-partner-mark">
+      <svg viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="16" cy="16" r="12" stroke="currentColor" strokeWidth="2.5" />
+        <path d="M22 16a6 6 0 1 1 -6 -6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+        <text x="38" y="21" fontFamily="Archivo, Inter, sans-serif" fontSize="18" fontWeight="700" letterSpacing="-0.02em" fill="currentColor">Circle</text>
+      </svg>
+    </span>
+  );
+}
+
+// Blockfinax wordmark. Swap for a licensed SVG if/when one arrives.
+function BlockfinaxLogo() {
+  return (
+    <span className="i-partner-mark">
+      <svg viewBox="0 0 180 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="1" y="6" width="20" height="20" rx="4" stroke="currentColor" strokeWidth="2" />
+        <path d="M6 12h10M6 16h10M6 20h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <text x="28" y="22" fontFamily="Archivo, Inter, sans-serif" fontSize="20" fontWeight="700" letterSpacing="-0.02em" fill="currentColor">BlockFinaX</text>
+      </svg>
+    </span>
+  );
+}
