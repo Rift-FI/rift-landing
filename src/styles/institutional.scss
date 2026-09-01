@@ -229,15 +229,32 @@
    asset for each brand if that becomes a problem. */
 .i-partner {
   display: inline-flex; align-items: center; justify-content: center;
+  gap: 12px;
   transition: opacity .18s var(--ease);
   opacity: .95;
+  text-decoration: none;
 }
 .i-partner:hover { opacity: 1; }
 .i-partner-img {
   height: 40px; width: auto;
   display: block;
 }
-@media (max-width: 640px) { .i-partner-img { height: 32px; } }
+/* Icon-only variant (e.g. BlockFinaX hex favicon) — square, paired
+   with .i-partner-name text so partners without a wordmark asset
+   still show their name in the strip. */
+.i-partner-icon {
+  height: 36px; width: 36px;
+}
+.i-partner-name {
+  font-family: "Archivo", sans-serif; font-weight: 700;
+  font-size: 22px; letter-spacing: -0.020em; line-height: 1;
+  color: var(--ink);
+}
+@media (max-width: 640px) {
+  .i-partner-img { height: 32px; }
+  .i-partner-icon { height: 30px; width: 30px; }
+  .i-partner-name { font-size: 19px; }
+}
 
 /* ── PROOF STRIP ─────────────────────────────────────────────────── */
 .i-proofs {

@@ -217,12 +217,13 @@ export const InstitutionalPartners = () => (
           aria-label="BlockFinaX"
         >
           <img
-            className="i-partner-img"
+            className="i-partner-img i-partner-icon"
             src="/partners/blockfinax.png"
-            alt="BlockFinaX"
-            width="160"
-            height="38"
+            alt=""
+            width="40"
+            height="40"
           />
+          <span className="i-partner-name">BlockFinaX</span>
         </a>
       </div>
     </div>
