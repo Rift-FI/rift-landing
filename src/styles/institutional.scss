@@ -223,26 +223,21 @@
   gap: clamp(28px, 5vw, 64px);
   padding: 24px 0 4px 0;
 }
-/* Each partner sits on a white "chip" so the logo always has its
-   original brand contrast, regardless of the surrounding theme. This
-   is the pattern Stripe / Modern Treasury use for their partner rows —
-   brand logos read correctly, no per-theme SVG variants needed, no
-   invert filter that turns wordmarks into silhouettes. */
+/* Partner marks free-floating — no chip. On light theme the brand
+   colours read on the paper background naturally. On dark theme this
+   trades some contrast for design cleanliness; drop in a light-variant
+   asset for each brand if that becomes a problem. */
 .i-partner {
-  transition: opacity .18s var(--ease), transform .18s var(--ease);
   display: inline-flex; align-items: center; justify-content: center;
-  background: #ffffff;
-  padding: 14px 22px;
-  border-radius: 14px;
-  min-height: 62px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
+  transition: opacity .18s var(--ease);
+  opacity: .95;
 }
-.i-partner:hover { transform: translateY(-1px); }
+.i-partner:hover { opacity: 1; }
 .i-partner-img {
-  height: 30px; width: auto;
+  height: 40px; width: auto;
   display: block;
 }
-@media (max-width: 640px) { .i-partner-img { height: 26px; } }
+@media (max-width: 640px) { .i-partner-img { height: 32px; } }
 
 /* ── PROOF STRIP ─────────────────────────────────────────────────── */
 .i-proofs {
@@ -273,19 +268,14 @@
   letter-spacing: -0.028em; line-height: 1;
   color: var(--ink);
 }
-/* Logo variant of a proof cell — same white-chip pattern as .i-partner
-   so brand logos read correctly on any theme. Same vertical position
-   as .i-proof-v so cells align across the row regardless of shape. */
+/* Proof-cell logo variant — free-floating, aligned to the same
+   vertical position as the .i-proof-v stat text. */
 .i-proof-logo {
-  display: inline-flex; align-items: center; justify-content: center;
-  background: #ffffff;
-  padding: 12px 18px;
-  border-radius: 12px;
-  min-height: 56px;
-  align-self: flex-start;
+  display: inline-flex; align-items: center;
+  min-height: 40px;
 }
-.i-proof-logo img { height: 26px; width: auto; display: block; }
-@media (max-width: 640px) { .i-proof-logo img { height: 22px; } }
+.i-proof-logo img { height: 32px; width: auto; display: block; }
+@media (max-width: 640px) { .i-proof-logo img { height: 28px; } }
 .i-proof-label {
   font-family: "Inter", sans-serif; font-size: 13.5px; line-height: 1.5;
   color: var(--i-ink-muted);
