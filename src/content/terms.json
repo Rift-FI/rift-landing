@@ -11,7 +11,11 @@
         },
         {
           "kind": "p",
-          "text": "Rift is building infrastructure that connects individual and institutional capital with business financing across trade and FX liquidity, energy, agriculture, mining, manufacturing and infrastructure. Investment products are still being structured. Descriptions of planned features or sectors do not mean that an investment or financing product is available."
+          "text": "Rift is building short-term settlement financing for remittance companies, cross-border payment apps, payment service providers, FX businesses and merchants settling through a payment service provider. The intended model is an advance in USDC against a verified settlement receivable, repaid from the incoming settlement through an agreed collection route. The liquidity for those advances comes from capital contributed by eligible investors."
+        },
+        {
+          "kind": "p",
+          "text": "Financing and investment products are in preparation. Enquiries are open. A description on this website does not mean that a product is available, approved or offered to you. We may offer other products in future, and any such product would be governed by its own separate terms."
         },
         {
           "kind": "p",
@@ -19,6 +23,24 @@
         }
       ],
       "n": "1"
+    },
+    {
+      "title": "Which terms apply",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "These website terms are general. They cover the information published on riftfi.com and the enquiry forms on it. They do not create a facility, an investment, an account or any other financial relationship."
+        },
+        {
+          "kind": "p",
+          "text": "Any facility, wallet or investment is governed by its own agreement and the disclosures issued with it. Where those product documents differ from these website terms, the product documents prevail for that product. If something on this website appears to conflict with an agreement you have signed, the signed agreement applies."
+        },
+        {
+          "kind": "p",
+          "text": "Descriptions and examples on this website are summaries written for general understanding. They are not a substitute for reading the documents for a specific product, and they do not vary those documents."
+        }
+      ],
+      "n": "2"
     },
     {
       "title": "Who may use the website",
@@ -29,24 +51,24 @@
         },
         {
           "kind": "p",
-          "text": "If you contact us on behalf of an institution or business, you must be authorised to do so. Provide accurate, current information and tell us if material details change. Do not use our services where doing so would breach applicable law or sanctions."
+          "text": "If you contact us on behalf of an institution or business, you must be authorised to do so. Provide accurate, current information and tell us if material details change. Do not use our services where doing so would breach applicable law or sanctions. We do not offer a product in any place where offering it would be unlawful or would require an authorisation we do not hold."
         }
       ],
-      "n": "2"
+      "n": "3"
     },
     {
       "title": "Enquiries are not commitments",
       "blocks": [
         {
           "kind": "p",
-          "text": "Our institutional interest form and business financing form are invitations to start a conversation. Sending a form does not open an investment account, reserve an allocation, create an investment, approve a loan or bind either party to a transaction. We may request further information or decline to proceed."
+          "text": "Our institutional interest form and business financing form are invitations to start a conversation. Sending a form does not open an investment account, reserve an allocation, create an investment, approve a facility or bind either party to a transaction. We may request further information, take time to respond, or decline to proceed."
         },
         {
           "kind": "p",
-          "text": "Institutional applicants may include insurers, pension funds, venture capital firms, hedge funds and development finance institutions. Financing applicants may include remittance and payment companies and businesses across our focus sectors. A sector listing is not a promise of eligibility or funding."
+          "text": "Institutional enquiries are subject to mandate and eligibility review. Business enquiries are for payment businesses seeking settlement liquidity. An enquiry does not confirm eligibility, financing, pricing, capacity or an investment allocation. Nothing said in a call, an email or a reply to a form is an offer or an approval until it is set out in signed documents."
         }
       ],
-      "n": "3"
+      "n": "4"
     },
     {
       "title": "Investment documents and regulatory requirements",
@@ -57,17 +79,21 @@
         },
         {
           "kind": "p",
-          "text": "This website is general information about Rift and its development plans. It is not a prospectus, personalised recommendation, or an invitation to invest where an offer would be unlawful. Nothing on the site represents that Rift, an investment vehicle or a product has received regulatory approval. Any applicable authorisation must be verified from the specific product documents and relevant regulator."
+          "text": "This website is general information about Rift and its development plans. It is not a prospectus, a personalised recommendation, or an invitation to invest where an offer would be unlawful. We do not provide investment, legal, tax or accounting advice. Nothing on the site represents that Rift, an investment vehicle or a product has received regulatory approval. Any applicable authorisation must be verified from the specific product documents and the relevant regulator."
         }
       ],
-      "n": "4"
+      "n": "5"
     },
     {
       "title": "Returns and investment risks",
       "blocks": [
         {
           "kind": "p",
-          "text": "Potential yield is intended to arise from the underlying financing activity, such as interest paid by a business using liquidity or working capital. Actual returns depend on the agreement, borrower performance, costs, taxes and losses. Indicative or target returns are estimates, not promises."
+          "text": "Potential investor income comes only from financing charges actually collected from businesses, after the fees, expenses, reserves and losses specified in the relevant pool documents. Returns depend on actual deployment, payment performance and the applicable distribution waterfall. Undeployed USDC does not itself generate financing income. We do not publish, promise or imply a rate of return."
+        },
+        {
+          "kind": "p",
+          "text": "Every monetary amount, advance rate, financing charge, settlement period and day count shown on this website is an illustrative example. Such figures are not quotes, forecasts, promises or approved terms. Actual terms are set only in signed documents."
         },
         {
           "kind": "ul",
@@ -75,8 +101,11 @@
             "You may lose some or all of your invested capital. Borrowers or counterparties may default, and recovery may be delayed or unsuccessful.",
             "Investments may have fixed terms, restrictions on transfer or withdrawal, and no secondary market. You should not assume that capital can be withdrawn on demand.",
             "Currency movements, stablecoin depegging, issuer or reserve problems, network fees and conversion costs may affect value and returns.",
-            "Sector, country, operational, legal and regulatory risks may affect the underlying business and repayment.",
-            "Smart contracts, digital wallets, networks and third-party systems can fail or be compromised. On-chain records do not remove credit or investment risk."
+            "Country, corridor, operational, legal and regulatory risks may affect the businesses financed and their ability to repay.",
+            "Smart contracts, digital wallets, networks and third-party systems can fail or be compromised. On-chain records do not remove credit or investment risk.",
+            "Short duration and receivable backing do not guarantee repayment. Receivables may be disputed, reversed, subject to set-off, pledged elsewhere or unenforceable, and collections may be delayed or diverted.",
+            "A multisig or permissioned smart contract controls specified digital-asset actions but does not guarantee custody, legal ownership, off-chain repayment or recovery.",
+            "Any junior capital, guarantee or insurance must be established under signed product documents. No third-party protection or unlimited first-loss coverage should be assumed from this website."
           ]
         },
         {
@@ -84,39 +113,105 @@
           "text": "Do not assume that capital, stablecoins or returns are insured, guaranteed or covered by deposit protection. Any protection must be expressly described in the applicable product documents. Consider your circumstances and obtain independent financial, legal and tax advice where needed."
         }
       ],
-      "n": "5"
+      "n": "6"
     },
     {
-      "title": "Business financing",
+      "title": "Settlement receivables and financing terms",
       "blocks": [
         {
           "kind": "p",
-          "text": "Financing may involve liquidity facilities, working capital, equipment or project finance, depending on the arrangement. Amounts, currency, pricing, collateral, covenants, repayment schedules and default remedies are agreed in separate financing documents following assessment."
+          "text": "The financing Rift is preparing is an advance against a payment obligation that is already owed to a business by a processor, acquirer, bank, collection entity or other settlement partner. Payment businesses frequently face a timing mismatch between the moment a transaction must be paid out and the moment the underlying funds become available. An advance is intended to cover that gap and is repaid when the settlement arrives. It is not a general corporate loan."
+        },
+        {
+          "kind": "p",
+          "text": "Assessment is directed at the receivable rather than at a long-range view of the business: whether the obligation is genuine, who owes it, whether it can be assigned and controlled, when it is expected to settle, and how often comparable receivables have failed or reversed."
+        },
+        {
+          "kind": "p",
+          "text": "For a receivable to be considered, we would expect it to meet at least the following. Meeting them does not create an entitlement to financing."
+        },
+        {
+          "kind": "ul",
+          "items": [
+            "The underlying transaction has already occurred, so the obligation is established rather than projected.",
+            "The payer is identified and its ability to pay can be assessed.",
+            "The amount owed is known rather than estimated.",
+            "The settlement date is documented and reasonably predictable.",
+            "The receivable can be legally assigned or secured, and collection can be directed to a controlled account.",
+            "The receivable is free of competing claims, prior pledges, set-off rights and existing security."
+          ]
+        },
+        {
+          "kind": "p",
+          "text": "The intended controls are verification of the receivable and the payer before funding, an advance rate below the face value of the receivable, legal assignment of or security over the receivable, collection into an account controlled by Rift or its agent, limits on exposure to any single business, payer or corridor, and monitoring of settlement performance including failure and reversal rates. These controls are intended to reduce risk. They do not remove it."
+        },
+        {
+          "kind": "p",
+          "text": "A receivable is not a guarantee of repayment. An expected settlement can still arrive late, arrive short or fail entirely."
+        },
+        {
+          "kind": "ul",
+          "items": [
+            "The underlying transaction may be disputed, charged back, reversed or clawed back.",
+            "The payer may pay late, pay in part, withhold amounts, exercise set-off or fail to pay at all.",
+            "A processor, acquirer, bank or settlement partner may change its settlement terms, suspend settlement, fail or become insolvent.",
+            "Currency movements, conversion costs, capital controls and local liquidity conditions may reduce or delay the amount actually received.",
+            "Sanctions screening, fraud investigations and other compliance holds may freeze funds for an indefinite period.",
+            "Documentation, notice or enforcement problems may prevent recovery, and recovery may cost more than it returns."
+          ]
+        },
+        {
+          "kind": "p",
+          "text": "Money that a business holds for its customers and is required to safeguard is not treated as freely available collateral, and neither are projected future transactions. Financing is assessed against receivables that the business itself owns and is entitled to deal with."
+        },
+        {
+          "kind": "p",
+          "text": "A business that takes an advance remains responsible for its own licensing, safeguarding, consumer protection, tax and reporting obligations, and for its own relationships with its customers and regulators. Rift does not assume the payout obligations of a business, does not become a party to its customer contracts and does not operate its payments. An advance is not a deposit, a current account or a payment service, and Rift is not the payment provider of the business."
+        },
+        {
+          "kind": "p",
+          "text": "No facility becomes available without approval and signed financing documents. Those documents specify the lender, borrower, eligible receivables, advance rate, currency, limit, permitted use, collection route, pricing, fees, day-count basis, repayment obligations and default remedies. A security-backed advance and a purchase of a receivable are different legal arrangements; the signed documents determine the structure. An advance may cover only part of a receivable, and the business remains responsible for funding the remainder of its payout."
+        },
+        {
+          "kind": "p",
+          "text": "Financing charges may depend on the amount advanced and the time outstanding, with separately agreed facility or servicing fees. No rate, fee or spread is established by this website. An incoming settlement is the intended source of repayment, but a delay or a non-payment does not by itself cancel the obligations of the borrower under its agreement. Investor maturity and withdrawal terms are separate from the duration of any individual advance."
         },
         {
           "kind": "p",
           "text": "An enquiry does not authorise Rift to charge a fee or debit funds. Do not send money to reserve funding on the basis of an unsolicited message. Any agreed fees and payment instructions must be provided through the relevant agreement and verified contact channels."
         }
       ],
-      "n": "6"
+      "n": "7"
     },
     {
       "title": "Wallets, digital assets and security",
       "blocks": [
         {
           "kind": "p",
-          "text": "Wallet custody, key management, recovery arrangements and the role of any third-party provider are determined by the wallet terms presented to you. These website terms do not promise a particular custody model or ability to restore access."
+          "text": "Wallet custody, key management, recovery arrangements and the role of any third-party provider are determined by the wallet terms presented to you. These website terms do not promise a particular custody model or an ability to restore access."
         },
         {
           "kind": "p",
-          "text": "Protect your devices, credentials and recovery information. Never send passwords, private keys, seed phrases or authentication codes through an enquiry form. Verify addresses, networks and transaction details before authorising a transfer. Confirmed blockchain transactions may be irreversible."
+          "text": "Protect your devices, credentials and recovery information. Never send passwords, private keys, seed phrases or authentication codes through an enquiry form. Verify addresses, networks and transaction details before authorising a transfer. Confirmed blockchain transactions are generally irreversible, and a transfer sent to the wrong address or over the wrong network can be permanently lost."
         },
         {
           "kind": "p",
-          "text": "Service availability and settlement times depend on networks, providers, liquidity and verification. Fees, exchange rates and transaction terms must be reviewed before confirmation. Contact amschel@riftfi.com if you suspect fraud or unauthorised activity."
+          "text": "USDC is a stablecoin issued by a third party. Rift does not issue it, does not control its reserves and does not guarantee that it will hold its value or remain redeemable. Issuer, reserve, redemption and regulatory developments affecting a stablecoin are outside our control."
+        },
+        {
+          "kind": "p",
+          "text": "USDC transfers can settle in seconds on supported networks and can be made around the clock. Approval, compliance checks, network finality, conversion and the final payout in local currency each have their own timings and depend on the payment partners of the business concerned. Rift does not control the final leg of a payment to an end customer. Networks may also be congested, halted, forked or upgraded, and outages can delay transfers."
+        },
+        {
+          "kind": "p",
+          "text": "Smart contracts and multisig arrangements record and route the funds they receive and can restrict specified digital-asset actions. They cannot compel a payer to pay, cannot create legal ownership by themselves and cannot reverse an off-chain failure. Code may contain errors or be exploited."
+        },
+        {
+          "kind": "p",
+          "text": "Review applicable fees, exchange rates and transaction terms before confirming anything. Contact amschel@riftfi.com if you suspect fraud or unauthorised activity."
         }
       ],
-      "n": "7"
+      "n": "8"
     },
     {
       "title": "Verification and responsible use",
@@ -127,10 +222,14 @@
         },
         {
           "kind": "p",
+          "text": "We may decline an enquiry, refuse to proceed, pause a process, or suspend or end a relationship where checks are incomplete, where information appears inaccurate, or where we consider it necessary to comply with law or to manage risk. We cannot always explain the reason."
+        },
+        {
+          "kind": "p",
           "text": "Do not use the website or forms for fraud, misleading applications, unlawful financial activity, harassment, malicious code, or attempts to obtain unauthorised access. We may restrict access where reasonably necessary to protect users or comply with law. Any rights concerning existing investments or financing remain governed by their contracts and applicable law."
         }
       ],
-      "n": "8"
+      "n": "9"
     },
     {
       "title": "Privacy and third-party services",
@@ -144,7 +243,7 @@
           "text": "External links are provided for convenience. Review the terms of any external service before using it. Our use of service providers does not remove responsibilities that applicable law places on us."
         }
       ],
-      "n": "9"
+      "n": "10"
     },
     {
       "title": "Website content and intellectual property",
@@ -155,24 +254,24 @@
         },
         {
           "kind": "p",
-          "text": "Journal articles provide general commentary, not personalised investment advice. Illustrative images do not depict actual investors, portfolio companies, financed projects or investment performance unless expressly stated. We aim to keep information accurate but may correct or update it as plans develop."
+          "text": "Journal articles provide general commentary, not personalised investment advice. Descriptions of how settlement works in the payments industry are general and are not attributed to any named company. Illustrative images do not depict actual investors, financed businesses or investment performance unless expressly stated. We aim to keep information accurate but may correct or update it as plans develop."
         }
       ],
-      "n": "10"
+      "n": "11"
     },
     {
       "title": "Availability and responsibility",
       "blocks": [
         {
           "kind": "p",
-          "text": "We take reasonable care in providing the website but do not promise uninterrupted access, error-free information or availability of a proposed product. To the extent permitted by law, we are not liable for losses caused solely by reliance on general website information as a personal investment recommendation."
+          "text": "We take reasonable care in providing the website but do not promise uninterrupted access, error-free information or the availability of a proposed product. To the extent permitted by law, we are not liable for losses caused solely by reliance on general website information as a personal investment recommendation."
         },
         {
           "kind": "p",
           "text": "Nothing in these terms excludes or limits liability for fraud, wilful misconduct, or any liability or consumer right that cannot lawfully be excluded or limited. Rights, obligations and liability concerning an actual wallet service, investment or financing are addressed in its applicable agreement."
         }
       ],
-      "n": "11"
+      "n": "12"
     },
     {
       "title": "Changes and applicable law",
@@ -186,17 +285,17 @@
           "text": "These website terms are governed by Kenyan law, without depriving consumers of mandatory protections that apply where they live. Please contact us first with a concern. Nothing here prevents you from approaching a competent court or regulator or exercising a statutory complaint right."
         }
       ],
-      "n": "12"
+      "n": "13"
     },
     {
       "title": "Contact",
       "blocks": [
         {
           "kind": "p",
-          "text": "Sphere Ramp Ltd (Rift), Enkang, Ngong Road, Nairobi, Kenya. Email: amschel@riftfi.com. For privacy requests, use the same address and indicate that your request concerns personal data."
+          "text": "Sphere Ramp Ltd (Rift), registration number PVT-9WYFD5, Enkang, Ngong Road, Nairobi, Kenya. Email: amschel@riftfi.com. For privacy requests, use the same address and indicate that your request concerns personal data."
         }
       ],
-      "n": "13"
+      "n": "14"
     }
   ]
 }

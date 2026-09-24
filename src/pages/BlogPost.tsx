@@ -18,7 +18,7 @@ const AUTHORS: Record<string, AuthorInfo> = {
 
 function formatDate(iso: string) {
   try {
-    return new Date(iso).toLocaleDateString("en-US", {
+    return new Date(iso).toLocaleDateString("en-GB", {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -124,7 +124,7 @@ export const BlogPost = () => {
           <div>
             <div className="bp-author-card">
               {authorInfo.photo ? (
-                <img className="bp-author-avatar" src={authorInfo.photo} alt={authorInfo.name} />
+                <img className="bp-author-avatar" src={authorInfo.photo} alt={authorInfo.name} width="150" height="150" />
               ) : (
                 <div className="bp-author-avatar" aria-hidden="true">
                   {authorInfo.name.charAt(0)}

@@ -10,7 +10,7 @@ export const Hero = () => (
     <div className="wrap hero-in">
       <a
         className="hero-badge"
-        href="https://wallet.riftfi.xyz/"
+        href="https://wallet.riftfi.com"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -26,7 +26,7 @@ export const Hero = () => (
       <div className="hero-cta">
         <a
           className="btn btn-primary btn-lg"
-          href="https://wallet.riftfi.xyz/"
+          href="https://wallet.riftfi.com"
           target="_blank"
           rel="noopener noreferrer"
         >

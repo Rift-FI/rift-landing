@@ -11,6 +11,7 @@ const ROOT = process.cwd();
 const DIST = path.join(ROOT, "dist");
 const POSTS_DIR = path.join(ROOT, "src", "content", "blog");
 const BASE_URL = "https://riftfi.com";
+const SITE_LASTMOD = "2026-09-24";
 
 function parseFrontmatter(raw) {
   const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
@@ -60,17 +61,17 @@ function escapeXml(s) {
 async function writeSitemap(posts) {
   const urls = [
     // Public marketing routes.
-    { loc: `${BASE_URL}/`, priority: "1.0", changefreq: "weekly" },
+    { loc: `${BASE_URL}/`, priority: "1.0", changefreq: "weekly", lastmod: SITE_LASTMOD },
+    { loc: `${BASE_URL}/how-it-works`, priority: "0.9", changefreq: "monthly", lastmod: SITE_LASTMOD },
     // Business financing enquiries.
-    { loc: `${BASE_URL}/businesses`, priority: "0.85", changefreq: "monthly" },
-    { loc: `${BASE_URL}/how-it-works`, priority: "0.9", changefreq: "monthly" },
-    { loc: `${BASE_URL}/brand`, priority: "0.5", changefreq: "monthly" },
-    { loc: `${BASE_URL}/blog`, priority: "0.9", changefreq: "weekly" },
-    { loc: `${BASE_URL}/terms`, priority: "0.3", changefreq: "yearly" },
-    { loc: `${BASE_URL}/privacy`, priority: "0.3", changefreq: "yearly" },
+    { loc: `${BASE_URL}/businesses`, priority: "0.8", changefreq: "monthly", lastmod: SITE_LASTMOD },
+    { loc: `${BASE_URL}/blog`, priority: "0.6", changefreq: "weekly", lastmod: SITE_LASTMOD },
+    { loc: `${BASE_URL}/brand`, priority: "0.4", changefreq: "monthly", lastmod: SITE_LASTMOD },
+    { loc: `${BASE_URL}/terms`, priority: "0.3", changefreq: "yearly", lastmod: SITE_LASTMOD },
+    { loc: `${BASE_URL}/privacy`, priority: "0.3", changefreq: "yearly", lastmod: SITE_LASTMOD },
     ...posts.map((p) => ({
       loc: `${BASE_URL}/blog/${p.slug}`,
-      priority: "0.8",
+      priority: "0.5",
       changefreq: "monthly",
       lastmod: p.date,
     })),

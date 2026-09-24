@@ -36,7 +36,6 @@ export const Nav = () => {
           <span className="wm">Rift</span>
         </Link>
         <div className="nav-links">
-          <a href={anchor("sectors")}>Our sectors</a>
           <a href={anchor("how-it-works")}>How it works</a>
           <a href={anchor("participate")}>Invest with Rift</a>
           <Link to="/businesses">For businesses</Link>
@@ -71,7 +70,6 @@ export const Nav = () => {
       >
         <div className="nav-mobile-backdrop" onClick={closeMenu} />
         <div className="nav-mobile-panel">
-          <a href={anchor("sectors")} onClick={closeMenu}>Our sectors</a>
           <a href={anchor("how-it-works")} onClick={closeMenu}>How it works</a>
           <a href={anchor("participate")} onClick={closeMenu}>Invest with Rift</a>
           <Link to="/businesses" onClick={closeMenu}>For businesses</Link>

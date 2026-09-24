@@ -469,7 +469,6 @@ export const Footer = () => {
     {
       h: "Product",
       links: [
-        ["Our sectors", "/#sectors"],
         ["How it works", "/#how-it-works"],
         ["Questions", "/#questions"],
         ["Rift Wallet", "https://wallet.riftfi.com"],
