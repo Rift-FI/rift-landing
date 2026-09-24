@@ -7,34 +7,63 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "riftfi.xyz"
+        }
+      ],
+      "destination": "https://riftfi.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/blog/black-market-is-a-price",
       "destination": "/blog/parallel-market-is-a-price",
       "permanent": true
+    },
+    {
+      "source": "/blog/tally",
+      "destination": "/blog",
+      "permanent": true
     }
-  ],
-  "rewrites": [
-    { "source": "/((?!assets/|sitemap\\.xml|feed\\.xml|robots\\.txt|manifest\\.webmanifest|favicon\\.ico|rift-terms\\.pdf|rift-privacy\\.pdf).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
       "source": "/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/sitemap.xml",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" },
-        { "key": "Content-Type", "value": "application/xml; charset=utf-8" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, must-revalidate"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        }
       ]
     },
     {
       "source": "/feed.xml",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, must-revalidate" },
-        { "key": "Content-Type", "value": "application/rss+xml; charset=utf-8" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, must-revalidate"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/rss+xml; charset=utf-8"
+        }
       ]
     }
-  ]
+  ],
+  "cleanUrls": true
 }

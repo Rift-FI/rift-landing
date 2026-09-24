@@ -424,7 +424,7 @@ export const Wallet = () => (
           <div className="hero-cta" style={{ marginTop: 28 }}>
             <a
               className="btn btn-secondary"
-              href="https://wallet.riftfi.xyz/"
+              href="https://wallet.riftfi.com"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -469,17 +469,17 @@ export const Footer = () => {
     {
       h: "Product",
       links: [
-        ["The stack", "/#stack"],
-        ["Trust", "/#security"],
-        ["Coverage", "/#coverage"],
-        ["Rift Wallet", "https://wallet.riftfi.xyz/"],
+        ["Our sectors", "/#sectors"],
+        ["How it works", "/#how-it-works"],
+        ["Questions", "/#questions"],
+        ["Rift Wallet", "https://wallet.riftfi.com"],
       ],
     },
     {
       h: "For",
       links: [
-        ["Businesses", "/#business"],
-        ["Fintechs", "/#institutions"],
+        ["Businesses", "/businesses"],
+        ["Investors", "/#participate"],
       ],
     },
     {
@@ -516,8 +516,7 @@ export const Footer = () => {
               <span className="wm">Rift</span>
             </Link>
             <p>
-              Cross-border payments for African businesses. The rails and data
-              banks use to serve, settle, and lend.
+              Connecting capital to Africa’s productive economy.
             </p>
           </div>
           {cols.map((c) => (

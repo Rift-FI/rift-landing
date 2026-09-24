@@ -36,9 +36,10 @@ export const Nav = () => {
           <span className="wm">Rift</span>
         </Link>
         <div className="nav-links">
-          <a href={anchor("business")}>For businesses</a>
-          <a href={anchor("institutions")}>For fintechs</a>
-          <a href={anchor("stack")}>The stack</a>
+          <a href={anchor("sectors")}>Our sectors</a>
+          <a href={anchor("how-it-works")}>How it works</a>
+          <a href={anchor("participate")}>Invest with Rift</a>
+          <Link to="/businesses">For businesses</Link>
           <Link to="/blog">Blog</Link>
         </div>
         <div className="nav-cta">
@@ -70,9 +71,10 @@ export const Nav = () => {
       >
         <div className="nav-mobile-backdrop" onClick={closeMenu} />
         <div className="nav-mobile-panel">
-          <a href={anchor("business")} onClick={closeMenu}>For businesses</a>
-          <a href={anchor("institutions")} onClick={closeMenu}>For fintechs</a>
-          <a href={anchor("stack")} onClick={closeMenu}>The stack</a>
+          <a href={anchor("sectors")} onClick={closeMenu}>Our sectors</a>
+          <a href={anchor("how-it-works")} onClick={closeMenu}>How it works</a>
+          <a href={anchor("participate")} onClick={closeMenu}>Invest with Rift</a>
+          <Link to="/businesses" onClick={closeMenu}>For businesses</Link>
           <Link to="/blog" onClick={closeMenu}>Blog</Link>
           <a
             href="https://portal.riftfi.xyz/docs"

@@ -1,25 +1,22 @@
 {
   "name": "Rift Finance",
   "short_name": "Rift",
-  "description": "Compliant stablecoin infrastructure for institutions.",
+  "description": "Capital for Africa's productive economy. Investment and business financing infrastructure.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "theme_color": "#192535",
   "lang": "en",
-  "categories": ["finance", "business"],
+  "categories": [
+    "finance",
+    "business"
+  ],
   "icons": [
     {
       "src": "/assets/rift-logo.png",
       "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any"
-    },
-    {
-      "src": "/assets/rift-logo.png",
-      "type": "image/png",
-      "sizes": "192x192",
+      "sizes": "any",
       "purpose": "any"
     }
   ]

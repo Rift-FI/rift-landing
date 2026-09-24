@@ -1,0 +1,193 @@
+{
+  "title": "Privacy Policy",
+  "updated": "24 September 2026",
+  "sections": [
+    {
+      "title": "Who is responsible and scope",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Sphere Ramp Ltd, trading as Rift, is responsible for the personal data it collects through riftfi.com, the institutional investment interest and business financing enquiry forms, and related communications. Our registered office is at Enkang, Ngong Road, Nairobi, Kenya. Contact amschel@riftfi.com for privacy questions or requests."
+        },
+        {
+          "kind": "p",
+          "text": "Rift is developing investment and financing infrastructure for individuals, institutions and businesses. Investment products are still being structured. This policy describes the website and enquiry process now, and identifies information that may be required if you later apply for a financial service. A wallet, investment or financing product may provide an additional privacy notice explaining its specific processing and providers."
+        }
+      ],
+      "n": "1"
+    },
+    {
+      "title": "Information you provide",
+      "blocks": [
+        {
+          "kind": "ul",
+          "items": [
+            "Institutional enquiries: your name, work email, organisation, country, institution type, proposed allocation range, preferred sectors, investment mandate or duration, optional website and contact-permission response.",
+            "Business financing enquiries: your name, work email, business, country, sector, financing range and type, proposed use of funds, repayment information, timing, optional website and contact-permission response.",
+            "Correspondence: information you send when asking questions, responding to our team, making a complaint or exercising a privacy right.",
+            "If you proceed to onboarding: identity, ownership, eligibility, financial, source-of-funds and verification information may be requested through an appropriate process. The initial enquiry forms do not request identity documents, bank credentials or wallet recovery information."
+          ]
+        },
+        {
+          "kind": "p",
+          "text": "Required form fields are marked. You may choose not to submit a form, but without relevant contact and enquiry details we may be unable to assess or respond to your request. Provide another person's details only when you are authorised to do so and have informed them about this policy. Do not include sensitive personal details that are unnecessary for an initial enquiry."
+        }
+      ],
+      "n": "2"
+    },
+    {
+      "title": "Website and technical information",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Website delivery and security providers may process IP addresses, browser and device information, request times and access logs to deliver pages and protect their services. The marketing website currently has no advertising pixels or visitor-analytics scripts configured in its application code."
+        },
+        {
+          "kind": "p",
+          "text": "The website requests fonts from Google Fonts and Fontshare. When your browser fetches those resources, the providers receive technical connection information such as your IP address and browser details. Following a link to Tally, Rift Wallet or another external service makes a separate connection to that service, which may use cookies or similar technologies under its own notice."
+        }
+      ],
+      "n": "3"
+    },
+    {
+      "title": "Why we use information and our legal bases",
+      "blocks": [
+        {
+          "kind": "ul",
+          "items": [
+            "To respond to an enquiry and take steps you request before entering a contract. Where you act for an organisation, we also rely on our legitimate interest in communicating with its representatives and assessing potential business relationships.",
+            "To assess the relevance of your investment mandate or financing needs and organise follow-up, relying on requested pre-contractual steps or legitimate interests, as applicable.",
+            "To maintain website security, prevent abuse, manage correspondence and resolve disputes, based on legitimate interests balanced against your rights.",
+            "To meet applicable legal duties, including responding to lawful requests and performing verification where a proposed service requires it.",
+            "Where we ask for consent, to carry out the specific optional processing described when you give it. You can withdraw that consent without affecting the lawfulness of earlier processing."
+          ]
+        },
+        {
+          "kind": "p",
+          "text": "Permission to contact you about an enquiry is not permission for unrelated marketing. We will seek any separate marketing permission required by law and provide a way to opt out. This policy is a notice about processing; reading it is not blanket consent."
+        }
+      ],
+      "n": "4"
+    },
+    {
+      "title": "Tally and other recipients",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Our two enquiry forms are hosted by Tally. Your responses are stored in our Tally workspace and are accessible to authorised people handling your enquiry. Form responses may also be included in email notifications sent to our account, so related information may be processed by our email provider."
+        },
+        {
+          "kind": "p",
+          "text": "Tally describes its role for form submissions as a processor acting on behalf of the form creator. It also processes certain technical information for its own service operations. Its privacy and data-processing information is available at tally.so/help/privacy-policy and tally.so/help/gdpr."
+        },
+        {
+          "kind": "p",
+          "text": "Other recipients may include website hosting and infrastructure providers, professional advisers subject to confidentiality, and authorities where disclosure is legally required. If a financing or investment enquiry progresses, we will explain any relevant sharing with a prospective provider, vehicle, verification service or financing partner before requesting the additional information or making the referral, unless law prevents notice."
+        },
+        {
+          "kind": "p",
+          "text": "We do not sell personal data. We do not publish your form responses on this website or on a public blockchain. Any transfer connected with a business reorganisation must remain subject to applicable data-protection requirements."
+        }
+      ],
+      "n": "5"
+    },
+    {
+      "title": "International processing",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Information may be processed outside Kenya by the services used to deliver the website, host forms and handle communications. Tally states that form data is stored in Europe. We do not represent that all personal data is stored only in Kenya."
+        },
+        {
+          "kind": "p",
+          "text": "Transfers must comply with applicable Kenyan data-protection requirements, including an appropriate lawful transfer basis and safeguards where required. Contact us for information about the providers and safeguards relevant to your enquiry. A provider's general privacy notice does not replace our responsibilities for a transfer."
+        }
+      ],
+      "n": "6"
+    },
+    {
+      "title": "Retention",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Enquiry records are kept for the time reasonably needed to assess and respond to your request, manage any ongoing discussions, and meet applicable legal or dispute-resolution needs. The relevant factors include whether discussions remain active, whether you become a customer, whether a legal retention duty applies and whether a claim or complaint is outstanding."
+        },
+        {
+          "kind": "p",
+          "text": "If you proceed to a financial service, additional records and retention requirements will be explained in the applicable product notice. We do not apply a single stated retention period to all records. You can ask us to delete an enquiry that is no longer needed; any lawful reason for retaining it will be explained. Deletion requests also require attention to copies held in the form workspace, email notifications and relevant provider systems."
+        }
+      ],
+      "n": "7"
+    },
+    {
+      "title": "Your rights and choices",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Subject to applicable law, you may ask to be informed about processing, access your personal data, correct inaccurate information, erase information that need not be retained, object to or restrict processing, and obtain data portability where applicable. You may withdraw consent and object to direct marketing."
+        },
+        {
+          "kind": "p",
+          "text": "Contact amschel@riftfi.com with your request. We may need proportionate information to verify your identity and will respond within the applicable legal time limits. We will explain any lawful restriction on a request."
+        },
+        {
+          "kind": "p",
+          "text": "You may complain to Kenya's Office of the Data Protection Commissioner at www.odpc.go.ke. This does not affect other rights or remedies available to you."
+        }
+      ],
+      "n": "8"
+    },
+    {
+      "title": "Automated processing and on-chain information",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Submitting an enquiry form does not automatically approve or reject an investment or financing application and does not execute a transaction. If a future product uses profiling or solely automated decisions with legal or similarly significant effects, its notice must explain the processing and applicable rights, including relevant review safeguards."
+        },
+        {
+          "kind": "p",
+          "text": "If you later use a blockchain-based wallet or product, wallet addresses and transaction details may be publicly visible and may be linkable to you. Public blockchain records can be difficult or impossible to alter or delete. Do not place personal documents or unnecessary identifying information on-chain; consult the specific product notice before participating."
+        }
+      ],
+      "n": "9"
+    },
+    {
+      "title": "Security",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "We use access restrictions and appropriate technical and organisational measures to protect information handled through our website and enquiry process. No transmission or storage system is completely secure. We do not make a guarantee that a service is immune from unauthorised access or loss."
+        },
+        {
+          "kind": "p",
+          "text": "If a personal-data breach occurs, we will assess it and make notifications required by applicable law. Never submit passwords, private keys, seed phrases or authentication codes through our forms or email."
+        }
+      ],
+      "n": "10"
+    },
+    {
+      "title": "Children and policy changes",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Investment and financing participation is intended for adults aged 18 or over. The enquiry forms are not directed at children. If you believe a child has submitted personal data, contact us so we can assess and address it."
+        },
+        {
+          "kind": "p",
+          "text": "We will update this notice when our processing changes, including when new products or tracking technologies are introduced. The last-updated date identifies the version. Material changes will be communicated as required by law."
+        }
+      ],
+      "n": "11"
+    },
+    {
+      "title": "Contact and further information",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Sphere Ramp Ltd (Rift), Enkang, Ngong Road, Nairobi, Kenya. Privacy contact: amschel@riftfi.com. Regulator: Office of the Data Protection Commissioner, www.odpc.go.ke."
+        }
+      ],
+      "n": "12"
+    }
+  ]
+}
