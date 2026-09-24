@@ -5,7 +5,8 @@ import { getPost, posts } from "../lib/posts";
 const ORIGIN = "https://riftfi.com";
 const IMAGE = `${ORIGIN}/brand/rift-capital-sculpture.png`;
 const pages: Record<string, { title: string; description: string; name: string }> = {
-  "/": { name: "Home", title: "Rift | Capital for Africa's Productive Economy", description: "Explore Rift's vision for investing and business financing across trade, energy, agriculture and more. Discover the wallet or express institutional interest." },
+  "/": { name: "Home", title: "Rift | Receivables Financing for Africa's Productive Economy", description: "Rift is developing financing against verified receivables, starting with remittance and FX settlement. Learn how business repayments can generate investor income." },
+  "/how-it-works": { name: "How Rift works", title: "How Rift Works | Receivables Financing and Investor Income", description: "Learn how Rift plans to finance verified short-term receivables, bridge business settlement gaps and distribute borrower-paid interest to eligible investors." },
   "/businesses": { name: "Business financing", title: "Business Financing in Africa | Rift", description: "Discuss dollar liquidity, working capital, equipment and project financing with Rift. Submit an enquiry for your business across Africa's productive sectors." },
   "/blog": { name: "Journal", title: "Rift Journal | Money, Trade and Emerging Markets", description: "Essays from Rift on money, stablecoins, cross-border trade and emerging markets. Read perspectives on the financial systems supporting Africa's economy." },
   "/brand": { name: "Brand assets", title: "Rift Brand Assets | Logos, Colours and Icons", description: "Download Rift's brand kit, logo and SVG icons. Explore the colour palette, typography and guidance for using the Rift visual identity." },

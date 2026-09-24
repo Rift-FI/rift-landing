@@ -182,3 +182,72 @@ body:has(.rift-site) { background: #fff; }
 @media (prefers-reduced-motion: reduce) { .rift-site *, .rift-site *::before,.rift-site *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
 
 @media (max-width: 640px) { .r-hero-art { mask-image: none; } }
+
+/* Receivables: an editorial explanation and a ledger, using the existing Rift system. */
+.r-first-product-grid,.r-how-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 85px; align-items: center; }
+.r-first-product h2 { max-width: 560px; }
+.r-first-product p { font-size: 18px; line-height: 1.8; margin-top: 24px; }
+.r-first-product .r-link { margin-top: 30px; }
+.r-first-product + .r-vision { padding-top: 25px; }
+.rift-site .r-settlement-example { background: #f1f6f8; border: 1px solid #d9e5e9; border-radius: 5px; padding: 35px; width: 100%; }
+.r-receivable-head { display: flex; gap: 13px; align-items: center; font-size: 15px; color: #526171; }
+.r-receivable-head .r-icon { color: var(--r-blue); }
+.r-receivable-head span:last-child { margin-left: auto; font-size: 13px; }
+.r-receivable-value { font-size: clamp(38px,4.5vw,58px); font-weight: 500; line-height: 1.15; letter-spacing: -.04em; margin-top: 33px; }
+.rift-site .r-settlement-example > p { font-size: 15px; margin-top: 10px; }
+.r-receivable-ledger { margin: 30px 0 25px; }
+.r-receivable-ledger > div { display: flex; justify-content: space-between; gap: 18px; border-top: 1px solid #d1dfe4; padding: 16px 0; font-size: 14px; }
+.r-receivable-ledger dt { color: var(--r-body); }
+.r-receivable-ledger dd { margin: 0; font-weight: 500; color: var(--r-blue); font-size: 18px; white-space: nowrap; }
+.r-receivable-repayment { display: flex; gap: 17px; align-items: flex-start; }
+.r-receivable-repayment .r-icon { color: var(--r-blue); margin-top: 4px; }
+.rift-site .r-receivable-repayment p { margin: 0; font-size: 15px; line-height: 1.7; }
+.r-settlement-example figcaption { font-size: 12px; color: #647682; line-height: 1.7; margin-top: 27px; }
+.r-process-link { margin-top: 40px; }
+.r-how-hero { background: var(--r-ice); padding: 85px 0; }
+.r-how-hero h1 { font-size: clamp(42px,4.9vw,68px); }
+.r-how-hero p { font-size: 19px; margin: 27px 0 30px; }
+.r-how-hero .r-settlement-example { background: #fff; }
+.rift-site .r-product-status { font-size: 12px; line-height: 1.75; margin-bottom: 0; max-width: 500px; }
+.r-cycle-layout { display: grid; grid-template-columns: 1fr 1.15fr; gap: 80px; align-items: start; }
+.r-cycle-tabs { border-top: 1px solid var(--r-line); }
+.r-cycle-tabs button { width: 100%; display: flex; align-items: center; gap: 20px; text-align: left; padding: 25px 0; border: 0; border-bottom: 1px solid var(--r-line); background: transparent; font-size: 18px; }
+.r-cycle-tabs button > span { color: #788a96; font-size: 14px; }
+.r-cycle-tabs button .r-icon { margin-left: auto; width: 20px; opacity: .3; }
+.r-cycle-tabs button[aria-selected=true] { color: var(--r-blue); }
+.r-cycle-tabs button[aria-selected=true] .r-icon { opacity: 1; }
+.r-cycle-panel { padding: 22px 0 0; min-height: 360px; }
+.r-cycle-panel h3 { font-size: 32px; }
+.r-cycle-panel p { font-size: 18px; margin-top: 23px; line-height: 1.85; }
+.rift-site .r-cycle-panel .r-cycle-detail { padding-top: 22px; border-top: 1px solid var(--r-line); font-size: 14px; }
+.r-yield-section { background: var(--r-dark); color: white; }
+.r-yield-section p { color: #c0ccd7; }
+.r-yield-section .r-process-grid article { border-color: #455366; }
+.r-yield-section .r-icon { color: #9ad6e4; }
+.r-yield-footer { margin-top: 50px; border-top: 1px solid #455366; padding-top: 27px; }
+.r-yield-footer p { font-size: 14px; max-width: 890px; }
+.rift-site .r-yield-footer .r-link { color: #a9dce8; margin-top: 24px; }
+.r-receivable-industries article { display: grid; grid-template-columns: 50px 1fr 180px; gap: 28px; border-top: 1px solid var(--r-line); padding: 33px 0; align-items: center; }
+.r-receivable-industries article > .r-icon { width: 34px; height: 34px; color: var(--r-blue); }
+.r-receivable-industries h3 { font-size: 25px; margin-bottom: 10px; }
+.r-receivable-industries p { max-width: 670px; font-size: 16px; }
+.r-receivable-industries article > span { font-size: 14px; color: var(--r-blue); }
+.r-receivable-risk { background: #f5f8fa; }
+@media (max-width: 1000px) {
+  .r-first-product-grid,.r-how-hero-grid { gap: 40px; }
+  .rift-site .r-settlement-example { padding: 26px; }
+  .r-cycle-layout { gap: 40px; }
+}
+@media (max-width: 760px) {
+  .r-first-product-grid,.r-how-hero-grid,.r-cycle-layout { grid-template-columns: 1fr; gap: 38px; }
+  .r-how-hero { padding: 55px 0; }
+  .r-first-product p { font-size: 16px; }
+  .r-how-hero p { font-size: 17px; }
+  .r-cycle-tabs button { font-size: 16px; gap: 14px; padding: 20px 0; }
+  .r-cycle-panel { padding-top: 0; min-height: 0; }
+  .r-cycle-panel h3 { font-size: 28px; }
+  .r-cycle-panel p { font-size: 16px; }
+  .r-receivable-industries article { grid-template-columns: 35px 1fr; gap: 20px; align-items: start; }
+  .r-receivable-industries article > span { grid-column: 2; }
+  .r-receivable-industries h3 { font-size: 23px; }
+}

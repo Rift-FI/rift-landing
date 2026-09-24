@@ -63,6 +63,7 @@ async function writeSitemap(posts) {
     { loc: `${BASE_URL}/`, priority: "1.0", changefreq: "weekly" },
     // Business financing enquiries.
     { loc: `${BASE_URL}/businesses`, priority: "0.85", changefreq: "monthly" },
+    { loc: `${BASE_URL}/how-it-works`, priority: "0.9", changefreq: "monthly" },
     { loc: `${BASE_URL}/brand`, priority: "0.5", changefreq: "monthly" },
     { loc: `${BASE_URL}/blog`, priority: "0.9", changefreq: "weekly" },
     { loc: `${BASE_URL}/terms`, priority: "0.3", changefreq: "yearly" },

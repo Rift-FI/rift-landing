@@ -11,6 +11,7 @@ import { BlogPost } from "./pages/BlogPost";
 import { Terms } from "./pages/Terms";
 import { Privacy } from "./pages/Privacy";
 import { Brand } from "./pages/Brand";
+import { HowItWorks } from "./pages/HowItWorks";
 
 function PageRoutes() {
   const { pathname } = useLocation();
@@ -24,6 +25,7 @@ function PageRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/businesses" element={<Businesses />} />
+        <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/terms" element={<Terms />} />
