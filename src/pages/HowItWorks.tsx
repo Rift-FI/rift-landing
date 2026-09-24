@@ -19,7 +19,7 @@ export function HowItWorks() {
   }
   return <main id="main" className="r-how">
     <header className="r-how-hero"><div className="r-shell r-how-hero-grid">
-      <div><h1>Finance the wait.<br />Keep business moving.</h1><p>Turn settlement receivables, customer payment contracts and accepted invoices into capital for your business.</p><div className="r-actions"><a href="#settlement" className="r-button r-button-primary">See the financing cycle <RiftIcon name="arrow" /></a><a href={ENQUIRY_LINKS.financing} className="r-link">Discuss a receivable <RiftIcon name="arrow" /></a></div><p className="r-product-status">Financing and investment products are in preparation. Enquiries are open.</p></div>
+      <div><h1>Finance the wait.<br />Keep business moving.</h1><p>Access USDC financing against verified short-term settlement receivables. Built for remittance companies, cross-border payment apps and PSPs.</p><div className="r-actions"><a href="#settlement" className="r-button r-button-primary">See the financing cycle <RiftIcon name="arrow" /></a><a href={ENQUIRY_LINKS.financing} className="r-link">Discuss a receivable <RiftIcon name="arrow" /></a></div><p className="r-product-status">Financing and investment products are in preparation. Enquiries are open.</p></div>
       <SettlementExample />
     </div></header>
 
@@ -45,7 +45,7 @@ export function HowItWorks() {
     </div></section>
 
     <section className="r-section"><div className="r-shell">
-      <div className="r-section-intro"><h2>The same principle. Different industries.</h2><p>A credible payment obligation can support financing across the productive economy. Each sector needs its own assessment and structure.</p></div>
+      <div className="r-section-intro"><h2>Where this can go next.</h2><p>Beyond payment settlement, we are exploring other receivables. These are future opportunities with separate assessment and financing structures. Contact us to express interest.</p></div>
       <div className="r-receivable-industries">
         <article><RiftIcon name="trade" /><div><h3>Trade and exports</h3><p>Accepted invoices for goods already delivered to an assessed buyer.</p></div><span>Buyer payment</span></article>
         <article><RiftIcon name="agriculture" /><div><h3>Agriculture</h3><p>Verified receivables from delivered produce or processed goods. Future harvests require a different structure.</p></div><span>Offtaker payment</span></article>

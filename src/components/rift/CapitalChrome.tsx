@@ -48,11 +48,12 @@ export function CapitalNav() {
               <Link className="r-menu-bottom" to="/how-it-works" onClick={close}>Understand how Rift works <RiftIcon name="arrow" /></Link>
             </div>}
           </div>
+          <a href={anchor("fx-liquidity")} onClick={close}>Settlement liquidity</a>
           <a href={ENQUIRY_LINKS.financing} onClick={close}>Get financing</a>
           <div className="r-nav-item">
-            <button id="r-nav-sectors" onClick={() => toggle("sectors")} aria-expanded={active === "sectors"} aria-controls="r-menu-sectors">Sectors <RiftIcon name="chevron" /></button>
+            <button id="r-nav-sectors" onClick={() => toggle("sectors")} aria-expanded={active === "sectors"} aria-controls="r-menu-sectors">Future sectors <RiftIcon name="chevron" /></button>
             {active === "sectors" && <div className="r-dropdown r-sector-menu" id="r-menu-sectors">
-              {sectors.map(sector => <a href={anchor(`sector-${sector.id}`)} onClick={close} key={sector.id}><RiftIcon name={sector.icon} /><strong>{sector.name}</strong></a>)}
+              {sectors.filter(sector => sector.id !== "trade").map(sector => <a href={anchor(`sector-${sector.id}`)} onClick={close} key={sector.id}><RiftIcon name={sector.icon} /><strong>{sector.name}</strong></a>)}
             </div>}
           </div>
           <div className="r-nav-item">
@@ -81,10 +82,10 @@ export function CapitalFooter() {
       <div className="r-footer-grid">
         <div className="r-footer-brand">
           <Link to="/" className="r-logo" aria-label="Rift home"><img src="/assets/rift-logo.png" width="36" height="36" alt="" /><span>RIFT</span></Link>
-          <p>Capital markets infrastructure for Africa’s productive economy.</p>
+          <p>Dollar liquidity for payment companies. Before settlement arrives.</p>
         </div>
         <div><h3>Invest</h3><a href="https://wallet.riftfi.com">Rift Wallet</a><a href={ENQUIRY_LINKS.investor}>Institutional investors</a><Link to="/how-it-works">How it works</Link></div>
-        <div><h3>Finance</h3><a href={ENQUIRY_LINKS.financing}>Request financing</a><Link to="/how-it-works#settlement">Receivables financing</Link><a href="/#sectors">Our sectors</a></div>
+        <div><h3>Finance</h3><a href={ENQUIRY_LINKS.financing}>Request financing</a><Link to="/how-it-works#settlement">Receivables financing</Link><a href="/#sectors">Future sectors</a></div>
         <div><h3>Company</h3><a href="/#vision">Our vision</a><Link to="/blog">Journal</Link><Link to="/brand">Brand assets</Link><a href="mailto:amschel@riftfi.com">Contact</a></div>
       </div>
       <div className="r-footer-bottom"><span>© {new Date().getFullYear()} Rift Finance. Sphere Ramp LTD.</span><div><a href="https://x.com/tryrift">X / Twitter</a><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link></div></div>
