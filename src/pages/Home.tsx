@@ -1,140 +1,43 @@
-import { useState } from "react";
-import { CapitalNav, CapitalFooter } from "../components/rift/CapitalChrome";
-import { RiftIcon } from "../components/rift/RiftIcon";
-import { ENQUIRY_LINKS } from "../lib/enquiry-config";
-import { sectors, questions } from "../lib/capital-data";
-import "../styles/capital.scss";
-
-const audiences = [
-  {
-    tab: "Individual investors",
-    title: "Invest in the economy around you.",
-    description: "Rift Wallet is being built to connect you to opportunities that finance real business activity, with potential yield from the financing your capital provides.",
-    points: ["Review opportunities when they become available.", "Understand what your capital finances.", "Manage your investments through one wallet."],
-    cta: "Explore Rift Wallet",
-    href: "https://wallet.riftfi.com",
-    image: "/brand/rift-wallet-life.png",
-    alt: "Illustrative photograph of a woman using her phone in a contemporary cafe",
-    note: "Investment products are still being structured. Access will depend on availability and eligibility.",
-  },
-  {
-    tab: "Institutional investors",
-    title: "Connect your mandate to productive growth.",
-    description: "For insurers, pension funds, VCs, hedge funds and DFIs seeking exposure to Africa’s productive economy. Start a conversation around your mandate and allocation goals.",
-    points: ["Explore financing opportunities across sectors.", "Discuss investment structures and duration.", "Engage directly with the Rift team."],
-    cta: "Express investment interest",
-    href: ENQUIRY_LINKS.investor,
-    image: "/brand/rift-capital-sculpture.png",
-    alt: "Rift brand sculpture of interconnected stone, glass and metal forms",
-    note: "An expression of interest is not a commitment to invest.",
-  },
-  {
-    tab: "Businesses",
-    title: "Finance your next stage of growth.",
-    description: "Whether you need dollar liquidity, working capital, equipment or project financing, tell us what your business needs and what that capital can enable.",
-    points: ["Share your business and operating market.", "Tell us your financing needs and use of funds.", "Speak with our team about potential fit."],
-    cta: "Request financing",
-    href: ENQUIRY_LINKS.financing,
-    image: "/brand/rift-productive-economy.png",
-    alt: "Illustrative agricultural processing site with solar energy and cultivated fields",
-    note: "Financing enquiries are subject to review and do not guarantee funding.",
-  },
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { CapitalNav, CapitalFooter } from '../components/rift/CapitalChrome';
+import { RiftIcon } from '../components/rift/RiftIcon';
+import { FxLiquidity } from '../components/rift/FxLiquidity';
+import { ENQUIRY_LINKS as links } from '../lib/enquiry-config';
+import '../styles/capital.scss';
+import '../styles/receivables-home.scss';
+const items = [
+  { name: 'Remittance companies', title: 'Keep customer payments moving.', text: 'Bring forward dollars owed by your settlement partners. Fund payouts while the incoming payment completes its settlement cycle.', asset: 'Verified settlement receivables', repayment: 'Incoming partner settlement', image: 'port', alt: 'Illustrative view of a port connecting cross-border commerce', id: 'sector-trade' },
+  { name: 'Cross-border payment apps', title: 'Bridge the gap between pay-in and payout.', text: 'Access USDC financing against an established incoming payment obligation. Give your payout network liquidity before the receivable settles.', asset: 'Eligible incoming payment claims', repayment: 'Agreed settlement collections', image: 'port', alt: 'Illustrative view of international trade infrastructure', id: 'cross-border-payments' },
+  { name: 'Payment service providers', title: 'Put settlement balances to work sooner.', text: 'Finance eligible receivables from processors, acquirers and settlement partners, with a clear payer, payment date and collection route.', asset: 'Verified processor and partner receivables', repayment: 'Processor or partner payment', image: 'port', alt: 'Illustrative view of a coastal trade gateway', id: 'payment-providers' },
 ];
-
+const Arrow = () => <RiftIcon name="arrow" />;
 export const Home = () => {
-  const [audience, setAudience] = useState(0);
-  const selected = audiences[audience];
-  function changeTab(index: number, focus = false) {
-    const next = (index + audiences.length) % audiences.length;
-    setAudience(next);
-    if (focus) document.getElementById(`audience-${next}`)?.focus();
-  }
-
-  return <div className="rift-site">
-    <CapitalNav />
-    <main id="main">
-      <section className="r-hero">
-        <div className="r-shell r-hero-layout">
-          <div className="r-hero-copy">
-            <h1>Capital for Africa’s productive economy.</h1>
-            <p>Connect your capital to the businesses building Africa. Invest in opportunities across trade, energy, agriculture and beyond.</p>
-            <div className="r-actions">
-              <a className="r-button r-button-primary" href="https://wallet.riftfi.com">Invest with Rift <RiftIcon name="arrow" /></a>
-              <a className="r-button r-button-outline" href={ENQUIRY_LINKS.financing}>Get financing <RiftIcon name="arrow" /></a>
-            </div>
-          </div>
-          <div className="r-hero-art"><img src="/brand/rift-capital-sculpture.png" alt="Interconnected glass, stone and metal forms representing capital flowing into productive enterprise" width="1536" height="1024" fetchPriority="high" /></div>
-        </div>
-      </section>
-
-      <section className="r-vision r-section" id="vision">
-        <div className="r-shell r-vision-grid">
-          <h2>A new connection between capital and enterprise.</h2>
-          <div><p>Africa’s businesses produce, power, build and trade. They also need capital to grow.</p><p>Rift is building the financial infrastructure that makes this activity investable—connecting individual and institutional capital with the businesses that need financing.</p><a className="r-link" href="#how-it-works">See how it works <RiftIcon name="arrow" /></a></div>
-        </div>
-      </section>
-
-      <section className="r-audiences r-section" id="participate">
-        <div className="r-shell">
-          <h2>Built for investors and businesses.</h2>
-          <div className="r-tabs" role="tablist" aria-label="Ways to participate in Rift">
-            {audiences.map((item, i) => <button key={item.tab} id={`audience-${i}`} role="tab" aria-selected={audience === i} aria-controls={`audience-panel-${i}`} tabIndex={audience === i ? 0 : -1} onClick={() => changeTab(i)} onKeyDown={e => {
-              if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); changeTab(i + (e.key === "ArrowRight" ? 1 : -1), true); }
-              if (e.key === "Home" || e.key === "End") { e.preventDefault(); changeTab(e.key === "Home" ? 0 : audiences.length - 1, true); }
-            }}>{item.tab}</button>)}
-          </div>
-          <div className="r-audience-panel" id={`audience-panel-${audience}`} role="tabpanel" aria-labelledby={`audience-${audience}`} tabIndex={0}>
-            <div className="r-audience-copy">
-              <h3>{selected.title}</h3>
-              <p>{selected.description}</p>
-              <ul>{selected.points.map(point => <li key={point}><RiftIcon name="check" /><span>{point}</span></li>)}</ul>
-              <a className="r-button r-button-primary" href={selected.href}>{selected.cta} <RiftIcon name="arrow" /></a>
-              <p className="r-note">{selected.note}</p>
-            </div>
-            <div className={`r-audience-image r-audience-image-${audience}`}><img src={selected.image} alt={selected.alt} width="1536" height="1024" loading="lazy" /></div>
-          </div>
-        </div>
-      </section>
-
-      <section className="r-sectors r-section" id="sectors">
-        <div className="r-shell">
-          <div className="r-section-intro"><h2>Capital across the productive economy.</h2><p>Our focus spans the businesses and infrastructure that create lasting economic value.</p></div>
-          <div className="r-sector-grid">
-            {sectors.map(sector => <article id={`sector-${sector.id}`} key={sector.id}><RiftIcon name={sector.icon} /><h3>{sector.name}</h3><p>{sector.description}</p></article>)}
-          </div>
-          <div className="r-sector-bottom"><p>These sectors represent Rift’s focus. Specific investment opportunities are introduced as they become available.</p><a href={ENQUIRY_LINKS.financing} className="r-link">Discuss your financing needs <RiftIcon name="arrow" /></a></div>
-        </div>
-      </section>
-
-      <section className="r-section r-process" id="how-it-works">
-        <div className="r-shell">
-          <div className="r-section-intro"><h2>Investment connected to real economic activity.</h2><p>Returns start with what the capital enables. Rift is building on-chain infrastructure to support deployment, repayments and reporting.</p></div>
-          <div className="r-process-grid">
-            <article><RiftIcon name="institution" /><h3>Investors provide capital</h3><p>Individuals participate through Rift Wallet. Institutions engage directly around their mandates, preferred sectors and allocation goals.</p></article>
-            <article><RiftIcon name="financing" /><h3>Businesses put it to work</h3><p>Financing supports a defined business need, with agreed terms for how capital is used and repaid.</p></article>
-            <article><RiftIcon name="wallet" /><h3>Repayments generate returns</h3><p>Interest and other agreed cash flows create potential investor yield, after applicable costs and losses.</p></article>
-          </div>
-        </div>
-      </section>
-
-      <section className="r-example">
-        <div className="r-shell r-example-grid">
-          <div className="r-example-image"><img src="/brand/rift-productive-economy.png" alt="Illustrative view of solar power and agricultural production in an African landscape" width="1536" height="1024" loading="lazy" /></div>
-          <div className="r-example-copy"><h2>Financing that starts with a real business need.</h2><p>A payment provider needs dollars to settle cross-border transactions. A processor needs capital to buy the next harvest. An energy business needs equipment to expand supply.</p><p>Rift connects these needs with investors. Each opportunity has its own structure, repayment source and risks.</p><a className="r-link" href={ENQUIRY_LINKS.investor}>Explore institutional investment <RiftIcon name="arrow" /></a></div>
-        </div>
-      </section>
-
-      <section className="r-section r-faq" id="questions">
-        <div className="r-shell r-faq-layout"><h2>Questions about Rift</h2><div>{questions.map(([q,a]) => <details key={q}><summary>{q}<RiftIcon name="chevron" /></summary><p>{a}</p></details>)}</div></div>
-      </section>
-
-      <section className="r-contact">
-        <div className="r-shell"><h2>Let’s build what comes next.</h2><div className="r-contact-grid">
-          <div><h3>Invest with Rift</h3><p>Explore opportunities through the wallet or speak to us about your institution’s mandate.</p><div className="r-actions"><a className="r-button r-button-primary" href="https://wallet.riftfi.com">Open Rift Wallet <RiftIcon name="arrow" /></a><a className="r-link" href={ENQUIRY_LINKS.investor}>Institutional enquiries <RiftIcon name="arrow" /></a></div></div>
-          <div><h3>Finance your business</h3><p>Tell us what you’re building, what you need and what the right capital could make possible.</p><a className="r-button r-button-outline" href={ENQUIRY_LINKS.financing}>Request financing <RiftIcon name="arrow" /></a></div>
-        </div></div>
-      </section>
-    </main>
-    <CapitalFooter />
-  </div>;
+  const [active, setActive] = useState(0);
+  const item = items[active];
+  function select(index: number, focus = false) { const next = (index + items.length) % items.length; setActive(next); if (focus) document.getElementById(`receivable-tab-${next}`)?.focus(); }
+  return <div className="rift-site rift-home-v2"><CapitalNav /><main id="main">
+    <section className="rh-hero"><div className="r-shell rh-hero-heading"><h1>Dollar liquidity.<br /><span>Before settlement arrives.</span></h1><div><p>Short-term settlement financing for remittance companies, cross-border payment apps and PSPs. Access USDC against verified incoming payments and keep your payout network moving.</p><div className="r-actions"><a className="r-button r-button-primary" href={links.financing}>Request settlement liquidity <Arrow /></a><a className="r-link" href="#invest">Invest with Rift <Arrow /></a></div></div></div>
+    <div className="r-shell rh-carousel" role="region" aria-roledescription="carousel" aria-label="Payment businesses we serve"><div className="rh-tabs" role="tablist" aria-label="Explore payment businesses">{items.map((slide,i) => <button key={slide.name} id={`receivable-tab-${i}`} role="tab" aria-selected={active === i} aria-controls="receivable-panel" tabIndex={active === i ? 0 : -1} onClick={() => select(i)} onKeyDown={e => { if (['ArrowRight','ArrowLeft','Home','End'].includes(e.key)) { e.preventDefault(); select(e.key === 'Home' ? 0 : e.key === 'End' ? 2 : i + (e.key === 'ArrowRight' ? 1 : -1), true); } }}><span>{slide.name}</span><Arrow /></button>)}</div>
+    <div className="rh-slide" id="receivable-panel" role="tabpanel" aria-labelledby={`receivable-tab-${active}`} tabIndex={0}><div className="rh-slide-photo"><img key={item.image} src={`/brand/receivables-${item.image}.png`} alt={item.alt} width="1536" height="1024" fetchPriority="high" /><div className="rh-photo-caption"><span>Capital at work</span><span>{String(active+1).padStart(2,'0')} / 03</span></div></div><div className="rh-slide-copy" aria-live="polite"><div><h2>{item.title}</h2><p>{item.text}</p></div><dl><div><dt>What backs the financing</dt><dd>{item.asset}</dd></div><div><dt>Where repayment comes from</dt><dd>{item.repayment}</dd></div></dl><div className="rh-slide-bottom"><a className="r-link" href={links.financing}>Discuss settlement liquidity <Arrow /></a><div className="rh-controls"><button aria-label="Previous receivable" onClick={() => select(active-1)}><Arrow /></button><button aria-label="Next receivable" onClick={() => select(active+1)}><Arrow /></button></div></div></div></div><p className="rh-availability">Financing and investment products are in preparation. Enquiries are open.</p></div></section>
+    <FxLiquidity />
+    <section className="rh-intro r-shell" id="vision"><h2>Your customers move fast.<br />Your liquidity should too.</h2><div><p>A customer needs a payout today. Your settlement partner pays in a few days.</p><p>Rift connects dollar capital with verified short-term settlement receivables. An approved USDC advance bridges the timing gap; the incoming settlement repays the facility.</p><Link className="r-link" to="/how-it-works">See how Rift works <Arrow /></Link></div></section>
+    <section className="rh-flow" id="how-it-works"><div className="r-shell"><div className="rh-section-heading"><h2>A clear path from<br />receivable to capital.</h2><Link className="r-link" to="/how-it-works">Explore the process <Arrow /></Link></div><div className="rh-flow-grid">{[
+      ['Show what you’re owed.','Share your settlement records, payer and expected payment date. We verify the incoming obligation and agree collection terms.'],
+      ['Bring your capital forward.','Agree your facility and receive an advance against eligible receivables. Put it to work where your business needs it.'],
+      ['Repay as payments arrive.','Collections follow an agreed route to repay the advance and interest. A clear connection between financing and its repayment source.'],
+    ].map(([title,text],i) => <article key={title}><span>0{i+1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+    <section className="rh-invest r-shell" id="invest"><div><h2>Your capital.<br />Connected to<br />real business.</h2><p>Supply dollar liquidity to payment providers against verified settlement receivables. Providers pay a financing charge for earlier access to funds. Collected income supports investor distributions under each pool’s terms.</p><Link className="r-link" to="/how-it-works#investor-income">Understand how you earn <Arrow /></Link></div><div className="rh-invest-options"><article><RiftIcon name="wallet" /><h3>For individuals</h3><p>Explore Rift Wallet, your access point for future investment opportunities.</p><a className="r-link" href="https://wallet.riftfi.com">Explore the wallet <Arrow /></a></article><article><RiftIcon name="institution" /><h3>For institutions</h3><p>Discuss allocations, investment duration and the receivables that fit your mandate.</p><a className="r-link" href={links.investor}>Talk to our team <Arrow /></a></article></div></section>
+    <section className="rh-sectors" id="sectors"><div className="r-shell"><div className="rh-section-heading"><h2>Beyond payments.<br />More possibilities ahead.</h2><p>Energy, agriculture and export finance are future opportunities. Tell us where your business needs capital.</p></div><div className="rh-sector-grid">{[
+      {name:'Energy & solar',image:'solar',id:'sector-energy',text:'Register interest in future financing against eligible energy invoices and existing solar customer contracts.'},
+      {name:'Agriculture & exports',image:'export',id:'sector-agriculture',text:'Register interest in future working-capital facilities against accepted buyer invoices.'},
+    ].map(sector => <a id={sector.id} key={sector.name} href={links.financing}><img src={`/brand/receivables-${sector.image}.png`} alt={`Illustrative ${sector.name.toLowerCase()} sector photograph`} width="1536" height="1024" loading="lazy" /><div><h3>{sector.name}</h3><Arrow /></div><p>{sector.text}</p><span className="rh-future-cta">Express interest <Arrow /></span></a>)}</div><div className="rh-other-sectors"><span id="sector-manufacturing">Manufacturing</span><span id="sector-mining">Resources</span><span id="sector-infrastructure">Infrastructure</span><a href={links.financing}>Other financing needs? Express interest <Arrow /></a></div></div></section>
+    <section className="rh-faq r-shell" id="questions"><h2>A few things<br />worth knowing.</h2><div>{[
+      ['What is a receivable?','A receivable is money owed to your business. It might be a payment awaiting settlement, an accepted invoice or payments due under an existing customer contract.'],
+      ['Why use USDC?','USDC can move onchain around the clock and transfers can settle in seconds on supported networks. This speeds up the funding leg. Approval, network finality, conversion and final customer payout have their own timings.'],
+      ['Where does investor income come from?','Businesses pay interest for access to financing. Investor income comes from these payments, with distributions calculated under each pool’s terms.'],
+      ['How do I get started?','Send a financing enquiry with your business details and receivables, or express investment interest. Our team will follow up as products become available.'],
+    ].map(([q,a]) => <details key={q}><summary>{q}<RiftIcon name="chevron" /></summary><p>{a}</p></details>)}</div></section>
+    <section className="rh-close"><div className="r-shell"><h2>Keep your next<br />payment moving.</h2><div className="r-actions"><a className="r-button r-button-primary" href={links.financing}>Request settlement liquidity <Arrow /></a><a className="r-link" href={links.investor}>Explore investment <Arrow /></a></div></div></section>
+  </main><CapitalFooter /></div>;
 };

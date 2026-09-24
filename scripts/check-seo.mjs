@@ -2,7 +2,7 @@ import { readFile, access } from "node:fs/promises";
 import assert from "node:assert/strict";
 const sitemap = await readFile("dist/sitemap.xml", "utf8");
 const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
-assert.equal(urls.length, 8);
+assert.equal(urls.length, 9);
 const titles = new Set();
 for (const url of urls) {
   assert.ok(url.startsWith("https://riftfi.com/"));

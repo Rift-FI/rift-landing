@@ -45,14 +45,15 @@ export function CapitalNav() {
             {active === "invest" && <div className="r-dropdown r-invest-menu" id="r-menu-invest">
               <a href="https://wallet.riftfi.com" onClick={close}><RiftIcon name="wallet" /><div><strong>Rift Wallet</strong><p>Your access to real-economy investments.</p></div><RiftIcon name="arrow" /></a>
               <a href={ENQUIRY_LINKS.investor} onClick={close}><RiftIcon name="institution" /><div><strong>Institutional investment</strong><p>Connect your mandate to productive opportunities.</p></div><RiftIcon name="arrow" /></a>
-              <a className="r-menu-bottom" href={anchor("how-it-works")} onClick={close}>Understand how Rift works <RiftIcon name="arrow" /></a>
+              <Link className="r-menu-bottom" to="/how-it-works" onClick={close}>Understand how Rift works <RiftIcon name="arrow" /></Link>
             </div>}
           </div>
+          <a href={anchor("fx-liquidity")} onClick={close}>Settlement liquidity</a>
           <a href={ENQUIRY_LINKS.financing} onClick={close}>Get financing</a>
           <div className="r-nav-item">
-            <button id="r-nav-sectors" onClick={() => toggle("sectors")} aria-expanded={active === "sectors"} aria-controls="r-menu-sectors">Sectors <RiftIcon name="chevron" /></button>
+            <button id="r-nav-sectors" onClick={() => toggle("sectors")} aria-expanded={active === "sectors"} aria-controls="r-menu-sectors">Future sectors <RiftIcon name="chevron" /></button>
             {active === "sectors" && <div className="r-dropdown r-sector-menu" id="r-menu-sectors">
-              {sectors.map(sector => <a href={anchor(`sector-${sector.id}`)} onClick={close} key={sector.id}><RiftIcon name={sector.icon} /><strong>{sector.name}</strong></a>)}
+              {sectors.filter(sector => sector.id !== "trade").map(sector => <a href={anchor(`sector-${sector.id}`)} onClick={close} key={sector.id}><RiftIcon name={sector.icon} /><strong>{sector.name}</strong></a>)}
             </div>}
           </div>
           <div className="r-nav-item">
@@ -64,7 +65,7 @@ export function CapitalNav() {
               <a href="mailto:amschel@riftfi.com" onClick={close}>Contact us <RiftIcon name="arrow" /></a>
             </div>}
           </div>
-          <a href="https://portal.riftfi.xyz/docs" onClick={close}>Developers</a>
+          <Link to="/how-it-works" onClick={close}>How it works</Link>
         </nav>
         <div className="r-nav-right">
           <a href="https://wallet.riftfi.com" className="r-button r-button-dark">Open Wallet</a>
@@ -81,14 +82,14 @@ export function CapitalFooter() {
       <div className="r-footer-grid">
         <div className="r-footer-brand">
           <Link to="/" className="r-logo" aria-label="Rift home"><img src="/assets/rift-logo.png" width="36" height="36" alt="" /><span>RIFT</span></Link>
-          <p>Capital markets infrastructure for Africa’s productive economy.</p>
+          <p>Dollar liquidity for payment companies. Before settlement arrives.</p>
         </div>
-        <div><h3>Invest</h3><a href="https://wallet.riftfi.com">Rift Wallet</a><a href={ENQUIRY_LINKS.investor}>Institutional investors</a><a href="/#how-it-works">How it works</a></div>
-        <div><h3>Finance</h3><a href={ENQUIRY_LINKS.financing}>Request financing</a><a href="/#sectors">Our sectors</a><a href="https://portal.riftfi.xyz/docs">Developer documentation</a></div>
+        <div><h3>Invest</h3><a href="https://wallet.riftfi.com">Rift Wallet</a><a href={ENQUIRY_LINKS.investor}>Institutional investors</a><Link to="/how-it-works">How it works</Link></div>
+        <div><h3>Finance</h3><a href={ENQUIRY_LINKS.financing}>Request financing</a><Link to="/how-it-works#settlement">Receivables financing</Link><a href="/#sectors">Future sectors</a></div>
         <div><h3>Company</h3><a href="/#vision">Our vision</a><Link to="/blog">Journal</Link><Link to="/brand">Brand assets</Link><a href="mailto:amschel@riftfi.com">Contact</a></div>
       </div>
       <div className="r-footer-bottom"><span>© {new Date().getFullYear()} Rift Finance. Sphere Ramp LTD.</span><div><a href="https://x.com/tryrift">X / Twitter</a><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link></div></div>
-      <p className="r-disclosure">Investing involves risk, including the possible loss of principal. Returns are not guaranteed. Availability, eligibility and withdrawal terms vary by opportunity and jurisdiction. This website describes Rift’s vision and is not an offer to sell an investment. Review the applicable terms and risk information before investing.</p>
+
     </div>
   </footer>;
 }
