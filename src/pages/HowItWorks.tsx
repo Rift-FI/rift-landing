@@ -41,7 +41,7 @@ export function HowItWorks() {
         <article><RiftIcon name="financing" /><h3>Finance eligible receivables</h3><p>Capital supports approved advances. The pool holds a mix of cash and financing claims as funds are deployed and repaid.</p></article>
         <article><RiftIcon name="wallet" /><h3>Receive your share of income</h3><p>Collections support investor distributions. Charges, adjustments and withdrawals follow each pool’s investment terms.</p></article>
       </div>
-      <div className="r-yield-footer"><p>Rift’s proposed fees are a one-percentage-point annual spread on outstanding financing and a 1% fee on eligible business originations. Each offering will disclose its exact charges. This is not an advertised investor yield.</p><a href={ENQUIRY_LINKS.investor} className="r-link">Discuss institutional investment <RiftIcon name="arrow" /></a></div>
+      <div className="r-yield-footer"><p>Each facility sets out its financing rate, service charges and payment schedule. Investor distributions follow the terms of the selected pool.</p><a href={ENQUIRY_LINKS.investor} className="r-link">Discuss institutional investment <RiftIcon name="arrow" /></a></div>
     </div></section>
 
     <section className="r-section"><div className="r-shell">
