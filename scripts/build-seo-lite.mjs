@@ -2,7 +2,7 @@
 /**
  * Vercel-safe SEO step. No browser, no spawned servers.
  * Just walks src/content/blog, writes sitemap.xml and feed.xml into dist/.
- * Exits 0 even on individual failures so the deploy never breaks.
+ * Fails the build if search assets cannot be generated.
  */
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -10,7 +10,7 @@ import path from "node:path";
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, "dist");
 const POSTS_DIR = path.join(ROOT, "src", "content", "blog");
-const BASE_URL = "https://riftfi.xyz";
+const BASE_URL = "https://riftfi.com";
 
 function parseFrontmatter(raw) {
   const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
@@ -59,11 +59,11 @@ function escapeXml(s) {
 
 async function writeSitemap(posts) {
   const urls = [
-    // Institutional pitch is the primary landing after the 2026-08 pivot.
+    // Public marketing routes.
     { loc: `${BASE_URL}/`, priority: "1.0", changefreq: "weekly" },
-    // Business-facing page (SME cross-border payments) — still ranks for
-    // its own long-tail queries so it's kept indexable at 0.85.
+    // Business financing enquiries.
     { loc: `${BASE_URL}/businesses`, priority: "0.85", changefreq: "monthly" },
+    { loc: `${BASE_URL}/brand`, priority: "0.5", changefreq: "monthly" },
     { loc: `${BASE_URL}/blog`, priority: "0.9", changefreq: "weekly" },
     { loc: `${BASE_URL}/terms`, priority: "0.3", changefreq: "yearly" },
     { loc: `${BASE_URL}/privacy`, priority: "0.3", changefreq: "yearly" },
@@ -87,6 +87,7 @@ ${urls.map((u) =>
 </urlset>
 `;
   await fs.writeFile(path.join(DIST, "sitemap.xml"), xml, "utf8");
+  await fs.writeFile(path.join(ROOT, "public", "sitemap.xml"), xml, "utf8");
   console.log(`[seo-lite] sitemap.xml — ${urls.length} URLs`);
 }
 
@@ -98,7 +99,7 @@ async function writeRss(posts) {
       <guid isPermaLink="true">${BASE_URL}/blog/${p.slug}</guid>
       <description>${escapeXml(p.description)}</description>
       <pubDate>${new Date(p.date).toUTCString()}</pubDate>
-      <author>noreply@riftfi.xyz (${escapeXml(p.author)})</author>
+      <author>amschel@riftfi.com (${escapeXml(p.author)})</author>
 ${(p.tags || []).map((t) => `      <category>${escapeXml(t)}</category>`).join("\n")}
     </item>`
   ).join("\n");
@@ -108,7 +109,7 @@ ${(p.tags || []).map((t) => `      <category>${escapeXml(t)}</category>`).join("
   <channel>
     <title>Rift Journal</title>
     <link>${BASE_URL}/blog</link>
-    <description>Essays from the Rift team on stablecoins, emerging markets and the future of programmable money.</description>
+    <description>Essays from Rift on money, trade, stablecoins and emerging markets.</description>
     <language>en</language>
     <atom:link href="${BASE_URL}/feed.xml" rel="self" type="application/rss+xml" />
 ${items}
@@ -116,6 +117,7 @@ ${items}
 </rss>
 `;
   await fs.writeFile(path.join(DIST, "feed.xml"), xml, "utf8");
+  await fs.writeFile(path.join(ROOT, "public", "feed.xml"), xml, "utf8");
   console.log(`[seo-lite] feed.xml — ${posts.length} items`);
 }
 
@@ -135,5 +137,5 @@ async function main() {
 
 main().catch((err) => {
   console.error("[seo-lite] warn:", err.message);
-  process.exit(0);
+  process.exitCode = 1;
 });

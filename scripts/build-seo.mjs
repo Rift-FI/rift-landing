@@ -19,7 +19,7 @@ import net from "node:net";
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, "dist");
 const POSTS_DIR = path.join(ROOT, "src", "content", "blog");
-const BASE_URL = "https://riftfi.xyz";
+const BASE_URL = "https://riftfi.com";
 const PORT = 4173;
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -290,7 +290,7 @@ async function main() {
     browser = await chromium.launch({ headless: true });
     const ctx = await browser.newContext({
       viewport: { width: 1440, height: 900 },
-      userAgent: "RiftPrerender/1.0 (+https://riftfi.xyz)",
+      userAgent: "RiftPrerender/1.0 (+https://riftfi.com)",
     });
     const page = await ctx.newPage();
 

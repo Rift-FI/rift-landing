@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rift Journal</title>
+    <link>https://riftfi.com/blog</link>
+    <description>Essays from Rift on money, trade, stablecoins and emerging markets.</description>
+    <language>en</language>
+    <atom:link href="https://riftfi.com/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Compressing the Dollar</title>
+      <link>https://riftfi.com/blog/compressing-the-dollar</link>
+      <guid isPermaLink="true">https://riftfi.com/blog/compressing-the-dollar</guid>
+      <description>African cross-border payments do not have a messaging problem. They have a dollar problem. Netting is how you shrink it.</description>
+      <pubDate>Tue, 18 Aug 2026 00:00:00 GMT</pubDate>
+      <author>amschel@riftfi.com (Amschel)</author>
+      <category>Essay</category>
+      <category>Netting</category>
+      <category>Settlement</category>
+      <category>Africa</category>
+    </item>
+    <item>
+      <title>The Parallel Market Is a Price</title>
+      <link>https://riftfi.com/blog/parallel-market-is-a-price</link>
+      <guid isPermaLink="true">https://riftfi.com/blog/parallel-market-is-a-price</guid>
+      <description>Why two exchange rates persist in every fragile economy, why every ban fails, and why stablecoins did not abolish the parallel market — they digitised it.</description>
+      <pubDate>Sat, 20 Jun 2026 00:00:00 GMT</pubDate>
+      <author>amschel@riftfi.com (Amschel)</author>
+      <category>Essay</category>
+      <category>Economics</category>
+      <category>Stablecoins</category>
+      <category>Emerging Markets</category>
+    </item>
+  </channel>
+</rss>

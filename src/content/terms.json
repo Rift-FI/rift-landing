@@ -1,0 +1,202 @@
+{
+  "title": "Terms of Service",
+  "updated": "24 September 2026",
+  "sections": [
+    {
+      "title": "Who we are and what these terms cover",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Rift is a product of Sphere Ramp Ltd, a company incorporated in Kenya (registration number PVT-9WYFD5), with its registered office at Enkang, Ngong Road, Nairobi. These terms govern your use of riftfi.com, its information and enquiry forms. References to Rift, we, us and our mean Sphere Ramp Ltd."
+        },
+        {
+          "kind": "p",
+          "text": "Rift is building infrastructure that connects individual and institutional capital with business financing across trade and FX liquidity, energy, agriculture, mining, manufacturing and infrastructure. Investment products are still being structured. Descriptions of planned features or sectors do not mean that an investment or financing product is available."
+        },
+        {
+          "kind": "p",
+          "text": "Rift Wallet at wallet.riftfi.com is the intended access point for individual participation. Wallet services, investments and financing arrangements are subject to the additional terms, disclosures and agreements presented for those services. These website terms do not replace them."
+        }
+      ],
+      "n": "1"
+    },
+    {
+      "title": "Who may use the website",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "You may read our public information without making an investment or creating an account. Investment and financing participation is intended for adults aged 18 or over and eligible organisations. Availability depends on location, investor category, applicable law, verification and the terms of the particular product."
+        },
+        {
+          "kind": "p",
+          "text": "If you contact us on behalf of an institution or business, you must be authorised to do so. Provide accurate, current information and tell us if material details change. Do not use our services where doing so would breach applicable law or sanctions."
+        }
+      ],
+      "n": "2"
+    },
+    {
+      "title": "Enquiries are not commitments",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Our institutional interest form and business financing form are invitations to start a conversation. Sending a form does not open an investment account, reserve an allocation, create an investment, approve a loan or bind either party to a transaction. We may request further information or decline to proceed."
+        },
+        {
+          "kind": "p",
+          "text": "Institutional applicants may include insurers, pension funds, venture capital firms, hedge funds and development finance institutions. Financing applicants may include remittance and payment companies and businesses across our focus sectors. A sector listing is not a promise of eligibility or funding."
+        }
+      ],
+      "n": "3"
+    },
+    {
+      "title": "Investment documents and regulatory requirements",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Before any investment can be accepted, the relevant offering and contractual documents must identify the provider and legal structure, eligibility requirements, applicable authorisations, rights to the underlying cash flows, fees, risks, repayment and exit terms. Participation is subject to those documents and any required approvals."
+        },
+        {
+          "kind": "p",
+          "text": "This website is general information about Rift and its development plans. It is not a prospectus, personalised recommendation, or an invitation to invest where an offer would be unlawful. Nothing on the site represents that Rift, an investment vehicle or a product has received regulatory approval. Any applicable authorisation must be verified from the specific product documents and relevant regulator."
+        }
+      ],
+      "n": "4"
+    },
+    {
+      "title": "Returns and investment risks",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Potential yield is intended to arise from the underlying financing activity, such as interest paid by a business using liquidity or working capital. Actual returns depend on the agreement, borrower performance, costs, taxes and losses. Indicative or target returns are estimates, not promises."
+        },
+        {
+          "kind": "ul",
+          "items": [
+            "You may lose some or all of your invested capital. Borrowers or counterparties may default, and recovery may be delayed or unsuccessful.",
+            "Investments may have fixed terms, restrictions on transfer or withdrawal, and no secondary market. You should not assume that capital can be withdrawn on demand.",
+            "Currency movements, stablecoin depegging, issuer or reserve problems, network fees and conversion costs may affect value and returns.",
+            "Sector, country, operational, legal and regulatory risks may affect the underlying business and repayment.",
+            "Smart contracts, digital wallets, networks and third-party systems can fail or be compromised. On-chain records do not remove credit or investment risk."
+          ]
+        },
+        {
+          "kind": "p",
+          "text": "Do not assume that capital, stablecoins or returns are insured, guaranteed or covered by deposit protection. Any protection must be expressly described in the applicable product documents. Consider your circumstances and obtain independent financial, legal and tax advice where needed."
+        }
+      ],
+      "n": "5"
+    },
+    {
+      "title": "Business financing",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Financing may involve liquidity facilities, working capital, equipment or project finance, depending on the arrangement. Amounts, currency, pricing, collateral, covenants, repayment schedules and default remedies are agreed in separate financing documents following assessment."
+        },
+        {
+          "kind": "p",
+          "text": "An enquiry does not authorise Rift to charge a fee or debit funds. Do not send money to reserve funding on the basis of an unsolicited message. Any agreed fees and payment instructions must be provided through the relevant agreement and verified contact channels."
+        }
+      ],
+      "n": "6"
+    },
+    {
+      "title": "Wallets, digital assets and security",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Wallet custody, key management, recovery arrangements and the role of any third-party provider are determined by the wallet terms presented to you. These website terms do not promise a particular custody model or ability to restore access."
+        },
+        {
+          "kind": "p",
+          "text": "Protect your devices, credentials and recovery information. Never send passwords, private keys, seed phrases or authentication codes through an enquiry form. Verify addresses, networks and transaction details before authorising a transfer. Confirmed blockchain transactions may be irreversible."
+        },
+        {
+          "kind": "p",
+          "text": "Service availability and settlement times depend on networks, providers, liquidity and verification. Fees, exchange rates and transaction terms must be reviewed before confirmation. Contact amschel@riftfi.com if you suspect fraud or unauthorised activity."
+        }
+      ],
+      "n": "7"
+    },
+    {
+      "title": "Verification and responsible use",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Before providing a regulated or financial service, Rift or the relevant provider may need identity, ownership, source-of-funds and other due-diligence information, and may undertake sanctions, fraud and compliance checks. Requirements depend on the product and applicable law."
+        },
+        {
+          "kind": "p",
+          "text": "Do not use the website or forms for fraud, misleading applications, unlawful financial activity, harassment, malicious code, or attempts to obtain unauthorised access. We may restrict access where reasonably necessary to protect users or comply with law. Any rights concerning existing investments or financing remain governed by their contracts and applicable law."
+        }
+      ],
+      "n": "8"
+    },
+    {
+      "title": "Privacy and third-party services",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Our Privacy Policy explains how we handle website visits, enquiries and related communications. Tally hosts the enquiry forms. The wallet and other third-party services may have additional terms and privacy notices."
+        },
+        {
+          "kind": "p",
+          "text": "External links are provided for convenience. Review the terms of any external service before using it. Our use of service providers does not remove responsibilities that applicable law places on us."
+        }
+      ],
+      "n": "9"
+    },
+    {
+      "title": "Website content and intellectual property",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "The Rift name, designs, original artwork, software and website content belong to Sphere Ramp Ltd or their respective owners. You may use this website for lawful personal or business evaluation. Brand assets may be used in accordance with the published brand guidelines, without suggesting an endorsement or partnership."
+        },
+        {
+          "kind": "p",
+          "text": "Journal articles provide general commentary, not personalised investment advice. Illustrative images do not depict actual investors, portfolio companies, financed projects or investment performance unless expressly stated. We aim to keep information accurate but may correct or update it as plans develop."
+        }
+      ],
+      "n": "10"
+    },
+    {
+      "title": "Availability and responsibility",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "We take reasonable care in providing the website but do not promise uninterrupted access, error-free information or availability of a proposed product. To the extent permitted by law, we are not liable for losses caused solely by reliance on general website information as a personal investment recommendation."
+        },
+        {
+          "kind": "p",
+          "text": "Nothing in these terms excludes or limits liability for fraud, wilful misconduct, or any liability or consumer right that cannot lawfully be excluded or limited. Rights, obligations and liability concerning an actual wallet service, investment or financing are addressed in its applicable agreement."
+        }
+      ],
+      "n": "11"
+    },
+    {
+      "title": "Changes and applicable law",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "We may update these website terms to reflect changes to the website, our services or applicable law. The last-updated date identifies this version. Material changes will be brought to your attention in an appropriate way. Changes to an existing financial agreement follow that agreement and applicable law."
+        },
+        {
+          "kind": "p",
+          "text": "These website terms are governed by Kenyan law, without depriving consumers of mandatory protections that apply where they live. Please contact us first with a concern. Nothing here prevents you from approaching a competent court or regulator or exercising a statutory complaint right."
+        }
+      ],
+      "n": "12"
+    },
+    {
+      "title": "Contact",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Sphere Ramp Ltd (Rift), Enkang, Ngong Road, Nairobi, Kenya. Email: amschel@riftfi.com. For privacy requests, use the same address and indicate that your request concerns personal data."
+        }
+      ],
+      "n": "13"
+    }
+  ]
+}
