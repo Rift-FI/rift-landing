@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 const sitemap = await readFile("dist/sitemap.xml", "utf8");
 const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
 assert.equal(urls.length, 9);
-const titles = new Set();
+const titles = new Set(); const descriptions = new Set();
 for (const url of urls) {
   assert.ok(url.startsWith("https://riftfi.com/"));
   const route = new URL(url).pathname;
@@ -15,7 +15,12 @@ for (const url of urls) {
   assert.equal((head.match(/<title\b/g) || []).length, 1);
   const title = head.match(/<title[^>]*>(.*?)<\/title>/s)?.[1];
   assert.ok(title && !titles.has(title), `${route}: unique title`); titles.add(title);
-  for (const tag of ['name="description"', 'property="og:title"', 'property="og:description"', 'property="og:url"', 'property="og:image"', 'name="twitter:card"']) assert.equal(head.split(tag).length - 1, 1, `${route}: ${tag}`);
+  for (const tag of ['name="description"', 'property="og:title"', 'property="og:description"', 'property="og:url"', 'property="og:image"', 'property="og:locale"', 'name="twitter:card"']) assert.equal(head.split(tag).length - 1, 1, `${route}: ${tag}`);
+  const description = head.match(/<meta\b[^>]*name="description"[^>]*content="([^"]*)"/)?.[1];
+  const [floor, ceiling] = route.startsWith('/blog/') ? [80, 200] : [140, 160];
+  assert.ok(description && description.length >= floor && description.length <= ceiling, `${route}: description length ${description?.length} outside ${floor}-${ceiling}`);
+  assert.ok(!descriptions.has(description), `${route}: unique description`); descriptions.add(description);
+  assert.ok(!/\b(solar|agricultur|mining|manufactur)/i.test(head), `${route}: retired sector vocabulary in metadata`);
   const scripts = [...head.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)];
   assert.equal(scripts.length, 1);
   const structured = JSON.parse(scripts[0][1]);
@@ -31,4 +36,4 @@ assert.ok(!sitemap.includes('riftfi.xyz'));
 const config = JSON.parse(await readFile('vercel.json','utf8'));
 assert.equal(config.cleanUrls, true);
 assert.ok(config.redirects.some(r => r.has?.[0]?.value === 'riftfi.xyz' && r.destination.startsWith('https://riftfi.com')));
-console.log(`SEO checks passed: ${urls.length} pages, unique metadata, valid JSON-LD, local assets, sitemap, feed and domain redirect.`);
+console.log(`SEO checks passed: ${urls.length} pages, unique titles and descriptions, valid JSON-LD, local assets, sitemap, feed and domain redirect.`);

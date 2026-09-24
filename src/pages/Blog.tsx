@@ -17,7 +17,7 @@ function formatDate(iso: string) {
 
   try {
 
-    return new Date(iso).toLocaleDateString("en-US", {
+    return new Date(iso).toLocaleDateString("en-GB", {
 
       year: "numeric",
 

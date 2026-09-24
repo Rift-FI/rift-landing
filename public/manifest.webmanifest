@@ -1,7 +1,8 @@
 {
-  "name": "Rift Finance",
+  "id": "/",
+  "name": "Rift - Settlement Liquidity",
   "short_name": "Rift",
-  "description": "Capital for Africa's productive economy. Investment and business financing infrastructure.",
+  "description": "Short-term USDC liquidity for remittance companies, cross-border payment apps, PSPs and FX businesses, advanced against verified settlement receivables.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -14,9 +15,15 @@
   ],
   "icons": [
     {
-      "src": "/assets/rift-logo.png",
+      "src": "/assets/rift-icon-192.png",
       "type": "image/png",
-      "sizes": "any",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/rift-icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
       "purpose": "any"
     }
   ]
