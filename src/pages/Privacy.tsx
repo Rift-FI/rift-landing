@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { Helmet } from "react-helmet-async";
 import { I } from "../lib/rift-data";
+import { InstitutionalFooter } from "../components/rift/institutional";
 
 const LAST_UPDATED = "04/07/2026";
 
@@ -298,6 +299,7 @@ export const Privacy = () => {
           </article>
         </div>
       </main>
+      <InstitutionalFooter />
     </Fragment>
   );
 };

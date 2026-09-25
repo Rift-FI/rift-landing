@@ -7,6 +7,7 @@ import { Reveal, StaggerGroup, StaggerItem } from "../components/motion/Reveal";
 import { CoverArt } from "../components/blog/CoverArt";
 import { posts } from "../lib/posts";
 import "../styles/components/blog/blog.scss";
+import { InstitutionalFooter } from "../components/rift/institutional";
 
 function formatDate(iso: string) {
   try {
@@ -63,6 +64,7 @@ export const Blog = () => {
   const [featured, ...rest] = filtered;
 
   return (
+    <>
     <main id="blog-page">
       <Helmet>
         <title>Rift Blog. Stablecoins, emerging markets, and fintech.</title>
@@ -267,5 +269,7 @@ export const Blog = () => {
         </>
       )}
     </main>
+    <InstitutionalFooter />
+    </>
   );
 };

@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import { Nav } from "./components/rift/Nav";
-import { Footer } from "./components/rift/sections";
 import { ScrollToTop } from "./components/motion/ScrollToTop";
 import { Home } from "./pages/Home";
 import { Businesses } from "./pages/Businesses";
@@ -10,9 +9,9 @@ import { Terms } from "./pages/Terms";
 import { Privacy } from "./pages/Privacy";
 
 function App() {
-  // dark theme only — no switching
+  // light theme, matching the institutional home rebuild
   return (
-    <div className="theme-dark">
+    <div className="theme-light">
       <ScrollToTop />
       <Nav />
       <Routes>
@@ -24,7 +23,6 @@ function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="*" element={<Home />} />
       </Routes>
-      <Footer />
     </div>
   );
 }

@@ -8,6 +8,7 @@ import { CoverArt } from "../components/blog/CoverArt";
 import { Reveal } from "../components/motion/Reveal";
 import { getPost, posts } from "../lib/posts";
 import "../styles/components/blog/blog-post.scss";
+import { InstitutionalFooter } from "../components/rift/institutional";
 
 type AuthorInfo = { name: string; bio: string; calendly?: string; photo?: string };
 
@@ -79,6 +80,7 @@ export const BlogPost = () => {
   };
 
   return (
+    <>
     <main id="blog-post">
       <Helmet>
         <html lang="en" />
@@ -257,5 +259,7 @@ export const BlogPost = () => {
         </section>
       )}
     </main>
+    <InstitutionalFooter />
+    </>
   );
 };

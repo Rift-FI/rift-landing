@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { Helmet } from "react-helmet-async";
 import { Reveal } from "../components/rift/Reveal";
 import { I } from "../lib/rift-data";
+import { InstitutionalFooter } from "../components/rift/institutional";
 
 /**
  * /businesses page. Speed and cost lead, credit history closes.
@@ -182,5 +183,6 @@ export const Businesses = () => (
         </div>
       </div>
     </section>
+    <InstitutionalFooter />
   </Fragment>
 );

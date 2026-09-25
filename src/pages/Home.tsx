@@ -2,6 +2,8 @@ import { Fragment } from "react";
 import { Helmet } from "react-helmet-async";
 import {
  InstitutionalHero,
+ InstitutionalProof,
+ HowItSettles,
  InstitutionalProducts,
  Deployment,
  InstitutionalPartners,
@@ -193,6 +195,41 @@ export const Home = () => (
  "Offsetting obligations are matched on a shared ledger; only the residual settles. Compresses the dollar liquidity a corridor requires by 40 to 60 percent.",
  areaServed: "Africa",
  },
+ {
+ "@type": "Service",
+ "@id": "https://riftfi.xyz/#payments",
+ name: "Rift Payments",
+ provider: { "@id": "https://riftfi.xyz/#org" },
+ serviceType: "Payouts and collections",
+ description:
+ "Pay out to any M-Pesa number or bank account in Kenya, and collect payment from anywhere in the world. A client pays a link in stablecoins, the recipient is paid in local currency in minutes. One API for both directions.",
+ areaServed: [
+ { "@type": "Country", name: "Kenya" },
+ { "@type": "Country", name: "Tanzania" },
+ { "@type": "Country", name: "Ghana" },
+ { "@type": "Country", name: "Nigeria" },
+ ],
+ },
+ {
+ "@type": "Service",
+ "@id": "https://riftfi.xyz/#treasury",
+ name: "Rift Treasury",
+ provider: { "@id": "https://riftfi.xyz/#org" },
+ serviceType: "Programmable stablecoin treasury",
+ description:
+ "Hold working capital in stablecoins and move it programmatically. Sweep balances, fund payouts on approval, convert into local currency on your own schedule. Every movement is signed inside a hardware enclave and written to an audit log.",
+ areaServed: "Africa",
+ },
+ {
+ "@type": "Service",
+ "@id": "https://riftfi.xyz/#credit",
+ name: "Rift Credit",
+ provider: { "@id": "https://riftfi.xyz/#org" },
+ serviceType: "Receivables financing infrastructure (in preparation)",
+ description:
+ "Payment history produced by Rift rails gives a lender verifiable data to underwrite a receivable against, with repayment applied automatically when the payment settles. In preparation with lending partners, not yet live.",
+ areaServed: "Africa",
+ },
  ],
  })}</script>
 
@@ -248,6 +285,8 @@ export const Home = () => (
  </Helmet>
 
  <InstitutionalHero />
+ <InstitutionalProof />
+ <HowItSettles />
  <InstitutionalProducts />
  <Deployment />
  <InstitutionalPartners />
