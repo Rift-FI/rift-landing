@@ -36,19 +36,13 @@ export const Nav = () => {
           <span className="wm">Rift</span>
         </Link>
         <div className="nav-links">
-          <a href={anchor("products")}>Products</a>
           <a href={anchor("how")}>How it works</a>
-          <a href={anchor("deployment")}>Deployment</a>
-          <a href={anchor("partners")}>Partners</a>
-          <Link to="/businesses">For businesses</Link>
+          <a href={anchor("who")}>Who it is for</a>
           <Link to="/blog">Blog</Link>
         </div>
         <div className="nav-cta">
-          <a className="tlink hide-sm" href="https://portal.riftfi.xyz/docs" target="_blank" rel="noopener noreferrer">
-            Read the docs
-          </a>
-          <a className="btn btn-primary hide-xs" href="mailto:amschel@riftfi.com">
-            Talk to us
+          <a className="btn btn-primary hide-xs" href="/#contact">
+            Get in touch
           </a>
           <button
             type="button"
@@ -72,22 +66,11 @@ export const Nav = () => {
       >
         <div className="nav-mobile-backdrop" onClick={closeMenu} />
         <div className="nav-mobile-panel">
-          <a href={anchor("products")} onClick={closeMenu}>Products</a>
           <a href={anchor("how")} onClick={closeMenu}>How it works</a>
-          <a href={anchor("deployment")} onClick={closeMenu}>Deployment</a>
-          <a href={anchor("partners")} onClick={closeMenu}>Partners</a>
-          <Link to="/businesses" onClick={closeMenu}>For businesses</Link>
+          <a href={anchor("who")} onClick={closeMenu}>Who it is for</a>
           <Link to="/blog" onClick={closeMenu}>Blog</Link>
-          <a
-            href="https://portal.riftfi.xyz/docs"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={closeMenu}
-          >
-            Read the docs
-          </a>
-          <a href="mailto:amschel@riftfi.com" onClick={closeMenu}>
-            Talk to us
+          <a href="/#contact" onClick={closeMenu}>
+            Get in touch
           </a>
         </div>
       </div>

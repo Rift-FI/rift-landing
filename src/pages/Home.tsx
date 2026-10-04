@@ -2,12 +2,9 @@ import { Fragment } from "react";
 import { Helmet } from "react-helmet-async";
 import {
  InstitutionalHero,
- InstitutionalProof,
- HowItSettles,
- InstitutionalProducts,
- Deployment,
- InstitutionalPartners,
- InstitutionalContact,
+ HowItWorks,
+ WhoFor,
+ Contact,
  InstitutionalFooter,
 } from "../components/rift/institutional";
 
@@ -38,11 +35,11 @@ export const Home = () => (
  <Helmet>
  <html lang="en" />
  <title>
- Rift, settlement infrastructure for African financial institutions
+ Rift, dollar settlement for African trade corridors
  </title>
  <meta
  name="description"
- content="Rift is settlement infrastructure for African financial institutions. Wallets, ramps and netting on stablecoin rails. Deployable inside your own infrastructure. Built for banks, PSPs, fintechs, stablecoin issuers and neobanks."
+ content="Rift is the dollar-settlement layer for African trade corridors. Netting cancels offsetting flows so you fund the difference instead of pre-funding both ends, and the residual settles in stablecoins. For liquidity providers, DFIs, remittance companies and the banks behind them."
  />
  <meta
  name="keywords"
@@ -62,11 +59,11 @@ export const Home = () => (
  <meta property="og:site_name" content="Rift Finance" />
  <meta
  property="og:title"
- content="Rift, settlement infrastructure for African financial institutions"
+ content="Rift, dollar settlement for African trade corridors"
  />
  <meta
  property="og:description"
- content="Wallets, ramps and netting on stablecoin rails. Deployable inside your own infrastructure. For banks, PSPs, fintechs, stablecoin issuers and neobanks."
+ content="We net offsetting flows so most dollars never move, and settle the residual in stablecoins. Complementary to PAPSS, which clears local currency."
  />
  <meta property="og:url" content="https://riftfi.xyz/" />
  <meta property="og:image" content="https://riftfi.xyz/og-image.png" />
@@ -78,11 +75,11 @@ export const Home = () => (
  <meta name="twitter:site" content="@tryrift" />
  <meta
  name="twitter:title"
- content="Rift, settlement infrastructure for African financial institutions"
+ content="Rift, dollar settlement for African trade corridors"
  />
  <meta
  name="twitter:description"
- content="Wallets, ramps and netting on stablecoin rails. Deployable inside your own infrastructure."
+ content="Netting and stablecoin settlement for African trade corridors."
  />
  <meta name="twitter:image" content="https://riftfi.xyz/og-image.png" />
 
@@ -98,7 +95,7 @@ export const Home = () => (
  url: "https://riftfi.xyz/",
  logo: "https://riftfi.xyz/assets/rift-logo.png",
  description:
- "Settlement infrastructure for African financial institutions. Wallets, ramps and netting on stablecoin rails. Deployable inside your own infrastructure. Serves banks, PSPs, fintechs, stablecoin issuers and neobanks.",
+ "Settlement infrastructure for African financial institutions. Netting and stablecoin settlement for African trade corridors. Serves banks, PSPs, fintechs, stablecoin issuers and neobanks.",
  foundingLocation: {
  "@type": "Place",
  name: "Nairobi, Kenya",
@@ -140,9 +137,9 @@ export const Home = () => (
  "@type": "WebPage",
  "@id": "https://riftfi.xyz/#home",
  url: "https://riftfi.xyz/",
- name: "Rift, settlement infrastructure for African financial institutions",
+ name: "Rift, dollar settlement for African trade corridors",
  description:
- "Settlement infrastructure for African financial institutions. Wallets, ramps and netting on stablecoin rails. Deployable inside your own infrastructure.",
+ "Settlement infrastructure for African financial institutions. Netting and stablecoin settlement for African trade corridors.",
  primaryImageOfPage: {
  "@type": "ImageObject",
  url: "https://riftfi.xyz/og-image.png",
@@ -153,131 +150,33 @@ export const Home = () => (
  about: { "@id": "https://riftfi.xyz/#org" },
  })}</script>
 
- {/* Products, three individual entries so search results can
- surface each by name. Rich results only render Product schema
- for retail goods, but structured entity data still improves
- ranking on named queries like "Rift Wallet" or "Rift Ramps". */}
- <script type="application/ld+json">{JSON.stringify({
- "@context": "https://schema.org",
- "@graph": [
- {
- "@type": "Service",
- "@id": "https://riftfi.xyz/#wallet",
- name: "Rift Wallet",
- provider: { "@id": "https://riftfi.xyz/#org" },
- serviceType: "Non-custodial wallet infrastructure",
- description:
- "White-label wallet widget. ERC-4337 smart accounts. Keys generated inside AWS Nitro Enclaves and encrypted under a KMS key policy pinned to the enclave build measurement, neither Rift nor AWS can extract them. Deployable on your own servers.",
- areaServed: "Africa",
- },
- {
- "@type": "Service",
- "@id": "https://riftfi.xyz/#ramps",
- name: "Rift Ramps",
- provider: { "@id": "https://riftfi.xyz/#org" },
- serviceType: "Fiat on/off-ramp infrastructure",
- description:
- "Bank transfer, mobile money, and card rails across Kenya, Tanzania, Ghana and Nigeria. One API, licensed partners on both ends.",
- areaServed: [
- { "@type": "Country", name: "Kenya" },
- { "@type": "Country", name: "Tanzania" },
- { "@type": "Country", name: "Ghana" },
- { "@type": "Country", name: "Nigeria" },
- ],
- },
- {
- "@type": "Service",
- "@id": "https://riftfi.xyz/#settlement",
- name: "Rift Settlement",
- provider: { "@id": "https://riftfi.xyz/#org" },
- serviceType: "Cross-border netting engine",
- description:
- "Offsetting obligations are matched on a shared ledger; only the residual settles. Compresses the dollar liquidity a corridor requires by 40 to 60 percent.",
- areaServed: "Africa",
- },
- {
- "@type": "Service",
- "@id": "https://riftfi.xyz/#payments",
- name: "Rift Payments",
- provider: { "@id": "https://riftfi.xyz/#org" },
- serviceType: "Payouts and collections",
- description:
- "Pay out to any M-Pesa number or bank account in Kenya, and collect payment from anywhere in the world. A client pays a link in stablecoins, the recipient is paid in local currency in minutes. One API for both directions.",
- areaServed: [
- { "@type": "Country", name: "Kenya" },
- { "@type": "Country", name: "Tanzania" },
- { "@type": "Country", name: "Ghana" },
- { "@type": "Country", name: "Nigeria" },
- ],
- },
- {
- "@type": "Service",
- "@id": "https://riftfi.xyz/#treasury",
- name: "Rift Treasury",
- provider: { "@id": "https://riftfi.xyz/#org" },
- serviceType: "Programmable stablecoin treasury",
- description:
- "Hold working capital in stablecoins and move it programmatically. Sweep balances, fund payouts on approval, convert into local currency on your own schedule. Every movement is signed inside a hardware enclave and written to an audit log.",
- areaServed: "Africa",
- },
- {
- "@type": "Service",
- "@id": "https://riftfi.xyz/#credit",
- name: "Rift Credit",
- provider: { "@id": "https://riftfi.xyz/#org" },
- serviceType: "Receivables financing infrastructure (in preparation)",
- description:
- "Payment history produced by Rift rails gives a lender verifiable data to underwrite a receivable against, with repayment applied automatically when the payment settles. In preparation with lending partners, not yet live.",
- areaServed: "Africa",
- },
- ],
- })}</script>
-
- {/* FAQPage, indexes the "why self-hosted" answers so procurement
- researchers hit our page for the exact questions their vendor
- committees ask. */}
+ {/* FAQPage, the questions a trade financier actually asks. */}
  <script type="application/ld+json">{JSON.stringify({
  "@context": "https://schema.org",
  "@type": "FAQPage",
  mainEntity: [
  {
  "@type": "Question",
- name: "Can I use Rift as a hosted API, or do I have to self-host?",
+ name: "What does Rift actually do?",
  acceptedAnswer: {
  "@type": "Answer",
- text: "Both. Use the hosted API to get to production fastest, Rift runs the stack, you make API calls. Or run the same stack on your own infrastructure (your VPC, your KMS) when data residency, sovereignty or vendor-committee sign-off make foreign SaaS a non-starter. The API surface is identical, so you can move from one to the other later.",
+ text: "Rift settles dollars across African trade corridors. Moving money across a border at volume means pre-funding both ends, which traps working capital and often means drawing on an expensive credit line. Trade runs in both directions, so a large share of what is owed one way is matched by what is owed the other way. We hold both sides for a short window and settle them against each other, so only the difference needs funding. That difference settles in stablecoins.",
  },
  },
  {
  "@type": "Question",
- name: "Who does Rift serve?",
+ name: "Is Rift competing with PAPSS?",
  acceptedAnswer: {
  "@type": "Answer",
- text: "Banks, licensed payment service providers, fintechs, stablecoin issuers and neobanks moving money across African markets. The stack is the same regardless, wallets, ramps and settlement, deployed hosted or self-hosted.",
+ text: "No. PAPSS and Pesalink clear local currency, and they already do it well. Rift clears the dollar leg. The two are complementary: we net and settle the dollars, and hand the local currency leg to the rails that already exist.",
  },
  },
  {
  "@type": "Question",
- name: "Who holds the private keys in Rift Wallet?",
+ name: "Who is Rift for?",
  acceptedAnswer: {
  "@type": "Answer",
- text: "Keys are generated inside AWS Nitro Enclaves and encrypted under a KMS key policy pinned to the enclave build measurement (PCR0 attestation). Neither Rift nor AWS can extract them, only the specific enclave binary matching the pinned measurement can decrypt.",
- },
- },
- {
- "@type": "Question",
- name: "What does Rift Settlement actually compress?",
- acceptedAnswer: {
- "@type": "Answer",
- text: "Dollar liquidity. Instead of settling every cross-border payment individually through the dollar (which requires holding dollar float on both sides of every corridor), Rift matches offsetting obligations on a shared ledger and only settles the residual, typically 40 to 60 percent less dollar float per corridor.",
- },
- },
- {
- "@type": "Question",
- name: "Which markets is Rift live in?",
- acceptedAnswer: {
- "@type": "Answer",
- text: "Kenya, Tanzania, Ghana, and Nigeria. Bank transfer, mobile money and card rails on both the on-ramp and off-ramp sides through licensed partners.",
+ text: "Two groups. Development finance institutions, banks and other liquidity providers who hold dollars and have a mandate to deploy them into African trade, whose balance sheet clears more trade because the netting layer only draws on the difference. And the remittance companies, exporters, importers, banks and payment companies moving money at volume, who would rather fund the net than pre-fund both ends of every corridor.",
  },
  },
  ],
@@ -285,12 +184,9 @@ export const Home = () => (
  </Helmet>
 
  <InstitutionalHero />
- <InstitutionalProof />
- <HowItSettles />
- <InstitutionalProducts />
- <Deployment />
- <InstitutionalPartners />
- <InstitutionalContact />
+ <HowItWorks />
+ <WhoFor />
+ <Contact />
  <InstitutionalFooter />
  </Fragment>
 );

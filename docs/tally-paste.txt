@@ -1,0 +1,148 @@
+╔══════════════════════════════════════════════════════════════════════════╗
+║  COPY EVERYTHING BETWEEN THE ===== LINES AND PASTE IT INTO TALLY'S AI     ║
+║  FORM BUILDER. Then take the share link (tally.so/r/XXXXXX) and put the   ║
+║  XXXXXX part into TALLY_FORM_ID in                                        ║
+║  src/components/rift/institutional.tsx                                    ║
+║                                                                           ║
+║  Until that id is set, the contact section shows an email address         ║
+║  instead of pretending to collect anything.                               ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+WHY THESE QUESTIONS
+
+Two jobs. Qualify the lead, and collect the inputs needed to actually run the
+netting model on their corridor, so the first reply can contain a number
+instead of a meeting request.
+
+The two audiences need different questions, so question 2 branches.
+
+Keep it short. Every extra field costs completions, and the people worth
+hearing from are busy.
+
+==========================================================================
+
+Build me a contact form titled "Tell us about your corridor".
+
+Intro text: "A few questions so we can come back with something useful rather
+than a meeting invite. Takes two minutes."
+
+QUESTION 1
+Type: Short answer
+Label: Your name
+Required: yes
+
+QUESTION 2
+Type: Short answer
+Label: Work email
+Required: yes
+Validation: email
+
+QUESTION 3
+Type: Short answer
+Label: Company
+Required: yes
+
+QUESTION 4
+Type: Multiple choice (single select)
+Label: Which describes you best?
+Required: yes
+Options:
+  - We hold dollars and deploy them into African trade
+  - We move money across African borders
+  - Both
+  - Something else
+Logic: if "We hold dollars and deploy them into African trade" go to Q5.
+       if "We move money across African borders" or "Both" go to Q8.
+       if "Something else" go to Q13.
+
+--- BRANCH A: liquidity providers, DFIs, banks ---
+
+QUESTION 5
+Type: Multiple choice (single select)
+Label: What kind of institution?
+Options:
+  - Development finance institution
+  - Commercial bank
+  - Fund or asset manager
+  - Family office or private investor
+  - Other
+
+QUESTION 6
+Type: Multiple choice (single select)
+Label: Roughly what size of dollar facility could you deploy into a corridor?
+Options:
+  - Under 1 million
+  - 1 to 5 million
+  - 5 to 25 million
+  - 25 to 100 million
+  - Over 100 million
+  - Not sure yet
+
+QUESTION 7
+Type: Long answer
+Label: What does your mandate allow, and what would you need to see before committing?
+Then go to Q13.
+
+--- BRANCH B: people moving money ---
+
+QUESTION 8
+Type: Multiple choice (single select)
+Label: What do you do?
+Options:
+  - Remittance company or money transfer operator
+  - Payment service provider
+  - Bank
+  - Exporter or importer
+  - Other
+
+QUESTION 9
+Type: Short answer
+Label: Which corridors? For example Kenya to Nigeria, or Tanzania to UAE.
+Required: yes
+
+QUESTION 10
+Type: Multiple choice (single select)
+Label: Roughly how much moves across them in a month?
+Options:
+  - Under 100,000
+  - 100,000 to 1 million
+  - 1 to 10 million
+  - 10 to 50 million
+  - Over 50 million
+
+QUESTION 11
+Type: Multiple choice (multi select)
+Label: How do you fund the payout side today?
+Options:
+  - Our own working capital sitting in the destination
+  - A credit line or overdraft
+  - Pre-funding from partners
+  - We buy stablecoins as we need them
+  - Other
+
+QUESTION 12
+Type: Short answer
+Label: What does moving a dollar across that corridor cost you today, all in? A rough percentage is fine.
+
+--- EVERYONE ---
+
+QUESTION 13
+Type: Long answer
+Label: Anything else we should know?
+Required: no
+
+Thank-you screen: "Thanks. We read every one of these. If you told us about a
+corridor we will come back with what netting does to your funding
+requirement, usually within a day or two."
+
+==========================================================================
+
+AFTER YOU BUILD IT
+
+1. Turn on email notifications to amschel@riftfi.com.
+2. Take the share link, tally.so/r/XXXXXX.
+3. Put XXXXXX into TALLY_FORM_ID in src/components/rift/institutional.tsx.
+4. Rebuild. The form replaces the email fallback automatically.
+
+The page loads Tally's embed script only when the id is set, so leaving it
+empty costs nothing.
