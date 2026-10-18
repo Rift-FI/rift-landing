@@ -198,28 +198,6 @@
     to   { transform: translateX(-1200px); }
   }
 
-  /* ── STATS ────────────────────────────────────────────────────────
-     On the light ground directly under the panel, after hyperliquid. */
-  .stats { background: var(--paper); border-bottom: 1px solid var(--rule-soft); }
-  .stats-in {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: clamp(20px, 4vw, 48px);
-    padding-top: clamp(28px, 3.4vw, 44px);
-    padding-bottom: clamp(28px, 3.4vw, 44px);
-  }
-  @media (max-width: 620px) { .stats-in { grid-template-columns: 1fr; gap: 22px; } }
-  .stat b {
-    display: block;
-    font-family: var(--serif); font-weight: 400;
-    font-size: clamp(30px, 3.4vw, 44px); line-height: 1;
-    letter-spacing: -.03em; color: var(--ink);
-  }
-  .stat span {
-    display: block; margin-top: 9px;
-    font-family: var(--mono); font-size: 10.5px; letter-spacing: .13em;
-    text-transform: uppercase; color: var(--ink-35);
-  }
-
   /* ── SECTIONS ─────────────────────────────────────────────────────── */
   .sec { padding: clamp(72px, 9vw, 124px) 0; }
   .sec-white { background: var(--white); }

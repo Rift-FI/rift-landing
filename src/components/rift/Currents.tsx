@@ -118,23 +118,3 @@ export const Currents = () => (
     </svg>
   </div>
 );
-
-/** Only numbers we can stand behind. Nothing here is modelled or projected. */
-const STATS: { v: string; l: string }[] = [
-  { v: "4", l: "Markets" },
-  { v: "$10M+", l: "Processed to date" },
-  { v: "Minutes", l: "To settle" },
-];
-
-export const Stats = () => (
-  <div className="stats">
-    <div className="wrap stats-in">
-      {STATS.map((s) => (
-        <div className="stat" key={s.l}>
-          <b>{s.v}</b>
-          <span>{s.l}</span>
-        </div>
-      ))}
-    </div>
-  </div>
-);
