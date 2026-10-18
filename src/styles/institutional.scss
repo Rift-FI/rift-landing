@@ -168,38 +168,34 @@
   .hero .lede { max-width: 54ch; margin-top: clamp(26px, 3vw, 38px); }
   .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: clamp(32px, 4vw, 44px); }
 
-  /* ── FLOW FIELD ───────────────────────────────────────────────────
-     Deep green band under the hero. Two animations per particle, drift
-     and pulse, each with its own duration and a negative delay so the
-     field never falls into step with itself. Transform and opacity only,
-     so the whole thing stays on the compositor. */
-  .field {
+  /* ── CURRENTS ─────────────────────────────────────────────────────
+     Lines drawn two panel-widths long with whole periods per width, then
+     translated by exactly one width, so the loop has no seam. Class names
+     are prefixed because `.field` collided with the form label class and
+     its line-height: 0 collapsed every label in the contact form. */
+  .cur {
     margin-top: clamp(40px, 5vw, 76px);
     background: var(--ink);
     overflow: hidden;
     line-height: 0;
   }
-  .field-svg {
+  .cur-svg {
     display: block; width: 100%;
-    height: clamp(260px, 34vw, 480px);
+    height: clamp(240px, 30vw, 420px);
   }
-
-  .p {
-    fill: var(--mint);
-    opacity: var(--o, .5);
-    animation-name: drift, pulse;
-    animation-timing-function: ease-in-out, ease-in-out;
-    animation-iteration-count: infinite, infinite;
-    animation-direction: alternate, alternate;
-    will-change: transform, opacity;
+  .cur-line {
+    fill: none;
+    stroke: var(--mint);
+    stroke-opacity: var(--o, .3);
+    stroke-linecap: round;
+    animation-name: flow;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
   }
-  .p-lg { fill: #C9FFF2; }
-
-  @keyframes drift {
-    to { transform: translate(var(--dx), var(--dy)); }
-  }
-  @keyframes pulse {
-    to { opacity: calc(var(--o, .5) * .55); }
+  @keyframes flow {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-1200px); }
   }
 
   /* ── STATS ────────────────────────────────────────────────────────
@@ -389,7 +385,7 @@
     .btn, .ar { transition: none; }
     .btn:hover .ar, .btn:active { transform: none; }
     .rise { animation: none; opacity: 1; transform: none; }
-    .p { animation: none; }
+    .cur-line { animation: none; }
     .points .point, .steps .step, .who .who-card {
       opacity: 1; transform: none; animation: none;
     }
