@@ -41,32 +41,3 @@ export function useInView<T extends HTMLElement>(rootMargin = "0px 0px -12% 0px"
 
   return [ref, inView] as const;
 }
-
-/**
- * Counts to a number once, on a cubic ease-out so it decelerates into place
- * rather than stopping dead. 900ms is longer than a UI animation should be,
- * which is right: this is explanatory, the reader is meant to watch it.
- */
-export function useCountUp(target: number, run: boolean, ms = 900) {
-  const [n, setN] = useState(0);
-
-  useEffect(() => {
-    if (!run) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setN(target);
-      return;
-    }
-    let raf = 0;
-    let start = 0;
-    const tick = (t: number) => {
-      if (!start) start = t;
-      const p = Math.min((t - start) / ms, 1);
-      setN(Math.round(target * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [target, run, ms]);
-
-  return n;
-}

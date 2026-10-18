@@ -38,6 +38,7 @@
 
 import { useState } from "react";
 import { useInView } from "./useInView";
+import { Field, Stats } from "./Field";
 
 /** Corridors we actually settle today. The claim a customer tests first. */
 
@@ -103,39 +104,9 @@ export const InstitutionalHero = () => (
       </div>
     </div>
 
-    <NetworkPanel />
+    <Field />
+    <Stats />
   </header>
-);
-
-/**
- * The network panel.
- *
- * Supplied artwork, used as given. Two things to know about it:
- *
- * 1. Its headline, body copy and card labels are baked into the pixels, so
- *    search engines and screen readers cannot read any of it. The alt text
- *    below carries the meaning instead, and it has to stay accurate if the
- *    image is ever replaced.
- * 2. It advertises Track Shipments and Trade Finance. Nothing else on this
- *    page offers either. If we do not ship those, the artwork is making a
- *    promise the product does not keep.
- *
- * webp first, jpg for anything that cannot take it. Eager rather than lazy
- * because it sits in the first screen on most viewports.
- */
-const NetworkPanel = () => (
-  <div className="net-panel">
-    <picture>
-      <source srcSet="/network.webp" type="image/webp" />
-      <img
-        src="/network.jpg"
-        width={1536}
-        height={1024}
-        decoding="async"
-        alt="The Rift network. Kenya, Uganda, Tanzania and Rwanda connected to each other and out to global markets in Asia, Europe and the Middle East, over shipping, air freight and road. Money moves from Kenyan shillings to Tanzanian shillings across the same network."
-      />
-    </picture>
-  </div>
 );
 
 // ── What we do ──────────────────────────────────────────────────────────
