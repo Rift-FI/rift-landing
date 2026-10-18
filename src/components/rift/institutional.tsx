@@ -73,29 +73,36 @@ export const InstitutionalHero = () => (
   <header className="hero" id="top">
     <div className="hero-bg" aria-hidden="true" />
     <div className="wrap hero-in">
-      {/* Each child gets a staggered CSS entrance, 60ms apart. CSS rather
-          than JS so it keeps its frames while fonts are still loading. */}
-      <h1 className="h1 rise" style={{ "--d": "0ms" } as React.CSSProperties}>
-        Cross-border payments for East African trade.
-      </h1>
+      {/* Asymmetric, after hyperliquid: the serif takes the width, the copy
+          and the call to action sit right and bottom-align with it. Each
+          child gets a staggered CSS entrance 80ms apart, CSS rather than JS
+          so it keeps its frames while fonts are still loading. */}
+      <div className="hero-grid">
+        <div>
+          <h1 className="h1 rise" style={{ "--d": "0ms" } as React.CSSProperties}>
+            Cross-border payments for East African trade.
+          </h1>
+          <p className="h1-sub rise" style={{ "--d": "80ms" } as React.CSSProperties}>
+            The fee is not the cost. <em>The spread is.</em>
+          </p>
+        </div>
 
-      <p className="h1-sub rise" style={{ "--d": "80ms" } as React.CSSProperties}>
-        The fee is not the cost. <em>The spread is.</em>
-      </p>
-
-      <p className="lede rise" style={{ "--d": "160ms" } as React.CSSProperties}>
-        Your bank charges about thirty-five dollars to send money to Kampala,
-        then takes one to three percent on the exchange rate, twice, which
-        never appears on the statement. We quote one price before you send.
-      </p>
-
-      <div className="cta-row rise" style={{ "--d": "240ms" } as React.CSSProperties}>
-        <a className="btn btn-1" href="#contact">
-          Get a quote <Arrow />
-        </a>
-        <a className="btn btn-2" href="#how">
-          How it works
-        </a>
+        <div className="hero-right">
+          <p className="lede rise" style={{ "--d": "160ms" } as React.CSSProperties}>
+            Your bank charges about thirty-five dollars to send money to
+            Kampala, then takes one to three percent on the exchange rate,
+            twice, which never appears on the statement. We quote one price
+            before you send.
+          </p>
+          <div className="cta-row rise" style={{ "--d": "240ms" } as React.CSSProperties}>
+            <a className="btn btn-1" href="#contact">
+              Get a quote <Arrow />
+            </a>
+            <a className="btn btn-2" href="#how">
+              How it works
+            </a>
+          </div>
+        </div>
       </div>
     </div>
 
