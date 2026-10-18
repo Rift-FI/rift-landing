@@ -4,6 +4,7 @@ import {
  InstitutionalHero,
  Benefits,
  HowItWorks,
+ WhoFor,
  Contact,
  InstitutionalFooter,
 } from "../components/rift/institutional";
@@ -35,15 +36,15 @@ export const Home = () => (
  <Helmet>
  <html lang="en" />
  <title>
- Rift, pay suppliers across East Africa in minutes
+ Rift, cross-border payments for East African trade
  </title>
  <meta
  name="description"
- content="Pay a supplier in Kenya, Uganda or Tanzania in US dollars, settle in minutes, and they take payout in local currency on mobile money. 0.5% to transfer, 1.0% to 1.5% to convert, against 3% to 8% through a correspondent bank."
+ content="Pay suppliers in Kenya, Uganda, Tanzania and Rwanda at one all-in price, quoted before you send and settled the same day. Your bank's fee is about thirty-five dollars; the exchange rate it takes twice is one to three percent you never see."
  />
  <meta
  name="keywords"
- content="cross border payments East Africa, pay supplier Kenya Uganda Tanzania, B2B payments East Africa, import export payments Kenya, stablecoin settlement East Africa, cheaper than correspondent bank, M-Pesa business payout, EAC trade payments"
+ content="cross border payments East Africa, pay supplier Uganda Tanzania Rwanda, B2B payments Kenya, import export payments East Africa, FX spread cross border, clearing and forwarding payments, EAC trade payments, cheaper than bank wire"
  />
  <meta name="author" content="Rift Finance" />
  <meta
@@ -59,11 +60,11 @@ export const Home = () => (
  <meta property="og:site_name" content="Rift Finance" />
  <meta
  property="og:title"
- content="Rift, pay suppliers across East Africa in minutes"
+ content="Rift, cross-border payments for East African trade"
  />
  <meta
  property="og:description"
- content="Pay a supplier in Kenya, Uganda or Tanzania in US dollars, settle in minutes, and they take payout in local currency on mobile money. 0.5% to transfer, 1.0% to 1.5% to convert, against 3% to 8% through a correspondent bank."
+ content="Pay suppliers in Kenya, Uganda, Tanzania and Rwanda at one all-in price, quoted before you send and settled the same day. Your bank's fee is about thirty-five dollars; the exchange rate it takes twice is one to three percent you never see."
  />
  <meta property="og:url" content="https://riftfi.xyz/" />
  <meta property="og:image" content="https://riftfi.xyz/og-image.png" />
@@ -75,11 +76,11 @@ export const Home = () => (
  <meta name="twitter:site" content="@tryrift" />
  <meta
  name="twitter:title"
- content="Rift, pay suppliers across East Africa in minutes"
+ content="Rift, cross-border payments for East African trade"
  />
  <meta
  name="twitter:description"
- content="Pay a supplier in Kenya, Uganda or Tanzania in US dollars, settle in minutes, and they take payout in local currency on mobile money. 0.5% to transfer, 1.0% to 1.5% to convert, against 3% to 8% through a correspondent bank."
+ content="Pay suppliers in Kenya, Uganda, Tanzania and Rwanda at one all-in price, quoted before you send and settled the same day. Your bank's fee is about thirty-five dollars; the exchange rate it takes twice is one to three percent you never see."
  />
  <meta name="twitter:image" content="https://riftfi.xyz/og-image.png" />
 
@@ -137,7 +138,7 @@ export const Home = () => (
  "@type": "WebPage",
  "@id": "https://riftfi.xyz/#home",
  url: "https://riftfi.xyz/",
- name: "Rift, pay suppliers across East Africa in minutes",
+ name: "Rift, cross-border payments for East African trade",
  description:
  "Settlement infrastructure for African financial institutions. Netting and stablecoin settlement for African trade corridors.",
  primaryImageOfPage: {
@@ -150,51 +151,54 @@ export const Home = () => (
  about: { "@id": "https://riftfi.xyz/#org" },
  })}</script>
 
- {/* FAQPage, the questions a trader actually asks. */}
+ {/* FAQPage. Every answer has to survive a CFO checking it. */}
  <script type="application/ld+json">{JSON.stringify({
  "@context": "https://schema.org",
  "@type": "FAQPage",
  mainEntity: [
  {
  "@type": "Question",
- name: "How do I pay a supplier in another East African country with Rift?",
+ name: "What does a cross-border payment in East Africa actually cost?",
  acceptedAnswer: {
  "@type": "Answer",
- text: "You pay in from your bank or mobile money and it becomes a US dollar stablecoin on the way in. The payment settles to your supplier in minutes, with no correspondent bank in between. Your supplier either holds the dollars or takes payout in local currency on mobile money, whenever they choose.",
+ text: "Less in fees than most people assume, and more in total. A Kenyan bank caps an outward wire at roughly thirty-five dollars, which is a tiny fraction of a large invoice. The real cost is the exchange rate, taken once when your shillings become dollars and again when those dollars become the other country's currency. All in, a commercial payment between East African countries typically runs between one and three percent, and the great majority of that is exchange rate rather than fees. It is not itemised, so most businesses never learn what they paid.",
  },
  },
  {
  "@type": "Question",
- name: "What does it cost compared with a bank wire?",
+ name: "How is Rift different from sending through my bank?",
  acceptedAnswer: {
  "@type": "Answer",
- text: "Transfers cost 0.5 percent, and converting into or out of local currency costs 1.0 to 1.5 percent. The same payment through a correspondent bank typically runs 3 to 8 percent all in, plus a fixed fee at every hop.",
+ text: "You are quoted one number before you send, which covers everything including the exchange rate, and the payment reaches your supplier the same day rather than in three to five days. Your supplier receives their own currency on the mobile money or bank account they already use.",
  },
  },
  {
  "@type": "Question",
- name: "Does my supplier need a dollar account or a crypto wallet?",
+ name: "Which countries can I pay?",
  acceptedAnswer: {
  "@type": "Answer",
- text: "No. They can take payout in local currency on mobile money, including M-Pesa. They do not need a dollar account, a bank that holds one, or any knowledge of crypto.",
+ text: "Kenya, Uganda, Tanzania and Rwanda, in both directions between any two of them. We also handle payments to suppliers outside Africa, such as China and the Gulf, which works differently because those dollars have to be sourced rather than matched against regional flow.",
  },
  },
  {
  "@type": "Question",
- name: "Does Rift hold my money?",
+ name: "Does my supplier need to sign up for anything?",
  acceptedAnswer: {
  "@type": "Answer",
- text: "No. The architecture is non-custodial: your business holds its own keys, so Rift cannot move your funds.",
+ text: "No. They are paid in their own currency into the mobile money or bank account they already use. They do not need a foreign currency account and they do not need to install anything.",
  },
  },
  ],
  })}</script>
  </Helmet>
 
+ <div className="rift-home">
  <InstitutionalHero />
  <Benefits />
  <HowItWorks />
+ <WhoFor />
  <Contact />
  <InstitutionalFooter />
+ </div>
  </Fragment>
 );

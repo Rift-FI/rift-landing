@@ -1,49 +1,51 @@
 /**
  * Rift home. B2B, East African cross-border trade.
  *
- * WHO THIS PAGE IS FOR: Kenyan, Ugandan and Tanzanian importers, exporters
- * and SME traders moving goods across the region, and the finance and ops
- * people behind them. Not consumers. Not crypto. Not remittance senders.
+ * WHO IT IS FOR: importers, exporters, clearing and freight agents, and SME
+ * traders moving goods between East African countries, plus the finance
+ * people behind them. Not consumers. Not crypto.
  *
- * WHAT IT SELLS: pay a supplier in another East African country in dollars,
- * settled in minutes, delivered to them in local currency on mobile money.
- * Against a correspondent bank wire that costs 3 to 8 percent and takes days.
+ * THE ARGUMENT, which the research earns (see docs/positioning.md):
+ *   The fee is not the cost. A Kenyan bank caps an outward wire at about
+ *   thirty-five dollars, five hundredths of one percent of a fifty thousand
+ *   dollar invoice. The cost is the exchange rate, taken twice, because the
+ *   payment converts to dollars and back. All in it runs roughly 1.1 to 3.3
+ *   percent, and 80 to 95 percent of that is spread, not fees. Nobody tells
+ *   the trader what it was. So the product is one disclosed price.
  *
- * NOT ON THIS PAGE, ON PURPOSE: netting, liquidity partnerships, capital
- * efficiency, DFIs. That is a real argument but it is an institutional one,
- * and institutions arrive through a deck and a warm introduction, not
- * through this page. Keep it out.
+ * WHAT WE NEVER SAY, and these are not stylistic preferences:
+ *   - "stablecoin", "crypto", "blockchain", "wallet", "non-custodial".
+ *     The customer does not care and the words cost trust.
+ *   - "no dollars needed". Untrue. Every approach touches the dollar
+ *     somewhere; ours touches it on the full notional, briefly, as a token
+ *     rather than a nostro balance. We remove the dollar ACCOUNT, the
+ *     correspondent bank, the three days and the hidden spread. Not the
+ *     dollar.
+ *   - 8 percent, or any figure derived from remittance pricing. Those are
+ *     measured on a two hundred dollar consumer transfer and putting them
+ *     next to a commercial invoice is a category error a CFO will catch.
+ *   - any corridor that is not live. See CORRIDORS.
+ *   - any licensing status we do not hold.
  *
- * RULES:
- *   - Lead with settlement, never with "wallet".
- *   - No hype words. No revolutionise, unlock, empower, seamless, leverage.
- *   - Real numbers over adjectives. Short sentences.
- *   - No staking, yield, trading, NFTs, investing.
- *   - DO NOT NAME A CORRIDOR THAT IS NOT LIVE. See CORRIDORS below.
- *   - Fee numbers are the published ones and a customer can check them
- *     against an invoice. Keep them accurate or take them out.
+ * DESIGN: Instrument Serif display over Public Sans body, figures in
+ * JetBrains Mono. Warm paper, near-black ink, one deep teal. The reference
+ * is a serious trade publication, not a fintech template, because the reader
+ * has been pitched by crypto companies and has learned to distrust the look.
  */
 
 import { useEffect } from "react";
 
-/**
- * The corridors we actually settle today. This is the claim a customer
- * discovers fastest, and a wrong one costs the relationship. Edit here and
- * it updates everywhere on the page.
- */
-const CORRIDORS = "Kenya, Uganda and Tanzania";
+/** Corridors we actually settle today. The claim a customer tests first. */
+const CORRIDORS = ["Kenya", "Uganda", "Tanzania", "Rwanda"];
 
-/** Published pricing. If these change, change them here. */
-const FEE_TRANSFER = "0.5%";
-const FEE_CONVERT = "1.0% to 1.5%";
+/** Published, and a customer can check them against an invoice. */
+const FEE_ALLIN = "1%";
 
-/** The part after tally.so/r/ in the form's share link. */
 const TALLY_FORM_ID = "RG7W2d";
-
 const EMAIL = "amschel@riftfi.com";
 
 const Arrow = () => (
-  <span className="i-ar" aria-hidden="true">
+  <span className="ar" aria-hidden="true">
     →
   </span>
 );
@@ -51,55 +53,105 @@ const Arrow = () => (
 // ── Hero ────────────────────────────────────────────────────────────────
 
 export const InstitutionalHero = () => (
-  <header className="hero-i" id="top">
-    <div className="hero-i-in">
-      <h1 className="i-h1 hero-i-h1">
-        Pay suppliers across East Africa in <em>minutes</em>.
+  <header className="hero" id="top">
+    <div className="wrap hero-in">
+      <p className="eyebrow">Cross-border payments for East African trade</p>
+
+      <h1 className="h1">
+        The fee is not the cost.
+        <br />
+        <em>The spread is.</em>
       </h1>
 
-      <p className="i-lead hero-i-sub">
-        Send US dollars to a supplier in {CORRIDORS}, settle in minutes, and
-        they take payout in local currency on mobile money.
+      <p className="lede">
+        Your bank charges about thirty-five dollars to send money to Kampala,
+        then takes one to three percent on the exchange rate, twice, which
+        never appears on the statement. We quote one price before you send.
       </p>
 
-      <div className="hero-i-cta">
-        <a className="i-btn i-btn-1" href="#contact">
-          Start moving money <Arrow />
+      <div className="cta-row">
+        <a className="btn btn-1" href="#contact">
+          Get a quote <Arrow />
         </a>
+        <a className="btn btn-2" href="#how">
+          How it works
+        </a>
+      </div>
+    </div>
+
+    {/* The argument as a receipt. Illustrative, labelled as such. */}
+    <div className="wrap">
+      <div className="receipt">
+        <div className="receipt-head">
+          <span>Paying a supplier in Kampala</span>
+          <span className="receipt-amt">$50,000</span>
+        </div>
+        <ul className="receipt-rows">
+          <li>
+            <span className="rr-label">Bank wire fee</span>
+            <span className="rr-bar"><i style={{ width: "1%" }} /></span>
+            <span className="rr-val">$35</span>
+          </li>
+          <li className="is-hidden">
+            <span className="rr-label">
+              Exchange rate, shillings to dollars
+              <em>not shown on your statement</em>
+            </span>
+            <span className="rr-bar"><i style={{ width: "46%" }} /></span>
+            <span className="rr-val">$700</span>
+          </li>
+          <li className="is-hidden">
+            <span className="rr-label">
+              Exchange rate, dollars to shillings
+              <em>not shown either</em>
+            </span>
+            <span className="rr-bar"><i style={{ width: "42%" }} /></span>
+            <span className="rr-val">$640</span>
+          </li>
+        </ul>
+        <div className="receipt-foot">
+          <span>What it actually cost</span>
+          <b>$1,375</b>
+        </div>
+        <p className="receipt-note">
+          Illustrative, on a typical corridor. Your figures depend on the day
+          and the bank. The point is which line you were shown.
+        </p>
       </div>
     </div>
   </header>
 );
 
-// ── Benefits ────────────────────────────────────────────────────────────
+// ── What we do ──────────────────────────────────────────────────────────
 
-const BENEFITS: { h: string; p: string }[] = [
+const POINTS: { h: string; p: string }[] = [
   {
-    h: "Minutes, not days.",
-    p: "Your payment settles in US dollar stablecoins the moment you send it. Your supplier has it the same session instead of waiting three days for a correspondent bank to release it.",
+    h: "One price, before you send.",
+    p: "You see the full cost of the payment, exchange rate included, while you are still deciding. No spread buried in the rate, no fees discovered on the statement a week later.",
   },
   {
-    h: `${FEE_CONVERT.split(" to ")[1]}, not 8%.`,
-    p: `Transfers cost ${FEE_TRANSFER}. Converting into or out of local currency costs ${FEE_CONVERT}. The same payment through a correspondent bank typically runs 3% to 8% all in, plus a fixed fee at every hop.`,
+    h: "Your supplier is paid today.",
+    p: "Not three to five days. The money reaches them the same session, in their own currency, on the mobile money or bank account they already use. They need nothing new.",
   },
   {
-    h: "Local currency at the other end.",
-    p: "Your supplier does not need a dollar account, a bank that holds one, or any knowledge of crypto. They take payout in shillings on M-Pesa, when they want it.",
+    h: "And when you buy from outside Africa.",
+    p: "Paying a supplier in China or the Gulf is a different problem, because those dollars genuinely have to be found rather than netted. Same account, same desk, we handle both.",
   },
 ];
 
 export const Benefits = () => (
-  <section className="i-section" id="why" aria-labelledby="why-h">
-    <div className="i-wrap">
-      <h2 id="why-h" className="sr-only">
-        Why Rift
+  <section className="sec sec-white" id="what" aria-labelledby="what-h">
+    <div className="wrap">
+      <h2 id="what-h" className="sr-only">
+        What Rift does
       </h2>
-      <div className="bens">
-        {BENEFITS.map((b) => (
-          <div className="ben" key={b.h}>
-            <h3 className="ben-h">{b.h}</h3>
-            <p className="ben-p">{b.p}</p>
-          </div>
+      <div className="points">
+        {POINTS.map((pt, i) => (
+          <article className="point" key={pt.h}>
+            <span className="point-n">{String(i + 1).padStart(2, "0")}</span>
+            <h3 className="point-h">{pt.h}</h3>
+            <p className="point-p">{pt.p}</p>
+          </article>
         ))}
       </div>
     </div>
@@ -110,44 +162,86 @@ export const Benefits = () => (
 
 const STEPS: { h: string; p: string }[] = [
   {
-    h: "You send dollars.",
-    p: "Pay in from your bank or mobile money. It becomes a US dollar stablecoin on the way in.",
+    h: "Tell us where it is going.",
+    p: "The country, the amount, who is receiving it. We come back with one number, which is what the payment will cost you in total.",
   },
   {
-    h: "It settles in minutes.",
-    p: "The payment goes straight to your supplier. No correspondent bank, no intermediary taking a cut at each stop.",
+    h: "Pay in from your own account.",
+    p: "Bank transfer or mobile money, in shillings. Nothing to install, no account to fund in advance, no foreign currency to find first.",
   },
   {
-    h: "They convert when they need to.",
-    p: "Your supplier holds dollars or takes local currency on mobile money. Their choice, their timing.",
+    h: "They are paid in their currency.",
+    p: "Mobile money or bank, whichever they already use. You get a record of what was sent, what was received, and what it cost.",
   },
 ];
 
 export const HowItWorks = () => (
-  <section className="i-section i-section--wash" id="how" aria-labelledby="how-h">
-    <div className="i-wrap">
-      <h2 id="how-h" className="i-h2 i-h2--sm who-h">
-        How it works.
+  <section className="sec sec-paper" id="how" aria-labelledby="how-h">
+    <div className="wrap">
+      <h2 id="how-h" className="h2 h2-c">
+        How it works
       </h2>
-      <ol className="pts">
+      <ol className="steps">
         {STEPS.map((st, i) => (
-          <li className="pt" key={st.h}>
-            <span className="pt-n">{String(i + 1).padStart(2, "0")}</span>
+          <li className="step" key={st.h}>
+            <span className="step-n">{String(i + 1).padStart(2, "0")}</span>
             <div>
-              <h3 className="pt-h">{st.h}</h3>
-              <p className="pt-p">{st.p}</p>
+              <h3 className="step-h">{st.h}</h3>
+              <p className="step-p">{st.p}</p>
             </div>
           </li>
         ))}
       </ol>
 
-      {/* Fees and custody, stated plainly. A customer can check both.
-          Licensing is deliberately not claimed here. Add it when it is
-          true and specific, it is worth more than any other line. */}
+      <div className="corridors">
+        <span className="corridors-l">Live today</span>
+        <ul>
+          {CORRIDORS.map((c) => (
+            <li key={c}>{c}</li>
+          ))}
+        </ul>
+        <span className="corridors-r">
+          Both directions, between any two.
+        </span>
+      </div>
+    </div>
+  </section>
+);
+
+// ── Who it is for ───────────────────────────────────────────────────────
+
+const WHO: { h: string; p: string }[] = [
+  {
+    h: "Importers and exporters",
+    p: "Paying for goods across the border, or being paid for them. Grain, cement, produce, hardware, fast-moving goods.",
+  },
+  {
+    h: "Clearing and freight agents",
+    p: "Settling with counterparts along the Northern and Central corridors. Many payments, several currencies, every week.",
+  },
+  {
+    h: "Manufacturers and distributors",
+    p: "Buying inputs regionally and finished goods from outside Africa, on the same account.",
+  },
+];
+
+export const WhoFor = () => (
+  <section className="sec sec-white" id="who" aria-labelledby="who-h">
+    <div className="wrap">
+      <h2 id="who-h" className="h2 h2-c">
+        Who this is for
+      </h2>
+      <div className="who">
+        {WHO.map((w) => (
+          <div className="who-card" key={w.h}>
+            <h3>{w.h}</h3>
+            <p>{w.p}</p>
+          </div>
+        ))}
+      </div>
       <p className="trust">
-        Fees are published and fixed: {FEE_TRANSFER} to transfer,{" "}
-        {FEE_CONVERT} to convert. Your business holds its own keys, so Rift
-        cannot move your money. Sphere Ramp Ltd, Nairobi.
+        All-in pricing from {FEE_ALLIN}, quoted before you send. Your business
+        keeps control of its own funds. Sphere Ramp Ltd, Nairobi.
       </p>
     </div>
   </section>
@@ -171,52 +265,50 @@ export const Contact = () => {
   }, []);
 
   return (
-    <div className="i-slab-outer">
-      <section className="i-slab" id="contact" aria-labelledby="contact-h">
-        <div className="i-wrap">
-          <div className="i-head-c">
-            <h2 id="contact-h" className="i-h2 i-h2--inv">
-              Start moving money.
-            </h2>
-            <p className="i-lead i-lead--inv">
-              Tell us which corridor you pay into and what it costs you today.
-              We will show you the difference.
-            </p>
-          </div>
-
-          {TALLY_FORM_ID ? (
-            <div className="tally">
-              <iframe
-                data-tally-src={`https://tally.so/embed/${TALLY_FORM_ID}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`}
-                loading="lazy"
-                width="100%"
-                height={320}
-                frameBorder={0}
-                title="Contact Rift"
-              />
-            </div>
-          ) : (
-            <p className="tally-fallback">
-              Email <a href={`mailto:${EMAIL}`}>{EMAIL}</a> and we will reply
-              the same day.
-            </p>
-          )}
+    <section className="sec sec-ink" id="contact" aria-labelledby="contact-h">
+      <div className="wrap">
+        <div className="contact-head">
+          <h2 id="contact-h" className="h2 h2-inv">
+            Tell us about one payment.
+          </h2>
+          <p className="lede lede-inv">
+            Where it goes, how much, and what you pay today. We will come back
+            with the number.
+          </p>
         </div>
-      </section>
-    </div>
+
+        {TALLY_FORM_ID ? (
+          <div className="tally">
+            <iframe
+              data-tally-src={`https://tally.so/embed/${TALLY_FORM_ID}?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1`}
+              loading="lazy"
+              width="100%"
+              height={320}
+              frameBorder={0}
+              title="Contact Rift"
+            />
+          </div>
+        ) : (
+          <p className="tally-fallback">
+            Email <a href={`mailto:${EMAIL}`}>{EMAIL}</a> and we will reply the
+            same day.
+          </p>
+        )}
+      </div>
+    </section>
   );
 };
 
 // ── Footer ─────────────────────────────────────────────────────────────
 
 export const InstitutionalFooter = () => (
-  <footer className="i-footer">
-    <div className="i-footer-in">
-      <span className="i-footer-legal">
+  <footer className="foot">
+    <div className="wrap foot-in">
+      <span className="foot-legal">
         © {new Date().getFullYear()} Rift, a product of Sphere Ramp Ltd.
         Nairobi, Kenya.
       </span>
-      <div className="i-footer-links">
+      <div className="foot-links">
         <a href="/blog">Journal</a>
         <a href="/terms">Terms</a>
         <a href="/privacy">Privacy</a>

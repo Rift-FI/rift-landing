@@ -31,3 +31,7 @@ dist-ssr
 /media-src/
 *.mov
 *.MOV
+
+# deep-research working files
+research_notes/
+reports/
