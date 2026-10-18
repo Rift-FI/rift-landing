@@ -38,7 +38,6 @@
 
 import { useState } from "react";
 import { useInView } from "./useInView";
-import { Currents } from "./Currents";
 
 /** Corridors we actually settle today. The claim a customer tests first. */
 
@@ -104,7 +103,6 @@ export const InstitutionalHero = () => (
       </div>
     </div>
 
-    <Currents />
   </header>
 );
 
