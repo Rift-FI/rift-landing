@@ -37,12 +37,12 @@ export const Nav = () => {
         </Link>
         <div className="nav-links">
           <a href={anchor("how")}>How it works</a>
-          <a href={anchor("who")}>Who it is for</a>
+          <a href={anchor("why")}>Why Rift</a>
           <Link to="/blog">Blog</Link>
         </div>
         <div className="nav-cta">
           <a className="btn btn-primary hide-xs" href="/#contact">
-            Get in touch
+            Start moving money
           </a>
           <button
             type="button"
@@ -67,10 +67,10 @@ export const Nav = () => {
         <div className="nav-mobile-backdrop" onClick={closeMenu} />
         <div className="nav-mobile-panel">
           <a href={anchor("how")} onClick={closeMenu}>How it works</a>
-          <a href={anchor("who")} onClick={closeMenu}>Who it is for</a>
+          <a href={anchor("why")} onClick={closeMenu}>Why Rift</a>
           <Link to="/blog" onClick={closeMenu}>Blog</Link>
           <a href="/#contact" onClick={closeMenu}>
-            Get in touch
+            Start moving money
           </a>
         </div>
       </div>

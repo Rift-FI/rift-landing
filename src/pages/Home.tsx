@@ -2,8 +2,8 @@ import { Fragment } from "react";
 import { Helmet } from "react-helmet-async";
 import {
  InstitutionalHero,
+ Benefits,
  HowItWorks,
- WhoFor,
  Contact,
  InstitutionalFooter,
 } from "../components/rift/institutional";
@@ -35,15 +35,15 @@ export const Home = () => (
  <Helmet>
  <html lang="en" />
  <title>
- Rift, dollar settlement for African trade corridors
+ Rift, pay suppliers across East Africa in minutes
  </title>
  <meta
  name="description"
- content="Rift is the dollar-settlement layer for African trade corridors. Netting cancels offsetting flows so you fund the difference instead of pre-funding both ends, and the residual settles in stablecoins. For liquidity providers, DFIs, remittance companies and the banks behind them."
+ content="Pay a supplier in Kenya, Uganda or Tanzania in US dollars, settle in minutes, and they take payout in local currency on mobile money. 0.5% to transfer, 1.0% to 1.5% to convert, against 3% to 8% through a correspondent bank."
  />
  <meta
  name="keywords"
- content="African financial infrastructure, wallet infrastructure Africa, liquidity infrastructure Africa, cross-border payments Africa, embedded wallets for banks, stablecoin infrastructure for PSPs, on-ramp off-ramp Kenya Tanzania Ghana Nigeria, netting engine, self-hosted payments infrastructure, hosted payments API Africa, Circle Alliance member, VASP regulations Kenya"
+ content="cross border payments East Africa, pay supplier Kenya Uganda Tanzania, B2B payments East Africa, import export payments Kenya, stablecoin settlement East Africa, cheaper than correspondent bank, M-Pesa business payout, EAC trade payments"
  />
  <meta name="author" content="Rift Finance" />
  <meta
@@ -59,11 +59,11 @@ export const Home = () => (
  <meta property="og:site_name" content="Rift Finance" />
  <meta
  property="og:title"
- content="Rift, dollar settlement for African trade corridors"
+ content="Rift, pay suppliers across East Africa in minutes"
  />
  <meta
  property="og:description"
- content="We net offsetting flows so most dollars never move, and settle the residual in stablecoins. Complementary to PAPSS, which clears local currency."
+ content="Pay a supplier in Kenya, Uganda or Tanzania in US dollars, settle in minutes, and they take payout in local currency on mobile money. 0.5% to transfer, 1.0% to 1.5% to convert, against 3% to 8% through a correspondent bank."
  />
  <meta property="og:url" content="https://riftfi.xyz/" />
  <meta property="og:image" content="https://riftfi.xyz/og-image.png" />
@@ -75,11 +75,11 @@ export const Home = () => (
  <meta name="twitter:site" content="@tryrift" />
  <meta
  name="twitter:title"
- content="Rift, dollar settlement for African trade corridors"
+ content="Rift, pay suppliers across East Africa in minutes"
  />
  <meta
  name="twitter:description"
- content="Netting and stablecoin settlement for African trade corridors."
+ content="Pay a supplier in Kenya, Uganda or Tanzania in US dollars, settle in minutes, and they take payout in local currency on mobile money. 0.5% to transfer, 1.0% to 1.5% to convert, against 3% to 8% through a correspondent bank."
  />
  <meta name="twitter:image" content="https://riftfi.xyz/og-image.png" />
 
@@ -137,7 +137,7 @@ export const Home = () => (
  "@type": "WebPage",
  "@id": "https://riftfi.xyz/#home",
  url: "https://riftfi.xyz/",
- name: "Rift, dollar settlement for African trade corridors",
+ name: "Rift, pay suppliers across East Africa in minutes",
  description:
  "Settlement infrastructure for African financial institutions. Netting and stablecoin settlement for African trade corridors.",
  primaryImageOfPage: {
@@ -150,33 +150,41 @@ export const Home = () => (
  about: { "@id": "https://riftfi.xyz/#org" },
  })}</script>
 
- {/* FAQPage, the questions a trade financier actually asks. */}
+ {/* FAQPage, the questions a trader actually asks. */}
  <script type="application/ld+json">{JSON.stringify({
  "@context": "https://schema.org",
  "@type": "FAQPage",
  mainEntity: [
  {
  "@type": "Question",
- name: "What does Rift actually do?",
+ name: "How do I pay a supplier in another East African country with Rift?",
  acceptedAnswer: {
  "@type": "Answer",
- text: "Rift settles dollars across African trade corridors. Moving money across a border at volume means pre-funding both ends, which traps working capital and often means drawing on an expensive credit line. Trade runs in both directions, so a large share of what is owed one way is matched by what is owed the other way. We hold both sides for a short window and settle them against each other, so only the difference needs funding. That difference settles in stablecoins.",
+ text: "You pay in from your bank or mobile money and it becomes a US dollar stablecoin on the way in. The payment settles to your supplier in minutes, with no correspondent bank in between. Your supplier either holds the dollars or takes payout in local currency on mobile money, whenever they choose.",
  },
  },
  {
  "@type": "Question",
- name: "Is Rift competing with PAPSS?",
+ name: "What does it cost compared with a bank wire?",
  acceptedAnswer: {
  "@type": "Answer",
- text: "No. PAPSS and Pesalink clear local currency, and they already do it well. Rift clears the dollar leg. The two are complementary: we net and settle the dollars, and hand the local currency leg to the rails that already exist.",
+ text: "Transfers cost 0.5 percent, and converting into or out of local currency costs 1.0 to 1.5 percent. The same payment through a correspondent bank typically runs 3 to 8 percent all in, plus a fixed fee at every hop.",
  },
  },
  {
  "@type": "Question",
- name: "Who is Rift for?",
+ name: "Does my supplier need a dollar account or a crypto wallet?",
  acceptedAnswer: {
  "@type": "Answer",
- text: "Two groups. Development finance institutions, banks and other liquidity providers who hold dollars and have a mandate to deploy them into African trade, whose balance sheet clears more trade because the netting layer only draws on the difference. And the remittance companies, exporters, importers, banks and payment companies moving money at volume, who would rather fund the net than pre-fund both ends of every corridor.",
+ text: "No. They can take payout in local currency on mobile money, including M-Pesa. They do not need a dollar account, a bank that holds one, or any knowledge of crypto.",
+ },
+ },
+ {
+ "@type": "Question",
+ name: "Does Rift hold my money?",
+ acceptedAnswer: {
+ "@type": "Answer",
+ text: "No. The architecture is non-custodial: your business holds its own keys, so Rift cannot move your funds.",
  },
  },
  ],
@@ -184,8 +192,8 @@ export const Home = () => (
  </Helmet>
 
  <InstitutionalHero />
+ <Benefits />
  <HowItWorks />
- <WhoFor />
  <Contact />
  <InstitutionalFooter />
  </Fragment>

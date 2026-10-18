@@ -131,35 +131,37 @@
   .pt-n { padding-top: 0; }
 }
 
-/* ── WHO IT IS FOR ────────────────────────────────────────────────── */
-.who-h { text-align: center; max-width: 34ch; margin: 0 auto clamp(36px, 4vw, 56px); }
-.who { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 920px; margin: 0 auto; }
-@media (max-width: 760px) { .who { grid-template-columns: 1fr; } }
-.who-card {
-  padding: clamp(28px, 3vw, 38px);
-  background: #ffffff;
-  border: 1px solid var(--l-hair-soft);
-  border-radius: 24px;
-  display: flex; flex-direction: column;
+/* ── BENEFITS ─────────────────────────────────────────────────────── */
+/* Three statements, no cards, no icons. The numbers carry it. */
+.bens {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(28px, 4vw, 56px);
+  max-width: 1000px; margin: 0 auto;
 }
-.who-card h3 {
-  margin: 0 0 14px 0;
-  font-family: "Inter", sans-serif; font-weight: 600; font-size: 20px;
-  letter-spacing: -.02em; color: var(--l-ink);
+@media (max-width: 860px) { .bens { grid-template-columns: 1fr; gap: 34px; } }
+.ben-h {
+  margin: 0 0 12px 0;
+  font-family: "Inter", sans-serif; font-weight: 600;
+  font-size: clamp(21px, 2vw, 25px);
+  letter-spacing: -.03em; line-height: 1.2; color: var(--l-ink);
 }
-.who-card p {
-  margin: 0 0 24px 0; flex: 1;
-  font-family: "Inter", sans-serif; font-size: 15px; line-height: 1.62;
+.ben-p {
+  margin: 0;
+  font-family: "Inter", sans-serif; font-size: 15.5px; line-height: 1.62;
   color: var(--l-ink-60);
 }
-.who-link {
-  align-self: flex-start;
-  display: inline-flex; align-items: center; gap: 7px;
-  font-family: "Inter", sans-serif; font-size: 15px; font-weight: 500;
-  color: var(--l-ink); text-decoration: none;
+
+/* section heading, centred, used by How it works */
+.who-h { text-align: center; max-width: 34ch; margin: 0 auto clamp(36px, 4vw, 56px); }
+
+/* ── TRUST LINE ───────────────────────────────────────────────────── */
+.trust {
+  max-width: 760px; margin: clamp(40px, 5vw, 64px) auto 0;
+  padding-top: clamp(24px, 3vw, 34px);
+  border-top: 1px solid var(--l-hair-soft);
+  font-family: "Inter", sans-serif; font-size: 14px; line-height: 1.65;
+  color: var(--l-ink-45);
 }
-.who-link .i-ar { transition: transform .22s var(--ease); }
-.who-link:hover .i-ar { transform: translateX(4px); }
 
 /* ── CONTACT SLAB ─────────────────────────────────────────────────── */
 .i-slab-outer { padding: 0 clamp(10px, 2vw, 20px) clamp(10px, 2vw, 20px); background: #ffffff; }
