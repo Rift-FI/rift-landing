@@ -22,7 +22,8 @@
  *   - 8 percent, or any figure derived from remittance pricing. Those are
  *     measured on a two hundred dollar consumer transfer and putting them
  *     next to a commercial invoice is a category error a CFO will catch.
- *   - any corridor that is not live. See CORRIDORS.
+ *   - any corridor that is not live. The network artwork names Kenya,
+ *     Uganda, Tanzania and Rwanda, so those four have to be true.
  *   - any licensing status we do not hold.
  *   - anything at a bank's expense. No "banks hide the spread", no
  *     "three to five days", no comparison table. Our reader banks with
@@ -39,10 +40,8 @@ import { useState } from "react";
 import { useInView } from "./useInView";
 
 /** Corridors we actually settle today. The claim a customer tests first. */
-const CORRIDORS = ["Kenya", "Uganda", "Tanzania", "Rwanda"];
 
 /** Published, and a customer can check them against an invoice. */
-const FEE_ALLIN = "1%";
 
 /**
  * Probe endpoint form. This is the PUBLIC access key and is meant to ship in
@@ -104,105 +103,38 @@ export const InstitutionalHero = () => (
       </div>
     </div>
 
-    <CorridorMap />
+    <NetworkPanel />
   </header>
 );
 
 /**
- * The corridor network, animated.
+ * The network panel.
  *
- * Replaces an earlier cost-comparison card that made its point at a bank's
- * expense. This shows what we do instead: money moving between four cities,
- * both directions, continuously.
+ * Supplied artwork, used as given. Two things to know about it:
  *
- * Pure SVG and CSS. The travelling dots ride `offset-path` along the same
- * curves that are drawn, so the motion cannot drift out of sync with the
- * artwork, and the whole thing runs on the compositor rather than in a
- * requestAnimationFrame loop. prefers-reduced-motion parks every dot.
+ * 1. Its headline, body copy and card labels are baked into the pixels, so
+ *    search engines and screen readers cannot read any of it. The alt text
+ *    below carries the meaning instead, and it has to stay accurate if the
+ *    image is ever replaced.
+ * 2. It advertises Track Shipments and Trade Finance. Nothing else on this
+ *    page offers either. If we do not ship those, the artwork is making a
+ *    promise the product does not keep.
+ *
+ * webp first, jpg for anything that cannot take it. Eager rather than lazy
+ * because it sits in the first screen on most viewports.
  */
-const NODES = [
-  { id: "kla", name: "Kampala", x: 215, y: 140 },
-  { id: "nbo", name: "Nairobi", x: 600, y: 165 },
-  { id: "kgl", name: "Kigali", x: 170, y: 310 },
-  { id: "dar", name: "Dar es Salaam", x: 580, y: 360 },
-];
-
-/* Each curve is written once and used three times: as the drawn line, as the
-   motion path for the dot going one way, and for the dot coming back. */
-const LINKS = [
-  { d: "M215,140 C340,105 480,120 600,165", dur: "3.4s" },
-  { d: "M600,165 C575,240 600,300 580,360", dur: "3.9s" },
-  { d: "M170,310 C280,350 440,372 580,360", dur: "4.3s" },
-  { d: "M215,140 C178,205 170,258 170,310", dur: "3.1s" },
-  { d: "M215,140 C320,215 450,290 580,360", dur: "5.1s" },
-];
-
-const CorridorMap = () => (
-  <div className="map" aria-hidden="true">
-    <svg viewBox="0 0 820 440" className="map-svg" role="presentation">
-      <defs>
-        <radialGradient id="glow" cx="50%" cy="50%">
-          <stop offset="0%" stopColor="#97FCE3" stopOpacity=".55" />
-          <stop offset="100%" stopColor="#97FCE3" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-
-      {/* field of faint dots, the way hyperliquid fills its dark panel */}
-      <g className="map-field">
-        {Array.from({ length: 150 }).map((_, i) => {
-          const x = (i * 97) % 820;
-          const y = (i * 149) % 440;
-          const r = i % 11 === 0 ? 2.1 : i % 4 === 0 ? 1.3 : 0.8;
-          return <circle key={i} cx={x} cy={y} r={r} />;
-        })}
-      </g>
-
-      <g className="map-links">
-        {LINKS.map((l) => (
-          <path key={l.d} d={l.d} />
-        ))}
-      </g>
-
-      <g className="map-nodes">
-        {NODES.map((n) => (
-          <g key={n.id}>
-            <circle className="map-halo" cx={n.x} cy={n.y} r="34" fill="url(#glow)" />
-            <circle className="map-dot" cx={n.x} cy={n.y} r="5.5" />
-            <text className="map-label" x={n.x} y={n.y - 20} textAnchor="middle">
-              {n.name}
-            </text>
-          </g>
-        ))}
-      </g>
-
-      {/* travellers: one each way per corridor */}
-      <g className="map-cars">
-        {LINKS.map((l, i) => (
-          <g key={`c${i}`}>
-            <circle
-              className="car"
-              r="3.6"
-              style={{ offsetPath: `path("${l.d}")`, animationDuration: l.dur } as React.CSSProperties}
-            />
-            <circle
-              className="car car-back"
-              r="3.6"
-              style={{
-                offsetPath: `path("${l.d}")`,
-                animationDuration: l.dur,
-                animationDelay: `-${parseFloat(l.dur) / 2}s`,
-              } as React.CSSProperties}
-            />
-          </g>
-        ))}
-      </g>
-    </svg>
-
-    <div className="wrap">
-      <p className="map-cap">
-        Both directions, between any two. Settled the same session.
-      </p>
-    </div>
+const NetworkPanel = () => (
+  <div className="net-panel">
+    <picture>
+      <source srcSet="/network.webp" type="image/webp" />
+      <img
+        src="/network.jpg"
+        width={1536}
+        height={1024}
+        decoding="async"
+        alt="The Rift network. Kenya, Uganda, Tanzania and Rwanda connected to each other and out to global markets in Asia, Europe and the Middle East, over shipping, air freight and road. Money moves from Kenyan shillings to Tanzanian shillings across the same network."
+      />
+    </picture>
   </div>
 );
 
@@ -282,17 +214,6 @@ export const HowItWorks = () => {
         ))}
       </ol>
 
-      <div className="corridors">
-        <span className="corridors-l">Live today</span>
-        <ul>
-          {CORRIDORS.map((c) => (
-            <li key={c}>{c}</li>
-          ))}
-        </ul>
-        <span className="corridors-r">
-          Both directions, between any two.
-        </span>
-      </div>
     </div>
   </section>
   );
@@ -331,10 +252,6 @@ export const WhoFor = () => {
           </div>
         ))}
       </div>
-      <p className="trust">
-        All-in pricing from {FEE_ALLIN}, quoted before you send. Your business
-        keeps control of its own funds. Sphere Ramp Ltd, Nairobi.
-      </p>
     </div>
   </section>
   );
