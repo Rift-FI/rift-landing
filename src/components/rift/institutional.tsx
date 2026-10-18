@@ -5,13 +5,11 @@
  * traders moving goods between East African countries, plus the finance
  * people behind them. Not consumers. Not crypto.
  *
- * THE ARGUMENT, which the research earns (see docs/positioning.md):
- *   The fee is not the cost. A Kenyan bank caps an outward wire at about
- *   thirty-five dollars, five hundredths of one percent of a fifty thousand
- *   dollar invoice. The cost is the exchange rate, taken twice, because the
- *   payment converts to dollars and back. All in it runs roughly 1.1 to 3.3
- *   percent, and 80 to 95 percent of that is spread, not fees. Nobody tells
- *   the trader what it was. So the product is one disclosed price.
+ * WHAT IT SELLS: one price, quoted in full before you send, and a supplier
+ * paid the same session in their own currency. The underlying economics are
+ * in docs/positioning.md, including why the exchange rate rather than the
+ * fee is where the money goes. That reasoning shapes the pricing; it is not
+ * the page's pitch, because the pitch does not need a villain.
  *
  * WHAT WE NEVER SAY, and these are not stylistic preferences:
  *   - "stablecoin", "crypto", "blockchain", "wallet", "non-custodial".
@@ -26,6 +24,10 @@
  *     next to a commercial invoice is a category error a CFO will catch.
  *   - any corridor that is not live. See CORRIDORS.
  *   - any licensing status we do not hold.
+ *   - anything at a bank's expense. No "banks hide the spread", no
+ *     "three to five days", no comparison table. Our reader banks with
+ *     these people and may well like their manager. Say what we do and
+ *     let it stand on its own.
  *
  * DESIGN: Instrument Serif display over Public Sans body, figures in
  * JetBrains Mono. Warm paper, near-black ink, one deep teal. The reference
@@ -34,7 +36,7 @@
  */
 
 import { useState } from "react";
-import { useInView, useCountUp } from "./useInView";
+import { useInView } from "./useInView";
 
 /** Corridors we actually settle today. The claim a customer tests first. */
 const CORRIDORS = ["Kenya", "Uganda", "Tanzania", "Rwanda"];
@@ -82,19 +84,15 @@ export const InstitutionalHero = () => (
           <h1 className="h1 rise" style={{ "--d": "0ms" } as React.CSSProperties}>
             Cross-border payments for East African trade.
           </h1>
-          <p className="h1-sub rise" style={{ "--d": "80ms" } as React.CSSProperties}>
-            The fee is not the cost. <em>The spread is.</em>
-          </p>
         </div>
 
         <div className="hero-right">
-          <p className="lede rise" style={{ "--d": "160ms" } as React.CSSProperties}>
-            Your bank charges about thirty-five dollars to send money to
-            Kampala, then takes one to three percent on the exchange rate,
-            twice, which never appears on the statement. We quote one price
+          <p className="lede rise" style={{ "--d": "120ms" } as React.CSSProperties}>
+            Pay a supplier in Kampala, Dar es Salaam or Kigali and they receive
+            their own currency the same session. One price, quoted in full
             before you send.
           </p>
-          <div className="cta-row rise" style={{ "--d": "240ms" } as React.CSSProperties}>
+          <div className="cta-row rise" style={{ "--d": "200ms" } as React.CSSProperties}>
             <a className="btn btn-1" href="#contact">
               Get a quote <Arrow />
             </a>
@@ -106,83 +104,122 @@ export const InstitutionalHero = () => (
       </div>
     </div>
 
-    <div className="wrap">
-      <Receipt />
-    </div>
+    <CorridorMap />
   </header>
 );
 
 /**
- * The argument as the document the trader never receives.
+ * The corridor network, animated.
  *
- * The two hidden rows animate wider than the fee, and the numbers count, so
- * the reader watches the real cost arrive rather than reading a claim about
- * it. It runs once, on scroll-in. Figures are illustrative and the card says
- * so underneath.
+ * Replaces an earlier cost-comparison card that made its point at a bank's
+ * expense. This shows what we do instead: money moving between four cities,
+ * both directions, continuously.
+ *
+ * Pure SVG and CSS. The travelling dots ride `offset-path` along the same
+ * curves that are drawn, so the motion cannot drift out of sync with the
+ * artwork, and the whole thing runs on the compositor rather than in a
+ * requestAnimationFrame loop. prefers-reduced-motion parks every dot.
  */
-const ROWS = [
-  { label: "Bank wire fee", note: "", value: 35, pct: 2, hidden: false },
-  { label: "Exchange rate, shillings to dollars", note: "not shown on your statement", value: 700, pct: 51, hidden: true },
-  { label: "Exchange rate, dollars to shillings", note: "not shown either", value: 640, pct: 47, hidden: true },
+const NODES = [
+  { id: "kla", name: "Kampala", x: 215, y: 140 },
+  { id: "nbo", name: "Nairobi", x: 600, y: 165 },
+  { id: "kgl", name: "Kigali", x: 170, y: 310 },
+  { id: "dar", name: "Dar es Salaam", x: 580, y: 360 },
 ];
 
-const Receipt = () => {
-  const [ref, inView] = useInView<HTMLDivElement>();
-  const total = useCountUp(1375, inView, 1100);
+/* Each curve is written once and used three times: as the drawn line, as the
+   motion path for the dot going one way, and for the dot coming back. */
+const LINKS = [
+  { d: "M215,140 C340,105 480,120 600,165", dur: "3.4s" },
+  { d: "M600,165 C575,240 600,300 580,360", dur: "3.9s" },
+  { d: "M170,310 C280,350 440,372 580,360", dur: "4.3s" },
+  { d: "M215,140 C178,205 170,258 170,310", dur: "3.1s" },
+  { d: "M215,140 C320,215 450,290 580,360", dur: "5.1s" },
+];
 
-  return (
-    <div className={`receipt rise${inView ? " is-in" : ""}`} ref={ref} style={{ "--d": "320ms" } as React.CSSProperties}>
-      <div className="receipt-head">
-        <span>Paying a supplier in Kampala</span>
-        <span className="receipt-amt">$50,000</span>
-      </div>
+const CorridorMap = () => (
+  <div className="map" aria-hidden="true">
+    <svg viewBox="0 0 820 440" className="map-svg" role="presentation">
+      <defs>
+        <radialGradient id="glow" cx="50%" cy="50%">
+          <stop offset="0%" stopColor="#97FCE3" stopOpacity=".55" />
+          <stop offset="100%" stopColor="#97FCE3" stopOpacity="0" />
+        </radialGradient>
+      </defs>
 
-      <ul className="receipt-rows">
-        {ROWS.map((r, i) => (
-          <li key={r.label} className={r.hidden ? "is-hidden" : ""}>
-            <span className="rr-label">
-              {r.label}
-              {r.note ? <em>{r.note}</em> : null}
-            </span>
-            <span className="rr-bar">
-              <i
-                style={{
-                  transform: inView ? `scaleX(${r.pct / 100})` : "scaleX(0)",
-                  transitionDelay: `${420 + i * 110}ms`,
-                }}
-              />
-            </span>
-            <span className="rr-val">${r.value.toLocaleString()}</span>
-          </li>
+      {/* field of faint dots, the way hyperliquid fills its dark panel */}
+      <g className="map-field">
+        {Array.from({ length: 150 }).map((_, i) => {
+          const x = (i * 97) % 820;
+          const y = (i * 149) % 440;
+          const r = i % 11 === 0 ? 2.1 : i % 4 === 0 ? 1.3 : 0.8;
+          return <circle key={i} cx={x} cy={y} r={r} />;
+        })}
+      </g>
+
+      <g className="map-links">
+        {LINKS.map((l) => (
+          <path key={l.d} d={l.d} />
         ))}
-      </ul>
+      </g>
 
-      <div className="receipt-foot">
-        <span>What it actually cost</span>
-        <b>${total.toLocaleString()}</b>
-      </div>
-      <p className="receipt-note">
-        Illustrative, on a typical corridor. Your figures depend on the day and
-        the bank. The point is which line you were shown.
+      <g className="map-nodes">
+        {NODES.map((n) => (
+          <g key={n.id}>
+            <circle className="map-halo" cx={n.x} cy={n.y} r="34" fill="url(#glow)" />
+            <circle className="map-dot" cx={n.x} cy={n.y} r="5.5" />
+            <text className="map-label" x={n.x} y={n.y - 20} textAnchor="middle">
+              {n.name}
+            </text>
+          </g>
+        ))}
+      </g>
+
+      {/* travellers: one each way per corridor */}
+      <g className="map-cars">
+        {LINKS.map((l, i) => (
+          <g key={`c${i}`}>
+            <circle
+              className="car"
+              r="3.6"
+              style={{ offsetPath: `path("${l.d}")`, animationDuration: l.dur } as React.CSSProperties}
+            />
+            <circle
+              className="car car-back"
+              r="3.6"
+              style={{
+                offsetPath: `path("${l.d}")`,
+                animationDuration: l.dur,
+                animationDelay: `-${parseFloat(l.dur) / 2}s`,
+              } as React.CSSProperties}
+            />
+          </g>
+        ))}
+      </g>
+    </svg>
+
+    <div className="wrap">
+      <p className="map-cap">
+        Both directions, between any two. Settled the same session.
       </p>
     </div>
-  );
-};
+  </div>
+);
 
 // ── What we do ──────────────────────────────────────────────────────────
 
 const POINTS: { h: string; p: string }[] = [
   {
     h: "One price, before you send.",
-    p: "You see the full cost of the payment, exchange rate included, while you are still deciding. No spread buried in the rate, no fees discovered on the statement a week later.",
+    p: "You see the full cost of the payment, exchange rate included, while you are still deciding. The number you are quoted is the number you pay.",
   },
   {
     h: "Your supplier is paid today.",
-    p: "Not three to five days. The money reaches them the same session, in their own currency, on the mobile money or bank account they already use. They need nothing new.",
+    p: "The money reaches them the same session, in their own currency, on the mobile money or bank account they already use. They need nothing new.",
   },
   {
     h: "And when you buy from outside Africa.",
-    p: "Paying a supplier in China or the Gulf is a different problem, because those dollars genuinely have to be found rather than netted. Same account, same desk, we handle both.",
+    p: "Paying a supplier in China or the Gulf works differently, because those dollars have to be sourced rather than matched against regional flow. Same account, same desk, we handle both.",
   },
 ];
 
