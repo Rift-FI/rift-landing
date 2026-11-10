@@ -375,3 +375,40 @@ nav.top .btn-primary {
 nav.top .btn-primary:hover { background: #AEFDE9; border-color: transparent; color: #03211C; }
 nav.top .tlink { color: #03211C; }
 body:has(.theme-light) { background: #F8F9F9; }
+
+/* Secondary CTA next to "Get a quote": same pill, quiet fill. */
+nav.top .btn-app {
+  background: #EFF1F1; border-color: transparent; color: #03211C;
+  border-radius: 999px; padding: 10px 20px;
+  font-family: "Public Sans", system-ui, sans-serif;
+  font-size: 12.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+}
+nav.top .btn-app:hover { background: #E4E7E7; color: #03211C; }
+nav.top .nav-cta { gap: 8px; }
+
+/* Launch bar above the nav (inside the sticky nav, so it stays pinned). */
+nav.top .announce {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 38px; padding: 8px 16px;
+  background: #03211C; color: #F8F9F9; text-decoration: none;
+  font-family: "Public Sans", system-ui, sans-serif; font-size: 13.5px; line-height: 1.35;
+  text-align: center;
+}
+nav.top .announce strong { font-weight: 600; }
+nav.top .announce-sub { color: rgba(248, 249, 249, .72); }
+nav.top .announce-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #97FCE3; flex: none;
+  box-shadow: 0 0 0 0 rgba(151, 252, 227, .6); animation: announce-pulse 2.4s ease-out infinite;
+}
+nav.top .announce-cta { color: #97FCE3; font-weight: 600; white-space: nowrap; }
+nav.top .announce:hover .announce-cta { text-decoration: underline; text-underline-offset: 3px; }
+@keyframes announce-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(151, 252, 227, .55); }
+  70%, 100% { box-shadow: 0 0 0 8px rgba(151, 252, 227, 0); }
+}
+@media (prefers-reduced-motion: reduce) { nav.top .announce-dot { animation: none; } }
+@media (max-width: 560px) { nav.top .announce-sub { display: none; } }
+/* The mobile menu opens under the nav; the launch bar adds 38px above it. */
+nav.top .announce { height: 38px; min-height: 0; padding-top: 0; padding-bottom: 0; white-space: nowrap; overflow: hidden; }
+nav.top .nav-mobile { inset: calc(70px + 38px) 0 0 0; }
+nav.top .nav-mobile-panel { max-height: calc(100vh - 70px - 38px); }

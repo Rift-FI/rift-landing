@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+const APP_URL = "https://wallet.riftfi.com";
+
 export const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -30,6 +32,14 @@ export const Nav = () => {
 
   return (
     <nav className={"top" + (scrolled ? " scrolled" : "")}>
+      <a className="announce" href={APP_URL} data-testid="announce-app">
+        <span className="announce-dot" aria-hidden="true" />
+        <span>
+          <strong>Rift Payments is live.</strong>
+          <span className="announce-sub"> Send, receive and cash out stablecoins.</span>
+        </span>
+        <span className="announce-cta">Open the app <span aria-hidden="true">→</span></span>
+      </a>
       <div className="wrap nav-in">
         <Link className="brand" to="/" onClick={closeMenu}>
           <img className="mark" src="/assets/rift-logo.png" alt="" />
@@ -41,6 +51,9 @@ export const Nav = () => {
           <Link to="/blog">Blog</Link>
         </div>
         <div className="nav-cta">
+          <a className="btn btn-app hide-xs" href={APP_URL}>
+            Open app
+          </a>
           <a className="btn btn-primary hide-xs" href="/#contact">
             Get a quote
           </a>
@@ -69,6 +82,7 @@ export const Nav = () => {
           <a href={anchor("how")} onClick={closeMenu}>How it works</a>
           <a href={anchor("what")} onClick={closeMenu}>What we do</a>
           <Link to="/blog" onClick={closeMenu}>Blog</Link>
+          <a href={APP_URL} onClick={closeMenu}>Open the app</a>
           <a href="/#contact" onClick={closeMenu}>
             Get a quote
           </a>
