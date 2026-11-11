@@ -19,11 +19,15 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!assets/|sitemap\\.xml|feed\\.xml|robots\\.txt|manifest\\.webmanifest|favicon\\.ico|rift-terms\\.pdf|rift-privacy\\.pdf).*)",
+      "source": "/((?!docs(?:/|$)|assets/|sitemap\\.xml|feed\\.xml|robots\\.txt|manifest\\.webmanifest|favicon\\.ico|rift-terms\\.pdf|rift-privacy\\.pdf).*)",
       "destination": "/index.html"
     }
   ],
   "headers": [
+    {
+      "source": "/docs/_astro/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
     {
       "source": "/assets/(.*)",
       "headers": [
