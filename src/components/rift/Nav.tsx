@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { APP_URL, CONTACT_HREF } from "../../lib/links";
+import { APP_URL, CONTACT_HREF, DOCS_URL } from "../../lib/links";
 
 export const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -32,7 +32,6 @@ export const Nav = () => {
   return (
     <nav className={"top" + (scrolled ? " scrolled" : "")}>
       <a className="announce" href={APP_URL} data-testid="announce-app">
-        <span className="announce-dot" aria-hidden="true" />
         <span>
           <strong>Rift Payments is live.</strong>
           <span className="announce-sub"> Send, receive and cash out stablecoins.</span>
@@ -47,6 +46,7 @@ export const Nav = () => {
         <div className="nav-links">
           <a href={anchor("payments")}>Payments</a>
           <a href={anchor("walletos")}>WalletOS</a>
+          <a href={DOCS_URL}>Docs</a>
           <Link to="/blog">Blog</Link>
         </div>
         <div className="nav-cta">
@@ -80,6 +80,7 @@ export const Nav = () => {
         <div className="nav-mobile-panel">
           <a href={anchor("payments")} onClick={closeMenu}>Payments</a>
           <a href={anchor("walletos")} onClick={closeMenu}>WalletOS</a>
+          <a href={DOCS_URL} onClick={closeMenu}>Docs</a>
           <Link to="/blog" onClick={closeMenu}>Blog</Link>
           <a href={APP_URL} onClick={closeMenu}>Open the app</a>
           <a href={CONTACT_HREF} onClick={closeMenu}>
