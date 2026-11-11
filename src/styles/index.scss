@@ -1,5 +1,6 @@
 @use "./rift-infra";
 @use "./institutional";
+@use "./landing";
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
