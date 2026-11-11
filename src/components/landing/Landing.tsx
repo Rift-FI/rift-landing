@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { APP_URL, CONTACT_EMAIL, CONTACT_HREF, DOCS_URL, WAITLIST_HREF } from "../../lib/links";
+import { APP_URL, CONTACT_EMAIL, CONTACT_HREF, DOCS_URL, YIELD_URL } from "../../lib/links";
 import { CORRIDORS, fmt, useRates } from "./rates";
 import { Roller } from "./Roller";
 import { useReducedMotion } from "./useReducedMotion";
@@ -14,8 +14,8 @@ import { useReducedMotion } from "./useReducedMotion";
  * same digits. Rift Wallets shows the one thing an integrator needs to see:
  * a send call that waits for the customer's passkey.
  *
- * Copy rule: every sentence is true today. Yield is not live, so it has no
- * rate and only a waitlist. Rails are named only where we know them.
+ * Copy rule: every sentence is true today. Yield is invite-only and lives at
+ * lp.riftfi.com. Rails are named only where we know them.
  */
 
 const Arrow = () => (
@@ -502,12 +502,12 @@ const More = () => (
       </article>
       <article id="yield">
         <p className="rl-eyebrow">
-          Yield <span className="rl-soon">Coming soon</span>
+          Yield <span className="rl-soon">By invitation</span>
         </p>
-        <h2 className="rl-h3">Earn yield in dollars.</h2>
-        <p className="rl-sub">Join the list and we will write when it opens.</p>
-        <a className="rl-tlink" href={WAITLIST_HREF}>
-          Join the waitlist <Arrow />
+        <h2 className="rl-h3">Earn from the dollars that fund payouts.</h2>
+        <p className="rl-sub">Liquidity providers share 0.30% of the volume their dollars carry, paid monthly. Deposits lock for 30 days. You can lose money.</p>
+        <a className="rl-tlink" href={YIELD_URL}>
+          Go to Yield <Arrow />
         </a>
       </article>
     </div>
