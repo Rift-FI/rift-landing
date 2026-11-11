@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { APP_URL, CONTACT_HREF, DOCS_URL } from "../../lib/links";
 
@@ -19,6 +19,20 @@ export const Nav = () => {
     setMenuOpen(false);
   }, [pathname]);
 
+  // The announce bar wraps on narrow screens, so the nav has no fixed height.
+  // Publish it as --nav-h for the mobile menu offset and anchor scroll padding.
+  const navRef = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    const el = navRef.current;
+    if (!el) return;
+    const root = document.documentElement;
+    const set = () => root.style.setProperty("--nav-h", `${Math.round(el.offsetHeight)}px`);
+    set();
+    const ro = new ResizeObserver(set);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   useEffect(() => {
     if (!menuOpen) return;
     const prev = document.body.style.overflow;
@@ -30,7 +44,7 @@ export const Nav = () => {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <nav className={"top" + (scrolled ? " scrolled" : "")}>
+    <nav ref={navRef} className={"top" + (scrolled ? " scrolled" : "")}>
       <a className="announce" href={APP_URL} data-testid="announce-app">
         <span>
           <strong>Rift Payments is live.</strong>
@@ -45,7 +59,7 @@ export const Nav = () => {
         </Link>
         <div className="nav-links">
           <a href={anchor("payments")}>Payments</a>
-          <a href={anchor("walletos")}>WalletOS</a>
+          <a href={anchor("wallets")}>Wallets</a>
           <a href={DOCS_URL}>Docs</a>
           <Link to="/blog">Blog</Link>
         </div>
@@ -79,7 +93,7 @@ export const Nav = () => {
         <div className="nav-mobile-backdrop" onClick={closeMenu} />
         <div className="nav-mobile-panel">
           <a href={anchor("payments")} onClick={closeMenu}>Payments</a>
-          <a href={anchor("walletos")} onClick={closeMenu}>WalletOS</a>
+          <a href={anchor("wallets")} onClick={closeMenu}>Wallets</a>
           <a href={DOCS_URL} onClick={closeMenu}>Docs</a>
           <Link to="/blog" onClick={closeMenu}>Blog</Link>
           <a href={APP_URL} onClick={closeMenu}>Open the app</a>

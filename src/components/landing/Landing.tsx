@@ -11,7 +11,7 @@ import { useReducedMotion } from "./useReducedMotion";
  * One idea, used three times: money is a number, and the number moves.
  * The hero is a working quote (type an amount, pick a country, the payout
  * rolls into place from the live rates feed). The rates table uses the
- * same digits. WalletOS shows the one thing an integrator needs to see:
+ * same digits. Rift Wallets shows the one thing an integrator needs to see:
  * a send call that waits for the customer's passkey.
  *
  * Copy rule: every sentence is true today. Yield is not live, so it has no
@@ -129,7 +129,7 @@ const Quote = () => {
         <label className="rl-label" htmlFor="rl-amount">
           You send
         </label>
-        <div className="rl-q-amt">
+        <div className="rl-q-amt" style={{ ["--len" as string]: Math.max((amount || "0").length, 4), ["--rsv" as string]: "112px" }}>
           <div className="rl-q-field">
             <Roller text={amount || "0"} className={"rl-q-big" + (amount ? "" : " is-empty")} />
             <input
@@ -185,7 +185,7 @@ const Quote = () => {
 
       <div className="rl-q-row rl-q-out" id="rl-q-out">
         <span className="rl-label">They receive</span>
-        <div className="rl-q-amt">
+        <div className="rl-q-amt" style={{ ["--len" as string]: Math.max(fmt(receive, r.decimals).length, 4), ["--rsv" as string]: "60px" }}>
           <Roller text={fmt(receive, r.decimals)} className="rl-q-big" />
           <span className="rl-q-cur" key={c.currency}>
             {c.currency}
@@ -232,8 +232,8 @@ const Hero = () => (
           <a className="rl-btn rl-btn-1" href={APP_URL}>
             Open app <Arrow />
           </a>
-          <a className="rl-btn rl-btn-ghost" href="#walletos">
-            WalletOS for institutions
+          <a className="rl-btn rl-btn-ghost" href="#wallets">
+            Rift Wallets for institutions
           </a>
         </div>
       </div>
@@ -306,7 +306,7 @@ const Rates = () => {
   );
 };
 
-/* ── WALLETOS ──────────────────────────────────────────────────────── */
+/* ── RIFT WALLETS ──────────────────────────────────────────────────── */
 
 // 0 idle · 1 response came back · 2 customer is approving · 3 approved
 type Step = 0 | 1 | 2 | 3;
@@ -433,26 +433,26 @@ const Approve = ({ step }: { step: Step }) => (
 );
 
 const OS_PARTS = [
-  { h: "Passkey wallets", p: "Smart wallets your customers unlock with a passkey. No seed phrases, and Rift never holds the keys." },
+  { h: "Passkey wallets", p: "Smart wallets your users unlock with a passkey. No seed phrases, and Rift never holds the keys." },
   { h: "Payments APIs", p: "Send, receive and convert between local money and USDC from your own product." },
   { h: "Approvals", p: "Decide who signs off on what before any money moves." },
-  { h: "Dashboard", p: "Every wallet, payment and approval in one view." },
+  { h: "Dashboard", p: "Every user wallet, payment and approval in one view." },
 ];
 
-const WalletOS = () => {
+const Wallets = () => {
   const { ref, step, play } = useApprovalSequence();
   return (
-    <section className="rl-sec rl-ink" id="walletos" aria-labelledby="walletos-h">
+    <section className="rl-sec rl-ink" id="wallets" aria-labelledby="wallets-h">
       <div className="rl-wrap">
         <div className="rl-os-head">
-          <p className="rl-eyebrow">WalletOS · for institutions and fintechs</p>
-          <h2 className="rl-h2" id="walletos-h">
-            Plug anyone into the global economy.
+          <p className="rl-eyebrow">Rift Wallets · for banks and fintechs</p>
+          <h2 className="rl-h2" id="wallets-h">
+            Give your users wallets and access to global finance.
           </h2>
           <div className="rl-os-side">
             <p className="rl-sub">
-              Give your customers dollar wallets inside your app. They approve
-              every payment with a passkey on their own device.
+              They hold USDC, USDT and tokenized stocks inside your app, and
+              approve every payment with a passkey on their own device.
             </p>
             <div className="rl-ctas">
               <a className="rl-btn rl-btn-mint" href={CONTACT_HREF}>
@@ -548,7 +548,7 @@ const Footer = () => (
         <nav className="rl-foot-col" aria-label="Product">
           <span>Product</span>
           <a href="#payments">Payments</a>
-          <a href="#walletos">WalletOS</a>
+          <a href="#wallets">Wallets</a>
           <a href="#stocks">Stocks</a>
           <a href="#yield">Yield</a>
         </nav>
@@ -574,7 +574,7 @@ export const Landing = () => (
   <div className="rl">
     <Hero />
     <Rates />
-    <WalletOS />
+    <Wallets />
     <More />
     <Close />
     <Footer />

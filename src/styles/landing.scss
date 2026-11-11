@@ -121,6 +121,9 @@
   transition: background-size .36s var(--rl-out);
 }
 .rl-ctas .rl-tlink { margin: 0 0 0 10px; }
+/* text links stay visually tight; the hit area grows to 44px */
+.rl-tlink { position: relative; }
+.rl-tlink::after { content: ""; position: absolute; inset: -8px -6px; }
 
 @media (hover: hover) and (pointer: fine) {
   .rl-btn-1:hover { background: #0B3A32; }
@@ -207,9 +210,15 @@
 }
 .rl-q-row { padding: 20px 0 18px; border-bottom: 1px solid var(--rl-rule); }
 .rl-q-row .rl-label { margin-bottom: 12px; }
-.rl-q-amt { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-width: 0; }
+.rl-q-amt {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; min-width: 0;
+  container-type: inline-size;
+  /* the figure shrinks to fit its row: --len is its character count, --rsv
+     the room kept for the token pill or currency code beside it */
+  --q-size: max(22px, min(clamp(36px, 3.4vw, 46px), calc((100cqi - var(--rsv, 64px)) / (var(--len, 4) * .6))));
+}
 .rl-q-big {
-  font-size: clamp(36px, 3.4vw, 46px); font-weight: 500; letter-spacing: -0.035em;
+  font-size: var(--q-size, clamp(36px, 3.4vw, 46px)); font-weight: 500; letter-spacing: -0.035em;
   vertical-align: baseline;
 }
 .rl-q-big.is-empty { color: var(--rl-ink-3); }
@@ -217,7 +226,7 @@
 .rl-q-input {
   position: absolute; inset: 0; width: 100%;
   margin: 0; padding: 0; border: 0; outline: 0; background: transparent;
-  font: inherit; font-size: clamp(36px, 3.4vw, 46px); font-weight: 500; letter-spacing: -0.035em;
+  font: inherit; font-size: var(--q-size, clamp(36px, 3.4vw, 46px)); font-weight: 500; letter-spacing: -0.035em;
   font-variant-numeric: tabular-nums;
   color: transparent; caret-color: var(--rl-ink);
 }
@@ -322,7 +331,7 @@
 }
 .rl-table-foot .rl-q-live { margin-left: 0; }
 
-/* ── WALLETOS (dark) ──────────────────────────────────────────────── */
+/* ── RIFT WALLETS (dark) ────────────────────────────────────────────── */
 .rl-ink {
   margin: 0 clamp(8px, 1.1vw, 16px);
   border-radius: clamp(20px, 2.2vw, 32px);
@@ -338,7 +347,7 @@
   gap: 24px clamp(40px, 6vw, 96px); align-items: end;
 }
 .rl-os-head .rl-eyebrow { grid-column: 1 / -1; margin: 0; }
-.rl-os-head .rl-h2 { max-width: 13ch; }
+.rl-os-head .rl-h2 { max-width: 16ch; }
 .rl-os-side .rl-sub { margin: 0; }
 .rl-os-side .rl-ctas { margin-top: 28px; }
 
@@ -421,8 +430,8 @@
 .rl-ap-note { margin-top: 14px; font-size: 12.5px; line-height: 1.45; color: var(--rl-ink-3); }
 
 .rl-replay {
-  position: absolute; right: 0; bottom: 100%; margin-bottom: 8px;
-  min-height: 32px; padding: 0 4px; border: 0; background: none; cursor: pointer;
+  position: absolute; right: 0; bottom: 100%; margin-bottom: 0;
+  min-height: 44px; min-width: 44px; padding: 0 4px; border: 0; background: none; cursor: pointer;
   font-family: var(--rl-mono); font-size: 12px; color: var(--rl-on-ink-3);
   transition: color .2s ease;
 }
@@ -473,7 +482,7 @@
 }
 @media (max-width: 880px) {
   .rl-hero { min-height: 0; }
-  .rl-hero-grid { grid-template-columns: 1fr; }
+  .rl-hero-grid { grid-template-columns: minmax(0, 1fr); }
   .rl-in-card { justify-self: start; max-width: 520px; }
   .rl-os-demo { grid-template-columns: 1fr; }
   .rl-more-grid { grid-template-columns: 1fr; gap: 56px; }
@@ -482,6 +491,8 @@
 }
 @media (max-width: 600px) {
   .rl-quote { padding: 4px 18px 18px; border-radius: 20px; }
+  .rl-seg { padding: 3px; }
+  .rl-seg-pill { top: 3px; bottom: 3px; }
   .rl-tr { grid-template-columns: minmax(0, 1fr) auto; row-gap: 10px; }
   .rl-th .rl-c-rails { display: none; }
   .rl-tr .rl-c-rails { grid-column: 1; grid-row: 2; padding-left: 50px; }
@@ -494,6 +505,21 @@
   .rl-ctas .rl-tlink { margin: 8px 0 0; }
   .rl-foot-grid { grid-template-columns: 1fr 1fr; }
   .rl-foot-brand { grid-column: 1 / -1; }
+}
+
+/* touch: every control reaches 44px */
+@media (max-width: 1024px), (pointer: coarse) {
+  .rl-seg button { height: 44px; }
+  .rl-foot-col { gap: 0; }
+  .rl-foot-col span { margin-bottom: 6px; }
+  .rl-foot-col a { display: flex; align-items: center; min-height: 44px; }
+}
+
+/* country pills: 6 across must still reach 44px wide on a 320 screen, so
+   the card bleeds a few px into the gutter and pads tighter */
+@media (max-width: 350px) {
+  .rl-in-card { width: calc(100% + 12px); max-width: none; margin-left: -6px; }
+  .rl-quote { padding: 4px 12px 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -537,3 +563,36 @@ nav.top .nav-burger { border-color: transparent; border-radius: 10px; transition
 nav.top .nav-burger:active { background: #EEF1F0; }
 /* Solid, never frosted: the older theme gave the scrolled nav a blur. */
 .theme-light nav.top { background: #F8F9F9; backdrop-filter: none; -webkit-backdrop-filter: none; }
+
+/* ── NAV: responsive + touch (v3) ─────────────────────────────────────
+   The announce bar wraps instead of clipping, so the nav height varies.
+   Nav.tsx publishes the real height as --nav-h; the mobile menu and
+   anchor jumps key off it. */
+html { scroll-padding-top: var(--nav-h, 108px); }
+nav.top .announce {
+  height: auto; min-height: 44px; padding: 7px 16px;
+  white-space: normal; overflow: visible;
+  flex-wrap: wrap; column-gap: 10px; row-gap: 2px;
+  text-wrap: balance;
+}
+nav.top .nav-mobile { inset: var(--nav-h, 108px) 0 0 0; }
+nav.top .nav-mobile-panel { max-height: calc(100vh - var(--nav-h, 108px)); max-height: calc(100dvh - var(--nav-h, 108px)); }
+nav.top .brand { min-height: 44px; }
+nav.top .nav-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; }
+nav.top .btn-app, nav.top .btn-primary { display: inline-flex; align-items: center; min-height: 44px; padding-top: 0; padding-bottom: 0; }
+nav.top .nav-mobile-panel a { min-height: 44px; }
+@media (max-width: 520px) { nav.top .nav-cta .hide-xs { display: none; } }
+
+/* Touch targets on the other routes that share the nav (/businesses, /blog,
+   /terms). Visual size unchanged where possible; the hit area grows. */
+@media (max-width: 1024px), (pointer: coarse) {
+  footer.foot .foot-links { gap: 0 8px; }
+  footer.foot .foot-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 4px; }
+  .cta-tlink { position: relative; }
+  .cta-tlink::after { content: ""; position: absolute; inset: -10px -6px; }
+  .bl-tags .bl-tag { min-height: 44px; }
+  .bl-search { padding-top: 0.15rem; padding-bottom: 0.15rem; }
+  .bl-search input { min-height: 44px; }
+  .legal-toc ol { row-gap: 0; }
+  .legal-toc a { display: inline-flex; align-items: center; min-height: 44px; }
+}

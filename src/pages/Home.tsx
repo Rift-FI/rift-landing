@@ -9,7 +9,7 @@ import { CONTACT_EMAIL } from "../lib/links";
  */
 const TITLE = "Rift, send money across Africa and the world";
 const DESC =
-  "Send to M-Pesa and bank accounts across six African countries and buy or sell USDC with local money. WalletOS gives banks and fintechs passkey wallets for their customers.";
+  "Send to M-Pesa and bank accounts across six African countries and buy or sell USDC with local money. With Rift Wallets, banks and fintechs give their users wallets for USDC, USDT and tokenized stocks.";
 
 const COUNTRIES = ["Kenya", "Uganda", "Tanzania", "Ghana", "Malawi", "Nigeria"];
 

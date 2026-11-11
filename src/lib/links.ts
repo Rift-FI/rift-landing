@@ -5,7 +5,7 @@
 export const APP_URL = "https://wallet.riftfi.com";
 export const DOCS_URL = "/docs";
 export const CONTACT_EMAIL = "amschel@riftfi.com";
-export const CONTACT_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("WalletOS")}`;
+export const CONTACT_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Rift Wallets")}`;
 export const WAITLIST_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Yield waitlist")}`;
 
 /**
