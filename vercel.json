@@ -19,14 +19,19 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!docs(?:/|$)|assets/|sitemap\\.xml|feed\\.xml|robots\\.txt|manifest\\.webmanifest|favicon\\.ico|rift-terms\\.pdf|rift-privacy\\.pdf).*)",
+      "source": "/((?!docs(?:/|$)|\\.well-known/|assets/|sitemap\\.xml|feed\\.xml|robots\\.txt|manifest\\.webmanifest|favicon\\.ico|rift-terms\\.pdf|rift-privacy\\.pdf).*)",
       "destination": "/index.html"
     }
   ],
   "headers": [
     {
       "source": "/docs/_astro/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/assets/(.*)",
@@ -60,6 +65,23 @@
         {
           "key": "Content-Type",
           "value": "application/rss+xml; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/assetlinks.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
         }
       ]
     }

@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "xyz.riftfi.wallet",
+      "sha256_cert_fingerprints": [
+        "31:D9:AB:BA:AB:2D:60:8A:EF:ED:65:73:68:E7:62:9D:FF:B5:F8:2E:9B:F7:12:AF:0C:1B:D3:11:42:E4:D3:15"
+      ]
+    }
+  }
+]
