@@ -570,12 +570,63 @@ const Footer = () => (
   </footer>
 );
 
+const PLATFORM = [
+  { k: "Fiat accounts", v: "Virtual collection & payout accounts in local currency." },
+  { k: "Wallet infrastructure", v: "Passkey smart wallets you give your own users." },
+  { k: "Gas sponsorship", v: "Gasless transactions — we cover the gas." },
+  { k: "On-ramps", v: "Local money in, USDC settled to any wallet." },
+  { k: "Off-ramps", v: "USDC out to M-Pesa, mobile money and bank payouts." },
+  { k: "Coverage", v: "Kenya, Tanzania, Uganda, Ghana, Malawi and Nigeria." },
+];
+
+const Platform = () => (
+  <section className="rl-sec rl-plat" id="platform" aria-labelledby="platform-h">
+    <div className="rl-wrap">
+      <div className="rl-head rl-plat-head">
+        <p className="rl-eyebrow">For builders</p>
+        <h2 className="rl-h2" id="platform-h">One API for money across Africa.</h2>
+        <p className="rl-lede">
+          Fiat accounts, wallets, gas, on- and off-ramps — the whole platform
+          behind one key, on one flat plan.
+        </p>
+      </div>
+      <div className="rl-plat-grid">
+        {PLATFORM.map((f) => (
+          <article className="rl-plat-item" key={f.k}>
+            <h3 className="rl-plat-k">{f.k}</h3>
+            <p className="rl-plat-v">{f.v}</p>
+          </article>
+        ))}
+      </div>
+      <div className="rl-plat-price">
+        <div className="rl-plat-price-main">
+          <span className="rl-plat-amt">$88</span>
+          <span className="rl-plat-per">/ month, flat</span>
+        </div>
+        <p className="rl-plat-note">
+          Unlimited wallets and transactions. Pay in crypto. 3-day free trial —
+          no card.
+        </p>
+        <div className="rl-ctas">
+          <a className="rl-btn rl-btn-1" href={DOCS_URL}>
+            Start building <Arrow />
+          </a>
+          <a className="rl-btn rl-btn-ghost" href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Rift API")}`}>
+            Talk to us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
 export const Landing = () => (
   <div className="rl">
     <Hero />
     <Rates />
     <Wallets />
     <More />
+    <Platform />
     <Close />
     <Footer />
   </div>

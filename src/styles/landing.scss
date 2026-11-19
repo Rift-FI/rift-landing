@@ -596,3 +596,37 @@ nav.top .nav-mobile-panel a { min-height: 44px; }
   .legal-toc ol { row-gap: 0; }
   .legal-toc a { display: inline-flex; align-items: center; min-height: 44px; }
 }
+
+/* ── Platform / pricing offer ─────────────────────────────────────── */
+.rl-plat-head { max-width: 46ch; }
+.rl-plat-grid {
+  margin-top: clamp(28px, 4vw, 44px);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rl-rule);
+  border: 1px solid var(--rl-rule);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.rl-plat-item { background: var(--rl-white); padding: clamp(18px, 2.4vw, 26px); }
+.rl-plat-k {
+  font-size: 15px; font-weight: 600; letter-spacing: -0.01em;
+  color: var(--rl-ink); margin: 0 0 6px;
+}
+.rl-plat-v { font-size: 14px; line-height: 1.5; color: var(--rl-ink-2); margin: 0; max-width: 34ch; }
+.rl-plat-price {
+  margin-top: clamp(24px, 3vw, 36px);
+  background: var(--rl-ink);
+  color: var(--rl-on-ink);
+  border-radius: 16px;
+  padding: clamp(24px, 3.4vw, 40px);
+  text-align: center;
+}
+.rl-plat-price-main { display: flex; align-items: baseline; justify-content: center; gap: 10px; }
+.rl-plat-amt { font-size: clamp(40px, 6vw, 56px); font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+.rl-plat-per { font-size: 16px; color: var(--rl-on-ink-2); }
+.rl-plat-note { margin: 12px auto 20px; font-size: 15px; line-height: 1.55; color: var(--rl-on-ink-2); max-width: 46ch; }
+.rl-plat-price .rl-ctas { justify-content: center; }
+@media (max-width: 860px) { .rl-plat-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .rl-plat-grid { grid-template-columns: 1fr; } }
