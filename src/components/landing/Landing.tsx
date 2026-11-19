@@ -281,7 +281,7 @@ const Rates = () => {
           {CORRIDORS.map((c) => (
             <div className="rl-tr" role="row" key={c.cc}>
               <span role="cell" className="rl-c-country">
-                <span className="rl-cc">{c.cc}</span>
+                <img className="rl-flag" src={`/flags/${c.cc.toLowerCase()}.svg`} alt={`${c.country} flag`} width={26} height={19} loading="lazy" decoding="async" />
                 <span>
                   <span className="rl-c-name">{c.country}</span>
                   <span className="rl-c-cur">{c.currencyName}</span>
@@ -502,7 +502,7 @@ const More = () => (
       </article>
       <article id="yield">
         <p className="rl-eyebrow">
-          Yield <span className="rl-soon">By invitation</span>
+          Yield
         </p>
         <h2 className="rl-h3">Earn from the dollars that fund payouts.</h2>
         <p className="rl-sub">Liquidity providers share 0.30% of the volume their dollars carry, paid monthly. Deposits lock for 30 days. You can lose money.</p>
@@ -570,13 +570,22 @@ const Footer = () => (
   </footer>
 );
 
-const PLATFORM = [
-  { k: "Fiat accounts", v: "Virtual collection & payout accounts in local currency." },
+const COUNTRIES = [
+  { cc: "ke", name: "Kenya" },
+  { cc: "tz", name: "Tanzania" },
+  { cc: "ug", name: "Uganda" },
+  { cc: "gh", name: "Ghana" },
+  { cc: "mw", name: "Malawi" },
+  { cc: "ng", name: "Nigeria" },
+];
+
+const PLATFORM: { k: string; v: string; flags?: boolean }[] = [
+  { k: "Collection & payout APIs", v: "Collect and pay out in local currency across your markets." },
   { k: "Wallet infrastructure", v: "Passkey smart wallets you give your own users." },
   { k: "Gas sponsorship", v: "Gasless transactions — we cover the gas." },
   { k: "On-ramps", v: "Local money in, USDC settled to any wallet." },
   { k: "Off-ramps", v: "USDC out to M-Pesa, mobile money and bank payouts." },
-  { k: "Coverage", v: "Kenya, Tanzania, Uganda, Ghana, Malawi and Nigeria." },
+  { k: "Coverage", v: "", flags: true },
 ];
 
 const Platform = () => (
@@ -586,7 +595,7 @@ const Platform = () => (
         <p className="rl-eyebrow">For builders</p>
         <h2 className="rl-h2" id="platform-h">One API for money across Africa.</h2>
         <p className="rl-lede">
-          Fiat accounts, wallets, gas, on- and off-ramps — the whole platform
+          Collection, payouts, wallets, gas, on- and off-ramps — the whole platform
           behind one key, on one flat plan.
         </p>
       </div>
@@ -594,7 +603,18 @@ const Platform = () => (
         {PLATFORM.map((f) => (
           <article className="rl-plat-item" key={f.k}>
             <h3 className="rl-plat-k">{f.k}</h3>
-            <p className="rl-plat-v">{f.v}</p>
+            {f.flags ? (
+              <div className="rl-plat-flags">
+                {COUNTRIES.map((ct) => (
+                  <span className="rl-plat-flag" key={ct.cc}>
+                    <img src={`/flags/${ct.cc}.svg`} alt="" width={22} height={16} loading="lazy" decoding="async" />
+                    {ct.name}
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <p className="rl-plat-v">{f.v}</p>
+            )}
           </article>
         ))}
       </div>

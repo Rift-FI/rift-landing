@@ -630,3 +630,19 @@ nav.top .nav-mobile-panel a { min-height: 44px; }
 .rl-plat-price .rl-ctas { justify-content: center; }
 @media (max-width: 860px) { .rl-plat-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .rl-plat-grid { grid-template-columns: 1fr; } }
+
+/* ── Country flags ────────────────────────────────────────────────── */
+.rl-flag {
+  width: 26px; height: 19px; flex: none;
+  object-fit: cover; border-radius: 3px;
+  box-shadow: 0 0 0 1px var(--rl-rule); /* crisp edge on white */
+}
+.rl-plat-flags { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 2px; }
+.rl-plat-flag {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 13px; color: var(--rl-ink-2); white-space: nowrap;
+}
+.rl-plat-flag img {
+  width: 22px; height: 16px; border-radius: 2.5px;
+  object-fit: cover; box-shadow: 0 0 0 1px var(--rl-rule);
+}
