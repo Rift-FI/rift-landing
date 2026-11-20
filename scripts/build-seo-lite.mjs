@@ -67,6 +67,7 @@ async function writeSitemap(posts) {
     { loc: `${BASE_URL}/blog`, priority: "0.9", changefreq: "weekly" },
     { loc: `${BASE_URL}/terms`, priority: "0.3", changefreq: "yearly" },
     { loc: `${BASE_URL}/privacy`, priority: "0.3", changefreq: "yearly" },
+    { loc: `${BASE_URL}/delete-account`, priority: "0.3", changefreq: "yearly" },
     ...posts.map((p) => ({
       loc: `${BASE_URL}/blog/${p.slug}`,
       priority: "0.8",

@@ -426,6 +426,7 @@ export const InstitutionalFooter = () => (
         <a href="/blog">Journal</a>
         <a href="/terms">Terms</a>
         <a href="/privacy">Privacy</a>
+        <a href="/delete-account">Delete account</a>
         <a href={`mailto:${EMAIL}`}>Contact</a>
       </div>
     </div>

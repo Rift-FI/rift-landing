@@ -3,7 +3,8 @@ import { Helmet } from "react-helmet-async";
 import { I } from "../lib/rift-data";
 import { InstitutionalFooter } from "../components/rift/institutional";
 
-const LAST_UPDATED = "04/07/2026";
+const LAST_UPDATED = "20 November 2026";
+const EFFECTIVE_DATE = "20 November 2026";
 
 type Block =
   | { kind: "p"; text: string }
@@ -23,7 +24,11 @@ const SECTIONS: Section[] = [
     blocks: [
       {
         kind: "p",
-        text: 'Rift is a product of Sphere Ramp Ltd, a company incorporated in Kenya at Enkang, Ngong Road. For the purposes of Kenya\'s Data Protection Act, 2019 ("DPA"), Sphere Ramp Ltd is the data controller for personal data processed in connection with riftfi.com and our applications, APIs, and services (the "Services").',
+        text: 'Rift is a product of SPHERE-RAMP LTD (trading as "Rift"), a company incorporated in the Republic of Kenya (registration number PVT-9WYFD5) with its registered office at 32 Enkang, D403, Ngong Road, Riruta, Nairobi, Kenya. For the purposes of Kenya\'s Data Protection Act, 2019 ("DPA"), SPHERE-RAMP LTD is the data controller for personal data processed in connection with the Services (defined below).',
+      },
+      {
+        kind: "p",
+        text: 'This Policy covers our services wherever you use them (together, the "Services"): the website at riftfi.com, the Rift web app at wallet.riftfi.com, the "Rift" mobile app for Android on Google Play and for iOS on the App Store, and our related APIs.',
       },
       { kind: "p", text: "Contact for privacy matters: privacy@riftfi.com." },
       {
@@ -119,6 +124,25 @@ const SECTIONS: Section[] = [
           "Corporate transactions: a purchaser or successor in a merger, acquisition, or asset sale, subject to this Policy.",
         ],
       },
+      { kind: "h3", text: "Service providers and SDKs in the mobile app" },
+      {
+        kind: "p",
+        text: "The Rift mobile app uses a limited set of third-party services and software development kits (SDKs):",
+      },
+      {
+        kind: "ul",
+        items: [
+          "Authentication: Google Sign-In and Apple Sign-In (to let you sign in with those accounts) and device passkeys. We receive an account identifier, not your Google or Apple password.",
+          "Push notifications: Google Firebase Cloud Messaging, to deliver transaction and security alerts.",
+          "Wallet connections: WalletConnect / Reown, used only when you choose to connect Rift to a third-party application at your request.",
+          "Identity verification and sanctions screening: a licensed verification provider that processes your identity documents and screening checks.",
+          "Cloud hosting and infrastructure providers that store and transmit data on our behalf under contract.",
+        ],
+      },
+      {
+        kind: "p",
+        text: "The app does not contain third-party advertising SDKs, and we do not use third-party analytics to track you across other apps or websites.",
+      },
       {
         kind: "p",
         text: "Public blockchain networks are, by design, public: wallet addresses and on-chain transaction details may be visible to anyone. We do not publish your identity to a public network, but on-chain data combined with other information could identify you.",
@@ -184,7 +208,7 @@ const SECTIONS: Section[] = [
     blocks: [
       {
         kind: "p",
-        text: "The Services are for business use by persons 18 and over. We do not knowingly process children's data. If you believe a minor has provided us data, contact privacy@riftfi.com and we will delete it.",
+        text: "The Services are for persons 18 and over. We do not knowingly process children's data. If you believe a minor has provided us data, contact privacy@riftfi.com and we will delete it.",
       },
     ],
   },
@@ -200,15 +224,68 @@ const SECTIONS: Section[] = [
   },
   {
     n: "13",
+    title: "Mobile app permissions and device data",
+    blocks: [
+      {
+        kind: "p",
+        text: "The Rift mobile app requests only the device permissions it needs to work. On Android and iOS these are:",
+      },
+      {
+        kind: "ul",
+        items: [
+          "Camera — to scan wallet and payment QR codes, used only when you open a scanner in the app. Identity verification runs in a separate secure browser window provided by our verification partner, which may use your device camera there to capture your ID and a liveness check; that happens outside the Rift app.",
+          "Biometrics and passkeys (Face ID, Touch ID, fingerprint) — to sign you in and authorise payments with a passkey stored on your device. Your biometric data never leaves your device and is never sent to us.",
+          "Notifications — to send transaction and security alerts. You can turn these off in your device settings at any time.",
+          "Network and internet access — required to connect to the Services.",
+        ],
+      },
+      {
+        kind: "p",
+        text: "The app does not access your photos, precise location, contacts, call logs, SMS messages, or microphone (the microphone permission is explicitly blocked). This list matches what we declare in Google Play's Data safety section.",
+      },
+    ],
+  },
+  {
+    n: "14",
+    title: "Deleting your account and data",
+    blocks: [
+      { kind: "p", text: "You can delete your Rift account at any time:" },
+      {
+        kind: "ul",
+        items: [
+          "In the app: open Settings, tap Delete account, and confirm with the one-time code we send to your registered email or phone.",
+          "On the web: go to https://riftfi.com/delete-account and follow the instructions.",
+        ],
+      },
+      {
+        kind: "p",
+        text: "We verify your identity before deleting by sending a one-time code to the email address or phone number on the account.",
+      },
+      {
+        kind: "p",
+        text: "When you delete your account we remove your profile, authentication credentials and passkeys, device records, and app preferences, and we sign you out on every device. Deletion completes within 30 days.",
+      },
+      {
+        kind: "p",
+        text: "Some records must be kept even after deletion: identity-verification (KYC) and transaction records are retained for seven (7) years as required by Kenya's Proceeds of Crime and Anti-Money Laundering Act, after which they are deleted or irreversibly anonymised. Data already written to public blockchains (such as wallet addresses and on-chain transactions) cannot be deleted, because those networks are public and immutable.",
+      },
+      {
+        kind: "p",
+        text: "Before you delete, move any remaining balance out of your wallet — after deletion you will no longer be able to reach it through Rift.",
+      },
+    ],
+  },
+  {
+    n: "15",
     title: "Contact",
     blocks: [
       {
         kind: "p",
-        text: "Sphere Ramp Ltd (Rift), Enkang, Ngong Road, Nairobi, Kenya.",
+        text: "SPHERE-RAMP LTD (trading as Rift). Registered office: 32 Enkang, D403, Ngong Road, Riruta, Nairobi, Kenya. Company registration number PVT-9WYFD5. D-U-N-S 369977829.",
       },
       {
         kind: "p",
-        text: "amschel@riftfi.com · privacy@riftfi.com",
+        text: "privacy@riftfi.com · admin@riftfi.com · amschel@riftfi.com",
       },
       {
         kind: "p",
@@ -232,7 +309,7 @@ export const Privacy = () => {
           name="description"
           content="Rift Privacy Policy. Sphere Ramp Ltd, Nairobi, Kenya."
         />
-        <link rel="canonical" href="https://riftfi.xyz/privacy" />
+        <link rel="canonical" href="https://riftfi.com/privacy" />
         <meta name="robots" content="index, follow" />
       </Helmet>
 
@@ -242,9 +319,9 @@ export const Privacy = () => {
             <span className="kicker">Legal</span>
             <h1>Privacy Policy</h1>
             <p className="legal-meta">
-              Rift (riftfi.com) · Sphere Ramp Ltd
+              Rift (riftfi.com) · SPHERE-RAMP LTD
               <br />
-              Last updated: {LAST_UPDATED}
+              Last updated: {LAST_UPDATED} · Effective date: {EFFECTIVE_DATE}
             </p>
             <div className="legal-actions no-print">
               <a

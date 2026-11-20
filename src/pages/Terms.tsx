@@ -3,7 +3,8 @@ import { Helmet } from "react-helmet-async";
 import { I } from "../lib/rift-data";
 import { InstitutionalFooter } from "../components/rift/institutional";
 
-const LAST_UPDATED = "04/07/2026";
+const LAST_UPDATED = "20 November 2026";
+const EFFECTIVE_DATE = "20 November 2026";
 
 type Block =
   | { kind: "p"; text: string }
@@ -23,7 +24,7 @@ const SECTIONS: Section[] = [
     blocks: [
       {
         kind: "p",
-        text: 'Rift is a product of Sphere Ramp Ltd, a company incorporated in the Republic of Kenya (registration number PVT-9WYFD5, registered office at Enkang, Ngong Road) ("Sphere Ramp", "Rift", "we", "us", "our"). These Terms of Service ("Terms") govern your access to and use of the website at riftfi.com, our applications, APIs, wallet infrastructure, and related services (together, the "Services").',
+        text: 'Rift is a product of SPHERE-RAMP LTD (trading as "Rift"), a company incorporated in the Republic of Kenya (registration number PVT-9WYFD5, registered office at 32 Enkang, D403, Ngong Road, Riruta, Nairobi, Kenya) ("Sphere Ramp", "Rift", "we", "us", "our"). These Terms of Service ("Terms") govern your access to and use of the website at riftfi.com, the Rift web app at wallet.riftfi.com, the Rift mobile applications available on Google Play and the App Store, our APIs and wallet infrastructure, and related services (together, the "Services").',
       },
       {
         kind: "p",
@@ -69,11 +70,16 @@ const SECTIONS: Section[] = [
       {
         kind: "ul",
         items: [
-          "Be at least 18 years old;",
-          "Use the Services for business purposes on behalf of a duly registered business or institution, unless we expressly agree otherwise;",
-          "Complete our onboarding and verification process and keep your information accurate and current;",
+          "Be at least 18 years old and able to form a binding contract;",
+          "Complete our onboarding and identity verification (KYC) process and keep your information accurate and current;",
+          "Use the Services only for lawful purposes and in accordance with these Terms;",
           "Not be located in, or acting on behalf of a person in, a jurisdiction subject to comprehensive sanctions, and not appear on any applicable sanctions list.",
         ],
+      },
+      { kind: "h3", text: "Individuals and businesses" },
+      {
+        kind: "p",
+        text: 'The Rift mobile and web apps are available to individual consumers aged 18 and over who complete verification. Where you use the Services on behalf of a business or institution (for example our APIs or wallet infrastructure), you confirm you are authorised to bind that entity, the additional business terms in your commercial agreement with us apply, and "you" refers to that entity.',
       },
       {
         kind: "p",
@@ -160,7 +166,6 @@ const SECTIONS: Section[] = [
           "Send or receive value connected to fraud, ransomware, darknet markets, terrorism, human trafficking, child exploitation, or the proceeds of crime;",
           "Misrepresent your identity, ownership, or the purpose of transactions;",
           "Interfere with, reverse engineer, or attempt to extract keys or non-public data from the Services, except to the extent such restriction is prohibited by law;",
-          "Use the Services for personal consumer purposes where your agreement with us is limited to business use;",
           "Resell or provide the Services to third parties except as expressly permitted in a written agreement with us.",
         ],
       },
@@ -283,15 +288,49 @@ const SECTIONS: Section[] = [
   },
   {
     n: "18",
+    title: "Account closure and data deletion",
+    blocks: [
+      {
+        kind: "p",
+        text: "You can stop using the Services and close your account at any time. To delete your account and the personal data we are not required to keep, open Settings in the Rift app and tap Delete account, or visit https://riftfi.com/delete-account. We verify your identity first and then delete within 30 days.",
+      },
+      {
+        kind: "p",
+        text: "Certain records — including identity-verification (KYC) and transaction records — must be retained for seven (7) years under Kenya's Proceeds of Crime and Anti-Money Laundering Act, and data already recorded on public blockchains cannot be deleted because those networks are public and immutable. Our Privacy Policy explains what is deleted, what is kept, and for how long.",
+      },
+    ],
+  },
+  {
+    n: "19",
+    title: "Third-party app stores",
+    blocks: [
+      {
+        kind: "p",
+        text: "If you download the Rift app from Google Play or the Apple App Store, you also agree to that store's terms. Google and Apple are not parties to these Terms and are not responsible for the app, its content, or its support. Each app store provider is a third-party beneficiary of these Terms to the extent they relate to your use of the app obtained from that store and may enforce them. Any support for the app is provided by SPHERE-RAMP LTD, not the app store, at admin@riftfi.com.",
+      },
+    ],
+  },
+  {
+    n: "20",
+    title: "Licensing and regulated partners",
+    blocks: [
+      {
+        kind: "p",
+        text: "Fiat on-ramp and off-ramp, currency conversion, and any holding or custody of funds are performed by licensed partner institutions, which are identified to you in-app before you confirm a transaction. SPHERE-RAMP LTD is not a bank, does not take deposits, and holds only the licences and registrations it actually maintains; we do not claim any licence or registration we do not hold. A partner's or regulator's requirements may apply to a transaction in addition to these Terms.",
+      },
+    ],
+  },
+  {
+    n: "21",
     title: "Contact",
     blocks: [
       {
         kind: "p",
-        text: "Sphere Ramp Ltd (Rift), Enkang, Ngong Road, Nairobi, Kenya.",
+        text: "SPHERE-RAMP LTD (trading as Rift). Registered office: 32 Enkang, D403, Ngong Road, Riruta, Nairobi, Kenya. Company registration number PVT-9WYFD5. D-U-N-S 369977829.",
       },
       {
         kind: "p",
-        text: "amschel@riftfi.com · admin@riftfi.com · admin@riftfi.xyz",
+        text: "admin@riftfi.com · privacy@riftfi.com · amschel@riftfi.com",
       },
     ],
   },
@@ -311,7 +350,7 @@ export const Terms = () => {
           name="description"
           content="Rift Terms of Service. Sphere Ramp Ltd, Nairobi, Kenya."
         />
-        <link rel="canonical" href="https://riftfi.xyz/terms" />
+        <link rel="canonical" href="https://riftfi.com/terms" />
         <meta name="robots" content="index, follow" />
       </Helmet>
 
@@ -321,9 +360,9 @@ export const Terms = () => {
             <span className="kicker">Legal</span>
             <h1>Terms of Service</h1>
             <p className="legal-meta">
-              Rift (riftfi.com) · Sphere Ramp Ltd
+              Rift (riftfi.com) · SPHERE-RAMP LTD
               <br />
-              Last updated: {LAST_UPDATED}
+              Last updated: {LAST_UPDATED} · Effective date: {EFFECTIVE_DATE}
             </p>
             <div className="legal-actions no-print">
               <a
