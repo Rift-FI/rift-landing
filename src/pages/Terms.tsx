@@ -345,10 +345,10 @@ export const Terms = () => {
     <Fragment>
       <Helmet>
         <html lang="en" />
-        <title>Terms of Service. Rift (riftfi.com), Sphere Ramp Ltd.</title>
+        <title>Terms of Service. Rift, SPHERE-RAMP LTD.</title>
         <meta
           name="description"
-          content="Rift Terms of Service. Sphere Ramp Ltd, Nairobi, Kenya."
+          content="Rift Terms of Service. SPHERE-RAMP LTD, Nairobi, Kenya."
         />
         <link rel="canonical" href="https://riftfi.com/terms" />
         <meta name="robots" content="index, follow" />

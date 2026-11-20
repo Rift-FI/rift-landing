@@ -11,6 +11,8 @@ const ROOT = process.cwd();
 const DIST = path.join(ROOT, "dist");
 const POSTS_DIR = path.join(ROOT, "src", "content", "blog");
 const BASE_URL = "https://riftfi.xyz";
+// Legal / compliance pages canonicalise to the Google Play developer domain.
+const LEGAL_URL = "https://riftfi.com";
 
 function parseFrontmatter(raw) {
   const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
@@ -198,9 +200,10 @@ function routeMetas(posts) {
   const routes = [
     { path: "businesses", title: "Pay across African borders in minutes, with Rift", description: "Move money across African borders in minutes, compliantly, and turn every payment into credit history your bank can see." },
     { path: "blog", title: "Rift Blog. Stablecoins, emerging markets, and fintech.", description: "Essays, deep dives and product updates from the Rift team on stablecoins, payments, emerging markets and what we're building.", ogTitle: "Rift Journal. Notes on money without borders.", ogDescription: "Essays from the Rift team on stablecoins, emerging markets and the future of programmable money." },
-    { path: "terms", title: "Terms of Service. Rift (riftfi.com), Sphere Ramp Ltd.", description: "Rift Terms of Service. Sphere Ramp Ltd, Nairobi, Kenya." },
-    { path: "privacy", title: "Privacy Policy. Rift (riftfi.com), Sphere Ramp Ltd.", description: "Rift Privacy Policy. Sphere Ramp Ltd, Nairobi, Kenya." },
-  ].map((r) => ({ ...r, canonical: `${BASE_URL}/${r.path}` }));
+    { path: "terms", title: "Terms of Service. Rift, SPHERE-RAMP LTD.", description: "Rift Terms of Service. SPHERE-RAMP LTD, Nairobi, Kenya.", canonical: `${LEGAL_URL}/terms` },
+    { path: "privacy", title: "Privacy Policy. Rift, SPHERE-RAMP LTD.", description: "Rift Privacy Policy. SPHERE-RAMP LTD, Nairobi, Kenya.", canonical: `${LEGAL_URL}/privacy` },
+    { path: "delete-account", title: "Delete your Rift account. SPHERE-RAMP LTD.", description: "How to delete your Rift account and data. Operated by SPHERE-RAMP LTD, Nairobi, Kenya.", canonical: `${LEGAL_URL}/delete-account` },
+  ].map((r) => ({ ...r, canonical: r.canonical || `${BASE_URL}/${r.path}` }));
   const postRoutes = posts.map((p) => ({
     path: `blog/${p.slug}`,
     canonical: `${BASE_URL}/blog/${p.slug}`,

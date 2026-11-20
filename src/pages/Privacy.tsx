@@ -304,10 +304,10 @@ export const Privacy = () => {
     <Fragment>
       <Helmet>
         <html lang="en" />
-        <title>Privacy Policy. Rift (riftfi.com), Sphere Ramp Ltd.</title>
+        <title>Privacy Policy. Rift, SPHERE-RAMP LTD.</title>
         <meta
           name="description"
-          content="Rift Privacy Policy. Sphere Ramp Ltd, Nairobi, Kenya."
+          content="Rift Privacy Policy. SPHERE-RAMP LTD, Nairobi, Kenya."
         />
         <link rel="canonical" href="https://riftfi.com/privacy" />
         <meta name="robots" content="index, follow" />
