@@ -47,7 +47,7 @@ export const DeleteAccount = () => (
               This page explains how to delete your account and data for the{" "}
               <strong>Rift</strong> app, which is developed and operated by{" "}
               <strong>SPHERE-RAMP LTD</strong> (trading as Rift), 32 Enkang, D403,
-              Ngong Road, Riruta, Nairobi, Kenya. You can delete your account
+              Ngong Road, Riruta, Nairobi 00505, Kenya. You can delete your account
               yourself in the app, or request deletion by email. No sign-in is
               required to read this page.
             </p>

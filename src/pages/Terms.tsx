@@ -24,7 +24,7 @@ const SECTIONS: Section[] = [
     blocks: [
       {
         kind: "p",
-        text: 'Rift is a product of SPHERE-RAMP LTD (trading as "Rift"), a company incorporated in the Republic of Kenya (registration number PVT-9WYFD5, registered office at 32 Enkang, D403, Ngong Road, Riruta, Nairobi, Kenya) ("Sphere Ramp", "Rift", "we", "us", "our"). These Terms of Service ("Terms") govern your access to and use of the website at riftfi.com, the Rift web app at wallet.riftfi.com, the Rift mobile applications available on Google Play and the App Store, our APIs and wallet infrastructure, and related services (together, the "Services").',
+        text: 'Rift is a product of SPHERE-RAMP LTD (trading as "Rift"), a company incorporated in the Republic of Kenya (registration number PVT-9WYFD5, registered office at 32 Enkang, D403, Ngong Road, Riruta, Nairobi 00505, Kenya) ("Sphere Ramp", "Rift", "we", "us", "our"). These Terms of Service ("Terms") govern your access to and use of the website at riftfi.com, the Rift web app at wallet.riftfi.com, the Rift mobile applications available on Google Play and the App Store, our APIs and wallet infrastructure, and related services (together, the "Services").',
       },
       {
         kind: "p",
@@ -326,7 +326,7 @@ const SECTIONS: Section[] = [
     blocks: [
       {
         kind: "p",
-        text: "SPHERE-RAMP LTD (trading as Rift). Registered office: 32 Enkang, D403, Ngong Road, Riruta, Nairobi, Kenya. Company registration number PVT-9WYFD5. D-U-N-S 369977829.",
+        text: "SPHERE-RAMP LTD (trading as Rift). Registered office: 32 Enkang, D403, Ngong Road, Riruta, Nairobi 00505, Kenya. Company registration number PVT-9WYFD5. D-U-N-S 369977829.",
       },
       {
         kind: "p",

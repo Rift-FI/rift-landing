@@ -24,7 +24,7 @@ const SECTIONS: Section[] = [
     blocks: [
       {
         kind: "p",
-        text: 'Rift is a product of SPHERE-RAMP LTD (trading as "Rift"), a company incorporated in the Republic of Kenya (registration number PVT-9WYFD5) with its registered office at 32 Enkang, D403, Ngong Road, Riruta, Nairobi, Kenya. For the purposes of Kenya\'s Data Protection Act, 2019 ("DPA"), SPHERE-RAMP LTD is the data controller for personal data processed in connection with the Services (defined below).',
+        text: 'Rift is a product of SPHERE-RAMP LTD (trading as "Rift"), a company incorporated in the Republic of Kenya (registration number PVT-9WYFD5) with its registered office at 32 Enkang, D403, Ngong Road, Riruta, Nairobi 00505, Kenya. For the purposes of Kenya\'s Data Protection Act, 2019 ("DPA"), SPHERE-RAMP LTD is the data controller for personal data processed in connection with the Services (defined below).',
       },
       {
         kind: "p",
@@ -281,7 +281,7 @@ const SECTIONS: Section[] = [
     blocks: [
       {
         kind: "p",
-        text: "SPHERE-RAMP LTD (trading as Rift). Registered office: 32 Enkang, D403, Ngong Road, Riruta, Nairobi, Kenya. Company registration number PVT-9WYFD5. D-U-N-S 369977829.",
+        text: "SPHERE-RAMP LTD (trading as Rift). Registered office: 32 Enkang, D403, Ngong Road, Riruta, Nairobi 00505, Kenya. Company registration number PVT-9WYFD5. D-U-N-S 369977829.",
       },
       {
         kind: "p",
