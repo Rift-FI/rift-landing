@@ -5,7 +5,7 @@ import { InstitutionalFooter } from "../components/rift/institutional";
 const LAST_UPDATED = "20 November 2026";
 
 const MAILTO =
-  "mailto:privacy@riftfi.com" +
+  "mailto:admin@riftfi.com" +
   "?subject=" +
   encodeURIComponent("Account deletion request") +
   "&body=" +
@@ -48,14 +48,14 @@ export const DeleteAccount = () => (
               <strong>Rift</strong> app, which is developed and operated by{" "}
               <strong>SPHERE-RAMP LTD</strong> (trading as Rift), 32 Enkang, D403,
               Ngong Road, Riruta, Nairobi 00505, Kenya. You can delete your account
-              yourself in the app, or request deletion by email. No sign-in is
-              required to read this page.
+              in the app, or request deletion by email. No sign-in is required to
+              read this page.
             </p>
           </section>
 
           <section className="legal-section">
             <h2>
-              <span className="legal-section-n">1.</span> Delete in the app
+              <span className="legal-section-n">1.</span> Request deletion in the app
             </h2>
             <ol>
               <li>Open the Rift app and sign in.</li>
@@ -66,11 +66,15 @@ export const DeleteAccount = () => (
                 Tap <strong>Delete account</strong>.
               </li>
               <li>
-                Move out any remaining wallet balance if prompted, then confirm.
+                Move out any remaining wallet balance if prompted.
               </li>
               <li>
                 Enter the one-time code we send to your registered email or phone
-                to verify it is you. Your account is then deleted.
+                to verify it is you, then tap <strong>Request account deletion</strong>.
+              </li>
+              <li>
+                We close your account within 30 days (we can't delete a financial
+                account on the spot — see what is kept below).
               </li>
             </ol>
           </section>
@@ -89,7 +93,7 @@ export const DeleteAccount = () => (
               </a>
             </p>
             <p>
-              Send the request to <strong>privacy@riftfi.com</strong> with the
+              Send the request to <strong>admin@riftfi.com</strong> with the
               subject &ldquo;Account deletion request&rdquo; and include the email
               address or phone number on your account.
             </p>
@@ -129,7 +133,7 @@ export const DeleteAccount = () => (
               For full details of how we handle your data, see our{" "}
               <a href="/privacy">Privacy Policy</a> and{" "}
               <a href="/terms">Terms of Service</a>. Questions:{" "}
-              <a href="mailto:privacy@riftfi.com">privacy@riftfi.com</a>.
+              <a href="mailto:admin@riftfi.com">admin@riftfi.com</a>.
             </p>
           </section>
         </article>

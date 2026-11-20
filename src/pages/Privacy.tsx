@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import { Helmet } from "react-helmet-async";
-import { I } from "../lib/rift-data";
 import { InstitutionalFooter } from "../components/rift/institutional";
 
 const LAST_UPDATED = "20 November 2026";
@@ -30,7 +29,7 @@ const SECTIONS: Section[] = [
         kind: "p",
         text: 'This Policy covers our services wherever you use them (together, the "Services"): the website at riftfi.com, the Rift web app at wallet.riftfi.com, the "Rift" mobile app for Android on Google Play and for iOS on the App Store, and our related APIs.',
       },
-      { kind: "p", text: "Contact for privacy matters: privacy@riftfi.com." },
+      { kind: "p", text: "Contact for privacy matters: admin@riftfi.com." },
       {
         kind: "p",
         text: "Where we process personal data on behalf of an institutional customer (for example, a bank deploying our infrastructure for its own clients), that institution is the controller and we act as a processor under its instructions and a data processing agreement; this Policy covers processing where Sphere Ramp Ltd is the controller.",
@@ -178,7 +177,7 @@ const SECTIONS: Section[] = [
       },
       {
         kind: "p",
-        text: "To exercise these rights, contact privacy@riftfi.com. We will respond within the timelines required by the DPA and may need to verify your identity first. If you are unsatisfied, you have the right to lodge a complaint with the Office of the Data Protection Commissioner (www.odpc.go.ke).",
+        text: "To exercise these rights, contact admin@riftfi.com. We will respond within the timelines required by the DPA and may need to verify your identity first. If you are unsatisfied, you have the right to lodge a complaint with the Office of the Data Protection Commissioner (www.odpc.go.ke).",
       },
     ],
   },
@@ -208,7 +207,7 @@ const SECTIONS: Section[] = [
     blocks: [
       {
         kind: "p",
-        text: "The Services are for persons 18 and over. We do not knowingly process children's data. If you believe a minor has provided us data, contact privacy@riftfi.com and we will delete it.",
+        text: "The Services are for persons 18 and over. We do not knowingly process children's data. If you believe a minor has provided us data, contact admin@riftfi.com and we will delete it.",
       },
     ],
   },
@@ -285,7 +284,7 @@ const SECTIONS: Section[] = [
       },
       {
         kind: "p",
-        text: "privacy@riftfi.com · admin@riftfi.com · amschel@riftfi.com",
+        text: "admin@riftfi.com · amschel@riftfi.com",
       },
       {
         kind: "p",
@@ -324,13 +323,6 @@ export const Privacy = () => {
               Last updated: {LAST_UPDATED} · Effective date: {EFFECTIVE_DATE}
             </p>
             <div className="legal-actions no-print">
-              <a
-                className="btn btn-primary"
-                href="/rift-privacy.pdf"
-                download="rift-privacy.pdf"
-              >
-                Download PDF {I.arrow}
-              </a>
               <button
                 type="button"
                 className="btn btn-secondary"

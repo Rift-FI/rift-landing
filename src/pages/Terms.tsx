@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import { Helmet } from "react-helmet-async";
-import { I } from "../lib/rift-data";
 import { InstitutionalFooter } from "../components/rift/institutional";
 
 const LAST_UPDATED = "20 November 2026";
@@ -330,7 +329,7 @@ const SECTIONS: Section[] = [
       },
       {
         kind: "p",
-        text: "admin@riftfi.com · privacy@riftfi.com · amschel@riftfi.com",
+        text: "admin@riftfi.com · amschel@riftfi.com",
       },
     ],
   },
@@ -365,13 +364,6 @@ export const Terms = () => {
               Last updated: {LAST_UPDATED} · Effective date: {EFFECTIVE_DATE}
             </p>
             <div className="legal-actions no-print">
-              <a
-                className="btn btn-primary"
-                href="/rift-terms.pdf"
-                download="rift-terms.pdf"
-              >
-                Download PDF {I.arrow}
-              </a>
               <button
                 type="button"
                 className="btn btn-secondary"
