@@ -1,0 +1,55 @@
+# Rift
+
+> Rift is wallet and payments infrastructure for products in Africa: passkey-owned (non-custodial) smart-account wallets, gasless transactions, stablecoin payouts to mobile money, bank, till and paybill, onramp, swaps and bridges, a customer ledger, webhooks, an embeddable widget and TypeScript SDKs. Everything is one REST API. Sandbox (https://sandbox.riftfi.com) is free; production (https://api.riftfi.com) is a flat $88 per month. Fund-moving calls start on your server but are approved by the customer's passkey.
+
+Important rules for agents integrating Rift:
+- Start in the sandbox. Use a sandbox project key against https://sandbox.riftfi.com.
+- Never put an `sk_` or `psk_` key in client-side code or commit it. Public `pk_` keys are being introduced for frontends; existing keys keep working.
+- Never retry a fund-moving request automatically. Look up its status first.
+- A server-initiated payment returns 202 APPROVAL_REQUIRED; the customer approves it with a passkey.
+
+## Start here
+
+- [Getting started](https://riftfi.com/docs/getting-started/): environments, keys, first call, going to production
+- [Authentication](https://riftfi.com/docs/authentication/): keys, tokens, headers, CORS
+- [Integrate](https://riftfi.com/docs/integrate/): widget, React, TypeScript SDK and REST code
+- [Capabilities](https://riftfi.com/docs/capabilities/): every capability group and its endpoints
+- [Rate limits](https://riftfi.com/docs/rate-limits/): limits, 429 handling
+
+## Full text for LLMs
+
+- [llms-full.txt](https://riftfi.com/llms-full.txt): the entire documentation, self-contained: auth, every guide, error codes, webhooks, SDK, widget, and a catalogue of every endpoint with parameters and example bodies
+
+## Reference
+
+- [API reference (Core)](https://riftfi.com/docs/api/core/): every operation, with schemas
+- [API reference (Platform, Beta)](https://riftfi.com/docs/api/platform/): server-only institution endpoints
+- [API playground](https://riftfi.com/docs/playground/): run live requests against sandbox or production with your own key; the key is kept in memory only
+- [Errors and retries](https://riftfi.com/docs/guides/errors/)
+- [Webhooks](https://riftfi.com/docs/guides/webhooks/)
+- [Sandbox vs production](https://riftfi.com/docs/guides/sandbox-vs-production/)
+- [Going-live checklist](https://riftfi.com/docs/guides/going-live/)
+
+## Guides
+
+- [Payment corridors and limits](https://riftfi.com/docs/guides/payment-corridors/)
+- [Payouts (offramp) and refunds](https://riftfi.com/docs/guides/offramp/)
+- [Onramp](https://riftfi.com/docs/guides/onramp/)
+- [Approvals](https://riftfi.com/docs/guides/approvals/)
+- [Two-phase signing](https://riftfi.com/docs/guides/two-phase-signing/)
+- [Passkeys and recovery](https://riftfi.com/docs/guides/passkeys-and-recovery/)
+- [Gas sponsorship](https://riftfi.com/docs/guides/gas-sponsorship/)
+- [Ledger and statements](https://riftfi.com/docs/guides/ledger-and-statements/)
+
+## SDKs and widget
+
+- [@rift-finance/wallet](https://riftfi.com/docs/sdk/wallet/): TypeScript SDK for servers
+- [@rift-finance/react](https://riftfi.com/docs/sdk/react/): React components
+- [Widget (embed.js)](https://riftfi.com/docs/sdk/widget/): embed sign-in, passkey setup and approvals in any page
+- [MCP server](https://riftfi.com/docs/sdk/mcp/): tools for AI agents
+
+## Optional
+
+- [Security model](https://riftfi.com/docs/overview/security/)
+- [Architecture](https://riftfi.com/docs/overview/architecture/)
+- [Pricing](https://riftfi.com/docs/pricing/)

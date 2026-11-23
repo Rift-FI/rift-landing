@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Authentication | Rift</title>
+<meta name="description" content="API keys, customer access tokens, headers, environments and CORS for the Rift API.">
+<link rel="canonical" href="https://riftfi.com/docs/authentication/">
+<link rel="shortcut icon" href="/docs/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/docs/playground/playground.css">
+<link rel="stylesheet" href="/docs/playground/article.css">
+</head><body>
+<header class="top"><a class="brand" href="/docs/">Rift docs</a><nav><a href="/docs/getting-started/">Getting started</a><a href="/docs/authentication/" aria-current="page">Authentication</a><a href="/docs/integrate/">Integrate</a><a href="/docs/capabilities/">Capabilities</a><a href="/docs/rate-limits/">Rate limits</a><a href="/docs/playground/">API playground</a><a href="/docs/api/">API reference</a><a href="/llms.txt">llms.txt</a></nav></header>
+<main class="article"><h1>Authentication</h1><p class="lede">API keys, customer access tokens, headers, environments and CORS for the Rift API.</p><p>Rift uses two kinds of credential and a few request headers.</p>
+<h2 id="credentials">Credentials</h2>
+<table>
+<thead>
+<tr>
+<th>Credential</th>
+<th>Looks like</th>
+<th>Who holds it</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Project API key</strong></td>
+<td><code>sk_...</code></td>
+<td>Your server (and the widget embed)</td>
+<td>Identifies your project and environment. Sent as <code>X-API-Key</code>. Required on project-scoped routes (recovery, invoices, merchants, widget config); optional on most customer routes because the customer token already binds the project.</td>
+</tr>
+<tr>
+<td><strong>Public key</strong></td>
+<td><code>pk_...</code></td>
+<td>Frontend code</td>
+<td><strong>Coming soon.</strong> A key meant to be embedded in browser or mobile code. Existing keys keep working when <code>pk_</code> is introduced; you will not be forced to migrate on a deadline.</td>
+</tr>
+<tr>
+<td><strong>Platform key</strong></td>
+<td><code>psk_...</code></td>
+<td>Your server only</td>
+<td>For the Platform API (<code>/v1/platform/*</code>): customers, ledgers, webhooks, gas policy, usage. Created by the project owner in the dashboard and shown once. Never put it in any client. 60 requests per minute per key.</td>
+</tr>
+<tr>
+<td><strong>Customer access token</strong></td>
+<td>JWT</td>
+<td>The customer&#39;s session</td>
+<td>Proves who the customer is. Sent as <code>Authorization: Bearer &lt;token&gt;</code>. Returned by sign-in or by the widget&#39;s <code>signin-success</code> event. Bound to the project the customer signed in through.</td>
+</tr>
+</tbody></table>
+<p>Treat <code>sk_</code> and <code>psk_</code> keys like passwords. If one leaks, rotate it in the dashboard (<code>POST /v1/projects/{id}/api-keys/rotate</code>).</p>
+<h2 id="headers">Headers</h2>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Value</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>X-API-Key</code></td>
+<td>Project or platform key</td>
+<td>Also accepted for platform keys as <code>Authorization: Bearer psk_...</code>.</td>
+</tr>
+<tr>
+<td><code>Authorization</code></td>
+<td><code>Bearer &lt;customer token&gt;</code></td>
+<td>For everything done as a customer.</td>
+</tr>
+<tr>
+<td><code>X-Rift-Mode</code></td>
+<td><code>sandbox</code> or <code>production</code></td>
+<td>Selects which environment&#39;s data a request addresses on a shared host. The sandbox host defaults to sandbox.</td>
+</tr>
+<tr>
+<td><code>X-Rift-Device</code></td>
+<td><code>&lt;deviceId&gt;.&lt;unixSeconds&gt;.&lt;signature&gt;</code></td>
+<td>Device proof on money-moving and security-changing calls where device binding is enforced. See <a href="/docs/guides/device-binding/">device binding</a>.</td>
+</tr>
+<tr>
+<td><code>Idempotency-Key</code></td>
+<td>Any unique string</td>
+<td>Accepted on Rift Accounts and own-wallet ramp money endpoints. Elsewhere, see <a href="/docs/guides/errors/#retries-and-idempotency">errors: retries</a>.</td>
+</tr>
+<tr>
+<td><code>X-Request-Id</code></td>
+<td>Returned on every response</td>
+<td>Log it and quote it to support.</td>
+</tr>
+</tbody></table>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-bash"># Public reference data: no credential
+curl https://sandbox.riftfi.com/v1/chains
+
+# Project-scoped call
+curl https://sandbox.riftfi.com/v1/widget-config -H &quot;X-API-Key: $RIFT_API_KEY&quot;
+
+# Customer call
+curl https://sandbox.riftfi.com/v1/balances \
+  -H &quot;X-API-Key: $RIFT_API_KEY&quot; -H &quot;Authorization: Bearer $CUSTOMER_TOKEN&quot;
+
+# Platform call (server only)
+curl &quot;https://sandbox.riftfi.com/v1/platform/customers?limit=50&quot; -H &quot;X-API-Key: $RIFT_PLATFORM_KEY&quot;
+</code></pre>
+<pre><code class="language-ts">import Rift, { Environment } from &quot;@rift-finance/wallet&quot;;
+
+const rift = new Rift({
+  apiKey: process.env.RIFT_API_KEY,       // sk_..., server side
+  environment: Environment.SANDBOX,       // or Environment.PRODUCTION
+  retries: 0,                              // never retry money calls
+});
+rift.setBearerToken(customerAccessToken);  // per instance: one client per request
+</code></pre>
+<h2 id="passkeys-and-signing-are-separate-from-api-authentication">Passkeys and signing are separate from API authentication</h2>
+<p>Calling the API with a valid key and token proves who is asking. It does not authorise moving funds. Every fund move needs a <strong>passkey signature from the customer</strong>; without one the API answers <code>202 APPROVAL_REQUIRED</code>. Google and Apple sign-in are for login only and are never accepted as a signing proof (<code>PASSKEY_REQUIRED</code>). See <a href="/docs/guides/approvals/">approvals</a> and <a href="/docs/guides/two-phase-signing/">two-phase signing</a>.</p>
+<h2 id="browser-calls-and-cors">Browser calls and CORS</h2>
+<p>The API accepts browser calls that carry <code>X-API-Key</code> and <code>Authorization</code> headers from any origin, without cookies. Cookie-based refresh sessions are only allowed from first-party Rift origins and from the origins you list for your project, so add every origin that runs your app (and the widget host, if you self-host it). <code>X-Rift-Mode</code>, <code>X-Rift-Device</code>, <code>X-Project-Id</code>, <code>X-Request-Id</code> and <code>Idempotency-Key</code> are allowed request headers.</p>
+<p>Do not ship an <code>sk_</code> or <code>psk_</code> key in a public web page or a mobile app. Use the widget (which carries the project key in a way the embed is designed for), a <code>pk_</code> key once available, or your own server as a proxy.</p>
+<h2 id="sandbox-and-production-keys">Sandbox and production keys</h2>
+<p>Keys, projects, customers and wallets are separate in each environment. Using a sandbox key against production (or the reverse) is rejected. Allowed origins and passkey relying-party IDs are also configured per environment.</p>
+<h2 id="the-api-playground-and-your-key">The API playground and your key</h2>
+<p>The <a href="/docs/playground/">API playground</a> lets you enter a key at runtime. It keeps it in memory only; see the page for the exact guarantees. You can use the same key from any HTTP client.</p>
+
+<p class="foot">Part of the <a href="/docs/">Rift developer documentation</a>. Machine-readable version: <a href="/llms-full.txt">llms-full.txt</a>.</p></main>
+</body></html>

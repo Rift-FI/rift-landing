@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integrate | Rift</title>
+<meta name="description" content="Choose between the embeddable widget, the React components, the TypeScript SDK and the raw REST API, with working code for each.">
+<link rel="canonical" href="https://riftfi.com/docs/integrate/">
+<link rel="shortcut icon" href="/docs/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/docs/playground/playground.css">
+<link rel="stylesheet" href="/docs/playground/article.css">
+</head><body>
+<header class="top"><a class="brand" href="/docs/">Rift docs</a><nav><a href="/docs/getting-started/">Getting started</a><a href="/docs/authentication/">Authentication</a><a href="/docs/integrate/" aria-current="page">Integrate</a><a href="/docs/capabilities/">Capabilities</a><a href="/docs/rate-limits/">Rate limits</a><a href="/docs/playground/">API playground</a><a href="/docs/api/">API reference</a><a href="/llms.txt">llms.txt</a></nav></header>
+<main class="article"><h1>Integrate</h1><p class="lede">Choose between the embeddable widget, the React components, the TypeScript SDK and the raw REST API, with working code for each.</p><p>Pick the lightest path that covers what you need. All of them talk to the same API, in sandbox or production.</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Best for</th>
+<th>Where it runs</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Widget</strong> (<code>embed.js</code>)</td>
+<td>Adding sign-in, passkey wallet setup and payment approvals to any web page with no build step</td>
+<td>Browser</td>
+</tr>
+<tr>
+<td><strong>React</strong> (<code>@rift-finance/react</code>)</td>
+<td>React apps that want typed components and hooks around the same widget</td>
+<td>Browser</td>
+</tr>
+<tr>
+<td><strong>TypeScript SDK</strong> (<code>@rift-finance/wallet</code>)</td>
+<td>Your backend: payouts, balances, approvals, ledger</td>
+<td>Server (Node 18+)</td>
+</tr>
+<tr>
+<td><strong>REST</strong></td>
+<td>Any other language</td>
+<td>Anywhere</td>
+</tr>
+<tr>
+<td><strong>MCP server</strong></td>
+<td>AI agents that prepare payments the customer approves</td>
+<td>Agent runtime</td>
+</tr>
+</tbody></table>
+<h2 id="widget">Widget</h2>
+<p>Register your page origin in the dashboard first (allowed origins), then:</p>
+<pre><code class="language-html">&lt;!-- Sandbox. For production use https://widget.riftfi.xyz/embed.js and a production key --&gt;
+&lt;script src=&quot;https://widget.sandbox.riftfi.com/embed.js&quot;
+        data-project-key=&quot;YOUR_SANDBOX_PROJECT_KEY&quot; async&gt;&lt;/script&gt;
+
+&lt;button data-rift-trigger&gt;Sign in&lt;/button&gt;
+&lt;button data-rift-trigger data-rift-mode=&quot;signup&quot;&gt;Create account&lt;/button&gt;
+
+&lt;script&gt;
+  let accessToken = null;
+  window.Rift.on(&quot;signin-success&quot;, (s) =&gt; { accessToken = s.accessToken; console.log(&quot;wallet&quot;, s.address); });
+  window.Rift.on(&quot;approval-result&quot;, (r) =&gt; console.log(r.approvalId, r.status, r.result?.transactionHash));
+  window.Rift.on(&quot;signin-error&quot;, (e) =&gt; console.warn(e.message));
+  // After your server returns 202 APPROVAL_REQUIRED with an approvalId:
+  // window.Rift.open({ mode: &quot;approve&quot;, approvalId });
+&lt;/script&gt;
+</code></pre>
+<p><code>Rift.open({ mode })</code> takes <code>&quot;signin&quot;</code>, <code>&quot;signup&quot;</code> or <code>&quot;approve&quot;</code> (with <code>approvalId</code>); <code>theme</code> is <code>&quot;light&quot;</code> or <code>&quot;dark&quot;</code>. Events: <code>ready</code>, <code>open</code>, <code>close</code>, <code>signin-success</code>, <code>signin-error</code>, <code>approval-result</code>, <code>approval-error</code>. The widget origin decides the backend, so use the sandbox widget with a sandbox key. The iframe needs <code>publickey-credentials-create; publickey-credentials-get</code> permissions (set by <code>embed.js</code>). Full reference: <a href="/docs/sdk/widget/">widget reference</a> and <a href="/docs/quickstarts/widget/">widget quickstart</a>.</p>
+<h2 id="react">React</h2>
+<pre><code class="language-bash">npm install @rift-finance/react@^0.4.0
+</code></pre>
+<pre><code class="language-tsx">import { RiftProvider, RiftAuth, RiftApprove, useRift, useRiftApproval } from &quot;@rift-finance/react&quot;;
+
+export function App() {
+  return (
+    &lt;RiftProvider apiKey={import.meta.env.VITE_RIFT_KEY} environment=&quot;sandbox&quot;&gt;
+      &lt;RiftAuth onSuccess={(user) =&gt; console.log(user)} /&gt;
+      &lt;SignInButton /&gt;
+    &lt;/RiftProvider&gt;
+  );
+}
+function SignInButton() {
+  const { open, user } = useRift();
+  return &lt;button onClick={() =&gt; open()}&gt;{user ? &quot;Signed in&quot; : &quot;Sign in&quot;}&lt;/button&gt;;
+}
+</code></pre>
+<p><code>environment</code> defaults to production, so set <code>&quot;sandbox&quot;</code> while building. See the <a href="/docs/quickstarts/react/">React quickstart</a> and <a href="/docs/sdk/react/">reference</a>.</p>
+<h2 id="typescript-sdk-server">TypeScript SDK (server)</h2>
+<pre><code class="language-bash">npm install @rift-finance/wallet@^4.0.0
+</code></pre>
+<pre><code class="language-ts">import Rift, { Environment, isApprovalRequired } from &quot;@rift-finance/wallet&quot;;
+
+function riftFor(customerToken?: string) {
+  const rift = new Rift({
+    apiKey: process.env.RIFT_API_KEY!,            // sk_..., server only
+    environment: process.env.RIFT_ENV === &quot;production&quot; ? Environment.PRODUCTION : Environment.SANDBOX,
+    retries: 0,                                    // mandatory for money calls
+  });
+  if (customerToken) rift.setBearerToken(customerToken);  // one client per request
+  return rift;
+}
+
+const res = await riftFor(token).transactions.send({
+  to: &quot;0x...&quot;, value: &quot;5&quot;, token: &quot;USDC&quot;, chain: &quot;BASE&quot;, type: &quot;gasless&quot;,
+});
+if (isApprovalRequired(res)) {
+  // 202: store res.approvalId, show it to the customer (widget / React / res.approvalUrl)
+}
+</code></pre>
+<p>Services: <code>auth</code>, <code>wallet</code>, <code>passkeys</code>, <code>approvals</code>, <code>transactions</code>, <code>signer</code>, <code>bridge</code>, <code>offramp</code>, <code>walletConnect</code>, <code>kyc</code>, <code>assets</code>, <code>merchant</code>, <code>notifications</code>, <code>deposits</code>. Money methods return a result <strong>or</strong> an approval request; check with <code>isApprovalRequired()</code>. Reference: <a href="/docs/sdk/wallet/">SDK reference</a>, <a href="/docs/quickstarts/server/">server quickstart</a>.</p>
+<p>Set <code>retries: 0</code> on servers that proxy non-idempotent calls. A retry after a silently successful request can duplicate or conflict.</p>
+<h2 id="rest-from-any-language">REST from any language</h2>
+<pre><code class="language-python">import os, requests
+BASE = &quot;https://sandbox.riftfi.com&quot;          # production: https://api.riftfi.com
+r = requests.get(f&quot;{BASE}/v1/payouts/countries&quot;, headers={&quot;X-API-Key&quot;: os.environ[&quot;RIFT_API_KEY&quot;]}, timeout=30)
+r.raise_for_status()
+print(r.json())
+</code></pre>
+<p>Send money as the customer:</p>
+<pre><code class="language-bash">curl -i https://sandbox.riftfi.com/v1/transactions \
+  -H &quot;X-API-Key: $RIFT_API_KEY&quot; -H &quot;Authorization: Bearer $CUSTOMER_TOKEN&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{ &quot;to&quot;: &quot;0x000000000000000000000000000000000000dEaD&quot;, &quot;value&quot;: &quot;5&quot;, &quot;token&quot;: &quot;USDC&quot;, &quot;chain&quot;: &quot;BASE&quot;, &quot;type&quot;: &quot;gasless&quot; }&#39;
+# 202 { &quot;status&quot;: &quot;APPROVAL_REQUIRED&quot;, &quot;approvalId&quot;: &quot;...&quot;, &quot;approvalUrl&quot;: &quot;...&quot;, &quot;expiresAt&quot;: &quot;...&quot; }
+curl https://sandbox.riftfi.com/v1/approvals/$APPROVAL_ID -H &quot;X-API-Key: $RIFT_API_KEY&quot;
+</code></pre>
+<h2 id="receive-events">Receive events</h2>
+<p>Register a webhook (Platform API, <code>psk_</code> key) and verify <code>Rift-Signature</code> (HMAC-SHA256 of <code>&quot;&lt;t&gt;.&lt;raw body&gt;&quot;</code>, five-minute tolerance). See <a href="/docs/guides/webhooks/">webhooks</a>.</p>
+<h2 id="ai-agents">AI agents</h2>
+<p>Point your coding agent at <a href="/llms.txt">llms.txt</a> (index) or <a href="/llms-full.txt">llms-full.txt</a> (complete, self-contained). To let an agent operate Rift as tools, use the <a href="/docs/quickstarts/mcp/">MCP server</a>; fund-moving tools return approval links the customer approves with a passkey.</p>
+
+<p class="foot">Part of the <a href="/docs/">Rift developer documentation</a>. Machine-readable version: <a href="/llms-full.txt">llms-full.txt</a>.</p></main>
+</body></html>

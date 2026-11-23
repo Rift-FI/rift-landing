@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Getting started | Rift</title>
+<meta name="description" content="Make your first Rift API call in the free sandbox in under five minutes, then move to production.">
+<link rel="canonical" href="https://riftfi.com/docs/getting-started/">
+<link rel="shortcut icon" href="/docs/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/docs/playground/playground.css">
+<link rel="stylesheet" href="/docs/playground/article.css">
+</head><body>
+<header class="top"><a class="brand" href="/docs/">Rift docs</a><nav><a href="/docs/getting-started/" aria-current="page">Getting started</a><a href="/docs/authentication/">Authentication</a><a href="/docs/integrate/">Integrate</a><a href="/docs/capabilities/">Capabilities</a><a href="/docs/rate-limits/">Rate limits</a><a href="/docs/playground/">API playground</a><a href="/docs/api/">API reference</a><a href="/llms.txt">llms.txt</a></nav></header>
+<main class="article"><h1>Getting started</h1><p class="lede">Make your first Rift API call in the free sandbox in under five minutes, then move to production.</p><p>Rift gives your product wallets, payments and payouts through one REST API, an embeddable widget and TypeScript SDKs. This page takes you from nothing to a working call.</p>
+<h2 id="1-pick-an-environment">1. Pick an environment</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Sandbox</th>
+<th>Production</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>API base URL</td>
+<td><code>https://sandbox.riftfi.com</code></td>
+<td><code>https://api.riftfi.com</code></td>
+</tr>
+<tr>
+<td>Cost</td>
+<td><strong>Free. No payment needed.</strong></td>
+<td>Flat <strong>$88 per month</strong> subscription</td>
+</tr>
+<tr>
+<td>Widget script</td>
+<td><code>https://widget.sandbox.riftfi.com/embed.js</code></td>
+<td><code>https://widget.riftfi.xyz/embed.js</code></td>
+</tr>
+<tr>
+<td>Funds</td>
+<td>Test payment routes and sandbox wallets</td>
+<td>Real customer funds</td>
+</tr>
+<tr>
+<td>Keys and customers</td>
+<td>Separate from production</td>
+<td>Separate from sandbox</td>
+</tr>
+</tbody></table>
+<p>Always build against sandbox first. A sandbox key does not work on production and the other way round. You can also send the header <code>X-Rift-Mode: sandbox</code> or <code>X-Rift-Mode: production</code> to say which environment&#39;s data a request is for; the base URLs above already imply it.</p>
+<h2 id="2-get-an-api-key">2. Get an API key</h2>
+<ol>
+<li>Open the Rift dashboard at <a href="https://portal.riftfi.com">portal.riftfi.com</a> and create a project.</li>
+<li>Copy the project&#39;s API key. Keys currently start with <code>sk_</code> (project secret key). Keys that start with <code>pk_</code> (public keys for frontend code) are being introduced; <strong>existing keys keep working</strong>. A <code>psk_</code> key is a separate server-only platform key for the Platform API.</li>
+<li>Add every web origin that will load the widget or call the API from a browser (including <code>http://localhost:5173</code> while developing) to the project&#39;s allowed origins.</li>
+</ol>
+<p>Store keys in environment variables or a secret manager. Never commit them. See <a href="/docs/authentication/">authentication</a>.</p>
+<h2 id="3-make-your-first-call">3. Make your first call</h2>
+<p>Reference data endpoints are public, so this works with no key at all:</p>
+<pre><code class="language-bash">curl https://sandbox.riftfi.com/v1/chains
+</code></pre>
+<p>Now an authenticated call with your sandbox project key:</p>
+<pre><code class="language-bash">export RIFT_API_KEY=sk_your_sandbox_key   # from the dashboard
+
+curl https://sandbox.riftfi.com/v1/payouts/countries \
+  -H &quot;X-API-Key: $RIFT_API_KEY&quot;
+</code></pre>
+<p>Prefer clicking? Open the <a href="/docs/playground/">API playground</a>, leave <strong>Sandbox</strong> selected, paste your key (it is kept in memory only) and send the same request from your browser.</p>
+<h2 id="4-sign-a-customer-in">4. Sign a customer in</h2>
+<p>Customer calls (balances, sending money, payouts) need a customer access token in addition to the project key. Three ways to get one:</p>
+<ul>
+<li><strong>Widget</strong> (no build step): add <code>embed.js</code> and a button with <code>data-rift-trigger</code>. The widget signs the customer in, sets up a passkey wallet and hands your page an access token. See <a href="/docs/integrate/">integrate</a>.</li>
+<li><strong>React</strong>: <code>&lt;RiftProvider&gt;</code> and <code>&lt;RiftAuth&gt;</code> from <code>@rift-finance/react</code>.</li>
+<li><strong>API</strong>: <code>POST /v1/one-time-codes</code> then <code>POST /v1/auth/sign-in</code> (email or phone one-time code), or <code>/v1/auth/sign-in/google</code> and <code>/v1/auth/sign-in/apple</code>. Refresh with <code>POST /v1/auth/sessions/refresh</code>.</li>
+</ul>
+<p>Then call as the customer:</p>
+<pre><code class="language-bash">curl https://sandbox.riftfi.com/v1/balances \
+  -H &quot;X-API-Key: $RIFT_API_KEY&quot; \
+  -H &quot;Authorization: Bearer $CUSTOMER_TOKEN&quot;
+</code></pre>
+<h2 id="5-move-money">5. Move money</h2>
+<p>Money never moves on a server call alone. A transfer or payout your server starts returns <code>202 APPROVAL_REQUIRED</code> with an <code>approvalId</code>. The customer approves it with their passkey (inside your app via the widget or React component, or on a Rift approval page). Poll <code>GET /v1/approvals/{id}</code> or receive a webhook until the status is <code>approved</code>. See <a href="/docs/guides/approvals/">approvals</a> and the <a href="/docs/quickstarts/server/">server quickstart</a>.</p>
+<h2 id="6-go-to-production">6. Go to production</h2>
+<ol>
+<li>Subscribe to production access: <strong>$88 per month, flat</strong>, no usage tiers. New projects get a short trial; after a paid period lapses there is a short grace period during which requests still work. When access is lapsed, write requests return <code>402</code>. Billing details are returned by <code>GET /v1/billing/plans</code> and <code>GET /v1/billing/payment-info</code>.</li>
+<li>Create a production project and key. Change your base URL to <code>https://api.riftfi.com</code> (or the SDK environment to production).</li>
+<li>Work through the <a href="/docs/guides/going-live/">going-live checklist</a> with one small real transaction.</li>
+</ol>
+<h2 id="where-next">Where next</h2>
+<table>
+<thead>
+<tr>
+<th>I want to</th>
+<th>Read</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Understand every key and header</td>
+<td><a href="/docs/authentication/">Authentication</a></td>
+</tr>
+<tr>
+<td>Choose widget, React, SDK or raw REST</td>
+<td><a href="/docs/integrate/">Integrate</a></td>
+</tr>
+<tr>
+<td>See everything the API can do</td>
+<td><a href="/docs/capabilities/">Capabilities</a></td>
+</tr>
+<tr>
+<td>Handle failures and limits</td>
+<td><a href="/docs/guides/errors/">Errors</a>, <a href="/docs/rate-limits/">Rate limits</a></td>
+</tr>
+<tr>
+<td>Get events pushed to me</td>
+<td><a href="/docs/guides/webhooks/">Webhooks</a></td>
+</tr>
+<tr>
+<td>Try requests live</td>
+<td><a href="/docs/playground/">API playground</a></td>
+</tr>
+<tr>
+<td>Feed this to an AI coding agent</td>
+<td><a href="/llms.txt">llms.txt</a> and <a href="/llms-full.txt">llms-full.txt</a></td>
+</tr>
+</tbody></table>
+
+<p class="foot">Part of the <a href="/docs/">Rift developer documentation</a>. Machine-readable version: <a href="/llms-full.txt">llms-full.txt</a>.</p></main>
+</body></html>

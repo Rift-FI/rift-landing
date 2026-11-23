@@ -1,0 +1,33 @@
+# Rift: complete integration guide for AI agents and developers
+
+> Rift is wallet and payments infrastructure. One REST API (plus an embeddable widget and TypeScript SDKs) gives your product: passkey-owned non-custodial smart-account wallets, gasless transactions, stablecoin payouts to mobile money, bank, till and paybill, onramp (local money to stablecoins), swaps and bridges, WalletConnect, a per-customer ledger, signed webhooks and an approvals flow so a server can start a payment that the customer approves with a passkey. Rift holds no key that can move customer funds.
+
+This file is self-contained. It contains everything needed to integrate Rift: environments, authentication, every guide, error codes, webhook verification, SDK and widget reference, and a catalogue of every public endpoint. Canonical site: https://riftfi.com/docs/ . A shorter index is at https://riftfi.com/llms.txt .
+
+## Facts you must get right
+
+- Sandbox API base URL: https://sandbox.riftfi.com . Free. No payment. Start here.
+- Production API base URL: https://api.riftfi.com . Access is a flat $88 per month subscription (no usage tiers).
+- Sandbox and production are separate: keys, projects, customers and wallets do not cross environments. The optional header `X-Rift-Mode: sandbox|production` selects the environment's data.
+- Widget scripts: sandbox https://widget.sandbox.riftfi.com/embed.js ; production https://widget.riftfi.xyz/embed.js . The widget origin decides which backend it talks to.
+- Dashboard (create projects, keys, allowed origins, billing): https://portal.riftfi.com
+- Credentials: project key `sk_...` (X-API-Key header; server side), public key `pk_...` (frontend; being introduced, existing keys keep working), platform key `psk_...` (server only; Platform API), and the customer access token (Authorization: Bearer).
+- Never put an `sk_` or `psk_` key in browser or mobile code. Never commit keys. Read them from environment variables.
+- Errors look like `{ "error": "CODE", "message": "..." }`. Branch on `body.code ?? body.error`, never on the message text.
+- A server-initiated fund move without a passkey proof returns `202 { "status": "APPROVAL_REQUIRED", "approvalId": "...", "approvalUrl": "...", "expiresAt": "..." }`. Nothing has moved yet. The customer approves with their passkey (widget `Rift.open({ mode: "approve", approvalId })`, React `<RiftApprove>`, or the approvalUrl). Then `GET /v1/approvals/{id}` returns `approved` with `result.transactionHash`.
+- NEVER retry a fund-moving or signing request automatically (including on timeout or 5xx): it may have succeeded. Look it up (approval, ledger entry, order) first. Set SDK `retries: 0` on servers.
+- Rate limits return 429; see the Rate limits section. A 402 means the production subscription is not active.
+- Read corridor availability at runtime from `GET /v1/payouts/countries` (public). Do not hard-code country lists or limits.
+
+## Recommended integration procedure
+
+1. Create a sandbox project at the dashboard. Copy the sandbox key into an environment variable (RIFT_API_KEY). Add your web origins to the project's allowed origins.
+2. Verify connectivity: `curl https://sandbox.riftfi.com/v1/chains` (public) and `curl https://sandbox.riftfi.com/v1/payouts/countries -H "X-API-Key: $RIFT_API_KEY"`.
+3. Sign customers in with the widget (one script tag), `@rift-finance/react`, or the auth endpoints, and keep the customer access token server-side or in memory.
+4. From your server, call money endpoints with the project key and the customer token. Handle 202 APPROVAL_REQUIRED by storing approvalId against your own record and getting the customer to approve.
+5. Reconcile with webhooks (verify Rift-Signature on the raw body) and the ledger.
+6. Run the going-live checklist in sandbox, subscribe to production ($88/month), switch the base URL to https://api.riftfi.com, use a production key, and make one small real transfer.
+
+## Try requests live
+
+The API playground at https://riftfi.com/docs/playground/ runs requests from the browser against sandbox (default) or production with a key the user types in. The key is held in memory only: never stored, logged or sent anywhere except the chosen Rift API host.

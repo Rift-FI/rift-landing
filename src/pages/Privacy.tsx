@@ -197,7 +197,7 @@ const SECTIONS: Section[] = [
     blocks: [
       {
         kind: "p",
-        text: "We apply technical and organisational measures appropriate to the risk, including encryption in transit and at rest, hardware-isolated key handling (secure enclaves) for wallet keys, access controls, logging, and independent security review of our infrastructure. No system is perfectly secure; if a breach occurs that presents a real risk of harm, we will notify the ODPC and affected persons as required by the DPA.",
+        text: "We apply technical and organisational measures appropriate to the risk, including encryption in transit and at rest, hardware-backed key handling for wallet keys, access controls, logging, and independent security review of our infrastructure. No system is perfectly secure; if a breach occurs that presents a real risk of harm, we will notify the ODPC and affected persons as required by the DPA.",
       },
     ],
   },

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capabilities | Rift</title>
+<meta name="description" content="Every capability group in the Rift API, what it does, the main endpoints and where to read more.">
+<link rel="canonical" href="https://riftfi.com/docs/capabilities/">
+<link rel="shortcut icon" href="/docs/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/docs/playground/playground.css">
+<link rel="stylesheet" href="/docs/playground/article.css">
+</head><body>
+<header class="top"><a class="brand" href="/docs/">Rift docs</a><nav><a href="/docs/getting-started/">Getting started</a><a href="/docs/authentication/">Authentication</a><a href="/docs/integrate/">Integrate</a><a href="/docs/capabilities/" aria-current="page">Capabilities</a><a href="/docs/rate-limits/">Rate limits</a><a href="/docs/playground/">API playground</a><a href="/docs/api/">API reference</a><a href="/llms.txt">llms.txt</a></nav></header>
+<main class="article"><h1>Capabilities</h1><p class="lede">Every capability group in the Rift API, what it does, the main endpoints and where to read more.</p><p>Rift Wallets gives each customer a smart account owned only by their passkeys, with gas handled for them, and payment rails built in. Rift holds no key that can move a customer&#39;s funds. This page maps each capability group to its endpoints. Every endpoint can be tried in the <a href="/docs/playground/">API playground</a>.</p>
+<p>Beta features may change before general availability.</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>What you can do</th>
+<th>Main endpoints</th>
+<th>Read</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Sign-in and session</strong></td>
+<td>Email or phone one-time codes, Google, Apple, external-id sign-in, refresh, sign-out</td>
+<td><code>POST /v1/auth/sign-up</code>, <code>/sign-in</code>, <code>/sign-in/google</code>, <code>/sign-in/apple</code>, <code>/sessions/refresh</code>, <code>/sign-out</code>; <code>POST /v1/one-time-codes</code>, <code>/verify</code></td>
+<td><a href="/docs/authentication/">Authentication</a></td>
+</tr>
+<tr>
+<td><strong>Customer profile</strong></td>
+<td>Read, update, delete the signed-in customer</td>
+<td><code>GET/PATCH/PUT/DELETE /v1/me</code>, <code>GET /v1/me/tokens</code></td>
+<td><a href="/docs/api/core/">API</a></td>
+</tr>
+<tr>
+<td><strong>Passkey wallets and recovery</strong></td>
+<td>Register, list and remove passkeys; wallet status</td>
+<td><code>GET /v1/wallet/status</code>, <code>POST /v1/wallet/passkeys/options</code>, <code>/v1/wallet/passkeys</code></td>
+<td><a href="/docs/guides/passkeys-and-recovery/">Passkeys</a></td>
+</tr>
+<tr>
+<td><strong>Devices</strong></td>
+<td>Bind trusted devices; recover a device</td>
+<td><code>/v1/devices...</code></td>
+<td><a href="/docs/guides/device-binding/">Device binding</a></td>
+</tr>
+<tr>
+<td><strong>Balances and history</strong></td>
+<td>Balances per chain and token, transaction history, deposits</td>
+<td><code>GET /v1/balances</code>, <code>/v1/transactions</code>, <code>/v1/deposits</code></td>
+<td><a href="/docs/api/core/">API</a></td>
+</tr>
+<tr>
+<td><strong>Transfers and signing</strong></td>
+<td>Send tokens, call contracts, sign messages; two-phase preview then submit</td>
+<td><code>POST /v1/transactions</code>, <code>/v1/transactions/preview</code>, <code>/v1/wallet/user-operations...</code>, <code>/v1/wallet/signatures/message...</code></td>
+<td><a href="/docs/guides/two-phase-signing/">Two-phase signing</a></td>
+</tr>
+<tr>
+<td><strong>Approvals</strong></td>
+<td>Server starts a payment; the customer approves it with a passkey</td>
+<td><code>GET /v1/approvals</code>, <code>GET /v1/approvals/{id}</code>, <code>POST .../approve</code>, <code>/reject</code></td>
+<td><a href="/docs/guides/approvals/">Approvals</a></td>
+</tr>
+<tr>
+<td><strong>Payouts (offramp)</strong></td>
+<td>Pay local money to mobile money, bank, till or paybill; refunds</td>
+<td><code>GET /v1/payouts/countries</code>, <code>POST /v1/payouts/validate</code>, <code>POST /v1/offramps</code>, <code>/init</code>, <code>/finalize</code>, <code>GET /v1/offramps</code>, <code>POST /v1/offramps/{id}/refund</code></td>
+<td><a href="/docs/guides/offramp/">Offramp</a>, <a href="/docs/guides/payment-corridors/">Corridors and limits</a></td>
+</tr>
+<tr>
+<td><strong>Onramp (Beta)</strong></td>
+<td>Buy stablecoins with local money into the customer&#39;s wallet</td>
+<td><code>GET /v1/onramps/quote</code>, <code>/v1/onramps/kyc</code>, <code>POST /v1/onramps</code>, <code>GET /v1/onramps</code></td>
+<td><a href="/docs/guides/onramp/">Onramp</a></td>
+</tr>
+<tr>
+<td><strong>Rates and rails</strong></td>
+<td>FX rates, quotes, fees, institutions and payment methods per currency</td>
+<td><code>GET /v1/rates</code>, <code>POST /v1/rates/quote</code>, <code>GET /v1/rates/withdrawal-fee</code>, <code>GET /v1/rails/{currency}/institutions</code></td>
+<td><a href="/docs/guides/payment-corridors/">Corridors</a></td>
+</tr>
+<tr>
+<td><strong>Beneficiaries (Beta)</strong></td>
+<td>Saved recipients</td>
+<td><code>/v1/beneficiaries</code></td>
+<td><a href="/docs/api/core/">API</a></td>
+</tr>
+<tr>
+<td><strong>Rift Accounts (Beta)</strong></td>
+<td>Local-currency accounts (KES, TZS, GHS, UGX, MWK): collect from mobile money, pay out to mobile money, banks, tills and paybills, download statements</td>
+<td><code>/v1/accounts...</code></td>
+<td><a href="/docs/guides/accounts/">Accounts</a></td>
+</tr>
+<tr>
+<td><strong>Own-wallet ramps (Beta)</strong></td>
+<td>Cash out stablecoins from your own wallet, or buy USDC with mobile money to any address, with no Rift wallet</td>
+<td>see the guide and API reference</td>
+<td><a href="/docs/guides/own-wallet-ramps/">Own-wallet ramps</a></td>
+</tr>
+<tr>
+<td><strong>Liquidity providers (Beta)</strong></td>
+<td>Provide stablecoin liquidity to the payout pool from your own wallet and earn a share of fees</td>
+<td><code>/v1/lp...</code></td>
+<td><a href="/docs/guides/liquidity-providers/">Liquidity providers</a></td>
+</tr>
+<tr>
+<td><strong>Swaps and bridges</strong></td>
+<td>Cross-chain transfers, quotes, routes</td>
+<td><code>GET /v1/bridge/routes</code>, <code>POST /v1/bridge/quotes</code>, <code>/v1/bridge/transfers...</code></td>
+<td><a href="/docs/guides/swaps-and-bridges/">Swaps and bridges</a></td>
+</tr>
+<tr>
+<td><strong>WalletConnect</strong></td>
+<td>Pair the customer&#39;s wallet with any dApp and approve its requests</td>
+<td><code>/v1/wallet-connect/...</code></td>
+<td><a href="/docs/guides/walletconnect/">WalletConnect</a></td>
+</tr>
+<tr>
+<td><strong>Gas sponsorship (Beta)</strong></td>
+<td>Sponsor gas for customers or let them pay in USDC or USDT; per-project policy</td>
+<td><code>/v1/platform/gas-policy</code></td>
+<td><a href="/docs/guides/gas-sponsorship/">Gas sponsorship</a></td>
+</tr>
+<tr>
+<td><strong>Ledger and statements (Beta)</strong></td>
+<td>One ledger of every customer transaction; signed statements</td>
+<td><code>GET /v1/ledger</code>, <code>POST /v1/statements</code></td>
+<td><a href="/docs/guides/ledger-and-statements/">Ledger</a></td>
+</tr>
+<tr>
+<td><strong>Customer history for credit (Beta)</strong></td>
+<td>Consent-based transaction history for lenders</td>
+<td><code>/v1/platform/...</code></td>
+<td><a href="/docs/guides/customer-history-credit/">Customer history</a></td>
+</tr>
+<tr>
+<td><strong>KYC</strong></td>
+<td>Identity verification sessions, status and jobs</td>
+<td><code>POST /v1/kyc/sessions</code>, <code>GET /v1/kyc/status</code>, <code>GET /v1/kyc/jobs/{jobId}</code></td>
+<td><a href="/docs/guides/onramp/">Onramp</a></td>
+</tr>
+<tr>
+<td><strong>Invoices and merchants</strong></td>
+<td>Create invoices, take payments, merchant onboarding</td>
+<td><code>/v1/invoices</code>, <code>/v1/merchants</code></td>
+<td><a href="/docs/api/core/">API</a></td>
+</tr>
+<tr>
+<td><strong>Reference data</strong></td>
+<td>Chains, tokens, assets</td>
+<td><code>GET /v1/chains</code>, <code>/v1/tokens</code>, <code>/v1/assets</code></td>
+<td><a href="/docs/overview/chains-and-tokens/">Chains and tokens</a></td>
+</tr>
+<tr>
+<td><strong>Platform API (Beta)</strong></td>
+<td>Server-only institution endpoints: customers, ledgers, webhooks, gas policy, usage, keys</td>
+<td><code>/v1/platform/...</code></td>
+<td><a href="/docs/quickstarts/platform/">Platform quickstart</a></td>
+</tr>
+<tr>
+<td><strong>Webhooks (Beta)</strong></td>
+<td>Signed events for transactions, customers, approvals, accounts and ramps</td>
+<td><code>POST /v1/platform/webhooks</code></td>
+<td><a href="/docs/guides/webhooks/">Webhooks</a></td>
+</tr>
+<tr>
+<td><strong>Project administration</strong></td>
+<td>Projects, keys, origins, billing, branding</td>
+<td><code>/v1/projects...</code>, <code>/v1/billing/...</code></td>
+<td><a href="/docs/guides/going-live/">Going live</a></td>
+</tr>
+</tbody></table>
+<h2 id="supported-money-rails">Supported money rails</h2>
+<p>Payouts and onramp cover Kenya (KES), Nigeria (NGN), Tanzania (TZS), Uganda (UGX), Ghana (GHS) and Malawi (MWK), with mobile money, bank, till and paybill depending on the country. Availability changes during the day: always read <code>GET /v1/payouts/countries</code> (public, no authentication) rather than hard-coding a list. Details and per-transaction limits: <a href="/docs/guides/payment-corridors/">Corridors and limits</a>.</p>
+<h2 id="chains">Chains</h2>
+<p>Wallets have the same address on every supported chain. Read <code>GET /v1/chains</code> and <code>GET /v1/chains/{chainId}/tokens</code> for the live list.</p>
+<h2 id="platform-conventions">Platform conventions</h2>
+<ul>
+<li>Errors: <code>{ &quot;error&quot;: &quot;CODE&quot;, &quot;message&quot;: &quot;...&quot; }</code>. See <a href="/docs/guides/errors/">errors</a>.</li>
+<li>Fund-moving one-phase calls return <code>202 APPROVAL_REQUIRED</code> unless the request already carries a passkey proof.</li>
+<li>Money statuses use one vocabulary: <code>awaiting_payment</code>, <code>processing</code>, <code>completed</code>, <code>refunding</code>, <code>refunded</code>, <code>expired</code>, <code>cancelled</code>, <code>failed</code>.</li>
+<li>Lists page with <code>cursor</code> and <code>nextCursor</code>; date filters are inclusive ISO 8601.</li>
+<li>Limits: see <a href="/docs/rate-limits/">rate limits</a>.</li>
+</ul>
+
+<p class="foot">Part of the <a href="/docs/">Rift developer documentation</a>. Machine-readable version: <a href="/llms-full.txt">llms-full.txt</a>.</p></main>
+</body></html>
