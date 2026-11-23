@@ -22,7 +22,7 @@ Important rules for agents integrating Rift:
 
 ## Reference
 
-- [API reference (Core)](https://riftfi.com/docs/api/core/): every operation, with schemas
+- [API reference (Core)](https://riftfi.com/docs/api/core/): the per-project API (your API key or project id) with schemas, plus a clearly separated list of the end-user flows the widget and SDK run for you
 - [API reference (Platform, Beta)](https://riftfi.com/docs/api/platform/): server-only institution endpoints
 - [API playground](https://riftfi.com/docs/playground/): run live requests against sandbox or production with your own key; the key is kept in memory only
 - [Errors and retries](https://riftfi.com/docs/guides/errors/)

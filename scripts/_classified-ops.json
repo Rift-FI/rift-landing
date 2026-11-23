@@ -1,0 +1,1752 @@
+[
+ {
+  "id": "post_v1_auth_sign-up",
+  "method": "POST",
+  "path": "/v1/auth/sign-up",
+  "group": "core",
+  "tag": "Auth",
+  "summary": "Create a new user account.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_auth_sign-in",
+  "method": "POST",
+  "path": "/v1/auth/sign-in",
+  "group": "core",
+  "tag": "Auth",
+  "summary": "Authenticate existing user.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_auth_sign-in_google",
+  "method": "POST",
+  "path": "/v1/auth/sign-in/google",
+  "group": "core",
+  "tag": "Auth",
+  "summary": "Verify a Google ID token and find-or-create the user.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_auth_sign-in_apple",
+  "method": "POST",
+  "path": "/v1/auth/sign-in/apple",
+  "group": "core",
+  "tag": "Auth",
+  "summary": "Verify an Apple identity token and find-or-create the user.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_auth_sessions_refresh",
+  "method": "POST",
+  "path": "/v1/auth/sessions/refresh",
+  "group": "core",
+  "tag": "Auth",
+  "summary": "Rotate the refresh-cookie and issue a fresh access JWT.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_auth_sign-out",
+  "method": "POST",
+  "path": "/v1/auth/sign-out",
+  "group": "core",
+  "tag": "Auth",
+  "summary": "Revoke the refresh-cookie.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_me",
+  "method": "GET",
+  "path": "/v1/me",
+  "group": "core",
+  "tag": "Me",
+  "summary": "Get the authenticated user's profile.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "put_v1_me",
+  "method": "PUT",
+  "path": "/v1/me",
+  "group": "core",
+  "tag": "Me",
+  "summary": "Update the authenticated user's profile (PUT alias of PATCH).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "patch_v1_me",
+  "method": "PATCH",
+  "path": "/v1/me",
+  "group": "core",
+  "tag": "Me",
+  "summary": "Update the authenticated user's profile.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "delete_v1_me",
+  "method": "DELETE",
+  "path": "/v1/me",
+  "group": "core",
+  "tag": "Me",
+  "summary": "Delete the authenticated user and all related data.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_me_tokens",
+  "method": "GET",
+  "path": "/v1/me/tokens",
+  "group": "core",
+  "tag": "Me",
+  "summary": "List the tokens currently owned by the authenticated user.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_users",
+  "method": "GET",
+  "path": "/v1/users",
+  "group": "core",
+  "tag": "Users",
+  "summary": "List all users in the project (project owner only, paginated).",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "get_v1_users_lookup",
+  "method": "GET",
+  "path": "/v1/users/lookup",
+  "group": "core",
+  "tag": "Users",
+  "summary": "Look up a user's suspension status by identifier.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "get_v1_users_suspended",
+  "method": "GET",
+  "path": "/v1/users/suspended",
+  "group": "core",
+  "tag": "Users",
+  "summary": "List suspended users in the project (project owner or admin key).",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_users_id_suspend",
+  "method": "POST",
+  "path": "/v1/users/{id}/suspend",
+  "group": "core",
+  "tag": "Users",
+  "summary": "Suspend a user (project owner or admin key).",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_users_id_unsuspend",
+  "method": "POST",
+  "path": "/v1/users/{id}/unsuspend",
+  "group": "core",
+  "tag": "Users",
+  "summary": "Lift a user's suspension (project owner or admin key).",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_one-time-codes",
+  "method": "POST",
+  "path": "/v1/one-time-codes",
+  "group": "core",
+  "tag": "One-time codes",
+  "summary": "Send a one-time code via SMS or email.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_one-time-codes_verify",
+  "method": "POST",
+  "path": "/v1/one-time-codes/verify",
+  "group": "core",
+  "tag": "One-time codes",
+  "summary": "Verify a one-time code.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "get_v1_balances",
+  "method": "GET",
+  "path": "/v1/balances",
+  "group": "core",
+  "tag": "Balances",
+  "summary": "Get all token balances on a given chain or across all chains.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_balances_tokens_symbol",
+  "method": "GET",
+  "path": "/v1/balances/tokens/{symbol}",
+  "group": "core",
+  "tag": "Balances",
+  "summary": "Get the balance of a specific token across chains.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_transactions",
+  "method": "GET",
+  "path": "/v1/transactions",
+  "group": "core",
+  "tag": "Transactions",
+  "summary": "List the user's transaction history.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_transactions",
+  "method": "POST",
+  "path": "/v1/transactions",
+  "group": "core",
+  "tag": "Transactions",
+  "summary": "Send tokens across chains (native or ERC-20).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_transactions_fee-estimate",
+  "method": "GET",
+  "path": "/v1/transactions/fee-estimate",
+  "group": "core",
+  "tag": "Transactions",
+  "summary": "Estimate the on-chain fee for a transfer (paymaster-aware).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_wallet_identity",
+  "method": "GET",
+  "path": "/v1/wallet/identity",
+  "group": "core",
+  "tag": "Wallet",
+  "summary": "Get wallet identity (EOA address). The public key is dropped in Phase 2 — derive it from any signature if you need it.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_wallet_chains_chain",
+  "method": "POST",
+  "path": "/v1/wallet/chains/{chain}",
+  "group": "core",
+  "tag": "Wallet",
+  "summary": "Get wallet instance metadata for a specific chain.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_wallet_signatures_transaction",
+  "method": "POST",
+  "path": "/v1/wallet/signatures/transaction",
+  "group": "core",
+  "tag": "Wallet",
+  "summary": "Removed — wallets are passkey-owned Safes; there is no owner EOA to sign raw transactions.",
+  "cls": "DEAD",
+  "tier": null
+ },
+ {
+  "id": "post_v1_wallet_signatures_message",
+  "method": "POST",
+  "path": "/v1/wallet/signatures/message",
+  "group": "core",
+  "tag": "Wallet",
+  "summary": "ERC-1271 message signing, phase 2 → { signature } (ERC-6492-wrapped if the Safe is undeployed).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_wallet_user-operations",
+  "method": "POST",
+  "path": "/v1/wallet/user-operations",
+  "group": "core",
+  "tag": "Wallet",
+  "summary": "Send an ERC-4337 user operation via the smart-wallet service.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_wallet-connect_pairings",
+  "method": "POST",
+  "path": "/v1/wallet-connect/pairings",
+  "group": "core",
+  "tag": "WalletConnect",
+  "summary": "Pair the wallet with a DApp via a WalletConnect URI.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_wallet-connect_requests",
+  "method": "GET",
+  "path": "/v1/wallet-connect/requests",
+  "group": "core",
+  "tag": "WalletConnect",
+  "summary": "List pending WalletConnect requests awaiting approval.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_wallet-connect_requests_id_approve",
+  "method": "POST",
+  "path": "/v1/wallet-connect/requests/{id}/approve",
+  "group": "core",
+  "tag": "WalletConnect",
+  "summary": "Approve a pending WalletConnect request.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_wallet-connect_requests_id_reject",
+  "method": "POST",
+  "path": "/v1/wallet-connect/requests/{id}/reject",
+  "group": "core",
+  "tag": "WalletConnect",
+  "summary": "Reject a pending WalletConnect request.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_wallet-connect_sessions",
+  "method": "GET",
+  "path": "/v1/wallet-connect/sessions",
+  "group": "core",
+  "tag": "WalletConnect",
+  "summary": "List active WalletConnect sessions.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "delete_v1_wallet-connect_sessions_topic",
+  "method": "DELETE",
+  "path": "/v1/wallet-connect/sessions/{topic}",
+  "group": "core",
+  "tag": "WalletConnect",
+  "summary": "Disconnect a WalletConnect session.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_bridge_routes",
+  "method": "GET",
+  "path": "/v1/bridge/routes",
+  "group": "core",
+  "tag": "Bridge",
+  "summary": "List supported bridge routes and tokens.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_bridge_quotes",
+  "method": "POST",
+  "path": "/v1/bridge/quotes",
+  "group": "core",
+  "tag": "Bridge",
+  "summary": "Get a crosschain bridge quote with platform-fee + balance check.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_bridge_transfers",
+  "method": "POST",
+  "path": "/v1/bridge/transfers",
+  "group": "core",
+  "tag": "Bridge",
+  "summary": "Execute a crosschain bridge transfer via Rift's bridge.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_invoices",
+  "method": "GET",
+  "path": "/v1/invoices",
+  "group": "core",
+  "tag": "Invoices",
+  "summary": "List invoices.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_invoices",
+  "method": "POST",
+  "path": "/v1/invoices",
+  "group": "core",
+  "tag": "Invoices",
+  "summary": "Create a new invoice.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_invoices_id_payments",
+  "method": "POST",
+  "path": "/v1/invoices/{id}/payments",
+  "group": "core",
+  "tag": "Invoices",
+  "summary": "Mark an invoice as paid via an on-chain transaction.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_invoices_id_notifications",
+  "method": "POST",
+  "path": "/v1/invoices/{id}/notifications",
+  "group": "core",
+  "tag": "Invoices",
+  "summary": "Deliver an invoice link via email or SMS to a recipient.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "get_v1_invoices_id_redirect",
+  "method": "GET",
+  "path": "/v1/invoices/{id}/redirect",
+  "group": "core",
+  "tag": "Invoices",
+  "summary": "Public redirect to the invoice URL (used by short-link surfaces).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_merchants",
+  "method": "GET",
+  "path": "/v1/merchants",
+  "group": "core",
+  "tag": "Merchants",
+  "summary": "List merchants with approval filter.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "get_v1_merchants_id",
+  "method": "GET",
+  "path": "/v1/merchants/{id}",
+  "group": "core",
+  "tag": "Merchants",
+  "summary": "Get a merchant's approval status.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_merchants_id_approval",
+  "method": "POST",
+  "path": "/v1/merchants/{id}/approval",
+  "group": "core",
+  "tag": "Merchants",
+  "summary": "Approve a merchant (project owner only).",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "delete_v1_merchants_id_approval",
+  "method": "DELETE",
+  "path": "/v1/merchants/{id}/approval",
+  "group": "core",
+  "tag": "Merchants",
+  "summary": "Revoke a merchant's approval (project owner only).",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_kyc_sessions",
+  "method": "POST",
+  "path": "/v1/kyc/sessions",
+  "group": "core",
+  "tag": "KYC",
+  "summary": "Create a KYC verification session (Rift picks the verification flow by country).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_kyc_status",
+  "method": "GET",
+  "path": "/v1/kyc/status",
+  "group": "core",
+  "tag": "KYC",
+  "summary": "Check the authenticated user's KYC verification status.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_kyc_status",
+  "method": "POST",
+  "path": "/v1/kyc/status",
+  "group": "core",
+  "tag": "KYC",
+  "summary": "Look up a user's KYC verification status by identifier.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_kyc_poll-and-notify",
+  "method": "POST",
+  "path": "/v1/kyc/poll-and-notify",
+  "group": "core",
+  "tag": "KYC",
+  "summary": "Poll a KYC job to completion and dispatch a one-time code on success.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_kyc_submissions",
+  "method": "POST",
+  "path": "/v1/kyc/submissions",
+  "group": "core",
+  "tag": "KYC",
+  "summary": "Submit KYC images (from frontend or via server-to-server).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_kyc_jobs_jobId",
+  "method": "GET",
+  "path": "/v1/kyc/jobs/{jobId}",
+  "group": "core",
+  "tag": "KYC",
+  "summary": "Poll a KYC submission job to completion.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_rates",
+  "method": "GET",
+  "path": "/v1/rates",
+  "group": "core",
+  "tag": "Rates",
+  "summary": "Public live FX rates with IP-derived default currency.",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "post_v1_rates_quote",
+  "method": "POST",
+  "path": "/v1/rates/quote",
+  "group": "core",
+  "tag": "Rates",
+  "summary": "Get an exchange-rate + fee quote (onramp or offramp).",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "get_v1_rates_withdrawal-fee",
+  "method": "GET",
+  "path": "/v1/rates/withdrawal-fee",
+  "group": "core",
+  "tag": "Rates",
+  "summary": "Get the withdrawal fee (bid-ask spread) for a currency.",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "get_v1_rails_currency_institutions",
+  "method": "GET",
+  "path": "/v1/rails/{currency}/institutions",
+  "group": "core",
+  "tag": "Rails",
+  "summary": "List supported payment institutions for a currency.",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "get_v1_rails_currency_payment-methods",
+  "method": "GET",
+  "path": "/v1/rails/{currency}/payment-methods",
+  "group": "core",
+  "tag": "Rails",
+  "summary": "Get the full payment-method catalogue for a currency.",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "get_v1_offramps",
+  "method": "GET",
+  "path": "/v1/offramps",
+  "group": "core",
+  "tag": "Offramps",
+  "summary": "List the user's offramp orders (newest first, paginated).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_offramps",
+  "method": "POST",
+  "path": "/v1/offramps",
+  "group": "core",
+  "tag": "Offramps",
+  "summary": "Pay out stablecoins to local money (one-phase).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_offramps_transactionCode",
+  "method": "GET",
+  "path": "/v1/offramps/{transactionCode}",
+  "group": "core",
+  "tag": "Offramps",
+  "summary": "Payout order by Rift order id (or, for older orders, by transaction code).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_deposits",
+  "method": "GET",
+  "path": "/v1/deposits",
+  "group": "core",
+  "tag": "Deposits",
+  "summary": "List the user's onchain deposits.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_deposits_stats",
+  "method": "GET",
+  "path": "/v1/deposits/stats",
+  "group": "core",
+  "tag": "Deposits",
+  "summary": "Get the user's deposit statistics.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_projects",
+  "method": "GET",
+  "path": "/v1/projects",
+  "group": "core",
+  "tag": "Projects",
+  "summary": "List projects owned by the authenticated user.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_projects",
+  "method": "POST",
+  "path": "/v1/projects",
+  "group": "core",
+  "tag": "Projects",
+  "summary": "Create a new project (bootstrap; OTP required).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_projects_id",
+  "method": "GET",
+  "path": "/v1/projects/{id}",
+  "group": "core",
+  "tag": "Projects",
+  "summary": "Get a project's details.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "patch_v1_projects_id",
+  "method": "PATCH",
+  "path": "/v1/projects/{id}",
+  "group": "core",
+  "tag": "Projects",
+  "summary": "Update a project (name, branding, custom widget domain).",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "delete_v1_projects_id",
+  "method": "DELETE",
+  "path": "/v1/projects/{id}",
+  "group": "core",
+  "tag": "Projects",
+  "summary": "Delete a project.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_projects_id_stats",
+  "method": "GET",
+  "path": "/v1/projects/{id}/stats",
+  "group": "core",
+  "tag": "Projects",
+  "summary": "Get a project's usage stats.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "get_v1_projects_id_api-logs",
+  "method": "GET",
+  "path": "/v1/projects/{id}/api-logs",
+  "group": "core",
+  "tag": "Projects",
+  "summary": "Get a paginated API call log for a project.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "patch_v1_projects_id_markup",
+  "method": "PATCH",
+  "path": "/v1/projects/{id}/markup",
+  "group": "core",
+  "tag": "Projects",
+  "summary": "Configure the project's markup (custom service-fee on transfers).",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_projects_id_api-keys_rotate",
+  "method": "POST",
+  "path": "/v1/projects/{id}/api-keys/rotate",
+  "group": "core",
+  "tag": "Projects",
+  "summary": "Rotate the project's API key.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_projects_id_origins",
+  "method": "POST",
+  "path": "/v1/projects/{id}/origins",
+  "group": "core",
+  "tag": "Projects",
+  "summary": "Add an allowed origin to a project's CORS whitelist.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "get_v1_projects_id_billing_subscription",
+  "method": "GET",
+  "path": "/v1/projects/{id}/billing/subscription",
+  "group": "core",
+  "tag": "Projects (Billing)",
+  "summary": "Get the current billing subscription and usage.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "get_v1_projects_id_billing_payments",
+  "method": "GET",
+  "path": "/v1/projects/{id}/billing/payments",
+  "group": "core",
+  "tag": "Projects (Billing)",
+  "summary": "List the project's billing payment history.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_projects_id_billing_payments",
+  "method": "POST",
+  "path": "/v1/projects/{id}/billing/payments",
+  "group": "core",
+  "tag": "Projects (Billing)",
+  "summary": "Submit an on-chain payment to upgrade or renew a plan.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "get_v1_widget-config",
+  "method": "GET",
+  "path": "/v1/widget-config",
+  "group": "core",
+  "tag": "Widget",
+  "summary": "Get the project's public widget configuration (name, branding, origins).",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "get_v1_billing_plans",
+  "method": "GET",
+  "path": "/v1/billing/plans",
+  "group": "core",
+  "tag": "Billing",
+  "summary": "Get the public billing plan catalogue.",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "get_v1_billing_payment-info",
+  "method": "GET",
+  "path": "/v1/billing/payment-info",
+  "group": "core",
+  "tag": "Billing",
+  "summary": "Get the on-chain payment configuration (admin payout address + supported chains).",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "post_v1_notifications_test",
+  "method": "POST",
+  "path": "/v1/notifications/test",
+  "group": "core",
+  "tag": "Notifications",
+  "summary": "Send a test email notification to the authenticated user.",
+  "cls": "INTERNAL",
+  "tier": null
+ },
+ {
+  "id": "post_v1_notifications_messages",
+  "method": "POST",
+  "path": "/v1/notifications/messages",
+  "group": "core",
+  "tag": "Notifications",
+  "summary": "Send a notification email to the authenticated user (self).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_notifications_broadcasts",
+  "method": "POST",
+  "path": "/v1/notifications/broadcasts",
+  "group": "core",
+  "tag": "Notifications",
+  "summary": "Project owner broadcasts an email to every user in their project.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_accounts",
+  "method": "GET",
+  "path": "/v1/accounts",
+  "group": "core",
+  "tag": "Accounts",
+  "summary": "List Rift accounts for the authenticated user.",
+  "cls": "DEAD",
+  "tier": "platform"
+ },
+ {
+  "id": "post_v1_accounts",
+  "method": "POST",
+  "path": "/v1/accounts",
+  "group": "core",
+  "tag": "Accounts",
+  "summary": "Create a new Rift account for the authenticated user.",
+  "cls": "DEAD",
+  "tier": "platform"
+ },
+ {
+  "id": "put_v1_accounts_id_default",
+  "method": "PUT",
+  "path": "/v1/accounts/{id}/default",
+  "group": "core",
+  "tag": "Accounts",
+  "summary": "Set a Rift account as the user's default.",
+  "cls": "DEAD",
+  "tier": null
+ },
+ {
+  "id": "get_v1_assets",
+  "method": "GET",
+  "path": "/v1/assets",
+  "group": "core",
+  "tag": "Assets",
+  "summary": "List all supported assets.",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "get_v1_assets_by-type_type",
+  "method": "GET",
+  "path": "/v1/assets/by-type/{type}",
+  "group": "core",
+  "tag": "Assets",
+  "summary": "List assets by type (stable, erc20, native).",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "get_v1_assets_by-category_category",
+  "method": "GET",
+  "path": "/v1/assets/by-category/{category}",
+  "group": "core",
+  "tag": "Assets",
+  "summary": "List assets by category.",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "get_v1_chains",
+  "method": "GET",
+  "path": "/v1/chains",
+  "group": "core",
+  "tag": "Chains",
+  "summary": "List all supported chains.",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "get_v1_chains_id",
+  "method": "GET",
+  "path": "/v1/chains/{id}",
+  "group": "core",
+  "tag": "Chains",
+  "summary": "Get a single chain by id.",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "get_v1_chains_chainId_assets",
+  "method": "GET",
+  "path": "/v1/chains/{chainId}/assets",
+  "group": "core",
+  "tag": "Chains",
+  "summary": "List assets for a specific chain.",
+  "cls": "DEAD",
+  "tier": null
+ },
+ {
+  "id": "get_v1_chains_chainId_tokens",
+  "method": "GET",
+  "path": "/v1/chains/{chainId}/tokens",
+  "group": "core",
+  "tag": "Chains",
+  "summary": "List tokens for a specific chain.",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "get_v1_tokens",
+  "method": "GET",
+  "path": "/v1/tokens",
+  "group": "core",
+  "tag": "Tokens",
+  "summary": "List all tokens.",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "get_v1_tokens_id",
+  "method": "GET",
+  "path": "/v1/tokens/{id}",
+  "group": "core",
+  "tag": "Tokens",
+  "summary": "Get a single token by id.",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "get_v1_reference_kenya_bank-paybills",
+  "method": "GET",
+  "path": "/v1/reference/kenya/bank-paybills",
+  "group": "core",
+  "tag": "Reference",
+  "summary": "Reference list of Kenyan bank paybills.",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "post_v1_wallet_user_operations_preview",
+  "method": "POST",
+  "path": "/v1/wallet/user-operations/preview",
+  "group": "core",
+  "tag": "Wallet",
+  "summary": "Phase 1 — build an ERC-4337 UserOperation and return the hash + ticket to sign.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_wallet_user_operations_submit_prepared",
+  "method": "POST",
+  "path": "/v1/wallet/user-operations/submit-prepared",
+  "group": "core",
+  "tag": "Wallet",
+  "summary": "Phase 2 — submit a previously-previewed UserOperation with the user's authProof.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_transactions_preview",
+  "method": "POST",
+  "path": "/v1/transactions/preview",
+  "group": "core",
+  "tag": "Transactions",
+  "summary": "Phase 1 of a v3 token transfer — returns the UserOp hash + ticket for a `token / recipient / amount` triple.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_offramps_preview",
+  "method": "POST",
+  "path": "/v1/offramps/preview",
+  "group": "core",
+  "tag": "Offramps",
+  "summary": "Phase 1 of a v3 off-ramp — builds the ERC-20 transfer to Rift's settlement address and returns hash + ticket.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_bridge_transfers_preview",
+  "method": "POST",
+  "path": "/v1/bridge/transfers/preview",
+  "group": "core",
+  "tag": "Bridge",
+  "summary": "Phase 1 of a v3 cross-chain bridge — builds the bridge calls and returns hash + ticket.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_offramps_init",
+  "method": "POST",
+  "path": "/v1/offramps/init",
+  "group": "core",
+  "tag": "Offramps",
+  "summary": "Two-phase payout, step 1: create the order and return the hash to sign.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_offramps_finalize",
+  "method": "POST",
+  "path": "/v1/offramps/finalize",
+  "group": "core",
+  "tag": "Offramps",
+  "summary": "Two-phase payout, step 2: submit the passkey signature and start the fiat leg.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_wallet_connect_requests_preview",
+  "method": "POST",
+  "path": "/v1/wallet-connect/requests/{id}/preview",
+  "group": "core",
+  "tag": "WalletConnect",
+  "summary": "Phase 1 for a v3 WalletConnect approval — build the UserOp for the dApp's request and return hash + ticket.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_users_status",
+  "method": "GET",
+  "path": "/v1/users/status",
+  "group": "core",
+  "tag": "Users",
+  "summary": "Get a user's suspension status (alias of /v1/users/lookup).",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_users_suspend",
+  "method": "POST",
+  "path": "/v1/users/suspend",
+  "group": "core",
+  "tag": "Users",
+  "summary": "Suspend a user identified in the body (project owner or admin key).",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_users_unsuspend",
+  "method": "POST",
+  "path": "/v1/users/unsuspend",
+  "group": "core",
+  "tag": "Users",
+  "summary": "Lift the suspension of a user identified in the body (project owner or admin key).",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "get_v1_wallet_status",
+  "method": "GET",
+  "path": "/v1/wallet/status",
+  "group": "core",
+  "tag": "Wallet & passkeys",
+  "summary": "Passkey-wallet status (also returned as `walletStatus` by every sign-in).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_wallet_passkeys_options",
+  "method": "POST",
+  "path": "/v1/wallet/passkeys/options",
+  "group": "core",
+  "tag": "Wallet & passkeys",
+  "summary": "WebAuthn registration options (ES256 only, 32-byte single-use challenge, 5 min).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_wallet_passkeys",
+  "method": "GET",
+  "path": "/v1/wallet/passkeys",
+  "group": "core",
+  "tag": "Wallet & passkeys",
+  "summary": "List the user's passkeys.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_wallet_passkeys",
+  "method": "POST",
+  "path": "/v1/wallet/passkeys",
+  "group": "core",
+  "tag": "Wallet & passkeys",
+  "summary": "Register a passkey (creates, migrates or extends the wallet).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_wallet_passkeys_confirm",
+  "method": "POST",
+  "path": "/v1/wallet/passkeys/confirm",
+  "group": "core",
+  "tag": "Wallet & passkeys",
+  "summary": "Confirm an added passkey with signatures from an existing passkey (one per deployed chain).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "delete_v1_wallet_passkeys_id",
+  "method": "DELETE",
+  "path": "/v1/wallet/passkeys/{id}",
+  "group": "core",
+  "tag": "Wallet & passkeys",
+  "summary": "Start removing a passkey (removeOwner tickets for every deployed chain).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_wallet_passkeys_id_confirm_removal",
+  "method": "POST",
+  "path": "/v1/wallet/passkeys/{id}/confirm-removal",
+  "group": "core",
+  "tag": "Wallet & passkeys",
+  "summary": "Submit the passkey-signed removeOwner tickets.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_approvals",
+  "method": "GET",
+  "path": "/v1/approvals",
+  "group": "core",
+  "tag": "Approvals",
+  "summary": "List the user's approval requests (app inbox).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_approvals_id",
+  "method": "GET",
+  "path": "/v1/approvals/{id}",
+  "group": "core",
+  "tag": "Approvals",
+  "summary": "Get an approval request — owner user JWT, or the creating project's API key alone.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_approvals_id_preview",
+  "method": "POST",
+  "path": "/v1/approvals/{id}/preview",
+  "group": "core",
+  "tag": "Approvals",
+  "summary": "Fresh two-phase ticket built from the stored intent.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_approvals_id_approve",
+  "method": "POST",
+  "path": "/v1/approvals/{id}/approve",
+  "group": "core",
+  "tag": "Approvals",
+  "summary": "Approve with the passkey-signed ticket from /preview (single use).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_approvals_id_reject",
+  "method": "POST",
+  "path": "/v1/approvals/{id}/reject",
+  "group": "core",
+  "tag": "Approvals",
+  "summary": "Reject an approval request.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_wallet_signatures_message_preview",
+  "method": "POST",
+  "path": "/v1/wallet/signatures/message/preview",
+  "group": "core",
+  "tag": "Wallet",
+  "summary": "ERC-1271 message signing, phase 1 (personal_sign or typed data).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_onramps_quote",
+  "method": "GET",
+  "path": "/v1/onramps/quote",
+  "group": "core",
+  "tag": "Onramps (Beta)",
+  "summary": "Quote a fiat amount.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_onramps_kyc",
+  "method": "GET",
+  "path": "/v1/onramps/kyc",
+  "group": "core",
+  "tag": "Onramps (Beta)",
+  "summary": "Whether the customer's verified KYC is usable for onramp (no personal data returned).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_onramps",
+  "method": "GET",
+  "path": "/v1/onramps",
+  "group": "core",
+  "tag": "Onramps (Beta)",
+  "summary": "The user's onramp orders.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_onramps",
+  "method": "POST",
+  "path": "/v1/onramps",
+  "group": "core",
+  "tag": "Onramps (Beta)",
+  "summary": "Buy stablecoins into the customer's own Safe.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_onramps_id",
+  "method": "GET",
+  "path": "/v1/onramps/{id}",
+  "group": "core",
+  "tag": "Onramps (Beta)",
+  "summary": "One onramp order with its current status.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_payouts_countries",
+  "method": "GET",
+  "path": "/v1/payouts/countries",
+  "group": "core",
+  "tag": "Payouts (Beta)",
+  "summary": "Countries, rails and limits for payouts and onramp (public, cached about 10 minutes).",
+  "cls": "CUSTOMER",
+  "tier": "reference"
+ },
+ {
+  "id": "post_v1_payouts_validate",
+  "method": "POST",
+  "path": "/v1/payouts/validate",
+  "group": "core",
+  "tag": "Payouts (Beta)",
+  "summary": "Look up a payout recipient's registered name before paying.",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "get_v1_beneficiaries",
+  "method": "GET",
+  "path": "/v1/beneficiaries",
+  "group": "core",
+  "tag": "Beneficiaries (Beta)",
+  "summary": "Saved recipients (most recently used first).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_beneficiaries",
+  "method": "POST",
+  "path": "/v1/beneficiaries",
+  "group": "core",
+  "tag": "Beneficiaries (Beta)",
+  "summary": "Save a recipient. Fiat recipients get a name lookup; deduped on (type, identifier, bankCode).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "patch_v1_beneficiaries_id",
+  "method": "PATCH",
+  "path": "/v1/beneficiaries/{id}",
+  "group": "core",
+  "tag": "Beneficiaries (Beta)",
+  "summary": "Edit label / network / bank name (identifier is immutable).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "delete_v1_beneficiaries_id",
+  "method": "DELETE",
+  "path": "/v1/beneficiaries/{id}",
+  "group": "core",
+  "tag": "Beneficiaries (Beta)",
+  "summary": "Delete a saved recipient.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_ledger",
+  "method": "GET",
+  "path": "/v1/ledger",
+  "group": "core",
+  "tag": "Ledger (Beta)",
+  "summary": "Every money movement of the user, newest first.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_statements_challenge",
+  "method": "POST",
+  "path": "/v1/statements/challenge",
+  "group": "core",
+  "tag": "Ledger (Beta)",
+  "summary": "Single-use (5 min) passkey challenge for a statement.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_statements",
+  "method": "POST",
+  "path": "/v1/statements",
+  "group": "core",
+  "tag": "Ledger (Beta)",
+  "summary": "Statement (CSV or PDF) authorised by a passkey assertion over hashToSign; emailed or downloaded.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_devices",
+  "method": "GET",
+  "path": "/v1/devices",
+  "group": "core",
+  "tag": "Devices",
+  "summary": "List devices",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_devices",
+  "method": "POST",
+  "path": "/v1/devices",
+  "group": "core",
+  "tag": "Devices",
+  "summary": "Register this device's key",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_devices_policy",
+  "method": "GET",
+  "path": "/v1/devices/policy",
+  "group": "core",
+  "tag": "Devices",
+  "summary": "Enforcement switch",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_devices_id_approve_challenge",
+  "method": "POST",
+  "path": "/v1/devices/{id}/approve/challenge",
+  "group": "core",
+  "tag": "Devices",
+  "summary": "Passkey challenge to approve a pending device (from a trusted device)",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_devices_id_approve",
+  "method": "POST",
+  "path": "/v1/devices/{id}/approve",
+  "group": "core",
+  "tag": "Devices",
+  "summary": "Approve a pending device with a passkey (from a trusted device)",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_devices_id_recover_start",
+  "method": "POST",
+  "path": "/v1/devices/{id}/recover/start",
+  "group": "core",
+  "tag": "Devices",
+  "summary": "Lost other device: send an OTP (from the pending device itself)",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_devices_id_recover_verify",
+  "method": "POST",
+  "path": "/v1/devices/{id}/recover/verify",
+  "group": "core",
+  "tag": "Devices",
+  "summary": "Verify the OTP → cooling_off",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_devices_id_recover_cancel",
+  "method": "POST",
+  "path": "/v1/devices/{id}/recover/cancel",
+  "group": "core",
+  "tag": "Devices",
+  "summary": "Cancel link from the email (no JWT)",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "delete_v1_devices_id",
+  "method": "DELETE",
+  "path": "/v1/devices/{id}",
+  "group": "core",
+  "tag": "Devices",
+  "summary": "Remove a device (from a trusted device)",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_offramps_id_refund",
+  "method": "POST",
+  "path": "/v1/offramps/{id}/refund",
+  "group": "core",
+  "tag": "Offramps",
+  "summary": "Refund a failed payout to the customer's wallet.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_identifier_recovery_methods",
+  "method": "GET",
+  "path": "/v1/identifier-recovery/methods",
+  "group": "core",
+  "tag": "Recovery",
+  "summary": "Get the authenticated user's recovery methods.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_identifier_recovery_methods",
+  "method": "POST",
+  "path": "/v1/identifier-recovery/methods",
+  "group": "core",
+  "tag": "Recovery",
+  "summary": "Create the authenticated user's recovery methods.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "put_v1_identifier_recovery_methods",
+  "method": "PUT",
+  "path": "/v1/identifier-recovery/methods",
+  "group": "core",
+  "tag": "Recovery",
+  "summary": "Replace all of the authenticated user's recovery methods.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "delete_v1_identifier_recovery_methods",
+  "method": "DELETE",
+  "path": "/v1/identifier-recovery/methods",
+  "group": "core",
+  "tag": "Recovery",
+  "summary": "Delete all of the authenticated user's recovery methods.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "post_v1_identifier_recovery_methods_type",
+  "method": "POST",
+  "path": "/v1/identifier-recovery/methods/{type}",
+  "group": "core",
+  "tag": "Recovery",
+  "summary": "Add a specific recovery method.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "patch_v1_identifier_recovery_methods_type",
+  "method": "PATCH",
+  "path": "/v1/identifier-recovery/methods/{type}",
+  "group": "core",
+  "tag": "Recovery",
+  "summary": "Update the value of a specific recovery method.",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "delete_v1_identifier_recovery_methods_type",
+  "method": "DELETE",
+  "path": "/v1/identifier-recovery/methods/{type}",
+  "group": "core",
+  "tag": "Recovery",
+  "summary": "Remove a specific recovery method (cannot remove the last one).",
+  "cls": "APP",
+  "tier": null
+ },
+ {
+  "id": "get_v1_identifier_recovery_options_externalId",
+  "method": "GET",
+  "path": "/v1/identifier-recovery/options/{externalId}",
+  "group": "core",
+  "tag": "Recovery",
+  "summary": "Get masked recovery options for an externalId.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "get_v1_identifier_recovery_options",
+  "method": "GET",
+  "path": "/v1/identifier-recovery/options",
+  "group": "core",
+  "tag": "Recovery",
+  "summary": "Get masked recovery options by primary identifier.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "get_v1_identifier_recovery_tokens_token",
+  "method": "GET",
+  "path": "/v1/identifier-recovery/tokens/{token}",
+  "group": "core",
+  "tag": "Recovery",
+  "summary": "Validate a recovery token.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_identifier_recovery_password-reset",
+  "method": "POST",
+  "path": "/v1/identifier-recovery/password-reset",
+  "group": "core",
+  "tag": "Recovery",
+  "summary": "Send a password-reset link via email or SMS.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_identifier_recovery_password-reset_complete",
+  "method": "POST",
+  "path": "/v1/identifier-recovery/password-reset/complete",
+  "group": "core",
+  "tag": "Recovery",
+  "summary": "Reset a user's password with a previously issued token.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_identifier_recovery_account-recovery",
+  "method": "POST",
+  "path": "/v1/identifier-recovery/account-recovery",
+  "group": "core",
+  "tag": "Recovery",
+  "summary": "Send an account-recovery link (re-establish primary identifier).",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "post_v1_identifier_recovery_account-recovery_complete",
+  "method": "POST",
+  "path": "/v1/identifier-recovery/account-recovery/complete",
+  "group": "core",
+  "tag": "Recovery",
+  "summary": "Complete an account-recovery flow by changing the primary identifier.",
+  "cls": "CUSTOMER",
+  "tier": "key"
+ },
+ {
+  "id": "get_v1_platform_keys",
+  "method": "GET",
+  "path": "/v1/platform/keys",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "List platform secret keys (owner session only)",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "post_v1_platform_keys",
+  "method": "POST",
+  "path": "/v1/platform/keys",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "Create a platform secret key (owner session only); the key is returned once",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "delete_v1_platform_keys_id",
+  "method": "DELETE",
+  "path": "/v1/platform/keys/{id}",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "Revoke a platform key (owner session only)",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "get_v1_platform_customers",
+  "method": "GET",
+  "path": "/v1/platform/customers",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "List customers",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "get_v1_platform_customers_id",
+  "method": "GET",
+  "path": "/v1/platform/customers/{id}",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "Customer detail",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "get_v1_platform_customers_id_ledger",
+  "method": "GET",
+  "path": "/v1/platform/customers/{id}/ledger",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "Customer ledger",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "get_v1_platform_customers_id_statement",
+  "method": "GET",
+  "path": "/v1/platform/customers/{id}/statement",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "Customer statement file",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "get_v1_platform_customers_id_consents",
+  "method": "GET",
+  "path": "/v1/platform/customers/{id}/consents",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "List consents",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "post_v1_platform_customers_id_consents",
+  "method": "POST",
+  "path": "/v1/platform/customers/{id}/consents",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "Record a consent",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "delete_v1_platform_customers_id_consents_consentId",
+  "method": "DELETE",
+  "path": "/v1/platform/customers/{id}/consents/{consentId}",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "Revoke a consent",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "get_v1_platform_ledger",
+  "method": "GET",
+  "path": "/v1/platform/ledger",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "All-customer ledger (JSON or CSV)",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "get_v1_platform_webhooks",
+  "method": "GET",
+  "path": "/v1/platform/webhooks",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "List webhook endpoints (secret never returned)",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "post_v1_platform_webhooks",
+  "method": "POST",
+  "path": "/v1/platform/webhooks",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "Create a webhook endpoint; the signing secret (whsec_...) is returned once",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "delete_v1_platform_webhooks_id",
+  "method": "DELETE",
+  "path": "/v1/platform/webhooks/{id}",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "Disable a webhook endpoint",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "post_v1_platform_webhooks_id_test",
+  "method": "POST",
+  "path": "/v1/platform/webhooks/{id}/test",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "Send a webhook.test event now",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "get_v1_platform_webhooks_id_deliveries",
+  "method": "GET",
+  "path": "/v1/platform/webhooks/{id}/deliveries",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "Delivery log",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "get_v1_platform_gas_policy",
+  "method": "GET",
+  "path": "/v1/platform/gas-policy",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "Get gas policy",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "put_v1_platform_gas_policy",
+  "method": "PUT",
+  "path": "/v1/platform/gas-policy",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "Set gas policy",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ },
+ {
+  "id": "get_v1_platform_usage",
+  "method": "GET",
+  "path": "/v1/platform/usage",
+  "group": "platform",
+  "tag": "Platform (Beta)",
+  "summary": "Monthly usage",
+  "cls": "CUSTOMER",
+  "tier": "platform"
+ }
+]

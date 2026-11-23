@@ -111,37 +111,40 @@ The [API playground](/docs/playground/) lets you enter a key at runtime. It keep
 
 Source: https://riftfi.com/docs/capabilities/
 
-Rift Wallets gives each customer a smart account owned only by their passkeys, with gas handled for them, and payment rails built in. Rift holds no key that can move a customer's funds. This page maps each capability group to its endpoints. Every endpoint can be tried in the [API playground](/docs/playground/).
+Rift Wallets gives each customer a smart account owned only by their passkeys, with gas handled for them, and payment rails built in. Rift holds no key that can move a customer's funds. This page maps each capability group to the endpoints you call with your project API key, your platform key or your project id. Flows that belong to the signed-in end user (passkeys, device binding, approvals, balances, sending, payouts, onramp, KYC pages) are run by the Rift widget, the React components and the SDK on the customer's behalf; they are listed separately at the end. Every endpoint can be tried in the [API playground](/docs/playground/).
 
 Beta features may change before general availability.
 
+## Per-project endpoints (your API key or project id)
+
 | Group | What you can do | Main endpoints | Read |
 |---|---|---|---|
-| **Sign-in and session** | Email or phone one-time codes, Google, Apple, external-id sign-in, refresh, sign-out | `POST /v1/auth/sign-up`, `/sign-in`, `/sign-in/google`, `/sign-in/apple`, `/sessions/refresh`, `/sign-out`; `POST /v1/one-time-codes`, `/verify` | [Authentication](/docs/authentication/) |
-| **Customer profile** | Read, update, delete the signed-in customer | `GET/PATCH/PUT/DELETE /v1/me`, `GET /v1/me/tokens` | [API](/docs/api/core/) |
-| **Passkey wallets and recovery** | Register, list and remove passkeys; wallet status | `GET /v1/wallet/status`, `POST /v1/wallet/passkeys/options`, `/v1/wallet/passkeys` | [Passkeys](/docs/guides/passkeys-and-recovery/) |
-| **Devices** | Bind trusted devices; recover a device | `/v1/devices...` | [Device binding](/docs/guides/device-binding/) |
-| **Balances and history** | Balances per chain and token, transaction history, deposits | `GET /v1/balances`, `/v1/transactions`, `/v1/deposits` | [API](/docs/api/core/) |
-| **Transfers and signing** | Send tokens, call contracts, sign messages; two-phase preview then submit | `POST /v1/transactions`, `/v1/transactions/preview`, `/v1/wallet/user-operations...`, `/v1/wallet/signatures/message...` | [Two-phase signing](/docs/guides/two-phase-signing/) |
-| **Approvals** | Server starts a payment; the customer approves it with a passkey | `GET /v1/approvals`, `GET /v1/approvals/{id}`, `POST .../approve`, `/reject` | [Approvals](/docs/guides/approvals/) |
-| **Payouts (offramp)** | Pay local money to mobile money, bank, till or paybill; refunds | `GET /v1/payouts/countries`, `POST /v1/payouts/validate`, `POST /v1/offramps`, `/init`, `/finalize`, `GET /v1/offramps`, `POST /v1/offramps/{id}/refund` | [Offramp](/docs/guides/offramp/), [Corridors and limits](/docs/guides/payment-corridors/) |
-| **Onramp (Beta)** | Buy stablecoins with local money into the customer's wallet | `GET /v1/onramps/quote`, `/v1/onramps/kyc`, `POST /v1/onramps`, `GET /v1/onramps` | [Onramp](/docs/guides/onramp/) |
-| **Rates and rails** | FX rates, quotes, fees, institutions and payment methods per currency | `GET /v1/rates`, `POST /v1/rates/quote`, `GET /v1/rates/withdrawal-fee`, `GET /v1/rails/{currency}/institutions` | [Corridors](/docs/guides/payment-corridors/) |
-| **Beneficiaries (Beta)** | Saved recipients | `/v1/beneficiaries` | [API](/docs/api/core/) |
-| **Rift Accounts (Beta)** | Local-currency accounts (KES, TZS, GHS, UGX, MWK): collect from mobile money, pay out to mobile money, banks, tills and paybills, download statements | `/v1/accounts...` | [Accounts](/docs/guides/accounts/) |
-| **Own-wallet ramps (Beta)** | Cash out stablecoins from your own wallet, or buy USDC with mobile money to any address, with no Rift wallet | see the guide and API reference | [Own-wallet ramps](/docs/guides/own-wallet-ramps/) |
-| **Liquidity providers (Beta)** | Provide stablecoin liquidity to the payout pool from your own wallet and earn a share of fees | `/v1/lp...` | [Liquidity providers](/docs/guides/liquidity-providers/) |
-| **Swaps and bridges** | Cross-chain transfers, quotes, routes | `GET /v1/bridge/routes`, `POST /v1/bridge/quotes`, `/v1/bridge/transfers...` | [Swaps and bridges](/docs/guides/swaps-and-bridges/) |
-| **WalletConnect** | Pair the customer's wallet with any dApp and approve its requests | `/v1/wallet-connect/...` | [WalletConnect](/docs/guides/walletconnect/) |
+| **Sign-in and sign-up** | Create and sign in your project's customers with email or phone one-time codes, external id and password, Google or Apple. The project key selects the project | `POST /v1/auth/sign-up`, `/sign-in`, `/sign-in/google`, `/sign-in/apple`; `POST /v1/one-time-codes`, `/verify` | [Authentication](/docs/authentication/) |
+| **Customer administration** | List your project's customers, look up, suspend and unsuspend them | `GET /v1/users`, `/v1/users/lookup`, `/v1/users/suspended`, `POST /v1/users/{id}/suspend`, `/unsuspend` | [API](/docs/api/core/) |
+| **Account recovery** | Masked recovery options, password reset and account recovery for external-id accounts, for your own sign-in screens | `GET /v1/identifier-recovery/options`, `POST /v1/identifier-recovery/password-reset`, `/account-recovery` | [Passkeys and recovery](/docs/guides/passkeys-and-recovery/) |
+| **Payment links and invoices** | Create invoices, list and cancel them, record payments, send the link by email or SMS | `POST /v1/invoices`, `GET /v1/invoices`, `DELETE /v1/invoices/{id}`, `POST /v1/invoices/{id}/payments`, `/notifications` | [API](/docs/api/core/) |
+| **Merchant approval** | Mark your customers as approved merchants. Only enforced when merchant approval is switched on for your project | `GET /v1/merchants`, `POST /v1/merchants/{id}/approval`, `DELETE` same path | [API](/docs/api/core/) |
+| **Widget configuration** | Branding and settings the widget loads for your project key | `GET /v1/widget-config` | [Widget](/docs/sdk/widget/) |
+| **Your project** | Read and update your project, rotate the key, add allowed origins, set fee markup, read usage and API logs | `GET/PATCH /v1/projects/{id}`, `POST /v1/projects/{id}/api-keys/rotate`, `POST /v1/projects/{id}/origins`, `PATCH /v1/projects/{id}/markup`, `GET /v1/projects/{id}/stats`, `/api-logs` | [Going live](/docs/guides/going-live/) |
+| **Billing** | Plans, payment details, your subscription state and payments | `GET /v1/billing/plans`, `/v1/billing/payment-info`, `GET /v1/projects/{id}/billing/subscription`, `GET/POST /v1/projects/{id}/billing/payments` | [Pricing](/docs/pricing/) |
+| **Reference data (no key needed)** | Chains, tokens, assets, FX rates and fees, payout countries, institutions and payment methods per currency | `GET /v1/chains`, `/v1/tokens`, `/v1/assets`, `/v1/rates`, `/v1/payouts/countries`, `/v1/rails/{currency}/institutions` | [Chains and tokens](/docs/overview/chains-and-tokens/), [Corridors](/docs/guides/payment-corridors/) |
+
+## Platform tier (platform key `psk_`, server only)
+
+| Group | What you can do | Main endpoints | Read |
+|---|---|---|---|
+| **Platform API (Beta)** | Customers, per-customer ledgers and statements, consent-based history for lenders, usage, platform keys | `/v1/platform/customers...`, `/v1/platform/ledger`, `/v1/platform/usage`, `/v1/platform/keys` | [Platform quickstart](/docs/quickstarts/platform/), [Customer history](/docs/guides/customer-history-credit/) |
+| **Webhooks (Beta)** | Signed events for transactions, customers, approvals, accounts and ramps | `/v1/platform/webhooks...` | [Webhooks](/docs/guides/webhooks/) |
 | **Gas sponsorship (Beta)** | Sponsor gas for customers or let them pay in USDC or USDT; per-project policy | `/v1/platform/gas-policy` | [Gas sponsorship](/docs/guides/gas-sponsorship/) |
-| **Ledger and statements (Beta)** | One ledger of every customer transaction; signed statements | `GET /v1/ledger`, `POST /v1/statements` | [Ledger](/docs/guides/ledger-and-statements/) |
-| **Customer history for credit (Beta)** | Consent-based transaction history for lenders | `/v1/platform/...` | [Customer history](/docs/guides/customer-history-credit/) |
-| **KYC** | Identity verification sessions, status and jobs | `POST /v1/kyc/sessions`, `GET /v1/kyc/status`, `GET /v1/kyc/jobs/{jobId}` | [Onramp](/docs/guides/onramp/) |
-| **Invoices and merchants** | Create invoices, take payments, merchant onboarding | `/v1/invoices`, `/v1/merchants` | [API](/docs/api/core/) |
-| **Reference data** | Chains, tokens, assets | `GET /v1/chains`, `/v1/tokens`, `/v1/assets` | [Chains and tokens](/docs/overview/chains-and-tokens/) |
-| **Platform API (Beta)** | Server-only institution endpoints: customers, ledgers, webhooks, gas policy, usage, keys | `/v1/platform/...` | [Platform quickstart](/docs/quickstarts/platform/) |
-| **Webhooks (Beta)** | Signed events for transactions, customers, approvals, accounts and ramps | `POST /v1/platform/webhooks` | [Webhooks](/docs/guides/webhooks/) |
-| **Project administration** | Projects, keys, origins, billing, branding | `/v1/projects...`, `/v1/billing/...` | [Going live](/docs/guides/going-live/) |
+| **Rift Accounts (Beta)** | Local-currency accounts (KES, TZS, GHS, UGX, MWK): collect from mobile money, pay out to mobile money, banks, tills and paybills, statements | `/v1/accounts...` | [Accounts](/docs/guides/accounts/) |
+| **Own-wallet ramps (Beta)** | Cash out stablecoins from your own wallet, or buy USDC with mobile money to any address, with no Rift wallet | `/v1/ramps/...`, `POST /v1/payouts/validate` | [Own-wallet ramps](/docs/guides/own-wallet-ramps/) |
+
+## Run by the widget, React components and SDK
+
+These are the end user's own flows. They are authenticated with the customer's access token rather than your project key, and several need a passkey signature that only the customer's device can produce, so the Rift widget or SDK calls them for you. They are not part of the per-project API reference; the operation pages are collected under [Used by the Rift widget and app](/docs/api/core/#used-by-the-rift-widget-and-app).
+
+- Customer profile, balances, history, deposits, sending and signing (two-phase preview then submit), approvals, trusted devices, passkey registration.
+- Payouts (offramp), onramp, beneficiaries, bridges, WalletConnect, ledger and statements, identity verification pages.
 
 ## Supported money rails
 
@@ -4052,284 +4055,232 @@ The Rift MCP server exposes 83 tools. Setup is in the [MCP quickstart](https://r
 
 # Endpoint catalogue
 
-Every public operation. Notation: METHOD path [auth] summary | params (* = required, in parentheses where it goes) | example JSON body. "customer token" = Authorization: Bearer; "project key" = X-API-Key. Full per-endpoint detail: https://riftfi.com/docs/api/core/ and https://riftfi.com/docs/api/platform/. Try any of them live: https://riftfi.com/docs/playground/
-
-### Accounts
-
-- GET /v1/accounts [customer token] List Rift accounts for the authenticated user.
-- POST /v1/accounts [customer token] Create a new Rift account for the authenticated user. | body: {"makeDefault":false}
-- PUT /v1/accounts/{id}/default [customer token] Set a Rift account as the user's default. | params: id*(path)
-
-### Approvals
-
-- GET /v1/approvals [customer token] List the user's approval requests (app inbox). | params: status(query)
-- GET /v1/approvals/{id} [customer token + project key] Get an approval request — owner user JWT, or the creating project's API key alone. | params: id*(path)
-- POST /v1/approvals/{id}/preview [customer token] Fresh two-phase ticket built from the stored intent. | params: id*(path)
-- POST /v1/approvals/{id}/approve [customer token] Approve with the passkey-signed ticket from /preview (single use). | params: id*(path) | body: {"ticketId":"string","authProof":{"kind":"passkey","cred_id_b64":"string","client_data_json_b64":"string","authenticator_data_b64":"string","signature_b64":"string"}}
-- POST /v1/approvals/{id}/reject [customer token] Reject an approval request. | params: id*(path)
+The per-project API: every operation you call with your project API key or a project id you own (tier "per-project"), the server-only platform tier (psk_ key) and public reference data. End-user flows that the Rift widget, React components and SDK run for you are listed after the catalogue and are not an integration surface. Notation: METHOD path [auth] summary | params (* = required, in parentheses where it goes) | example JSON body. "customer token" = Authorization: Bearer; "project key" = X-API-Key. Full per-endpoint detail: https://riftfi.com/docs/api/core/ and https://riftfi.com/docs/api/platform/. Try any of them live: https://riftfi.com/docs/playground/
 
 ### Assets
 
-- GET /v1/assets [none] List all supported assets.
-- GET /v1/assets/by-type/{type} [none] List assets by type (stable, erc20, native). | params: type*(path)
-- GET /v1/assets/by-category/{category} [none] List assets by category. | params: category*(path)
+- GET /v1/assets [none] (public reference data) List all supported assets.
+- GET /v1/assets/by-type/{type} [none] (public reference data) List assets by type (stable, erc20, native). | params: type*(path)
+- GET /v1/assets/by-category/{category} [none] (public reference data) List assets by category. | params: category*(path)
 
 ### Auth
 
-- POST /v1/auth/sign-up [project key] Create a new user account. | body: {}
-- POST /v1/auth/sign-in [project key] Authenticate existing user. | body: {}
-- POST /v1/auth/sign-in/google [none] Verify a Google ID token and find-or-create the user. | body: {"idToken":"string","referrer":"string"}
-- POST /v1/auth/sign-in/apple [none] Verify an Apple identity token and find-or-create the user. | body: {"idToken":"string","displayName":"string","referrer":"string"}
-- POST /v1/auth/sessions/refresh [none] Rotate the refresh-cookie and issue a fresh access JWT.
-- POST /v1/auth/sign-out [none] Revoke the refresh-cookie.
-
-### Balances
-
-- GET /v1/balances [customer token] Get all token balances on a given chain or across all chains. | params: chain(query), walletType(query)
-- GET /v1/balances/tokens/{symbol} [customer token] Get the balance of a specific token across chains. | params: symbol*(path), chain(query), walletType(query)
-
-### Beneficiaries (Beta)
-
-- GET /v1/beneficiaries [customer token] Saved recipients (most recently used first). | params: type(query)
-- POST /v1/beneficiaries [customer token] Save a recipient. Fiat recipients get a name lookup; deduped on (type, identifier, bankCode). | body: {"type":"wallet","identifier":"string"}
-- PATCH /v1/beneficiaries/{id} [customer token] Edit label / network / bank name (identifier is immutable). | params: id*(path) | body: {"label":"string","network":"string","bankName":"string"}
-- DELETE /v1/beneficiaries/{id} [customer token] Delete a saved recipient. | params: id*(path)
+- POST /v1/auth/sign-up [project key] (per-project) Create a new user account. | body: {}
+- POST /v1/auth/sign-in [project key] (per-project) Authenticate existing user. | body: {}
+- POST /v1/auth/sign-in/google [none] (per-project) Verify a Google ID token and find-or-create the user. | body: {"idToken":"string","referrer":"string"}
+- POST /v1/auth/sign-in/apple [none] (per-project) Verify an Apple identity token and find-or-create the user. | body: {"idToken":"string","displayName":"string","referrer":"string"}
 
 ### Billing
 
-- GET /v1/billing/plans [none] Get the public billing plan catalogue.
-- GET /v1/billing/payment-info [none] Get the on-chain payment configuration (admin payout address + supported chains).
-
-### Bridge
-
-- GET /v1/bridge/routes [none] List supported bridge routes and tokens.
-- POST /v1/bridge/quotes [none] Get a crosschain bridge quote with platform-fee + balance check. | body: {"sourceChain":"string","destinationChain":"string","token":"string","amount":"string","recipient":"string"}
-- POST /v1/bridge/transfers [customer token] Execute a crosschain bridge transfer via Rift's bridge. | body: {"sourceChain":"string","destinationChain":"string","token":"string","amount":"string","recipient":"string"}
-- POST /v1/bridge/transfers/preview [customer token] Phase 1 of a v3 cross-chain bridge — builds the bridge calls and returns hash + ticket. | body: {"sourceChain":"BASE","destChain":"ARBITRUM","token":"USDC","amount":"string","recipient":"string"}
+- GET /v1/billing/plans [none] (public reference data) Get the public billing plan catalogue.
+- GET /v1/billing/payment-info [none] (public reference data) Get the on-chain payment configuration (admin payout address + supported chains).
 
 ### Chains
 
-- GET /v1/chains [none] List all supported chains.
-- GET /v1/chains/{id} [none] Get a single chain by id. | params: id*(path)
-- GET /v1/chains/{chainId}/assets [none] List assets for a specific chain. | params: chainId*(path)
-- GET /v1/chains/{chainId}/tokens [none] List tokens for a specific chain. | params: chainId*(path)
-
-### Deposits
-
-- GET /v1/deposits [customer token] List the user's onchain deposits.
-- GET /v1/deposits/stats [customer token] Get the user's deposit statistics.
-
-### Devices
-
-- GET /v1/devices [customer token] List devices
-- POST /v1/devices [customer token] Register this device's key | body: {"publicKey":"string","label":"string","platform":"string"}
-- GET /v1/devices/policy [none] Enforcement switch
-- POST /v1/devices/{id}/approve/challenge [customer token] Passkey challenge to approve a pending device (from a trusted device) | params: id*(path)
-- POST /v1/devices/{id}/approve [customer token] Approve a pending device with a passkey (from a trusted device) | params: id*(path) | body: {"challengeId":"string","authProof":{}}
-- POST /v1/devices/{id}/recover/start [customer token] Lost other device: send an OTP (from the pending device itself) | params: id*(path)
-- POST /v1/devices/{id}/recover/verify [customer token] Verify the OTP → cooling_off | params: id*(path) | body: {"otpCode":"string"}
-- POST /v1/devices/{id}/recover/cancel [none] Cancel link from the email (no JWT) | params: id*(path) | body: {"token":"string"}
-- DELETE /v1/devices/{id} [customer token] Remove a device (from a trusted device) | params: id*(path)
+- GET /v1/chains [none] (public reference data) List all supported chains.
+- GET /v1/chains/{id} [none] (public reference data) Get a single chain by id. | params: id*(path)
+- GET /v1/chains/{chainId}/tokens [none] (public reference data) List tokens for a specific chain. | params: chainId*(path)
 
 ### Invoices
 
-- GET /v1/invoices [customer token + project key] List invoices. | params: status(query), sortBy(query), sortOrder(query), startDate(query), endDate(query), page(query), limit(query)
-- POST /v1/invoices [customer token + project key] Create a new invoice. | body: {"chain":"string","token":"string","amount":1}
-- POST /v1/invoices/{id}/payments [project key] Mark an invoice as paid via an on-chain transaction. | params: id*(path) | body: {"transactionHash":"string","chain":"string"}
-- POST /v1/invoices/{id}/notifications [project key] Deliver an invoice link via email or SMS to a recipient. | params: id*(path) | body: {"paymentLink":"string","message":"string","recipientEmail":"string","recipientPhone":"string"}
-- GET /v1/invoices/{id}/redirect [none] Public redirect to the invoice URL (used by short-link surfaces). | params: id*(path)
-
-### KYC
-
-- POST /v1/kyc/sessions [none] Create a KYC verification session (Rift picks the verification flow by country). | body: {"country_code":"string","identifier":"string"}
-- GET /v1/kyc/status [customer token] Check the authenticated user's KYC verification status.
-- POST /v1/kyc/status [none] Look up a user's KYC verification status by identifier. | body: {"identifier":"string"}
-- POST /v1/kyc/poll-and-notify [none] Poll a KYC job to completion and dispatch a one-time code on success. | body: {"identifier":"string","timeout":1}
-- POST /v1/kyc/submissions [customer token] Submit KYC images (from frontend or via server-to-server). | body: {"images":{},"partner_params":{},"country_code":"string"}
-- GET /v1/kyc/jobs/{jobId} [customer token] Poll a KYC submission job to completion. | params: jobId*(path)
-
-### Ledger (Beta)
-
-- GET /v1/ledger [customer token] Every money movement of the user, newest first. | params: from(query), to(query), type(query), cursor(query), limit(query)
-- POST /v1/statements/challenge [customer token] Single-use (5 min) passkey challenge for a statement.
-- POST /v1/statements [customer token] Statement (CSV or PDF) authorised by a passkey assertion over hashToSign; emailed or downloaded. | body: {"challengeId":"string","authProof":{"kind":"passkey","cred_id_b64":"string","client_data_json_b64":"string","authenticator_data_b64":"string","signature_b64":"string"},"from":"2026-01-01T00:00:00Z","to":"2026-01-01T00:00:00Z","format":"csv","delivery":"email"}
-
-### Me
-
-- GET /v1/me [customer token] Get the authenticated user's profile.
-- PUT /v1/me [customer token] Update the authenticated user's profile (PUT alias of PATCH). | body: {}
-- PATCH /v1/me [customer token] Update the authenticated user's profile. | body: {}
-- DELETE /v1/me [customer token] Delete the authenticated user and all related data. | body: {"externalId":"string","phone":"string","email":"string","otpCode":"string","phoneNumber":"string","password":"string"}
-- GET /v1/me/tokens [customer token] List the tokens currently owned by the authenticated user.
+- GET /v1/invoices [customer token + project key] (per-project) List invoices. | params: status(query), sortBy(query), sortOrder(query), startDate(query), endDate(query), page(query), limit(query)
+- POST /v1/invoices [customer token + project key] (per-project) Create a new invoice. | body: {"chain":"string","token":"string","amount":1}
+- POST /v1/invoices/{id}/payments [project key] (per-project) Mark an invoice as paid via an on-chain transaction. | params: id*(path) | body: {"transactionHash":"string","chain":"string"}
+- POST /v1/invoices/{id}/notifications [project key] (per-project) Deliver an invoice link via email or SMS to a recipient. | params: id*(path) | body: {"paymentLink":"string","message":"string","recipientEmail":"string","recipientPhone":"string"}
 
 ### Merchants
 
-- GET /v1/merchants [project key] List merchants with approval filter. | params: status(query), page(query), limit(query)
-- GET /v1/merchants/{id} [customer token + project key] Get a merchant's approval status. | params: id*(path)
-- POST /v1/merchants/{id}/approval [project key] Approve a merchant (project owner only). | params: id*(path) | body: {"email":"string","phoneNumber":"string","kybNotes":"string"}
-- DELETE /v1/merchants/{id}/approval [project key] Revoke a merchant's approval (project owner only). | params: id*(path) | body: {"email":"string","phoneNumber":"string","reason":"string"}
-
-### Notifications
-
-- POST /v1/notifications/test [customer token] Send a test email notification to the authenticated user. | body: {"message":"string","title":"string","targetUrl":"string"}
-- POST /v1/notifications/messages [customer token] Send a notification email to the authenticated user (self). | body: {"message":"string","title":"string","targetUrl":"string"}
-- POST /v1/notifications/broadcasts [customer token] Project owner broadcasts an email to every user in their project. | body: {"message":"string","title":"string","targetUrl":"string"}
-
-### Offramps
-
-- GET /v1/offramps [customer token] List the user's offramp orders (newest first, paginated). | params: page(query), limit(query)
-- POST /v1/offramps [customer token] Pay out stablecoins to local money (one-phase). | body: {"token":"USDC","currency":"KES","chain":"BASE"}
-- GET /v1/offramps/{transactionCode} [customer token] Payout order by Rift order id (or, for older orders, by transaction code). | params: transactionCode*(path), currency(query)
-- POST /v1/offramps/preview [customer token] Phase 1 of a v3 off-ramp — builds the ERC-20 transfer to Rift's settlement address and returns hash + ticket. | body: {"token":"string","chain":"string","amount":"string","lpAddress":"string"}
-- POST /v1/offramps/init [customer token] Two-phase payout, step 1: create the order and return the hash to sign. | body: {"token":"USDC","amount":"string","currency":"KES","chain":"BASE","recipient":{"type":"MOBILE","accountIdentifier":"string","institution":"string","accountNumber":"string","bankCode":"string","accountName":"string"},"localAmount":1}
-- POST /v1/offramps/finalize [customer token] Two-phase payout, step 2: submit the passkey signature and start the fiat leg. | body: {"orderId":"string","ticketId":"string","authProof":{"kind":"passkey","cred_id_b64":"string","client_data_json_b64":"string","authenticator_data_b64":"string","signature_b64":"string"}}
-- POST /v1/offramps/{id}/refund [customer token] Refund a failed payout to the customer's wallet. | params: id*(path)
+- GET /v1/merchants [project key] (per-project) List merchants with approval filter. | params: status(query), page(query), limit(query)
+- POST /v1/merchants/{id}/approval [project key] (per-project) Approve a merchant (project owner only). | params: id*(path) | body: {"email":"string","phoneNumber":"string","kybNotes":"string"}
+- DELETE /v1/merchants/{id}/approval [project key] (per-project) Revoke a merchant's approval (project owner only). | params: id*(path) | body: {"email":"string","phoneNumber":"string","reason":"string"}
 
 ### One-time codes
 
-- POST /v1/one-time-codes [none] Send a one-time code via SMS or email. | body: {"phone":"string","email":"string"}
-- POST /v1/one-time-codes/verify [none] Verify a one-time code. | body: {"phone":"string","email":"string","code":"string"}
-
-### Onramps (Beta)
-
-- GET /v1/onramps/quote [customer token] Quote a fiat amount. | params: currency*(query), amount*(query), token(query), chain(query)
-- GET /v1/onramps/kyc [customer token] Whether the customer's verified KYC is usable for onramp (no personal data returned). | params: currency(query)
-- GET /v1/onramps [customer token] The user's onramp orders.
-- POST /v1/onramps [customer token] Buy stablecoins into the customer's own Safe. | body: {"currency":"KES","fiatAmount":1300,"token":"USDC","chain":"BASE"}
-- GET /v1/onramps/{id} [customer token] One onramp order with its current status. | params: id*(path)
+- POST /v1/one-time-codes [none] (per-project) Send a one-time code via SMS or email. | body: {"phone":"string","email":"string"}
+- POST /v1/one-time-codes/verify [none] (per-project) Verify a one-time code. | body: {"phone":"string","email":"string","code":"string"}
 
 ### Payouts (Beta)
 
-- GET /v1/payouts/countries [none] Countries, rails and limits for payouts and onramp (public, cached about 10 minutes).
-- POST /v1/payouts/validate [customer token] Look up a payout recipient's registered name before paying. | body: {"currency":"string"}
+- GET /v1/payouts/countries [none] (public reference data) Countries, rails and limits for payouts and onramp (public, cached about 10 minutes).
+- POST /v1/payouts/validate [customer token] (platform tier) Look up a payout recipient's registered name before paying. | body: {"currency":"string"}
 
 ### Platform: Platform (Beta)
 
-- GET /v1/platform/keys [platform key (psk_)] (Platform, Beta) List platform secret keys (owner session only)
-- POST /v1/platform/keys [platform key (psk_)] (Platform, Beta) Create a platform secret key (owner session only); the key is returned once | body: {"label":"string"}
-- DELETE /v1/platform/keys/{id} [platform key (psk_)] (Platform, Beta) Revoke a platform key (owner session only) | params: id*(path)
-- GET /v1/platform/customers [platform key (psk_)] (Platform, Beta) List customers | params: search(query), kyc(query), cursor(query), limit(query)
-- GET /v1/platform/customers/{id} [platform key (psk_)] (Platform, Beta) Customer detail | params: id*(path)
-- GET /v1/platform/customers/{id}/ledger [platform key (psk_)] (Platform, Beta) Customer ledger | params: id*(path), from(query), to(query), type(query), cursor(query), limit(query)
-- GET /v1/platform/customers/{id}/statement [platform key (psk_)] (Platform, Beta) Customer statement file | params: id*(path), from(query), to(query), format(query)
-- GET /v1/platform/customers/{id}/consents [platform key (psk_)] (Platform, Beta) List consents | params: id*(path)
-- POST /v1/platform/customers/{id}/consents [platform key (psk_)] (Platform, Beta) Record a consent | params: id*(path) | body: {"purpose":"credit_scoring","grantedAt":"2026-01-01T00:00:00Z","evidence":"string"}
-- DELETE /v1/platform/customers/{id}/consents/{consentId} [platform key (psk_)] (Platform, Beta) Revoke a consent | params: id*(path), consentId*(path)
-- GET /v1/platform/ledger [platform key (psk_)] (Platform, Beta) All-customer ledger (JSON or CSV) | params: from(query), to(query), type(query), status(query), customerId(query), cursor(query), limit(query), format(query)
-- GET /v1/platform/webhooks [platform key (psk_)] (Platform, Beta) List webhook endpoints (secret never returned)
-- POST /v1/platform/webhooks [platform key (psk_)] (Platform, Beta) Create a webhook endpoint; the signing secret (whsec_...) is returned once | body: {"url":"string","events":["transaction.created"],"description":"string"}
-- DELETE /v1/platform/webhooks/{id} [platform key (psk_)] (Platform, Beta) Disable a webhook endpoint | params: id*(path)
-- POST /v1/platform/webhooks/{id}/test [platform key (psk_)] (Platform, Beta) Send a webhook.test event now | params: id*(path)
-- GET /v1/platform/webhooks/{id}/deliveries [platform key (psk_)] (Platform, Beta) Delivery log | params: id*(path)
-- GET /v1/platform/gas-policy [platform key (psk_)] (Platform, Beta) Get gas policy
-- PUT /v1/platform/gas-policy [platform key (psk_)] (Platform, Beta) Set gas policy | body: {"mode":"sponsored","sponsoredOps":["transfer"],"monthlySponsorCapUsd":1,"perTxSponsorCapUsd":1}
-- GET /v1/platform/usage [platform key (psk_)] (Platform, Beta) Monthly usage | params: month(query)
+- GET /v1/platform/keys [platform key (psk_)] (Platform, Beta) (platform tier) List platform secret keys (owner session only)
+- POST /v1/platform/keys [platform key (psk_)] (Platform, Beta) (platform tier) Create a platform secret key (owner session only); the key is returned once | body: {"label":"string"}
+- DELETE /v1/platform/keys/{id} [platform key (psk_)] (Platform, Beta) (platform tier) Revoke a platform key (owner session only) | params: id*(path)
+- GET /v1/platform/customers [platform key (psk_)] (Platform, Beta) (platform tier) List customers | params: search(query), kyc(query), cursor(query), limit(query)
+- GET /v1/platform/customers/{id} [platform key (psk_)] (Platform, Beta) (platform tier) Customer detail | params: id*(path)
+- GET /v1/platform/customers/{id}/ledger [platform key (psk_)] (Platform, Beta) (platform tier) Customer ledger | params: id*(path), from(query), to(query), type(query), cursor(query), limit(query)
+- GET /v1/platform/customers/{id}/statement [platform key (psk_)] (Platform, Beta) (platform tier) Customer statement file | params: id*(path), from(query), to(query), format(query)
+- GET /v1/platform/customers/{id}/consents [platform key (psk_)] (Platform, Beta) (platform tier) List consents | params: id*(path)
+- POST /v1/platform/customers/{id}/consents [platform key (psk_)] (Platform, Beta) (platform tier) Record a consent | params: id*(path) | body: {"purpose":"credit_scoring","grantedAt":"2026-01-01T00:00:00Z","evidence":"string"}
+- DELETE /v1/platform/customers/{id}/consents/{consentId} [platform key (psk_)] (Platform, Beta) (platform tier) Revoke a consent | params: id*(path), consentId*(path)
+- GET /v1/platform/ledger [platform key (psk_)] (Platform, Beta) (platform tier) All-customer ledger (JSON or CSV) | params: from(query), to(query), type(query), status(query), customerId(query), cursor(query), limit(query), format(query)
+- GET /v1/platform/webhooks [platform key (psk_)] (Platform, Beta) (platform tier) List webhook endpoints (secret never returned)
+- POST /v1/platform/webhooks [platform key (psk_)] (Platform, Beta) (platform tier) Create a webhook endpoint; the signing secret (whsec_...) is returned once | body: {"url":"string","events":["transaction.created"],"description":"string"}
+- DELETE /v1/platform/webhooks/{id} [platform key (psk_)] (Platform, Beta) (platform tier) Disable a webhook endpoint | params: id*(path)
+- POST /v1/platform/webhooks/{id}/test [platform key (psk_)] (Platform, Beta) (platform tier) Send a webhook.test event now | params: id*(path)
+- GET /v1/platform/webhooks/{id}/deliveries [platform key (psk_)] (Platform, Beta) (platform tier) Delivery log | params: id*(path)
+- GET /v1/platform/gas-policy [platform key (psk_)] (Platform, Beta) (platform tier) Get gas policy
+- PUT /v1/platform/gas-policy [platform key (psk_)] (Platform, Beta) (platform tier) Set gas policy | body: {"mode":"sponsored","sponsoredOps":["transfer"],"monthlySponsorCapUsd":1,"perTxSponsorCapUsd":1}
+- GET /v1/platform/usage [platform key (psk_)] (Platform, Beta) (platform tier) Monthly usage | params: month(query)
 
 ### Projects
 
-- GET /v1/projects [customer token] List projects owned by the authenticated user.
-- POST /v1/projects [none] Create a new project (bootstrap; OTP required). | body: {"name":"string"}
-- GET /v1/projects/{id} [customer token] Get a project's details. | params: id*(path)
-- PATCH /v1/projects/{id} [customer token] Update a project (name, branding, custom widget domain). | params: id*(path) | body: {}
-- DELETE /v1/projects/{id} [customer token] Delete a project. | params: id*(path) | body: {"otpCode":"string","email":"string","phoneNumber":"string","externalId":"string","password":"string"}
-- GET /v1/projects/{id}/stats [customer token] Get a project's usage stats. | params: id*(path)
-- GET /v1/projects/{id}/api-logs [customer token] Get a paginated API call log for a project. | params: id*(path), page(query), limit(query), status(query), onlyErrors(query)
-- PATCH /v1/projects/{id}/markup [customer token] Configure the project's markup (custom service-fee on transfers). | params: id*(path) | body: {"markup_bps":1,"markup_treasury_address":"string"}
-- POST /v1/projects/{id}/api-keys/rotate [customer token] Rotate the project's API key. | params: id*(path) | body: {"otpCode":"string","email":"string","phoneNumber":"string","externalId":"string","password":"string"}
-- POST /v1/projects/{id}/origins [customer token] Add an allowed origin to a project's CORS whitelist. | params: id*(path) | body: {"origin":"string","phoneNumber":"string","email":"string","otpCode":"string","externalId":"string","password":"string"}
+- GET /v1/projects/{id} [customer token] (per-project) Get a project's details. | params: id*(path)
+- PATCH /v1/projects/{id} [customer token] (per-project) Update a project (name, branding, custom widget domain). | params: id*(path) | body: {}
+- GET /v1/projects/{id}/stats [customer token] (per-project) Get a project's usage stats. | params: id*(path)
+- GET /v1/projects/{id}/api-logs [customer token] (per-project) Get a paginated API call log for a project. | params: id*(path), page(query), limit(query), status(query), onlyErrors(query)
+- PATCH /v1/projects/{id}/markup [customer token] (per-project) Configure the project's markup (custom service-fee on transfers). | params: id*(path) | body: {"markup_bps":1,"markup_treasury_address":"string"}
+- POST /v1/projects/{id}/api-keys/rotate [customer token] (per-project) Rotate the project's API key. | params: id*(path) | body: {"otpCode":"string","email":"string","phoneNumber":"string","externalId":"string","password":"string"}
+- POST /v1/projects/{id}/origins [customer token] (per-project) Add an allowed origin to a project's CORS whitelist. | params: id*(path) | body: {"origin":"string","phoneNumber":"string","email":"string","otpCode":"string","externalId":"string","password":"string"}
 
 ### Projects (Billing)
 
-- GET /v1/projects/{id}/billing/subscription [customer token] Get the current billing subscription and usage. | params: id*(path)
-- GET /v1/projects/{id}/billing/payments [customer token] List the project's billing payment history. | params: id*(path)
-- POST /v1/projects/{id}/billing/payments [customer token] Submit an on-chain payment to upgrade or renew a plan. | params: id*(path) | body: {"tier":"string","chain":"string","txHash":"string"}
+- GET /v1/projects/{id}/billing/subscription [customer token] (per-project) Get the current billing subscription and usage. | params: id*(path)
+- GET /v1/projects/{id}/billing/payments [customer token] (per-project) List the project's billing payment history. | params: id*(path)
+- POST /v1/projects/{id}/billing/payments [customer token] (per-project) Submit an on-chain payment to upgrade or renew a plan. | params: id*(path) | body: {"tier":"string","chain":"string","txHash":"string"}
 
 ### Rails
 
-- GET /v1/rails/{currency}/institutions [none] List supported payment institutions for a currency. | params: currency*(path)
-- GET /v1/rails/{currency}/payment-methods [none] Get the full payment-method catalogue for a currency. | params: currency*(path)
+- GET /v1/rails/{currency}/institutions [none] (public reference data) List supported payment institutions for a currency. | params: currency*(path)
+- GET /v1/rails/{currency}/payment-methods [none] (public reference data) Get the full payment-method catalogue for a currency. | params: currency*(path)
 
 ### Rates
 
-- GET /v1/rates [none] Public live FX rates with IP-derived default currency.
-- POST /v1/rates/quote [none] Get an exchange-rate + fee quote (onramp or offramp). | body: {"currency":"string","amount":1,"type":"string"}
-- GET /v1/rates/withdrawal-fee [none] Get the withdrawal fee (bid-ask spread) for a currency. | params: currency(query)
+- GET /v1/rates [none] (public reference data) Public live FX rates with IP-derived default currency.
+- POST /v1/rates/quote [none] (public reference data) Get an exchange-rate + fee quote (onramp or offramp). | body: {"currency":"string","amount":1,"type":"string"}
+- GET /v1/rates/withdrawal-fee [none] (public reference data) Get the withdrawal fee (bid-ask spread) for a currency. | params: currency(query)
 
 ### Recovery
 
-- GET /v1/identifier-recovery/methods [customer token] Get the authenticated user's recovery methods.
-- POST /v1/identifier-recovery/methods [customer token] Create the authenticated user's recovery methods. | body: {}
-- PUT /v1/identifier-recovery/methods [customer token] Replace all of the authenticated user's recovery methods. | body: {}
-- DELETE /v1/identifier-recovery/methods [customer token] Delete all of the authenticated user's recovery methods. | body: {"otpCode":"string","email":"string","phoneNumber":"string","externalId":"string","password":"string"}
-- POST /v1/identifier-recovery/methods/{type} [customer token] Add a specific recovery method. | params: type*(path) | body: {"value":"string","otpCode":"string","email":"string","phoneNumber":"string","externalId":"string","password":"string"}
-- PATCH /v1/identifier-recovery/methods/{type} [customer token] Update the value of a specific recovery method. | params: type*(path) | body: {"value":"string","otpCode":"string","email":"string","phoneNumber":"string","externalId":"string","password":"string"}
-- DELETE /v1/identifier-recovery/methods/{type} [customer token] Remove a specific recovery method (cannot remove the last one). | params: type*(path) | body: {"otpCode":"string","email":"string","phoneNumber":"string","externalId":"string","password":"string"}
-- GET /v1/identifier-recovery/options/{externalId} [project key] Get masked recovery options for an externalId. | params: externalId*(path)
-- GET /v1/identifier-recovery/options [project key] Get masked recovery options by primary identifier. | params: identifier*(query), identifierType*(query)
-- GET /v1/identifier-recovery/tokens/{token} [project key] Validate a recovery token. | params: token*(path)
-- POST /v1/identifier-recovery/password-reset [project key] Send a password-reset link via email or SMS. | body: {"externalId":"string","method":"string"}
-- POST /v1/identifier-recovery/password-reset/complete [project key] Reset a user's password with a previously issued token. | body: {"token":"string","newPassword":"string"}
-- POST /v1/identifier-recovery/account-recovery [project key] Send an account-recovery link (re-establish primary identifier). | body: {"identifier":"string","identifierType":"string","method":"string"}
-- POST /v1/identifier-recovery/account-recovery/complete [project key] Complete an account-recovery flow by changing the primary identifier. | body: {"token":"string","newIdentifier":"string","identifierType":"string","otpCode":"string"}
+- GET /v1/identifier-recovery/options/{externalId} [project key] (per-project) Get masked recovery options for an externalId. | params: externalId*(path)
+- GET /v1/identifier-recovery/options [project key] (per-project) Get masked recovery options by primary identifier. | params: identifier*(query), identifierType*(query)
+- GET /v1/identifier-recovery/tokens/{token} [project key] (per-project) Validate a recovery token. | params: token*(path)
+- POST /v1/identifier-recovery/password-reset [project key] (per-project) Send a password-reset link via email or SMS. | body: {"externalId":"string","method":"string"}
+- POST /v1/identifier-recovery/password-reset/complete [project key] (per-project) Reset a user's password with a previously issued token. | body: {"token":"string","newPassword":"string"}
+- POST /v1/identifier-recovery/account-recovery [project key] (per-project) Send an account-recovery link (re-establish primary identifier). | body: {"identifier":"string","identifierType":"string","method":"string"}
+- POST /v1/identifier-recovery/account-recovery/complete [project key] (per-project) Complete an account-recovery flow by changing the primary identifier. | body: {"token":"string","newIdentifier":"string","identifierType":"string","otpCode":"string"}
 
 ### Reference
 
-- GET /v1/reference/kenya/bank-paybills [none] Reference list of Kenyan bank paybills.
+- GET /v1/reference/kenya/bank-paybills [none] (public reference data) Reference list of Kenyan bank paybills.
 
 ### Tokens
 
-- GET /v1/tokens [none] List all tokens.
-- GET /v1/tokens/{id} [none] Get a single token by id. | params: id*(path)
-
-### Transactions
-
-- GET /v1/transactions [customer token] List the user's transaction history. | params: limit(query), page(query), token(query), chain(query)
-- POST /v1/transactions [customer token] Send tokens across chains (native or ERC-20). | body: {"value":"string","token":"string","chain":"string"}
-- GET /v1/transactions/fee-estimate [customer token] Estimate the on-chain fee for a transfer (paymaster-aware). | params: recipient*(query), amount*(query), chain*(query), token*(query)
-- POST /v1/transactions/preview [customer token] Phase 1 of a v3 token transfer — returns the UserOp hash + ticket for a `token / recipient / amount` triple. | body: {"token":"USDC","chain":"BASE","recipient":"0x000...dead","amount":"1.50"}
+- GET /v1/tokens [none] (public reference data) List all tokens.
+- GET /v1/tokens/{id} [none] (public reference data) Get a single token by id. | params: id*(path)
 
 ### Users
 
-- GET /v1/users [customer token] List all users in the project (project owner only, paginated). | params: search(query), page(query), limit(query)
-- GET /v1/users/lookup [customer token + project key] Look up a user's suspension status by identifier. | params: phoneNumber(query), email(query), externalId(query), userId(query)
-- GET /v1/users/suspended [customer token + project key] List suspended users in the project (project owner or admin key).
-- POST /v1/users/{id}/suspend [customer token + project key] Suspend a user (project owner or admin key). | params: id*(path) | body: {"reason":"string"}
-- POST /v1/users/{id}/unsuspend [customer token + project key] Lift a user's suspension (project owner or admin key). | params: id*(path)
-- GET /v1/users/status [customer token + project key] Get a user's suspension status (alias of /v1/users/lookup). | params: phoneNumber(query), email(query), externalId(query), userId(query)
-- POST /v1/users/suspend [customer token + project key] Suspend a user identified in the body (project owner or admin key). | body: {"userId":"string","email":"string","phoneNumber":"string","externalId":"string","reason":"string"}
-- POST /v1/users/unsuspend [customer token + project key] Lift the suspension of a user identified in the body (project owner or admin key). | body: {"userId":"string","email":"string","phoneNumber":"string","externalId":"string"}
-
-### Wallet
-
-- GET /v1/wallet/identity [customer token] Get wallet identity (EOA address). The public key is dropped in Phase 2 — derive it from any signature if you need it.
-- POST /v1/wallet/chains/{chain} [customer token] Get wallet instance metadata for a specific chain. | params: chain*(path)
-- POST /v1/wallet/signatures/transaction [customer token] Removed — wallets are passkey-owned Safes; there is no owner EOA to sign raw transactions.
-- POST /v1/wallet/signatures/message [customer token] ERC-1271 message signing, phase 2 → { signature } (ERC-6492-wrapped if the Safe is undeployed). | body: {"ticketId":"string","authProof":{"kind":"passkey","cred_id_b64":"string","client_data_json_b64":"string","authenticator_data_b64":"string","signature_b64":"string"}}
-- POST /v1/wallet/user-operations [customer token] Send an ERC-4337 user operation via the smart-wallet service. | body: {"chain":"string","transactionData":{},"paymasterToken":"string"}
-- POST /v1/wallet/user-operations/preview [customer token] Phase 1 — build an ERC-4337 UserOperation and return the hash + ticket to sign. | body: {"chain":"BASE","transactionData":{"to":"string","value":"string","data":"string"}}
-- POST /v1/wallet/user-operations/submit-prepared [customer token] Phase 2 — submit a previously-previewed UserOperation with the user's authProof. | body: {"ticketId":"string","authProof":{"kind":"passkey","cred_id_b64":"string","client_data_json_b64":"string","authenticator_data_b64":"string","signature_b64":"string"}}
-- POST /v1/wallet/signatures/message/preview [customer token] ERC-1271 message signing, phase 1 (personal_sign or typed data). | body: {"chain":"BASE","message":"string","typedData":{}}
-
-### Wallet & passkeys
-
-- GET /v1/wallet/status [customer token] Passkey-wallet status (also returned as `walletStatus` by every sign-in).
-- POST /v1/wallet/passkeys/options [customer token] WebAuthn registration options (ES256 only, 32-byte single-use challenge, 5 min). | body: {"rpId":"string"}
-- GET /v1/wallet/passkeys [customer token] List the user's passkeys.
-- POST /v1/wallet/passkeys [customer token] Register a passkey (creates, migrates or extends the wallet). | body: {"attestation":{"cred_id_b64":"string","client_data_json_b64":"string","attestation_object_b64":"string"},"label":"string","possession":{"cred_id_b64":"string","client_data_json_b64":"string","authenticator_data_b64":"string","signature_b64":"string"}}
-- POST /v1/wallet/passkeys/confirm [customer token] Confirm an added passkey with signatures from an existing passkey (one per deployed chain). | body: {"credentialId":"string","signatures":[{"ticketId":"string","authProof":{"kind":"passkey","cred_id_b64":"string","client_data_json_b64":"string","authenticator_data_b64":"string","signature_b64":"string"}}]}
-- DELETE /v1/wallet/passkeys/{id} [customer token] Start removing a passkey (removeOwner tickets for every deployed chain). | params: id*(path)
-- POST /v1/wallet/passkeys/{id}/confirm-removal [customer token] Submit the passkey-signed removeOwner tickets. | params: id*(path) | body: {"signatures":[{"ticketId":"string","authProof":{"kind":"passkey","cred_id_b64":"string","client_data_json_b64":"string","authenticator_data_b64":"string","signature_b64":"string"}}]}
-
-### WalletConnect
-
-- POST /v1/wallet-connect/pairings [customer token] Pair the wallet with a DApp via a WalletConnect URI. | body: {"uri":"string","chain":"string"}
-- GET /v1/wallet-connect/requests [customer token] List pending WalletConnect requests awaiting approval.
-- POST /v1/wallet-connect/requests/{id}/approve [customer token] Approve a pending WalletConnect request. | params: id*(path)
-- POST /v1/wallet-connect/requests/{id}/reject [customer token] Reject a pending WalletConnect request. | params: id*(path)
-- GET /v1/wallet-connect/sessions [customer token] List active WalletConnect sessions.
-- DELETE /v1/wallet-connect/sessions/{topic} [customer token] Disconnect a WalletConnect session. | params: topic*(path)
-- POST /v1/wallet-connect/requests/{id}/preview [customer token] Phase 1 for a v3 WalletConnect approval — build the UserOp for the dApp's request and return hash + ticket. | params: id*(path)
+- GET /v1/users [customer token] (per-project) List all users in the project (project owner only, paginated). | params: search(query), page(query), limit(query)
+- GET /v1/users/lookup [customer token + project key] (per-project) Look up a user's suspension status by identifier. | params: phoneNumber(query), email(query), externalId(query), userId(query)
+- GET /v1/users/suspended [customer token + project key] (per-project) List suspended users in the project (project owner or admin key).
+- POST /v1/users/{id}/suspend [customer token + project key] (per-project) Suspend a user (project owner or admin key). | params: id*(path) | body: {"reason":"string"}
+- POST /v1/users/{id}/unsuspend [customer token + project key] (per-project) Lift a user's suspension (project owner or admin key). | params: id*(path)
+- GET /v1/users/status [customer token + project key] (per-project) Get a user's suspension status (alias of /v1/users/lookup). | params: phoneNumber(query), email(query), externalId(query), userId(query)
+- POST /v1/users/suspend [customer token + project key] (per-project) Suspend a user identified in the body (project owner or admin key). | body: {"userId":"string","email":"string","phoneNumber":"string","externalId":"string","reason":"string"}
+- POST /v1/users/unsuspend [customer token + project key] (per-project) Lift the suspension of a user identified in the body (project owner or admin key). | body: {"userId":"string","email":"string","phoneNumber":"string","externalId":"string"}
 
 ### Widget
 
-- GET /v1/widget-config [project key] Get the project's public widget configuration (name, branding, origins).
+- GET /v1/widget-config [project key] (per-project) Get the project's public widget configuration (name, branding, origins).
+
+# Used by the Rift widget and app (not an integration surface)
+
+End-user flows authenticated with the customer access token, often needing a passkey signature on the customer device. The widget, React components and SDK call them for you; do not build against them directly.
+
+- POST /v1/auth/sessions/refresh Rotate the refresh-cookie and issue a fresh access JWT.
+- POST /v1/auth/sign-out Revoke the refresh-cookie.
+- GET /v1/me Get the authenticated user's profile.
+- PUT /v1/me Update the authenticated user's profile (PUT alias of PATCH).
+- PATCH /v1/me Update the authenticated user's profile.
+- DELETE /v1/me Delete the authenticated user and all related data.
+- GET /v1/me/tokens List the tokens currently owned by the authenticated user.
+- GET /v1/balances Get all token balances on a given chain or across all chains.
+- GET /v1/balances/tokens/{symbol} Get the balance of a specific token across chains.
+- GET /v1/transactions List the user's transaction history.
+- POST /v1/transactions Send tokens across chains (native or ERC-20).
+- GET /v1/transactions/fee-estimate Estimate the on-chain fee for a transfer (paymaster-aware).
+- GET /v1/wallet/identity Get wallet identity (EOA address). The public key is dropped in Phase 2 — derive it from any signature if you need it.
+- POST /v1/wallet/chains/{chain} Get wallet instance metadata for a specific chain.
+- POST /v1/wallet/signatures/message ERC-1271 message signing, phase 2 → { signature } (ERC-6492-wrapped if the Safe is undeployed).
+- POST /v1/wallet/user-operations Send an ERC-4337 user operation via the smart-wallet service.
+- POST /v1/wallet-connect/pairings Pair the wallet with a DApp via a WalletConnect URI.
+- GET /v1/wallet-connect/requests List pending WalletConnect requests awaiting approval.
+- POST /v1/wallet-connect/requests/{id}/approve Approve a pending WalletConnect request.
+- POST /v1/wallet-connect/requests/{id}/reject Reject a pending WalletConnect request.
+- GET /v1/wallet-connect/sessions List active WalletConnect sessions.
+- DELETE /v1/wallet-connect/sessions/{topic} Disconnect a WalletConnect session.
+- GET /v1/bridge/routes List supported bridge routes and tokens.
+- POST /v1/bridge/quotes Get a crosschain bridge quote with platform-fee + balance check.
+- POST /v1/bridge/transfers Execute a crosschain bridge transfer via Rift's bridge.
+- GET /v1/invoices/{id}/redirect Public redirect to the invoice URL (used by short-link surfaces).
+- GET /v1/merchants/{id} Get a merchant's approval status.
+- POST /v1/kyc/sessions Create a KYC verification session (Rift picks the verification flow by country).
+- GET /v1/kyc/status Check the authenticated user's KYC verification status.
+- POST /v1/kyc/status Look up a user's KYC verification status by identifier.
+- POST /v1/kyc/poll-and-notify Poll a KYC job to completion and dispatch a one-time code on success.
+- POST /v1/kyc/submissions Submit KYC images (from frontend or via server-to-server).
+- GET /v1/kyc/jobs/{jobId} Poll a KYC submission job to completion.
+- GET /v1/offramps List the user's offramp orders (newest first, paginated).
+- POST /v1/offramps Pay out stablecoins to local money (one-phase).
+- GET /v1/offramps/{transactionCode} Payout order by Rift order id (or, for older orders, by transaction code).
+- GET /v1/deposits List the user's onchain deposits.
+- GET /v1/deposits/stats Get the user's deposit statistics.
+- GET /v1/projects List projects owned by the authenticated user.
+- POST /v1/projects Create a new project (bootstrap; OTP required).
+- DELETE /v1/projects/{id} Delete a project.
+- POST /v1/notifications/messages Send a notification email to the authenticated user (self).
+- POST /v1/notifications/broadcasts Project owner broadcasts an email to every user in their project.
+- POST /v1/wallet/user-operations/preview Phase 1 — build an ERC-4337 UserOperation and return the hash + ticket to sign.
+- POST /v1/wallet/user-operations/submit-prepared Phase 2 — submit a previously-previewed UserOperation with the user's authProof.
+- POST /v1/transactions/preview Phase 1 of a v3 token transfer — returns the UserOp hash + ticket for a `token / recipient / amount` triple.
+- POST /v1/offramps/preview Phase 1 of a v3 off-ramp — builds the ERC-20 transfer to Rift's settlement address and returns hash + ticket.
+- POST /v1/bridge/transfers/preview Phase 1 of a v3 cross-chain bridge — builds the bridge calls and returns hash + ticket.
+- POST /v1/offramps/init Two-phase payout, step 1: create the order and return the hash to sign.
+- POST /v1/offramps/finalize Two-phase payout, step 2: submit the passkey signature and start the fiat leg.
+- POST /v1/wallet-connect/requests/{id}/preview Phase 1 for a v3 WalletConnect approval — build the UserOp for the dApp's request and return hash + ticket.
+- GET /v1/wallet/status Passkey-wallet status (also returned as `walletStatus` by every sign-in).
+- POST /v1/wallet/passkeys/options WebAuthn registration options (ES256 only, 32-byte single-use challenge, 5 min).
+- GET /v1/wallet/passkeys List the user's passkeys.
+- POST /v1/wallet/passkeys Register a passkey (creates, migrates or extends the wallet).
+- POST /v1/wallet/passkeys/confirm Confirm an added passkey with signatures from an existing passkey (one per deployed chain).
+- DELETE /v1/wallet/passkeys/{id} Start removing a passkey (removeOwner tickets for every deployed chain).
+- POST /v1/wallet/passkeys/{id}/confirm-removal Submit the passkey-signed removeOwner tickets.
+- GET /v1/approvals List the user's approval requests (app inbox).
+- GET /v1/approvals/{id} Get an approval request — owner user JWT, or the creating project's API key alone.
+- POST /v1/approvals/{id}/preview Fresh two-phase ticket built from the stored intent.
+- POST /v1/approvals/{id}/approve Approve with the passkey-signed ticket from /preview (single use).
+- POST /v1/approvals/{id}/reject Reject an approval request.
+- POST /v1/wallet/signatures/message/preview ERC-1271 message signing, phase 1 (personal_sign or typed data).
+- GET /v1/onramps/quote Quote a fiat amount.
+- GET /v1/onramps/kyc Whether the customer's verified KYC is usable for onramp (no personal data returned).
+- GET /v1/onramps The user's onramp orders.
+- POST /v1/onramps Buy stablecoins into the customer's own Safe.
+- GET /v1/onramps/{id} One onramp order with its current status.
+- GET /v1/beneficiaries Saved recipients (most recently used first).
+- POST /v1/beneficiaries Save a recipient. Fiat recipients get a name lookup; deduped on (type, identifier, bankCode).
+- PATCH /v1/beneficiaries/{id} Edit label / network / bank name (identifier is immutable).
+- DELETE /v1/beneficiaries/{id} Delete a saved recipient.
+- GET /v1/ledger Every money movement of the user, newest first.
+- POST /v1/statements/challenge Single-use (5 min) passkey challenge for a statement.
+- POST /v1/statements Statement (CSV or PDF) authorised by a passkey assertion over hashToSign; emailed or downloaded.
+- GET /v1/devices List devices
+- POST /v1/devices Register this device's key
+- GET /v1/devices/policy Enforcement switch
+- POST /v1/devices/{id}/approve/challenge Passkey challenge to approve a pending device (from a trusted device)
+- POST /v1/devices/{id}/approve Approve a pending device with a passkey (from a trusted device)
+- POST /v1/devices/{id}/recover/start Lost other device: send an OTP (from the pending device itself)
+- POST /v1/devices/{id}/recover/verify Verify the OTP → cooling_off
+- POST /v1/devices/{id}/recover/cancel Cancel link from the email (no JWT)
+- DELETE /v1/devices/{id} Remove a device (from a trusted device)
+- POST /v1/offramps/{id}/refund Refund a failed payout to the customer's wallet.
+- GET /v1/identifier-recovery/methods Get the authenticated user's recovery methods.
+- POST /v1/identifier-recovery/methods Create the authenticated user's recovery methods.
+- PUT /v1/identifier-recovery/methods Replace all of the authenticated user's recovery methods.
+- DELETE /v1/identifier-recovery/methods Delete all of the authenticated user's recovery methods.
+- POST /v1/identifier-recovery/methods/{type} Add a specific recovery method.
+- PATCH /v1/identifier-recovery/methods/{type} Update the value of a specific recovery method.
+- DELETE /v1/identifier-recovery/methods/{type} Remove a specific recovery method (cannot remove the last one).

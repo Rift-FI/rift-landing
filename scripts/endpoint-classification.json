@@ -1,0 +1,2862 @@
+{
+ "DELETE /v1/beneficiaries/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:614",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted device via x-rift-device (blocks only if DEVICE_BINDING_ENFORCED=true; else sh",
+  "docs": "Reference page"
+ },
+ "DELETE /v1/devices/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; device-binding registry for the Rift app.",
+  "sec": "3.5",
+  "code": "routes/deviceRoutes.ts:70",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted-device proof (always enforced)",
+  "docs": "Reference page"
+ },
+ "DELETE /v1/identifier-recovery/methods": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; end-user recovery-method management.",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:370",
+  "sb": "S1",
+  "auth": "step-up: otpCode(+email/phone) or externalId+password in body; user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "DELETE /v1/identifier-recovery/methods/by-type": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; end-user recovery-method management.",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:380",
+  "sb": "S1",
+  "auth": "step-up: otpCode(+email/phone) or externalId+password in body; user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "API index only (no reference page)"
+ },
+ "DELETE /v1/identifier-recovery/methods/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; end-user recovery-method management.",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:373",
+  "sb": "S1",
+  "auth": "step-up: otpCode(+email/phone) or externalId+password in body; user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "DELETE /v1/invoices/{}": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Payment links: project API key (plus user token for create/list/cancel).",
+  "sec": "3.9",
+  "code": "routes/v1/index.ts:547",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); API key required (X-API-Key / Bearer sk_...)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "DELETE /v1/me": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.2",
+  "code": "routes/v1/index.ts:331",
+  "sb": "S1",
+  "auth": "step-up: otpCode(+email/phone) or externalId+password in body; user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "DELETE /v1/merchants/{}/approval": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Project-scoped KYB approval of the project's own users; API key required (merchants.use(authenticateApiKey)). Dormant gate (enforced only if REQUIRE_KYC=true). GET list has no limit cap (fix pending in backend).",
+  "sec": "3.11",
+  "code": "routes/v1/index.ts:571",
+  "sb": "S1",
+  "auth": "API key required; step-up: otpCode(+email/phone) or externalId+password in body; OTP-proved email/phone must equal project owner",
+  "docs": "Reference page"
+ },
+ "DELETE /v1/notifications/devices/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; self-notify / Rift app push registration.",
+  "sec": "3.20",
+  "code": "routes/v1/index.ts:810",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "DELETE /v1/platform/customers/{}/consents/{}": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:72",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Reference page"
+ },
+ "DELETE /v1/platform/keys/{}": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:55",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm; dashboard owner session only (psk_ keys refused)",
+  "docs": "Reference page"
+ },
+ "DELETE /v1/platform/webhooks/{}": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:91",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Reference page"
+ },
+ "DELETE /v1/projects/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Developer console only (create / list / delete project).",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:728",
+  "sb": "S1",
+  "auth": "step-up: otpCode(+email/phone) or externalId+password in body; user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id pro",
+  "docs": "Reference page"
+ },
+ "DELETE /v1/projects/{}/chain-configs/{}": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Per-project signing/bundler routing overrides: provider-specific infrastructure config, not integrator product surface.",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:784",
+  "sb": "ADM",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id project",
+  "docs": "NOT DOCUMENTED"
+ },
+ "DELETE /v1/projects/{}/enclave-config": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Per-project signing/bundler routing overrides: provider-specific infrastructure config, not integrator product surface.",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:766",
+  "sb": "ADM",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id project",
+  "docs": "NOT DOCUMENTED"
+ },
+ "DELETE /v1/vault/claims/pending": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:834",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "DELETE /v1/vault/withdrawals/pending": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:832",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "DELETE /v1/wallet-connect/sessions/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only.",
+  "sec": "3.7",
+  "code": "routes/v1/index.ts:516",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "DELETE /v1/wallet/passkeys/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; WebAuthn ceremony runs in the user's browser (widget/app).",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:453",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted device via x-rift-device (blocks only if DEVICE_BINDING_ENFORCED=true; else sh",
+  "docs": "Reference page"
+ },
+ "GET /v1/accounts": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:88",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Guide only (guides/accounts); the reference page for this method+path describes the unreachable sphere route"
+ },
+ "GET /v1/accounts/admin/accounts": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:58",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/accounts/admin/reconciliation": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:57",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/accounts/banks": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:89",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Guide only (guides/accounts)"
+ },
+ "GET /v1/accounts/transactions/{}": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:90",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Guide only (guides/accounts)"
+ },
+ "GET /v1/accounts/{}": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:91",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Guide only (guides/accounts)"
+ },
+ "GET /v1/accounts/{}/statement": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:97",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Guide only (guides/accounts)"
+ },
+ "GET /v1/accounts/{}/transactions": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:96",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Guide only (guides/accounts)"
+ },
+ "GET /v1/admin/vault": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.24",
+  "code": "routes/v1/vaultAdmin.ts:27",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/approvals": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; the end user approves with a passkey.",
+  "sec": "3.5",
+  "code": "routes/approvalRoutes.ts:20",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/approvals/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; the end user approves with a passkey.",
+  "sec": "3.5",
+  "code": "routes/approvalRoutes.ts:21",
+  "sb": "S1",
+  "auth": "user bearer token or approval link",
+  "docs": "Reference page"
+ },
+ "GET /v1/assets": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.19",
+  "code": "routes/v1/index.ts:866",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/assets/by-category/{}": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.19",
+  "code": "routes/v1/index.ts:868",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/assets/by-type/{}": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.19",
+  "code": "routes/v1/index.ts:867",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/balances": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.6",
+  "code": "routes/v1/index.ts:395",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/balances/tokens": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.6",
+  "code": "routes/v1/index.ts:404",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "API index only (no reference page)"
+ },
+ "GET /v1/balances/tokens/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.6",
+  "code": "routes/v1/index.ts:396",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/beneficiaries": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:611",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/billing/payment-info": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.18",
+  "code": "routes/v1/index.ts:800",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/billing/plans": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.18",
+  "code": "routes/v1/index.ts:799",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/bridge/routes": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.7",
+  "code": "routes/v1/index.ts:521",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/chains": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.19",
+  "code": "routes/v1/index.ts:872",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/chains/{}": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.19",
+  "code": "routes/v1/index.ts:881",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/chains/{}/assets": {
+  "cls": "DEAD",
+  "tier": null,
+  "why": "Route declares :chainId, controller reads params.chainName, so it always fails (500).",
+  "sec": "3.19",
+  "code": "routes/v1/index.ts:873",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/chains/{}/tokens": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.19",
+  "code": "routes/v1/index.ts:874",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/deposits": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.9",
+  "code": "routes/v1/index.ts:718",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/deposits/stats": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.9",
+  "code": "routes/v1/index.ts:719",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/devices": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; device-binding registry for the Rift app.",
+  "sec": "3.5",
+  "code": "routes/deviceRoutes.ts:51",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/devices/policy": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; device-binding registry for the Rift app.",
+  "sec": "3.5",
+  "code": "routes/deviceRoutes.ts:45",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/identifier-recovery/methods": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; end-user recovery-method management.",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:369",
+  "sb": "S1",
+  "auth": "step-up: otpCode(+email/phone) or externalId+password in body; user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/identifier-recovery/options": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "API key only; built for an integrator's own login UI (externalId accounts).",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:382",
+  "sb": "S1",
+  "auth": "API key required (X-API-Key / Bearer sk_...)",
+  "docs": "Reference page"
+ },
+ "GET /v1/identifier-recovery/options/{}": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "API key only; built for an integrator's own login UI (externalId accounts).",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:381",
+  "sb": "S1",
+  "auth": "API key required (X-API-Key / Bearer sk_...)",
+  "docs": "Reference page"
+ },
+ "GET /v1/identifier-recovery/tokens/{}": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "API key only; built for an integrator's own login UI (externalId accounts).",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:383",
+  "sb": "S1",
+  "auth": "API key required (X-API-Key / Bearer sk_...)",
+  "docs": "Reference page"
+ },
+ "GET /v1/invoices": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Payment links: project API key (plus user token for create/list/cancel).",
+  "sec": "3.9",
+  "code": "routes/v1/index.ts:545",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); API key required (X-API-Key / Bearer sk_...)",
+  "docs": "Reference page"
+ },
+ "GET /v1/invoices/{}/public": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Hosted payer page for a payment link; payer-facing.",
+  "sec": "3.9",
+  "code": "routes/v1/index.ts:546",
+  "sb": "S1",
+  "auth": "API key required (X-API-Key / Bearer sk_...)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/invoices/{}/redirect": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Hosted payer page for a payment link; payer-facing.",
+  "sec": "3.9",
+  "code": "routes/v1/index.ts:899",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/kyc/jobs/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Hosted verification flow used by the Rift app/widget; user token or no auth.",
+  "sec": "3.11",
+  "code": "routes/v1/index.ts:587",
+  "sb": "S2",
+  "auth": "user bearer token OR 30-min KYC-only handoff token",
+  "docs": "Reference page"
+ },
+ "GET /v1/kyc/status": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Hosted verification flow used by the Rift app/widget; user token or no auth.",
+  "sec": "3.11",
+  "code": "routes/v1/index.ts:583",
+  "sb": "S1",
+  "auth": "user bearer token OR 30-min KYC-only handoff token",
+  "docs": "Reference page"
+ },
+ "GET /v1/ledger": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.12",
+  "code": "routes/v1/index.ts:618",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/loyalty/activities": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift app / marketing surface.",
+  "sec": "3.21",
+  "code": "routes/v1/index.ts:840",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/loyalty/config": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift app / marketing surface.",
+  "sec": "3.21",
+  "code": "routes/v1/index.ts:846",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/loyalty/leaderboard": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift app / marketing surface.",
+  "sec": "3.21",
+  "code": "routes/v1/index.ts:841",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/loyalty/me": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift app / marketing surface.",
+  "sec": "3.21",
+  "code": "routes/v1/index.ts:839",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/loyalty/metrics": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift app / marketing surface.",
+  "sec": "3.21",
+  "code": "routes/v1/index.ts:842",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/loyalty/point-value": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift app / marketing surface.",
+  "sec": "3.21",
+  "code": "routes/v1/index.ts:843",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/loyalty/redemptions": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift app / marketing surface.",
+  "sec": "3.21",
+  "code": "routes/v1/index.ts:845",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/lp/admin/deposits": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:113",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/lp/admin/payouts": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:119",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/lp/admin/withdrawals": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:114",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/lp/me": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:81",
+  "sb": "S1",
+  "auth": "LP wallet token (SIWE sign-in) OR Rift user bearer token",
+  "docs": "Guide only (guides/liquidity-providers)"
+ },
+ "GET /v1/lp/me/accruals": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:82",
+  "sb": "S1",
+  "auth": "LP wallet token (SIWE sign-in) OR Rift user bearer token",
+  "docs": "Guide only (guides/liquidity-providers)"
+ },
+ "GET /v1/lp/me/withdrawals": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:87",
+  "sb": "S1",
+  "auth": "LP wallet token (SIWE sign-in) OR Rift user bearer token",
+  "docs": "Guide only (guides/liquidity-providers)"
+ },
+ "GET /v1/lp/pool": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:55",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Guide only (guides/liquidity-providers)"
+ },
+ "GET /v1/lp/pool/activity": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:57",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Guide only (guides/liquidity-providers)"
+ },
+ "GET /v1/lp/pool/history": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:56",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/lp/terms": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:58",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Guide only (guides/liquidity-providers)"
+ },
+ "GET /v1/me": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.2",
+  "code": "routes/v1/index.ts:321",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/me/tokens": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.2",
+  "code": "routes/v1/index.ts:332",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/merchants": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Project-scoped KYB approval of the project's own users; API key required (merchants.use(authenticateApiKey)). Dormant gate (enforced only if REQUIRE_KYC=true). GET list has no limit cap (fix pending in backend).",
+  "sec": "3.11",
+  "code": "routes/v1/index.ts:560",
+  "sb": "S1",
+  "auth": "API key required; none",
+  "docs": "Reference page"
+ },
+ "GET /v1/merchants/me": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT + key; end-user read of own merchant status.",
+  "sec": "3.11",
+  "code": "routes/v1/index.ts:566",
+  "sb": "S1",
+  "auth": "API key required; user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "API index only (no reference page)"
+ },
+ "GET /v1/merchants/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT + key; end-user read of own merchant status.",
+  "sec": "3.11",
+  "code": "routes/v1/index.ts:567",
+  "sb": "S1",
+  "auth": "API key required; user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/offramps": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:638",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/offramps/by-code": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:643",
+  "sb": "S2",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/offramps/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:649",
+  "sb": "S2",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/onramps": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.9",
+  "code": "routes/v1/index.ts:599",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/onramps/kyc": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.9",
+  "code": "routes/v1/index.ts:597",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/onramps/quote": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.9",
+  "code": "routes/v1/index.ts:596",
+  "sb": "S2",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/onramps/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.9",
+  "code": "routes/v1/index.ts:600",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/payouts/countries": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:605",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/platform/customers": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:61",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Reference page"
+ },
+ "GET /v1/platform/customers/{}": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:62",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Reference page"
+ },
+ "GET /v1/platform/customers/{}/consents": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:70",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Reference page"
+ },
+ "GET /v1/platform/customers/{}/ledger": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:63",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Reference page"
+ },
+ "GET /v1/platform/customers/{}/statement": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:64",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Reference page"
+ },
+ "GET /v1/platform/gas-policy": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:99",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Reference page"
+ },
+ "GET /v1/platform/keys": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:53",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm; dashboard owner session only (psk_ keys refused)",
+  "docs": "Reference page"
+ },
+ "GET /v1/platform/ledger": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:78",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Reference page"
+ },
+ "GET /v1/platform/usage": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:101",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Reference page"
+ },
+ "GET /v1/platform/webhooks": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:89",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Reference page"
+ },
+ "GET /v1/platform/webhooks/{}/deliveries": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:96",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Reference page"
+ },
+ "GET /v1/premia/beta/status": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift app / marketing surface.",
+  "sec": "3.23",
+  "code": "routes/v1/premia.ts:97",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/projects": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Developer console only (create / list / delete project).",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:725",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/projects/{}": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Scoped by a project id the caller owns (owner token + requireProjectOwnership): key rotation, origins, branding, markup, usage, logs, subscription.",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:726",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id project",
+  "docs": "Reference page"
+ },
+ "GET /v1/projects/{}/api-logs": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Scoped by a project id the caller owns (owner token + requireProjectOwnership): key rotation, origins, branding, markup, usage, logs, subscription.",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:730",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id project",
+  "docs": "Reference page"
+ },
+ "GET /v1/projects/{}/billing/payments": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Scoped by a project id the caller owns (owner token + requireProjectOwnership): key rotation, origins, branding, markup, usage, logs, subscription.",
+  "sec": "3.18",
+  "code": "routes/billingRoutes.ts:65",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id project",
+  "docs": "Reference page"
+ },
+ "GET /v1/projects/{}/billing/subscription": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Scoped by a project id the caller owns (owner token + requireProjectOwnership): key rotation, origins, branding, markup, usage, logs, subscription.",
+  "sec": "3.18",
+  "code": "routes/billingRoutes.ts:59",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id project",
+  "docs": "Reference page"
+ },
+ "GET /v1/projects/{}/chain-configs": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Per-project signing/bundler routing overrides: provider-specific infrastructure config, not integrator product surface.",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:772",
+  "sb": "ADM",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id project",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/projects/{}/enclave-config": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Per-project signing/bundler routing overrides: provider-specific infrastructure config, not integrator product surface.",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:754",
+  "sb": "ADM",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id project",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/projects/{}/stats": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Scoped by a project id the caller owns (owner token + requireProjectOwnership): key rotation, origins, branding, markup, usage, logs, subscription.",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:729",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id project",
+  "docs": "Reference page"
+ },
+ "GET /v1/rails/{}/institutions": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:713",
+  "sb": "S2",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/rails/{}/payment-methods": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:714",
+  "sb": "S2",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/ramps/orders/{}": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.15",
+  "code": "routes/rampsRoutes.ts:36",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/rates": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.10",
+  "code": "routes/v1/index.ts:691",
+  "sb": "S2",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/rates/withdrawal-fee": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.10",
+  "code": "routes/v1/index.ts:693",
+  "sb": "S2",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/reference/kenya/bank-paybills": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:891",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/stats/tvl": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift app / marketing surface.",
+  "sec": "3.22",
+  "code": "routes/v1/index.ts:854",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/stats/users": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift app / marketing surface.",
+  "sec": "3.22",
+  "code": "routes/v1/index.ts:853",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/stats/volume": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift app / marketing surface.",
+  "sec": "3.22",
+  "code": "routes/v1/index.ts:852",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/tokens": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.19",
+  "code": "routes/v1/index.ts:885",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/tokens/{}": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.19",
+  "code": "routes/v1/index.ts:886",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "GET /v1/transactions": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.6",
+  "code": "routes/v1/index.ts:424",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/transactions/fee-estimate": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.6",
+  "code": "routes/v1/index.ts:429",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/users": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Project-owner moderation: project API key + owner bearer token (or admin key).",
+  "sec": "3.2",
+  "code": "routes/v1/index.ts:339",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); project-owner bearer token",
+  "docs": "Reference page"
+ },
+ "GET /v1/users/lookup": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Project-owner moderation: project API key + owner bearer token (or admin key).",
+  "sec": "3.2",
+  "code": "routes/v1/index.ts:340",
+  "sb": "S1",
+  "auth": "API key + (project-owner bearer token OR X-Admin-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/users/status": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Project-owner moderation: project API key + owner bearer token (or admin key).",
+  "sec": "3.2",
+  "code": "routes/v1/index.ts:345",
+  "sb": "S1",
+  "auth": "API key + (project-owner bearer token OR X-Admin-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/users/suspended": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Project-owner moderation: project API key + owner bearer token (or admin key).",
+  "sec": "3.2",
+  "code": "routes/v1/index.ts:341",
+  "sb": "S1",
+  "auth": "API key + (project-owner bearer token OR X-Admin-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/vault/claims/pending": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:820",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/vault/contract": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:822",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/vault/contract/admin": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:825",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/vault/contract/stablecoin": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:824",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/vault/contract/version": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:823",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/vault/deposits": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:817",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/vault/positions/me": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:826",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/vault/positions/me/balance": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:827",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/vault/positions/me/rewards": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:828",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/vault/positions/me/whitelist": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:829",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/vault/rewards/distributed": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:819",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/vault/rewards/pending": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:818",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/vault/stats": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:815",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/vault/tvl": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:816",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/vault/withdrawals/pending": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:821",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "GET /v1/wallet-connect/requests": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only.",
+  "sec": "3.7",
+  "code": "routes/v1/index.ts:506",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/wallet-connect/sessions": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only.",
+  "sec": "3.7",
+  "code": "routes/v1/index.ts:515",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/wallet/identity": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:438",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/wallet/methods": {
+  "cls": "DEAD",
+  "tier": null,
+  "why": "Always answers 410 (removed with passkey-owned wallets).",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:458",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "API index only (no reference page)"
+ },
+ "GET /v1/wallet/passkeys": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; WebAuthn ceremony runs in the user's browser (widget/app).",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:451",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/wallet/status": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:448",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "GET /v1/wallet/v3-status": {
+  "cls": "DEAD",
+  "tier": null,
+  "why": "Always answers 410 (removed with passkey-owned wallets).",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:457",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "API index only (no reference page)"
+ },
+ "GET /v1/widget-config": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Project API key returns the project's widget branding/config.",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:795",
+  "sb": "S1",
+  "auth": "API key required (X-API-Key / Bearer sk_...)",
+  "docs": "Reference page"
+ },
+ "PATCH /v1/beneficiaries/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:613",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted device via x-rift-device (blocks only if DEVICE_BINDING_ENFORCED=true; else sh",
+  "docs": "Reference page"
+ },
+ "PATCH /v1/identifier-recovery/methods/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; end-user recovery-method management.",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:372",
+  "sb": "S1",
+  "auth": "step-up: otpCode(+email/phone) or externalId+password in body; user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "PATCH /v1/me": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.2",
+  "code": "routes/v1/index.ts:322",
+  "sb": "S2",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "PATCH /v1/projects/{}": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Scoped by a project id the caller owns (owner token + requireProjectOwnership): key rotation, origins, branding, markup, usage, logs, subscription.",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:727",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id project",
+  "docs": "Reference page"
+ },
+ "PATCH /v1/projects/{}/markup": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Scoped by a project id the caller owns (owner token + requireProjectOwnership): key rotation, origins, branding, markup, usage, logs, subscription.",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:731",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id project",
+  "docs": "Reference page"
+ },
+ "POST /v1/accounts": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:84",
+  "sb": "S3",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Guide only (guides/accounts); the reference page for this method+path describes the unreachable sphere route"
+ },
+ "POST /v1/accounts/admin/accounts/{}/adjustments": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:69",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/accounts/admin/accounts/{}/freeze": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:59",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/accounts/admin/accounts/{}/unfreeze": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:64",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/accounts/admin/transactions/{}/resolve": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:74",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/accounts/{}/collections": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:93",
+  "sb": "S3",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Guide only (guides/accounts)"
+ },
+ "POST /v1/accounts/{}/collections/preview": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:92",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Guide only (guides/accounts)"
+ },
+ "POST /v1/accounts/{}/disbursements": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:95",
+  "sb": "S3",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Guide only (guides/accounts)"
+ },
+ "POST /v1/accounts/{}/disbursements/preview": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.14",
+  "code": "routes/accountsRoutes.ts:94",
+  "sb": "S2",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Guide only (guides/accounts)"
+ },
+ "POST /v1/admin/vault/lp-withdrawals/{}/pay": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.24",
+  "code": "routes/v1/vaultAdmin.ts:70",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/admin/vault/onramps/{}/release": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.24",
+  "code": "routes/v1/vaultAdmin.ts:78",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/admin/vault/pause": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.24",
+  "code": "routes/v1/vaultAdmin.ts:59",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/approvals/{}/approve": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; the end user approves with a passkey.",
+  "sec": "3.5",
+  "code": "routes/approvalRoutes.ts:23",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted device via x-rift-device (blocks only if DEVICE_BINDING_ENFORCED=true; else sh",
+  "docs": "Reference page"
+ },
+ "POST /v1/approvals/{}/preview": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; the end user approves with a passkey.",
+  "sec": "3.5",
+  "code": "routes/approvalRoutes.ts:22",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/approvals/{}/reject": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; the end user approves with a passkey.",
+  "sec": "3.5",
+  "code": "routes/approvalRoutes.ts:24",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/auth/sessions/refresh": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Cookie-based session refresh/sign-out; browser session of the Rift app.",
+  "sec": "3.1",
+  "code": "routes/v1/index.ts:315",
+  "sb": "S1",
+  "auth": "none; rate limit 100/15 min/IP",
+  "docs": "Reference page"
+ },
+ "POST /v1/auth/sign-in": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Project-selection endpoints: the project API key chooses the project (key optional when a session token is present). Medium confidence.",
+  "sec": "3.1",
+  "code": "routes/v1/index.ts:307",
+  "sb": "S2",
+  "auth": "API key optional (X-API-Key sk_...); sign-in proof: OTP, or externalId+password (store-review bypass exists); free-plan MAW cap (402); rate limit 100/15 min/IP",
+  "docs": "Reference page"
+ },
+ "POST /v1/auth/sign-in/apple": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Project-selection endpoints: the project API key chooses the project (key optional when a session token is present). Medium confidence.",
+  "sec": "3.1",
+  "code": "routes/v1/index.ts:314",
+  "sb": "S1",
+  "auth": "API key optional (X-API-Key sk_...); free-plan MAW cap (402); rate limit 100/15 min/IP",
+  "docs": "Reference page"
+ },
+ "POST /v1/auth/sign-in/google": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Project-selection endpoints: the project API key chooses the project (key optional when a session token is present). Medium confidence.",
+  "sec": "3.1",
+  "code": "routes/v1/index.ts:313",
+  "sb": "S1",
+  "auth": "API key optional (X-API-Key sk_...); free-plan MAW cap (402); rate limit 100/15 min/IP",
+  "docs": "Reference page"
+ },
+ "POST /v1/auth/sign-out": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Cookie-based session refresh/sign-out; browser session of the Rift app.",
+  "sec": "3.1",
+  "code": "routes/v1/index.ts:316",
+  "sb": "S1",
+  "auth": "none; rate limit 100/15 min/IP",
+  "docs": "Reference page"
+ },
+ "POST /v1/auth/sign-up": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Project-selection endpoints: the project API key chooses the project (key optional when a session token is present). Medium confidence.",
+  "sec": "3.1",
+  "code": "routes/v1/index.ts:306",
+  "sb": "S2",
+  "auth": "API key optional (X-API-Key sk_...); sign-up OTP proof (enforced only if REQUIRE_SIGNUP_OTP=true; a supplied code is always verified); active API subscription (",
+  "docs": "Reference page"
+ },
+ "POST /v1/beneficiaries": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:612",
+  "sb": "S2",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted device via x-rift-device (blocks only if DEVICE_BINDING_ENFORCED=true; else sh",
+  "docs": "Reference page"
+ },
+ "POST /v1/bridge/quotes": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.7",
+  "code": "routes/v1/index.ts:522",
+  "sb": "S2",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "POST /v1/bridge/transfers": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.7",
+  "code": "routes/v1/index.ts:525",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); active API subscription (402 when trial+grace lapsed); free-plan sponsored-gas allowan",
+  "docs": "Reference page"
+ },
+ "POST /v1/bridge/transfers/preview": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.7",
+  "code": "routes/v1/index.ts:530",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/chains": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Registers chains/tokens: X-Admin-Key.",
+  "sec": "3.19",
+  "code": "routes/v1/index.ts:877",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only); SSRF check on rpcUrl",
+  "docs": "NOT DOCUMENTED (other method on same path is)"
+ },
+ "POST /v1/chains/{}/tokens": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Registers chains/tokens: X-Admin-Key.",
+  "sec": "3.19",
+  "code": "routes/v1/index.ts:878",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED (other method on same path is)"
+ },
+ "POST /v1/devices": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; device-binding registry for the Rift app.",
+  "sec": "3.5",
+  "code": "routes/deviceRoutes.ts:50",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/devices/{}/approve": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; device-binding registry for the Rift app.",
+  "sec": "3.5",
+  "code": "routes/deviceRoutes.ts:59",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted-device proof (always enforced)",
+  "docs": "Reference page"
+ },
+ "POST /v1/devices/{}/approve/challenge": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; device-binding registry for the Rift app.",
+  "sec": "3.5",
+  "code": "routes/deviceRoutes.ts:56",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted-device proof (always enforced)",
+  "docs": "Reference page"
+ },
+ "POST /v1/devices/{}/recover/cancel": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; device-binding registry for the Rift app.",
+  "sec": "3.5",
+  "code": "routes/deviceRoutes.ts:48",
+  "sb": "S1",
+  "auth": "rate limit 5/5 min/IP",
+  "docs": "Reference page"
+ },
+ "POST /v1/devices/{}/recover/start": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; device-binding registry for the Rift app.",
+  "sec": "3.5",
+  "code": "routes/deviceRoutes.ts:63",
+  "sb": "S2",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); device proof of this device (always enforced); rate limit 5/5 min/IP; request must com",
+  "docs": "Reference page"
+ },
+ "POST /v1/devices/{}/recover/verify": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; device-binding registry for the Rift app.",
+  "sec": "3.5",
+  "code": "routes/deviceRoutes.ts:66",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); device proof of this device (always enforced); request must come from the same device",
+  "docs": "Reference page"
+ },
+ "POST /v1/identifier-recovery/account-recovery": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "API key only; built for an integrator's own login UI (externalId accounts).",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:386",
+  "sb": "S2",
+  "auth": "API key required (X-API-Key / Bearer sk_...); rate limit 5/5 min/IP",
+  "docs": "Reference page"
+ },
+ "POST /v1/identifier-recovery/account-recovery/complete": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "API key only; built for an integrator's own login UI (externalId accounts).",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:387",
+  "sb": "S1",
+  "auth": "API key required (X-API-Key / Bearer sk_...)",
+  "docs": "Reference page"
+ },
+ "POST /v1/identifier-recovery/methods": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; end-user recovery-method management.",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:363",
+  "sb": "S1",
+  "auth": "step-up: otpCode(+email/phone) or externalId+password in body; user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/identifier-recovery/methods/by-type": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; end-user recovery-method management.",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:378",
+  "sb": "S1",
+  "auth": "step-up: otpCode(+email/phone) or externalId+password in body; user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "API index only (no reference page)"
+ },
+ "POST /v1/identifier-recovery/methods/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; end-user recovery-method management.",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:371",
+  "sb": "S1",
+  "auth": "step-up: otpCode(+email/phone) or externalId+password in body; user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/identifier-recovery/password-reset": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "API key only; built for an integrator's own login UI (externalId accounts).",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:384",
+  "sb": "S2",
+  "auth": "API key required (X-API-Key / Bearer sk_...); rate limit 5/5 min/IP",
+  "docs": "Reference page"
+ },
+ "POST /v1/identifier-recovery/password-reset/complete": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "API key only; built for an integrator's own login UI (externalId accounts).",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:385",
+  "sb": "S1",
+  "auth": "API key required (X-API-Key / Bearer sk_...)",
+  "docs": "Reference page"
+ },
+ "POST /v1/invoices": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Payment links: project API key (plus user token for create/list/cancel).",
+  "sec": "3.9",
+  "code": "routes/v1/index.ts:538",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); API key required (X-API-Key / Bearer sk_...); KYC above USD 2,000 cumulative (only if ",
+  "docs": "Reference page"
+ },
+ "POST /v1/invoices/notifications": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Payment links: project API key (plus user token for create/list/cancel).",
+  "sec": "3.9",
+  "code": "routes/v1/index.ts:554",
+  "sb": "S2",
+  "auth": "API key required (X-API-Key / Bearer sk_...)",
+  "docs": "API index only (no reference page)"
+ },
+ "POST /v1/invoices/{}/notifications": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Payment links: project API key (plus user token for create/list/cancel).",
+  "sec": "3.9",
+  "code": "routes/v1/index.ts:549",
+  "sb": "S2",
+  "auth": "API key required (X-API-Key / Bearer sk_...)",
+  "docs": "Reference page"
+ },
+ "POST /v1/invoices/{}/payments": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Payment links: project API key (plus user token for create/list/cancel).",
+  "sec": "3.9",
+  "code": "routes/v1/index.ts:548",
+  "sb": "S2",
+  "auth": "API key required (X-API-Key / Bearer sk_...)",
+  "docs": "Reference page"
+ },
+ "POST /v1/kyc/handoffs": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Hosted verification flow used by the Rift app/widget; user token or no auth.",
+  "sec": "3.11",
+  "code": "routes/v1/index.ts:588",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/kyc/handoffs/exchange": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Hosted verification flow used by the Rift app/widget; user token or no auth.",
+  "sec": "3.11",
+  "code": "routes/v1/index.ts:589",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/kyc/poll-and-notify": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Hosted verification flow used by the Rift app/widget; user token or no auth.",
+  "sec": "3.11",
+  "code": "routes/v1/index.ts:585",
+  "sb": "S2",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "POST /v1/kyc/sessions": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Hosted verification flow used by the Rift app/widget; user token or no auth.",
+  "sec": "3.11",
+  "code": "routes/v1/index.ts:577",
+  "sb": "S2",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "POST /v1/kyc/status": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Hosted verification flow used by the Rift app/widget; user token or no auth.",
+  "sec": "3.11",
+  "code": "routes/v1/index.ts:584",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "POST /v1/kyc/submissions": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Hosted verification flow used by the Rift app/widget; user token or no auth.",
+  "sec": "3.11",
+  "code": "routes/v1/index.ts:586",
+  "sb": "S2",
+  "auth": "user bearer token OR 30-min KYC-only handoff token",
+  "docs": "Reference page"
+ },
+ "POST /v1/loyalty/redemptions": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift app / marketing surface.",
+  "sec": "3.21",
+  "code": "routes/v1/index.ts:844",
+  "sb": "S4",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); store-review account refused (403)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/lp/admin/payouts/run": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:123",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/lp/admin/payouts/{}/paid": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:124",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/lp/admin/withdrawals/{}/approve": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:115",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/lp/admin/withdrawals/{}/paid": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:117",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/lp/admin/withdrawals/{}/pay-vault": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:118",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/lp/admin/withdrawals/{}/reject": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Rift ops: X-Admin-Key.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:116",
+  "sb": "ADM",
+  "auth": "X-Admin-Key (Rift ops only)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/lp/auth/nonce": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:60",
+  "sb": "S1",
+  "auth": "rate limit 100/15 min/IP",
+  "docs": "Guide only (guides/liquidity-providers)"
+ },
+ "POST /v1/lp/auth/verify": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:61",
+  "sb": "S1",
+  "auth": "rate limit 100/15 min/IP",
+  "docs": "Guide only (guides/liquidity-providers)"
+ },
+ "POST /v1/lp/deposits/crypto": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:88",
+  "sb": "S3",
+  "auth": "rate limit 30/min/IP; LP wallet token (SIWE sign-in) OR Rift user bearer token",
+  "docs": "Guide only (guides/liquidity-providers)"
+ },
+ "POST /v1/lp/deposits/fiat": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:89",
+  "sb": "S3",
+  "auth": "rate limit 30/min/IP; LP wallet token (SIWE sign-in) OR Rift user bearer token",
+  "docs": "Guide only (guides/liquidity-providers)"
+ },
+ "POST /v1/lp/terms/accept": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:72",
+  "sb": "S1",
+  "auth": "LP wallet token (SIWE sign-in) OR Rift user bearer token",
+  "docs": "Guide only (guides/liquidity-providers)"
+ },
+ "POST /v1/lp/withdrawals": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/lp.ts:99",
+  "sb": "S3",
+  "auth": "rate limit 30/min/IP; LP wallet token (SIWE sign-in) OR Rift user bearer token",
+  "docs": "Guide only (guides/liquidity-providers)"
+ },
+ "POST /v1/me/deletion-request": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.2",
+  "code": "routes/v1/index.ts:330",
+  "sb": "S2",
+  "auth": "OTP step-up (deletion-request variant); user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/merchants/{}/approval": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Project-scoped KYB approval of the project's own users; API key required (merchants.use(authenticateApiKey)). Dormant gate (enforced only if REQUIRE_KYC=true). GET list has no limit cap (fix pending in backend).",
+  "sec": "3.11",
+  "code": "routes/v1/index.ts:570",
+  "sb": "S1",
+  "auth": "API key required; step-up: otpCode(+email/phone) or externalId+password in body; OTP-proved email/phone must equal project owner",
+  "docs": "Reference page"
+ },
+ "POST /v1/notifications/broadcasts": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; self-notify / Rift app push registration.",
+  "sec": "3.20",
+  "code": "routes/v1/index.ts:808",
+  "sb": "S2",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/notifications/devices": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; self-notify / Rift app push registration.",
+  "sec": "3.20",
+  "code": "routes/v1/index.ts:809",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/notifications/messages": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; self-notify / Rift app push registration.",
+  "sec": "3.20",
+  "code": "routes/v1/index.ts:807",
+  "sb": "S2",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/notifications/test": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Self-send diagnostic email; duplicate of POST /v1/notifications/messages; no caller.",
+  "sec": "3.20",
+  "code": "routes/v1/index.ts:806",
+  "sb": "S2",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/offramps": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:627",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); active API subscription (402 when trial+grace lapsed); free-plan sponsored-gas allowan",
+  "docs": "Reference page"
+ },
+ "POST /v1/offramps/finalize": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:674",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); active API subscription (402 when trial+grace lapsed); free-plan sponsored-gas allowan",
+  "docs": "Reference page"
+ },
+ "POST /v1/offramps/init": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:663",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); store-review account refused (403); merchant/KYB approval (only if REQUIRE_KYC=true); ",
+  "docs": "Reference page"
+ },
+ "POST /v1/offramps/preview": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:656",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); store-review account refused (403)",
+  "docs": "Reference page"
+ },
+ "POST /v1/offramps/{}/refund": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:684",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted device via x-rift-device (blocks only if DEVICE_BINDING_ENFORCED=true; else sh",
+  "docs": "Reference page"
+ },
+ "POST /v1/offramps/{}/retry": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:686",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted device via x-rift-device (blocks only if DEVICE_BINDING_ENFORCED=true; else sh",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/one-time-codes": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Exception (no auth): OTP send/verify is the prerequisite of API sign-in/sign-up proof.",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:352",
+  "sb": "S2",
+  "auth": "rate limit 5/5 min/IP",
+  "docs": "Reference page"
+ },
+ "POST /v1/one-time-codes/verify": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Exception (no auth): OTP send/verify is the prerequisite of API sign-in/sign-up proof.",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:353",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "POST /v1/onramps": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.9",
+  "code": "routes/v1/index.ts:598",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted device via x-rift-device (blocks only if DEVICE_BINDING_ENFORCED=true; else sh",
+  "docs": "Reference page"
+ },
+ "POST /v1/payouts/validate": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Accepts a user token OR a platform key / owner session; platform path is per-project.",
+  "sec": "3.8",
+  "code": "routes/v1/index.ts:606",
+  "sb": "S2",
+  "auth": "user bearer token OR platform key/owner session; store-review account refused (403); rate limit 30/10 min",
+  "docs": "Reference page"
+ },
+ "POST /v1/platform/customers/{}/consents": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:71",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Reference page"
+ },
+ "POST /v1/platform/keys": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:54",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm; dashboard owner session only (psk_ keys refused)",
+  "docs": "Reference page"
+ },
+ "POST /v1/platform/webhooks": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:90",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Reference page"
+ },
+ "POST /v1/platform/webhooks/{}/test": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:95",
+  "sb": "S2",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Reference page"
+ },
+ "POST /v1/premia/beta/redeem": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift app / marketing surface.",
+  "sec": "3.23",
+  "code": "routes/v1/premia.ts:63",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); rate limit 10/hour",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/premia/beta/validate": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift app / marketing surface.",
+  "sec": "3.23",
+  "code": "routes/v1/premia.ts:48",
+  "sb": "S1",
+  "auth": "API key required (X-API-Key / Bearer sk_...); rate limit 20/10 min",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/projects": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Developer console only (create / list / delete project).",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:724",
+  "sb": "S1",
+  "auth": "step-up: otpCode(+email/phone) or externalId+password in body; rate limit 100/15 min/IP",
+  "docs": "Reference page"
+ },
+ "POST /v1/projects/{}/api-keys/rotate": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Scoped by a project id the caller owns (owner token + requireProjectOwnership): key rotation, origins, branding, markup, usage, logs, subscription.",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:732",
+  "sb": "S1",
+  "auth": "step-up: otpCode(+email/phone) or externalId+password in body; user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id pro",
+  "docs": "Reference page"
+ },
+ "POST /v1/projects/{}/billing/payments": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Scoped by a project id the caller owns (owner token + requireProjectOwnership): key rotation, origins, branding, markup, usage, logs, subscription.",
+  "sec": "3.18",
+  "code": "routes/billingRoutes.ts:79",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id project; rate limit 10/min",
+  "docs": "Reference page"
+ },
+ "POST /v1/projects/{}/billing/purchase": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Scoped by a project id the caller owns (owner token + requireProjectOwnership): key rotation, origins, branding, markup, usage, logs, subscription.",
+  "sec": "3.18",
+  "code": "routes/billingRoutes.ts:71",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id project; rate limit 10/min",
+  "docs": "API index only (no reference page)"
+ },
+ "POST /v1/projects/{}/origins": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Scoped by a project id the caller owns (owner token + requireProjectOwnership): key rotation, origins, branding, markup, usage, logs, subscription.",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:739",
+  "sb": "S1",
+  "auth": "step-up: otpCode(+email/phone) or externalId+password in body; user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id pro",
+  "docs": "Reference page"
+ },
+ "POST /v1/ramps/offramp/quotes": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.15",
+  "code": "routes/rampsRoutes.ts:33",
+  "sb": "S3",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Guide only (guides/own-wallet-ramps)"
+ },
+ "POST /v1/ramps/offramp/quotes/{}/submit": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.15",
+  "code": "routes/rampsRoutes.ts:34",
+  "sb": "S3",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/ramps/onramp": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.15",
+  "code": "routes/rampsRoutes.ts:35",
+  "sb": "S3",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Guide only (guides/own-wallet-ramps)"
+ },
+ "POST /v1/rates/quote": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.10",
+  "code": "routes/v1/index.ts:692",
+  "sb": "S2",
+  "auth": "none",
+  "docs": "Reference page"
+ },
+ "POST /v1/rates/withdrawal-fee": {
+  "cls": "CUSTOMER",
+  "tier": "reference",
+  "why": "Exception (no key): public reference data any integrator needs to build requests.",
+  "sec": "3.10",
+  "code": "routes/v1/index.ts:697",
+  "sb": "S2",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED (other method on same path is)"
+ },
+ "POST /v1/statements": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.12",
+  "code": "routes/v1/index.ts:621",
+  "sb": "S2",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted device via x-rift-device (blocks only if DEVICE_BINDING_ENFORCED=true; else sh",
+  "docs": "Reference page"
+ },
+ "POST /v1/statements/challenge": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.12",
+  "code": "routes/v1/index.ts:620",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/transactions": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.6",
+  "code": "routes/v1/index.ts:414",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); active API subscription (402 when trial+grace lapsed); free-plan sponsored-gas allowan",
+  "docs": "Reference page"
+ },
+ "POST /v1/transactions/history": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.6",
+  "code": "routes/v1/index.ts:428",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "API index only (no reference page)"
+ },
+ "POST /v1/transactions/preview": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.6",
+  "code": "routes/v1/index.ts:433",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/users/suspend": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Project-owner moderation: project API key + owner bearer token (or admin key).",
+  "sec": "3.2",
+  "code": "routes/v1/index.ts:343",
+  "sb": "S1",
+  "auth": "API key + (project-owner bearer token OR X-Admin-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/users/unsuspend": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Project-owner moderation: project API key + owner bearer token (or admin key).",
+  "sec": "3.2",
+  "code": "routes/v1/index.ts:344",
+  "sb": "S1",
+  "auth": "API key + (project-owner bearer token OR X-Admin-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/users/{}/suspend": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Project-owner moderation: project API key + owner bearer token (or admin key).",
+  "sec": "3.2",
+  "code": "routes/v1/index.ts:346",
+  "sb": "S1",
+  "auth": "API key + (project-owner bearer token OR X-Admin-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/users/{}/unsuspend": {
+  "cls": "CUSTOMER",
+  "tier": "key",
+  "why": "Project-owner moderation: project API key + owner bearer token (or admin key).",
+  "sec": "3.2",
+  "code": "routes/v1/index.ts:347",
+  "sb": "S1",
+  "auth": "API key + (project-owner bearer token OR X-Admin-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/vault/claims": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:833",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); store-review account refused (403); KYC verified (only if REQUIRE_KYC=true)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/vault/deposits": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:830",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); store-review account refused (403); KYC above USD 2,000 cumulative (only if REQUIRE_KY",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/vault/withdrawals": {
+  "cls": "APP",
+  "tier": null,
+  "why": "Rift's own LP programme / yield vault screens.",
+  "sec": "3.16",
+  "code": "routes/v1/index.ts:831",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); store-review account refused (403); KYC verified (only if REQUIRE_KYC=true)",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/wallet-connect/pairings": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only.",
+  "sec": "3.7",
+  "code": "routes/v1/index.ts:505",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/wallet-connect/requests/{}/approve": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only.",
+  "sec": "3.7",
+  "code": "routes/v1/index.ts:513",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); active API subscription (402 when trial+grace lapsed); free-plan sponsored-gas allowan",
+  "docs": "Reference page"
+ },
+ "POST /v1/wallet-connect/requests/{}/preview": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only.",
+  "sec": "3.7",
+  "code": "routes/v1/index.ts:509",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/wallet-connect/requests/{}/reject": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only.",
+  "sec": "3.7",
+  "code": "routes/v1/index.ts:514",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/wallet/chains/by-id": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:443",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "API index only (no reference page)"
+ },
+ "POST /v1/wallet/chains/{}": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:439",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/wallet/methods": {
+  "cls": "DEAD",
+  "tier": null,
+  "why": "Always answers 410 (removed with passkey-owned wallets).",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:460",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "API index only (no reference page)"
+ },
+ "POST /v1/wallet/methods/challenge": {
+  "cls": "DEAD",
+  "tier": null,
+  "why": "Always answers 410 (removed with passkey-owned wallets).",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:459",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "NOT DOCUMENTED"
+ },
+ "POST /v1/wallet/migrate-to-v3": {
+  "cls": "DEAD",
+  "tier": null,
+  "why": "Always answers 410 (removed with passkey-owned wallets).",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:456",
+  "sb": "S1",
+  "auth": "none",
+  "docs": "API index only (no reference page)"
+ },
+ "POST /v1/wallet/passkeys": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; WebAuthn ceremony runs in the user's browser (widget/app).",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:452",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted device via x-rift-device (blocks only if DEVICE_BINDING_ENFORCED=true; else sh",
+  "docs": "Reference page"
+ },
+ "POST /v1/wallet/passkeys/confirm": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; WebAuthn ceremony runs in the user's browser (widget/app).",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:450",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted device via x-rift-device (blocks only if DEVICE_BINDING_ENFORCED=true; else sh",
+  "docs": "Reference page"
+ },
+ "POST /v1/wallet/passkeys/options": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; WebAuthn ceremony runs in the user's browser (widget/app).",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:449",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/wallet/passkeys/{}/confirm-removal": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; WebAuthn ceremony runs in the user's browser (widget/app).",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:454",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted device via x-rift-device (blocks only if DEVICE_BINDING_ENFORCED=true; else sh",
+  "docs": "Reference page"
+ },
+ "POST /v1/wallet/signatures/message": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:446",
+  "sb": "S2",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted device via x-rift-device (blocks only if DEVICE_BINDING_ENFORCED=true; else sh",
+  "docs": "Reference page"
+ },
+ "POST /v1/wallet/signatures/message/preview": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:445",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/wallet/signatures/transaction": {
+  "cls": "DEAD",
+  "tier": null,
+  "why": "Always answers 410 (removed with passkey-owned wallets).",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:444",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); trusted device via x-rift-device (blocks only if DEVICE_BINDING_ENFORCED=true; else sh",
+  "docs": "Reference page"
+ },
+ "POST /v1/wallet/user-operations": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:461",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); active API subscription (402 when trial+grace lapsed); free-plan sponsored-gas allowan",
+  "docs": "Reference page"
+ },
+ "POST /v1/wallet/user-operations/preview": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:479",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "POST /v1/wallet/user-operations/submit-prepared": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.4",
+  "code": "routes/v1/index.ts:480",
+  "sb": "S3",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); active API subscription (402 when trial+grace lapsed); free-plan sponsored-gas allowan",
+  "docs": "Reference page"
+ },
+ "PUT /v1/accounts/{}/default": {
+  "cls": "DEAD",
+  "tier": null,
+  "why": "Per-user sphere-account handler shadowed by the platform-auth Rift Accounts router: unreachable for end users.",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:861",
+  "sb": "S1",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page exists, but route unreachable (shadowed)"
+ },
+ "PUT /v1/identifier-recovery/methods": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; end-user recovery-method management.",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:368",
+  "sb": "S1",
+  "auth": "step-up: otpCode(+email/phone) or externalId+password in body; user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "PUT /v1/identifier-recovery/methods/by-type": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only; end-user recovery-method management.",
+  "sec": "3.3",
+  "code": "routes/v1/index.ts:379",
+  "sb": "S1",
+  "auth": "step-up: otpCode(+email/phone) or externalId+password in body; user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "API index only (no reference page)"
+ },
+ "PUT /v1/me": {
+  "cls": "APP",
+  "tier": null,
+  "why": "User JWT only (no project-key path): the signed-in end user's own wallet flow.",
+  "sec": "3.2",
+  "code": "routes/v1/index.ts:325",
+  "sb": "S2",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key)",
+  "docs": "Reference page"
+ },
+ "PUT /v1/platform/gas-policy": {
+  "cls": "CUSTOMER",
+  "tier": "platform",
+  "why": "Platform key (psk_) or owner session with X-Project-Id; per-project, server-only, 60 rpm.",
+  "sec": "3.13",
+  "code": "routes/platformRoutes.ts:100",
+  "sb": "S1",
+  "auth": "platform secret key psk_... OR project-owner session (+X-Project-Id); 60 rpm",
+  "docs": "Reference page"
+ },
+ "PUT /v1/projects/{}/chain-configs/{}": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Per-project signing/bundler routing overrides: provider-specific infrastructure config, not integrator product surface.",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:778",
+  "sb": "ADM",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id project",
+  "docs": "NOT DOCUMENTED"
+ },
+ "PUT /v1/projects/{}/enclave-config": {
+  "cls": "INTERNAL",
+  "tier": null,
+  "why": "Per-project signing/bundler routing overrides: provider-specific infrastructure config, not integrator product surface.",
+  "sec": "3.17",
+  "code": "routes/v1/index.ts:760",
+  "sb": "ADM",
+  "auth": "user bearer token (session JWT; legacy ES256 token also needs X-API-Key); caller must own :id project",
+  "docs": "NOT DOCUMENTED"
+ }
+}

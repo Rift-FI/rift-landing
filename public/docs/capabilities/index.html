@@ -8,8 +8,9 @@
 <link rel="stylesheet" href="/docs/playground/article.css">
 </head><body>
 <header class="top"><a class="brand" href="/docs/">Rift docs</a><nav><a href="/docs/getting-started/">Getting started</a><a href="/docs/authentication/">Authentication</a><a href="/docs/integrate/">Integrate</a><a href="/docs/capabilities/" aria-current="page">Capabilities</a><a href="/docs/rate-limits/">Rate limits</a><a href="/docs/playground/">API playground</a><a href="/docs/api/">API reference</a><a href="/llms.txt">llms.txt</a></nav></header>
-<main class="article"><h1>Capabilities</h1><p class="lede">Every capability group in the Rift API, what it does, the main endpoints and where to read more.</p><p>Rift Wallets gives each customer a smart account owned only by their passkeys, with gas handled for them, and payment rails built in. Rift holds no key that can move a customer&#39;s funds. This page maps each capability group to its endpoints. Every endpoint can be tried in the <a href="/docs/playground/">API playground</a>.</p>
+<main class="article"><h1>Capabilities</h1><p class="lede">Every capability group in the Rift API, what it does, the main endpoints and where to read more.</p><p>Rift Wallets gives each customer a smart account owned only by their passkeys, with gas handled for them, and payment rails built in. Rift holds no key that can move a customer&#39;s funds. This page maps each capability group to the endpoints you call with your project API key, your platform key or your project id. Flows that belong to the signed-in end user (passkeys, device binding, approvals, balances, sending, payouts, onramp, KYC pages) are run by the Rift widget, the React components and the SDK on the customer&#39;s behalf; they are listed separately at the end. Every endpoint can be tried in the <a href="/docs/playground/">API playground</a>.</p>
 <p>Beta features may change before general availability.</p>
+<h2 id="per-project-endpoints-your-api-key-or-project-id">Per-project endpoints (your API key or project id)</h2>
 <table>
 <thead>
 <tr>
@@ -20,100 +21,81 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>Sign-in and session</strong></td>
-<td>Email or phone one-time codes, Google, Apple, external-id sign-in, refresh, sign-out</td>
-<td><code>POST /v1/auth/sign-up</code>, <code>/sign-in</code>, <code>/sign-in/google</code>, <code>/sign-in/apple</code>, <code>/sessions/refresh</code>, <code>/sign-out</code>; <code>POST /v1/one-time-codes</code>, <code>/verify</code></td>
+<td><strong>Sign-in and sign-up</strong></td>
+<td>Create and sign in your project&#39;s customers with email or phone one-time codes, external id and password, Google or Apple. The project key selects the project</td>
+<td><code>POST /v1/auth/sign-up</code>, <code>/sign-in</code>, <code>/sign-in/google</code>, <code>/sign-in/apple</code>; <code>POST /v1/one-time-codes</code>, <code>/verify</code></td>
 <td><a href="/docs/authentication/">Authentication</a></td>
 </tr>
 <tr>
-<td><strong>Customer profile</strong></td>
-<td>Read, update, delete the signed-in customer</td>
-<td><code>GET/PATCH/PUT/DELETE /v1/me</code>, <code>GET /v1/me/tokens</code></td>
+<td><strong>Customer administration</strong></td>
+<td>List your project&#39;s customers, look up, suspend and unsuspend them</td>
+<td><code>GET /v1/users</code>, <code>/v1/users/lookup</code>, <code>/v1/users/suspended</code>, <code>POST /v1/users/{id}/suspend</code>, <code>/unsuspend</code></td>
 <td><a href="/docs/api/core/">API</a></td>
 </tr>
 <tr>
-<td><strong>Passkey wallets and recovery</strong></td>
-<td>Register, list and remove passkeys; wallet status</td>
-<td><code>GET /v1/wallet/status</code>, <code>POST /v1/wallet/passkeys/options</code>, <code>/v1/wallet/passkeys</code></td>
-<td><a href="/docs/guides/passkeys-and-recovery/">Passkeys</a></td>
+<td><strong>Account recovery</strong></td>
+<td>Masked recovery options, password reset and account recovery for external-id accounts, for your own sign-in screens</td>
+<td><code>GET /v1/identifier-recovery/options</code>, <code>POST /v1/identifier-recovery/password-reset</code>, <code>/account-recovery</code></td>
+<td><a href="/docs/guides/passkeys-and-recovery/">Passkeys and recovery</a></td>
 </tr>
 <tr>
-<td><strong>Devices</strong></td>
-<td>Bind trusted devices; recover a device</td>
-<td><code>/v1/devices...</code></td>
-<td><a href="/docs/guides/device-binding/">Device binding</a></td>
-</tr>
-<tr>
-<td><strong>Balances and history</strong></td>
-<td>Balances per chain and token, transaction history, deposits</td>
-<td><code>GET /v1/balances</code>, <code>/v1/transactions</code>, <code>/v1/deposits</code></td>
+<td><strong>Payment links and invoices</strong></td>
+<td>Create invoices, list and cancel them, record payments, send the link by email or SMS</td>
+<td><code>POST /v1/invoices</code>, <code>GET /v1/invoices</code>, <code>DELETE /v1/invoices/{id}</code>, <code>POST /v1/invoices/{id}/payments</code>, <code>/notifications</code></td>
 <td><a href="/docs/api/core/">API</a></td>
 </tr>
 <tr>
-<td><strong>Transfers and signing</strong></td>
-<td>Send tokens, call contracts, sign messages; two-phase preview then submit</td>
-<td><code>POST /v1/transactions</code>, <code>/v1/transactions/preview</code>, <code>/v1/wallet/user-operations...</code>, <code>/v1/wallet/signatures/message...</code></td>
-<td><a href="/docs/guides/two-phase-signing/">Two-phase signing</a></td>
-</tr>
-<tr>
-<td><strong>Approvals</strong></td>
-<td>Server starts a payment; the customer approves it with a passkey</td>
-<td><code>GET /v1/approvals</code>, <code>GET /v1/approvals/{id}</code>, <code>POST .../approve</code>, <code>/reject</code></td>
-<td><a href="/docs/guides/approvals/">Approvals</a></td>
-</tr>
-<tr>
-<td><strong>Payouts (offramp)</strong></td>
-<td>Pay local money to mobile money, bank, till or paybill; refunds</td>
-<td><code>GET /v1/payouts/countries</code>, <code>POST /v1/payouts/validate</code>, <code>POST /v1/offramps</code>, <code>/init</code>, <code>/finalize</code>, <code>GET /v1/offramps</code>, <code>POST /v1/offramps/{id}/refund</code></td>
-<td><a href="/docs/guides/offramp/">Offramp</a>, <a href="/docs/guides/payment-corridors/">Corridors and limits</a></td>
-</tr>
-<tr>
-<td><strong>Onramp (Beta)</strong></td>
-<td>Buy stablecoins with local money into the customer&#39;s wallet</td>
-<td><code>GET /v1/onramps/quote</code>, <code>/v1/onramps/kyc</code>, <code>POST /v1/onramps</code>, <code>GET /v1/onramps</code></td>
-<td><a href="/docs/guides/onramp/">Onramp</a></td>
-</tr>
-<tr>
-<td><strong>Rates and rails</strong></td>
-<td>FX rates, quotes, fees, institutions and payment methods per currency</td>
-<td><code>GET /v1/rates</code>, <code>POST /v1/rates/quote</code>, <code>GET /v1/rates/withdrawal-fee</code>, <code>GET /v1/rails/{currency}/institutions</code></td>
-<td><a href="/docs/guides/payment-corridors/">Corridors</a></td>
-</tr>
-<tr>
-<td><strong>Beneficiaries (Beta)</strong></td>
-<td>Saved recipients</td>
-<td><code>/v1/beneficiaries</code></td>
+<td><strong>Merchant approval</strong></td>
+<td>Mark your customers as approved merchants. Only enforced when merchant approval is switched on for your project</td>
+<td><code>GET /v1/merchants</code>, <code>POST /v1/merchants/{id}/approval</code>, <code>DELETE</code> same path</td>
 <td><a href="/docs/api/core/">API</a></td>
 </tr>
 <tr>
-<td><strong>Rift Accounts (Beta)</strong></td>
-<td>Local-currency accounts (KES, TZS, GHS, UGX, MWK): collect from mobile money, pay out to mobile money, banks, tills and paybills, download statements</td>
-<td><code>/v1/accounts...</code></td>
-<td><a href="/docs/guides/accounts/">Accounts</a></td>
+<td><strong>Widget configuration</strong></td>
+<td>Branding and settings the widget loads for your project key</td>
+<td><code>GET /v1/widget-config</code></td>
+<td><a href="/docs/sdk/widget/">Widget</a></td>
 </tr>
 <tr>
-<td><strong>Own-wallet ramps (Beta)</strong></td>
-<td>Cash out stablecoins from your own wallet, or buy USDC with mobile money to any address, with no Rift wallet</td>
-<td>see the guide and API reference</td>
-<td><a href="/docs/guides/own-wallet-ramps/">Own-wallet ramps</a></td>
+<td><strong>Your project</strong></td>
+<td>Read and update your project, rotate the key, add allowed origins, set fee markup, read usage and API logs</td>
+<td><code>GET/PATCH /v1/projects/{id}</code>, <code>POST /v1/projects/{id}/api-keys/rotate</code>, <code>POST /v1/projects/{id}/origins</code>, <code>PATCH /v1/projects/{id}/markup</code>, <code>GET /v1/projects/{id}/stats</code>, <code>/api-logs</code></td>
+<td><a href="/docs/guides/going-live/">Going live</a></td>
 </tr>
 <tr>
-<td><strong>Liquidity providers (Beta)</strong></td>
-<td>Provide stablecoin liquidity to the payout pool from your own wallet and earn a share of fees</td>
-<td><code>/v1/lp...</code></td>
-<td><a href="/docs/guides/liquidity-providers/">Liquidity providers</a></td>
+<td><strong>Billing</strong></td>
+<td>Plans, payment details, your subscription state and payments</td>
+<td><code>GET /v1/billing/plans</code>, <code>/v1/billing/payment-info</code>, <code>GET /v1/projects/{id}/billing/subscription</code>, <code>GET/POST /v1/projects/{id}/billing/payments</code></td>
+<td><a href="/docs/pricing/">Pricing</a></td>
 </tr>
 <tr>
-<td><strong>Swaps and bridges</strong></td>
-<td>Cross-chain transfers, quotes, routes</td>
-<td><code>GET /v1/bridge/routes</code>, <code>POST /v1/bridge/quotes</code>, <code>/v1/bridge/transfers...</code></td>
-<td><a href="/docs/guides/swaps-and-bridges/">Swaps and bridges</a></td>
+<td><strong>Reference data (no key needed)</strong></td>
+<td>Chains, tokens, assets, FX rates and fees, payout countries, institutions and payment methods per currency</td>
+<td><code>GET /v1/chains</code>, <code>/v1/tokens</code>, <code>/v1/assets</code>, <code>/v1/rates</code>, <code>/v1/payouts/countries</code>, <code>/v1/rails/{currency}/institutions</code></td>
+<td><a href="/docs/overview/chains-and-tokens/">Chains and tokens</a>, <a href="/docs/guides/payment-corridors/">Corridors</a></td>
+</tr>
+</tbody></table>
+<h2 id="platform-tier-platform-key-psk-server-only">Platform tier (platform key <code>psk_</code>, server only)</h2>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>What you can do</th>
+<th>Main endpoints</th>
+<th>Read</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Platform API (Beta)</strong></td>
+<td>Customers, per-customer ledgers and statements, consent-based history for lenders, usage, platform keys</td>
+<td><code>/v1/platform/customers...</code>, <code>/v1/platform/ledger</code>, <code>/v1/platform/usage</code>, <code>/v1/platform/keys</code></td>
+<td><a href="/docs/quickstarts/platform/">Platform quickstart</a>, <a href="/docs/guides/customer-history-credit/">Customer history</a></td>
 </tr>
 <tr>
-<td><strong>WalletConnect</strong></td>
-<td>Pair the customer&#39;s wallet with any dApp and approve its requests</td>
-<td><code>/v1/wallet-connect/...</code></td>
-<td><a href="/docs/guides/walletconnect/">WalletConnect</a></td>
+<td><strong>Webhooks (Beta)</strong></td>
+<td>Signed events for transactions, customers, approvals, accounts and ramps</td>
+<td><code>/v1/platform/webhooks...</code></td>
+<td><a href="/docs/guides/webhooks/">Webhooks</a></td>
 </tr>
 <tr>
 <td><strong>Gas sponsorship (Beta)</strong></td>
@@ -122,54 +104,24 @@
 <td><a href="/docs/guides/gas-sponsorship/">Gas sponsorship</a></td>
 </tr>
 <tr>
-<td><strong>Ledger and statements (Beta)</strong></td>
-<td>One ledger of every customer transaction; signed statements</td>
-<td><code>GET /v1/ledger</code>, <code>POST /v1/statements</code></td>
-<td><a href="/docs/guides/ledger-and-statements/">Ledger</a></td>
+<td><strong>Rift Accounts (Beta)</strong></td>
+<td>Local-currency accounts (KES, TZS, GHS, UGX, MWK): collect from mobile money, pay out to mobile money, banks, tills and paybills, statements</td>
+<td><code>/v1/accounts...</code></td>
+<td><a href="/docs/guides/accounts/">Accounts</a></td>
 </tr>
 <tr>
-<td><strong>Customer history for credit (Beta)</strong></td>
-<td>Consent-based transaction history for lenders</td>
-<td><code>/v1/platform/...</code></td>
-<td><a href="/docs/guides/customer-history-credit/">Customer history</a></td>
-</tr>
-<tr>
-<td><strong>KYC</strong></td>
-<td>Identity verification sessions, status and jobs</td>
-<td><code>POST /v1/kyc/sessions</code>, <code>GET /v1/kyc/status</code>, <code>GET /v1/kyc/jobs/{jobId}</code></td>
-<td><a href="/docs/guides/onramp/">Onramp</a></td>
-</tr>
-<tr>
-<td><strong>Invoices and merchants</strong></td>
-<td>Create invoices, take payments, merchant onboarding</td>
-<td><code>/v1/invoices</code>, <code>/v1/merchants</code></td>
-<td><a href="/docs/api/core/">API</a></td>
-</tr>
-<tr>
-<td><strong>Reference data</strong></td>
-<td>Chains, tokens, assets</td>
-<td><code>GET /v1/chains</code>, <code>/v1/tokens</code>, <code>/v1/assets</code></td>
-<td><a href="/docs/overview/chains-and-tokens/">Chains and tokens</a></td>
-</tr>
-<tr>
-<td><strong>Platform API (Beta)</strong></td>
-<td>Server-only institution endpoints: customers, ledgers, webhooks, gas policy, usage, keys</td>
-<td><code>/v1/platform/...</code></td>
-<td><a href="/docs/quickstarts/platform/">Platform quickstart</a></td>
-</tr>
-<tr>
-<td><strong>Webhooks (Beta)</strong></td>
-<td>Signed events for transactions, customers, approvals, accounts and ramps</td>
-<td><code>POST /v1/platform/webhooks</code></td>
-<td><a href="/docs/guides/webhooks/">Webhooks</a></td>
-</tr>
-<tr>
-<td><strong>Project administration</strong></td>
-<td>Projects, keys, origins, billing, branding</td>
-<td><code>/v1/projects...</code>, <code>/v1/billing/...</code></td>
-<td><a href="/docs/guides/going-live/">Going live</a></td>
+<td><strong>Own-wallet ramps (Beta)</strong></td>
+<td>Cash out stablecoins from your own wallet, or buy USDC with mobile money to any address, with no Rift wallet</td>
+<td><code>/v1/ramps/...</code>, <code>POST /v1/payouts/validate</code></td>
+<td><a href="/docs/guides/own-wallet-ramps/">Own-wallet ramps</a></td>
 </tr>
 </tbody></table>
+<h2 id="run-by-the-widget-react-components-and-sdk">Run by the widget, React components and SDK</h2>
+<p>These are the end user&#39;s own flows. They are authenticated with the customer&#39;s access token rather than your project key, and several need a passkey signature that only the customer&#39;s device can produce, so the Rift widget or SDK calls them for you. They are not part of the per-project API reference; the operation pages are collected under <a href="/docs/api/core/#used-by-the-rift-widget-and-app">Used by the Rift widget and app</a>.</p>
+<ul>
+<li>Customer profile, balances, history, deposits, sending and signing (two-phase preview then submit), approvals, trusted devices, passkey registration.</li>
+<li>Payouts (offramp), onramp, beneficiaries, bridges, WalletConnect, ledger and statements, identity verification pages.</li>
+</ul>
 <h2 id="supported-money-rails">Supported money rails</h2>
 <p>Payouts and onramp cover Kenya (KES), Nigeria (NGN), Tanzania (TZS), Uganda (UGX), Ghana (GHS) and Malawi (MWK), with mobile money, bank, till and paybill depending on the country. Availability changes during the day: always read <code>GET /v1/payouts/countries</code> (public, no authentication) rather than hard-coding a list. Details and per-transaction limits: <a href="/docs/guides/payment-corridors/">Corridors and limits</a>.</p>
 <h2 id="chains">Chains</h2>

@@ -9,6 +9,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { marked } from "marked";
+import { spawnSync } from "node:child_process";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..");
@@ -104,7 +105,7 @@ function pageHtml({ title, description, slug, bodyHtml }) {
 
 const pages = [];
 for (const f of fs.readdirSync(srcDir).filter((f) => f.endsWith(".md"))) {
-  const { meta, body } = frontMatter(fs.readFileSync(path.join(srcDir, f), "utf8"));
+  const { meta, body } = frontMatter(fs.readFileSync(path.join(srcDir, f), "utf8").split(String.fromCharCode(13)).join(""));
   const slug = f.replace(/\.md$/, "");
   const clean = fixText(body);
   pages.push({ slug, meta, body: clean });
@@ -170,6 +171,84 @@ for (const file of walk(docsOut)) {
 }
 console.log(`patched ${patched} built pages, wrote ${pages.length} new pages`);
 
+/* ---------- prune the API reference to the CUSTOMER set (scripts/endpoint-classification.json) ----------
+   CUSTOMER: kept. APP: page kept but moved out of the sidebar/index into "Used by the Rift widget and app".
+   INTERNAL / DEAD (and anything unclassified): page directory deleted and every link to it removed.
+   Needs scripts/_classified-ops.json, written by build-playground-spec.mjs (run that first). Idempotent. */
+const clsFile = path.join(here, "_classified-ops.json");
+if (!fs.existsSync(clsFile)) throw new Error("Run scripts/build-playground-spec.mjs first (writes _classified-ops.json)");
+const classified = JSON.parse(fs.readFileSync(clsFile, "utf8"));
+const clsById = new Map(classified.map((o) => [`${o.group}/${o.id}`.toLowerCase(), o]));
+const opDirRe = /\/docs\/api\/(core|platform)\/operations\/([^/"]+)\//;
+const verdict = (group, id) => { if (id === "tags") return "CUSTOMER"; const o = clsById.get(`${group}/${id}`.toLowerCase()); return o ? o.cls : "REMOVE"; };
+const dropped = [];
+for (const group of ["core", "platform"]) {
+  const base = path.join(docsOut, "api", group, "operations");
+  if (!fs.existsSync(base)) continue;
+  for (const id of fs.readdirSync(base)) {
+    const v = verdict(group, id);
+    if (v === "INTERNAL" || v === "DEAD" || v === "REMOVE") { fs.rmSync(path.join(base, id), { recursive: true, force: true }); dropped.push(`${group}/${id}`); }
+  }
+}
+const appOps = classified.filter((o) => o.cls === "APP" && o.group === "core");
+const APP_BANNER = callout(`<strong>Used by the Rift widget and app.</strong> This call belongs to the signed-in end user's own flow (customer access token, often a passkey signature). The Rift widget, React components and SDK make it for you; it is not part of the per-project API you call with your key. See <a href="/docs/api/core/#used-by-the-rift-widget-and-app">the list</a>.`);
+const appSection = () => `<div data-rift-extras="1"><div class="sl-heading-wrapper level-h2"><h2 id="used-by-the-rift-widget-and-app" class="sl-openapi-heading">Used by the Rift widget and app</h2></div>` +
+  `<p>These operations are the end user's own flows. They are authenticated with the customer's access token (not your project key) and are run for you by the widget, the React components and the SDK. You normally do not call them yourself. They are not part of the per-project API above.</p><ul>` +
+  appOps.map((o) => `<li><code>${o.method} ${esc(o.path)}</code> <a href="/docs/api/core/operations/${o.id}/">${esc(o.summary || o.id)}</a></li>`).join("") + `</ul></div>`;
+const TIER_NOTE = callout(`<strong>What is in this reference.</strong> Endpoints you call with your <strong>project API key</strong> or a <strong>project id</strong> you own, the server-only <strong>platform tier</strong> (<code>psk_</code> key), and public reference data. End-user flows that the Rift widget, React components and SDK run for you are collected under <a href="/docs/api/core/#used-by-the-rift-widget-and-app">Used by the Rift widget and app</a>.`);
+let pruned = 0;
+const emptyGroupRe = /<li class="astro-rmhv4bp6"><details[^>]*><summary[\s\S]*?<\/summary><sl-sidebar-restore[^>]*><\/sl-sidebar-restore><ul class="astro-rmhv4bp6"><\/ul><\/details><\/li>/g;
+for (const file of walk(docsOut)) {
+  const rel = path.relative(docsOut, file).split(path.sep).join("/");
+  let html = fs.readFileSync(file, "utf8");
+  const before = html;
+  const gone = (h) => { const m = h.match(opDirRe); return m && verdict(m[1], m[2]) !== "CUSTOMER"; };
+  // sidebar entries
+  html = html.replace(/<li class="astro-rmhv4bp6"><a href="[^"]*\/docs\/api\/[^"]*"[^>]*>[\s\S]*?<\/a><\/li>/g, (m) => (gone(m) ? "" : m));
+  // overview list on /docs/api/core/ and /docs/api/platform/
+  html = html.replace(/<div class="sl-openapi-overview-navigation-link astro-niinzq53">[\s\S]*?<\/svg><\/div>/g, (m) => (gone(m) ? "" : m));
+  // previous/next pager (its neighbours may be gone)
+  if (/^api\/(core|platform)\//.test(rel)) html = html.replace(/<div class="pagination-links[^"]*" dir="ltr">[\s\S]*?<\/a><\/div>/, "");
+  for (let i = 0; i < 4; i++) html = html.replace(emptyGroupRe, "");
+  const mOp = rel.match(/^api\/(core|platform)\/operations\/([^/]+)\/index\.html$/);
+  if (mOp && verdict(mOp[1], mOp[2]) === "APP" && !html.includes("Used by the Rift widget and app.")) html = html.replace('<div class="sl-markdown-content">', `<div class="sl-markdown-content">${APP_BANNER}`);
+  if (rel === "api/core/index.html" && !html.includes('id="used-by-the-rift-widget-and-app"')) {
+    html = html.replace(/(<div class="sl-heading-wrapper level-h2"><h2 id="authentication")/, `${appSection()}$1`);
+  }
+  if ((rel === "api/core/index.html" || rel === "api/platform/index.html") && !html.includes("What is in this reference.")) html = html.replace('<div class="sl-markdown-content">', `<div class="sl-markdown-content">${TIER_NOTE}`);
+  if (rel === "api/index.html") {
+    html = html.replace(/Auth, wallet &amp; passkeys[^<]*/, "Per-project endpoints: sign-in, customer administration, invoices, your project and keys, billing and public reference data.")
+      .replace(/Auth, wallet & passkeys[^<]*/, "Per-project endpoints: sign-in, customer administration, invoices, your project and keys, billing and public reference data.");
+  }
+  if (html !== before) { fs.writeFileSync(file, html); pruned++; }
+}
+// sitemap + broken-link check for removed pages
+const dropRe = dropped.map((d) => `/docs/api/${d.split("/")[0]}/operations/${d.split("/")[1]}/`);
+const smP = path.join(docsOut, "sitemap-0.xml");
+if (fs.existsSync(smP)) {
+  let sm = fs.readFileSync(smP, "utf8");
+  sm = sm.replace(/<url><loc>[^<]*\/docs\/api\/(core|platform)\/operations\/([^/<]+)\/<\/loc>[\s\S]*?<\/url>/g, (m, g, id) => (verdict(g, id) === "CUSTOMER" || verdict(g, id) === "APP" ? m : ""));
+  fs.writeFileSync(smP, sm);
+}
+const broken = [];
+for (const file of walk(docsOut)) {
+  const t = fs.readFileSync(file, "utf8");
+  for (const m of t.matchAll(/href="(\/docs\/api\/(?:core|platform)\/operations\/([^/"]+)\/)/g)) {
+    const grp = m[1].includes("/platform/") ? "platform" : "core";
+    if (!fs.existsSync(path.join(docsOut, "api", grp, "operations", m[2]))) broken.push(`${path.relative(docsOut, file)} -> ${m[1]}`);
+  }
+}
+console.log(`API reference pruned: ${dropped.length} pages deleted, ${appOps.length} app operations moved aside, ${pruned} files rewritten, ${broken.length} dangling operation links`);
+if (broken.length) console.warn(broken.slice(0, 15).join("\n"));
+// Rebuild the search index so deleted pages stop appearing in search (needs walletos-docs/node_modules/.bin/pagefind).
+{
+  const pf = path.join(wos, "node_modules/.bin", process.platform === "win32" ? "pagefind.cmd" : "pagefind");
+  if (fs.existsSync(pf) && process.env.SKIP_PAGEFIND !== "1") {
+    const r = spawnSync(pf, ["--site", docsOut], { encoding: "utf8", shell: process.platform === "win32" });
+    console.log(r.status === 0 ? "pagefind index rebuilt" : "pagefind failed: " + (r.stderr || r.stdout || "").slice(0, 300));
+  } else console.warn("pagefind not run: search may still list removed pages");
+}
+
 // sitemap
 const smPath = path.join(docsOut, "sitemap-0.xml");
 if (fs.existsSync(smPath)) {
@@ -182,6 +261,7 @@ if (fs.existsSync(smPath)) {
 }
 
 /* ---------- llms.txt + llms-full.txt ---------- */
+const classifiedAll = JSON.parse(fs.readFileSync(path.join(here, "_classified-ops.json"), "utf8"));
 const spec = JSON.parse(fs.readFileSync(path.join(docsOut, "playground/spec.json"), "utf8"));
 
 function mdxToMd(src, file) {
@@ -230,10 +310,11 @@ for (const [group, slugs] of order) {
   }
 }
 
+const tierNote = { key: "per-project", platform: "platform tier", reference: "public reference data" };
 const authMap = { none: "none", customer: "customer token", key: "project key", "customer+key": "customer token + project key", platform: "platform key (psk_)", admin: "internal" };
 function epLine(o) {
   const ps = o.params.map((p) => `${p.name}${p.required ? "*" : ""}(${p.in})`).join(", ");
-  let line = `- ${o.method} ${o.path} [${authMap[o.auth] || o.auth}]${o.group === "platform" ? " (Platform, Beta)" : ""} ${o.summary}`;
+  let line = `- ${o.method} ${o.path} [${authMap[o.auth] || o.auth}]${o.group === "platform" ? " (Platform, Beta)" : ""} (${tierNote[o.tier] || "per-project"}) ${o.summary}`;
   if (ps) line += ` | params: ${ps}`;
   if (o.body !== undefined && o.method !== "GET") {
     let b = JSON.stringify(o.body);
@@ -249,7 +330,8 @@ const endpointText = Object.keys(byTag).sort().map((t) => `\n### ${t}\n\n` + byT
 const intro = fs.readFileSync(path.join(srcDir, "_llms-intro.txt"), "utf8");
 const own = pages.map((p) => `\n\n# ${p.meta.title}\n\nSource: ${SITE}/docs/${p.slug}/\n\n${p.body.trim()}`).join("");
 
-let full = `${intro.trim()}\n${own}${guideText}\n\n# Endpoint catalogue\n\nEvery public operation. Notation: METHOD path [auth] summary | params (* = required, in parentheses where it goes) | example JSON body. "customer token" = Authorization: Bearer; "project key" = X-API-Key. Full per-endpoint detail: ${SITE}/docs/api/core/ and ${SITE}/docs/api/platform/. Try any of them live: ${SITE}/docs/playground/\n${endpointText}\n`;
+const appList = classifiedAll.filter((o) => o.cls === "APP" && o.group === "core").map((o) => `- ${o.method} ${o.path} ${o.summary}`).join(String.fromCharCode(10));
+let full = `${intro.trim()}\n${own}${guideText}\n\n# Endpoint catalogue\n\nThe per-project API: every operation you call with your project API key or a project id you own (tier "per-project"), the server-only platform tier (psk_ key) and public reference data. End-user flows that the Rift widget, React components and SDK run for you are listed after the catalogue and are not an integration surface. Notation: METHOD path [auth] summary | params (* = required, in parentheses where it goes) | example JSON body. "customer token" = Authorization: Bearer; "project key" = X-API-Key. Full per-endpoint detail: ${SITE}/docs/api/core/ and ${SITE}/docs/api/platform/. Try any of them live: ${SITE}/docs/playground/\n${endpointText}\n\n# Used by the Rift widget and app (not an integration surface)\n\nEnd-user flows authenticated with the customer access token, often needing a passkey signature on the customer device. The widget, React components and SDK call them for you; do not build against them directly.\n\n${appList}\n`;
 
 const inv = path.resolve(root, "../reports/backend-api-inventory.md");
 const invNote = fs.existsSync(inv) ? "present" : "absent";
@@ -280,7 +362,7 @@ Important rules for agents integrating Rift:
 
 ## Reference
 
-- [API reference (Core)](${SITE}/docs/api/core/): every operation, with schemas
+- [API reference (Core)](${SITE}/docs/api/core/): the per-project API (your API key or project id) with schemas, plus a clearly separated list of the end-user flows the widget and SDK run for you
 - [API reference (Platform, Beta)](${SITE}/docs/api/platform/): server-only institution endpoints
 - [API playground](${SITE}/docs/playground/): run live requests against sandbox or production with your own key; the key is kept in memory only
 - [Errors and retries](${SITE}/docs/guides/errors/)

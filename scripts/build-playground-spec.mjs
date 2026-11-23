@@ -9,6 +9,14 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const srcDir = path.resolve(here, "../../walletos-docs/openapi");
 const out = path.resolve(here, "../public/docs/playground/spec.json");
 
+// Classification: scripts/endpoint-classification.json (CUSTOMER / APP / INTERNAL / DEAD; see reports/endpoint-classification.md).
+// The playground and the public reference only carry CUSTOMER operations. Every spec operation MUST be classified.
+const classes = JSON.parse(fs.readFileSync(path.resolve(here, "endpoint-classification.json"), "utf8"));
+const normKey = (m, p) => m + " " + p.replace(/:[A-Za-z]+/g, "{}").replace(/[{][^}]+[}]/g, "{}");
+// The spec describes the shadowed per-user "sphere account" handlers under /v1/accounts, which are unreachable.
+// The reachable /v1/accounts routes (Rift Accounts, platform tier) are not in the OpenAPI source yet, so drop them here.
+const SPEC_DROP = (m, p) => p === "/v1/accounts" || p.startsWith("/v1/accounts/");
+
 const BANNED = /(paycrest|pretium|centiiv|sumsub|smile\s?-?id|pimlico|privy|twilio|Resend-|across protocol|\(across\))/i;
 
 // Sentence-level rewrites for the few places the upstream spec names a vendor.
@@ -85,6 +93,8 @@ function authOf(op, spec) {
 }
 
 const ops = [];
+const classified = [];
+const unclassified = [];
 for (const [file, group] of [["openapi.json", "core"], ["platform.json", "platform"]]) {
   const spec = load(file);
   for (const [p, item] of Object.entries(spec.paths)) {
@@ -104,7 +114,13 @@ for (const [file, group] of [["openapi.json", "core"], ["platform.json", "platfo
       const json = rb?.content?.["application/json"];
       const body = json ? example(spec, json.schema) : undefined;
       const tag = (op.tags && op.tags[0]) || "Other";
-      ops.push({
+      const ck = normKey(m.toUpperCase(), p);
+      const cl = classes[ck];
+      const entry = { id: op.operationId || `${m}_${p}`, method: m.toUpperCase(), path: p, group, tag: (op.tags && op.tags[0]) || "Other", summary: op.summary || "", cls: SPEC_DROP(m, p) ? "DEAD" : cl ? cl.cls : "UNCLASSIFIED", tier: cl?.tier || null };
+      classified.push(entry);
+      if (!cl) unclassified.push(ck);
+      if (entry.cls !== "CUSTOMER") continue;
+      ops.push({ tier: cl.tier,
         id: op.operationId || `${m}_${p}`,
         method: m.toUpperCase(),
         path: p,
@@ -123,7 +139,9 @@ for (const [file, group] of [["openapi.json", "core"], ["platform.json", "platfo
   }
 }
 
-const json = JSON.stringify({ generatedFrom: "walletos-docs/openapi", count: ops.length, operations: ops });
+if (unclassified.length) console.warn("WARNING unclassified spec ops (excluded): " + [...new Set(unclassified)].join(", "));
+fs.writeFileSync(path.resolve(here, "_classified-ops.json"), JSON.stringify(classified, null, 1));
+const json = JSON.stringify({ generatedFrom: "walletos-docs/openapi, filtered to CUSTOMER by scripts/endpoint-classification.json", count: ops.length, operations: ops });
 if (BANNED.test(json)) throw new Error("Banned third-party name in spec: " + json.match(BANNED)[0]);
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(out, json);
