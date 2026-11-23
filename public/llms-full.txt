@@ -43,7 +43,7 @@ Rift uses two kinds of credential and a few request headers.
 
 | Credential | Looks like | Who holds it | What it does |
 |---|---|---|---|
-| **Project API key** | `sk_...` | Your server (and the widget embed) | Identifies your project and environment. Sent as `X-API-Key`. Required on project-scoped routes (recovery, invoices, merchants, widget config); optional on most customer routes because the customer token already binds the project. |
+| **Project API key** | `sk_...` | Your server (and the widget embed) | Identifies your project and environment. Sent as `X-API-Key`. Required on project-scoped routes (recovery, invoices, widget config); optional on most customer routes because the customer token already binds the project. |
 | **Public key** | `pk_...` | Frontend code | **Coming soon.** A key meant to be embedded in browser or mobile code. Existing keys keep working when `pk_` is introduced; you will not be forced to migrate on a deadline. |
 | **Platform key** | `psk_...` | Your server only | For the Platform API (`/v1/platform/*`): customers, ledgers, webhooks, gas policy, usage. Created by the project owner in the dashboard and shown once. Never put it in any client. 60 requests per minute per key. |
 | **Customer access token** | JWT | The customer's session | Proves who the customer is. Sent as `Authorization: Bearer <token>`. Returned by sign-in or by the widget's `signin-success` event. Bound to the project the customer signed in through. |
@@ -123,7 +123,7 @@ Beta features may change before general availability.
 | **Customer administration** | List your project's customers, look up, suspend and unsuspend them | `GET /v1/users`, `/v1/users/lookup`, `/v1/users/suspended`, `POST /v1/users/{id}/suspend`, `/unsuspend` | [API](/docs/api/core/) |
 | **Account recovery** | Masked recovery options, password reset and account recovery for external-id accounts, for your own sign-in screens | `GET /v1/identifier-recovery/options`, `POST /v1/identifier-recovery/password-reset`, `/account-recovery` | [Passkeys and recovery](/docs/guides/passkeys-and-recovery/) |
 | **Payment links and invoices** | Create invoices, list and cancel them, record payments, send the link by email or SMS | `POST /v1/invoices`, `GET /v1/invoices`, `DELETE /v1/invoices/{id}`, `POST /v1/invoices/{id}/payments`, `/notifications` | [API](/docs/api/core/) |
-| **Merchant approval** | Mark your customers as approved merchants. Only enforced when merchant approval is switched on for your project | `GET /v1/merchants`, `POST /v1/merchants/{id}/approval`, `DELETE` same path | [API](/docs/api/core/) |
+
 | **Widget configuration** | Branding and settings the widget loads for your project key | `GET /v1/widget-config` | [Widget](/docs/sdk/widget/) |
 | **Your project** | Read and update your project, rotate the key, add allowed origins, set fee markup, read usage and API logs | `GET/PATCH /v1/projects/{id}`, `POST /v1/projects/{id}/api-keys/rotate`, `POST /v1/projects/{id}/origins`, `PATCH /v1/projects/{id}/markup`, `GET /v1/projects/{id}/stats`, `/api-logs` | [Going live](/docs/guides/going-live/) |
 | **Billing** | Plans, payment details, your subscription state and payments | `GET /v1/billing/plans`, `/v1/billing/payment-info`, `GET /v1/projects/{id}/billing/subscription`, `GET/POST /v1/projects/{id}/billing/payments` | [Pricing](/docs/pricing/) |
@@ -3591,7 +3591,7 @@ Every response has an `X-Request-Id` header. Log it and quote it to Rift support
 | `VALIDATION_UNSUPPORTED` | 400 | Payouts | Names can't be looked up on that rail. Does not affect payouts. |
 | (sentence) | 401 | API key | Missing `X-API-Key`, bad format, or not a live project key. |
 | (sentence) | 402 | Plans | Plan limit reached: monthly active wallets or free gas allowance. |
-| (sentence) | 403 | Compliance | Merchant (KYB) approval required (compliance gates on). |
+| (sentence) | 403 | Compliance |  |
 
 The [API reference](https://riftfi.com/docs/api/) lists the responses of each endpoint.
 
@@ -4088,12 +4088,6 @@ The per-project API: every operation you call with your project API key or a pro
 - POST /v1/invoices/{id}/payments [project key] (per-project) Mark an invoice as paid via an on-chain transaction. | params: id*(path) | body: {"transactionHash":"string","chain":"string"}
 - POST /v1/invoices/{id}/notifications [project key] (per-project) Deliver an invoice link via email or SMS to a recipient. | params: id*(path) | body: {"paymentLink":"string","message":"string","recipientEmail":"string","recipientPhone":"string"}
 
-### Merchants
-
-- GET /v1/merchants [project key] (per-project) List merchants with approval filter. | params: status(query), page(query), limit(query)
-- POST /v1/merchants/{id}/approval [project key] (per-project) Approve a merchant (project owner only). | params: id*(path) | body: {"email":"string","phoneNumber":"string","kybNotes":"string"}
-- DELETE /v1/merchants/{id}/approval [project key] (per-project) Revoke a merchant's approval (project owner only). | params: id*(path) | body: {"email":"string","phoneNumber":"string","reason":"string"}
-
 ### One-time codes
 
 - POST /v1/one-time-codes [none] (per-project) Send a one-time code via SMS or email. | body: {"phone":"string","email":"string"}
@@ -4217,7 +4211,6 @@ End-user flows authenticated with the customer access token, often needing a pas
 - POST /v1/bridge/quotes Get a crosschain bridge quote with platform-fee + balance check.
 - POST /v1/bridge/transfers Execute a crosschain bridge transfer via Rift's bridge.
 - GET /v1/invoices/{id}/redirect Public redirect to the invoice URL (used by short-link surfaces).
-- GET /v1/merchants/{id} Get a merchant's approval status.
 - POST /v1/kyc/sessions Create a KYC verification session (Rift picks the verification flow by country).
 - GET /v1/kyc/status Check the authenticated user's KYC verification status.
 - POST /v1/kyc/status Look up a user's KYC verification status by identifier.

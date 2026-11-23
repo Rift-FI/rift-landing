@@ -264,7 +264,7 @@
       $("resp-headers").textContent = "";
       $("resp-body").textContent = (e && e.name === "AbortError")
         ? "Timed out after 30 s."
-        : "The browser blocked or could not complete the request (network error, or CORS for this endpoint from this origin). Use the cURL command above from your terminal instead.";
+        : "The request did not reach the API from this page. Origin: " + location.origin + "  Target: " + BASES[env] + ". " + (location.hostname === "riftfi.com" ? "This page is on the apex domain; open https://www.riftfi.com" + location.pathname + " instead - that origin is allowed by the API." : "This is a network or CORS failure, not an API error: the API never saw the request, so there is no status code to show. The cURL command above has no origin and will work from your terminal.");
       setStatus("Failed", "err");
     }).then(function () {
       clearTimeout(timer);

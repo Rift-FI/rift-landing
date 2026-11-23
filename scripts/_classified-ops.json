@@ -426,8 +426,8 @@
   "group": "core",
   "tag": "Merchants",
   "summary": "List merchants with approval filter.",
-  "cls": "CUSTOMER",
-  "tier": "key"
+  "cls": "REMOVE",
+  "tier": null
  },
  {
   "id": "get_v1_merchants_id",
@@ -436,7 +436,7 @@
   "group": "core",
   "tag": "Merchants",
   "summary": "Get a merchant's approval status.",
-  "cls": "APP",
+  "cls": "REMOVE",
   "tier": null
  },
  {
@@ -446,8 +446,8 @@
   "group": "core",
   "tag": "Merchants",
   "summary": "Approve a merchant (project owner only).",
-  "cls": "CUSTOMER",
-  "tier": "key"
+  "cls": "REMOVE",
+  "tier": null
  },
  {
   "id": "delete_v1_merchants_id_approval",
@@ -456,8 +456,8 @@
   "group": "core",
   "tag": "Merchants",
   "summary": "Revoke a merchant's approval (project owner only).",
-  "cls": "CUSTOMER",
-  "tier": "key"
+  "cls": "REMOVE",
+  "tier": null
  },
  {
   "id": "post_v1_kyc_sessions",

@@ -408,3 +408,48 @@ for (const file of [...walk(docsOut), path.join(root, "public/llms.txt"), path.j
 }
 if (bad.length) { console.error("BANNED NAMES REMAIN:\n" + bad.slice(0, 20).join("\n")); process.exitCode = 1; }
 else console.log("no third-party provider names in published docs, llms.txt or llms-full.txt");
+
+/* ── withheld features: strip the prose too ──────────────────────────────
+ * Deleting an operation's page is not enough. Index listings keep pointing at
+ * it, capability tables keep advertising it, and guides keep telling a reader
+ * they need an approval that nothing enforces. A feature withheld from the
+ * reference must not survive as prose that sends people looking for it.
+ *
+ * SDK and MCP method lists are deliberately NOT scrubbed: `rift.merchant` and
+ * `rift_merchant_status` really do exist on the SDK surface, so removing them
+ * would make the SDK documentation wrong rather than cleaner.
+ */
+const WITHHELD_LINE = [
+  /^.*(GET|POST|DELETE|PUT|PATCH) \/v1\/merchants.*$/gim,
+];
+const WITHHELD_INLINE = [
+  [/\s*merchant approval \(403\)\s*and\s*/gi, " "],
+  [/\s*requires merchant approval \(403\)\.?/gi, ""],
+  [/Merchant \(KYB\) approval required \(compliance gates on\)\.?/gi, ""],
+  [/Merchant approval required \(compliance gates on\)[.;]?/gi, ""],
+  [/\s*403 merchant approval required\s*/gi, " "],
+  [/,\s*merchants(?=[,)\s])/gi, ""],
+];
+
+function scrubWithheldProse(rootDir) {
+  let files = 0, hits = 0;
+  const isSdk = (f) => f.includes(`${path.sep}sdk${path.sep}`);
+  const walk = (d) => {
+    for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+      const f = path.join(d, e.name);
+      if (e.isDirectory()) { walk(f); continue; }
+      if (!/\.(html|txt)$/i.test(e.name)) continue;
+      if (isSdk(f)) continue;
+      let t = fs.readFileSync(f, "utf8");
+      const o = t;
+      for (const rx of WITHHELD_LINE) t = t.replace(rx, "");
+      for (const [rx, rep] of WITHHELD_INLINE) t = t.replace(rx, rep);
+      if (t !== o) { fs.writeFileSync(f, t); files++; hits++; }
+    }
+  };
+  walk(rootDir);
+  console.log(`withheld-feature prose scrubbed in ${files} files`);
+}
+
+scrubWithheldProse(docsOut);
+scrubWithheldProse(path.join(root, "public"));

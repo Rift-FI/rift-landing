@@ -70,9 +70,9 @@
   "docs": "Reference page"
  },
  "DELETE /v1/merchants/{}/approval": {
-  "cls": "CUSTOMER",
-  "tier": "key",
-  "why": "Project-scoped KYB approval of the project's own users; API key required (merchants.use(authenticateApiKey)). Dormant gate (enforced only if REQUIRE_KYC=true). GET list has no limit cap (fix pending in backend).",
+  "cls": "REMOVE",
+  "tier": null,
+  "why": "Withheld from publication. Merchant KYB approval is a compliance gate the project owns, but complianceGatesEnabled() reads REQUIRE_KYC, which is unset on production AND sandbox \u2014 so it enforces nothing. Nothing in Rift's console, widget, app or dashboard calls it, and GET /v1/merchants returns users' email, phone and KYB notes. Publishing the most sensitive endpoint in the reference to document a switched-off feature is the wrong trade. Set cls back to CUSTOMER (tier 'key') when REQUIRE_KYC is enabled.",
   "sec": "3.11",
   "code": "routes/v1/index.ts:571",
   "sb": "S1",
@@ -770,9 +770,9 @@
   "docs": "Reference page"
  },
  "GET /v1/merchants": {
-  "cls": "CUSTOMER",
-  "tier": "key",
-  "why": "Project-scoped KYB approval of the project's own users; API key required (merchants.use(authenticateApiKey)). Dormant gate (enforced only if REQUIRE_KYC=true). GET list has no limit cap (fix pending in backend).",
+  "cls": "REMOVE",
+  "tier": null,
+  "why": "Withheld from publication. Merchant KYB approval is a compliance gate the project owns, but complianceGatesEnabled() reads REQUIRE_KYC, which is unset on production AND sandbox \u2014 so it enforces nothing. Nothing in Rift's console, widget, app or dashboard calls it, and GET /v1/merchants returns users' email, phone and KYB notes. Publishing the most sensitive endpoint in the reference to document a switched-off feature is the wrong trade. Set cls back to CUSTOMER (tier 'key') when REQUIRE_KYC is enabled.",
   "sec": "3.11",
   "code": "routes/v1/index.ts:560",
   "sb": "S1",
@@ -780,9 +780,9 @@
   "docs": "Reference page"
  },
  "GET /v1/merchants/me": {
-  "cls": "APP",
+  "cls": "REMOVE",
   "tier": null,
-  "why": "User JWT + key; end-user read of own merchant status.",
+  "why": "Withheld from publication. Merchant KYB approval is a compliance gate the project owns, but complianceGatesEnabled() reads REQUIRE_KYC, which is unset on production AND sandbox \u2014 so it enforces nothing. Nothing in Rift's console, widget, app or dashboard calls it, and GET /v1/merchants returns users' email, phone and KYB notes. Publishing the most sensitive endpoint in the reference to document a switched-off feature is the wrong trade. Set cls back to CUSTOMER (tier 'key') when REQUIRE_KYC is enabled.",
   "sec": "3.11",
   "code": "routes/v1/index.ts:566",
   "sb": "S1",
@@ -790,9 +790,9 @@
   "docs": "API index only (no reference page)"
  },
  "GET /v1/merchants/{}": {
-  "cls": "APP",
+  "cls": "REMOVE",
   "tier": null,
-  "why": "User JWT + key; end-user read of own merchant status.",
+  "why": "Withheld from publication. Merchant KYB approval is a compliance gate the project owns, but complianceGatesEnabled() reads REQUIRE_KYC, which is unset on production AND sandbox \u2014 so it enforces nothing. Nothing in Rift's console, widget, app or dashboard calls it, and GET /v1/merchants returns users' email, phone and KYB notes. Publishing the most sensitive endpoint in the reference to document a switched-off feature is the wrong trade. Set cls back to CUSTOMER (tier 'key') when REQUIRE_KYC is enabled.",
   "sec": "3.11",
   "code": "routes/v1/index.ts:567",
   "sb": "S1",
@@ -2170,9 +2170,9 @@
   "docs": "NOT DOCUMENTED"
  },
  "POST /v1/merchants/{}/approval": {
-  "cls": "CUSTOMER",
-  "tier": "key",
-  "why": "Project-scoped KYB approval of the project's own users; API key required (merchants.use(authenticateApiKey)). Dormant gate (enforced only if REQUIRE_KYC=true). GET list has no limit cap (fix pending in backend).",
+  "cls": "REMOVE",
+  "tier": null,
+  "why": "Withheld from publication. Merchant KYB approval is a compliance gate the project owns, but complianceGatesEnabled() reads REQUIRE_KYC, which is unset on production AND sandbox \u2014 so it enforces nothing. Nothing in Rift's console, widget, app or dashboard calls it, and GET /v1/merchants returns users' email, phone and KYB notes. Publishing the most sensitive endpoint in the reference to document a switched-off feature is the wrong trade. Set cls back to CUSTOMER (tier 'key') when REQUIRE_KYC is enabled.",
   "sec": "3.11",
   "code": "routes/v1/index.ts:570",
   "sb": "S1",
