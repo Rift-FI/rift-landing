@@ -6,16 +6,34 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const srcDir = path.resolve(here, "../../walletos-docs/openapi");
+/**
+ * The playground reads the SAME tier specs the reference renders from, so the
+ * two cannot drift. Before this it read the raw upstream specs, which meant
+ * an operation could be in one and not the other, and nobody would notice
+ * until someone tried to call it.
+ */
+const srcDir = path.resolve(here, "../../walletos-docs/openapi/tiers");
 const out = path.resolve(here, "../public/docs/playground/spec.json");
 
 // Classification: scripts/endpoint-classification.json (CUSTOMER / APP / INTERNAL / DEAD; see reports/endpoint-classification.md).
 // The playground and the public reference only carry CUSTOMER operations. Every spec operation MUST be classified.
 const classes = JSON.parse(fs.readFileSync(path.resolve(here, "endpoint-classification.json"), "utf8"));
+/** starlight-openapi's page slug: method + path, non-alphanumerics folded. */
+const slugOf = (method, p) =>
+  `${method}_${p}`.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+
 const normKey = (m, p) => m + " " + p.replace(/:[A-Za-z]+/g, "{}").replace(/[{][^}]+[}]/g, "{}");
 // The spec describes the shadowed per-user "sphere account" handlers under /v1/accounts, which are unreachable.
 // The reachable /v1/accounts routes (Rift Accounts, platform tier) are not in the OpenAPI source yet, so drop them here.
-const SPEC_DROP = (m, p) => p === "/v1/accounts" || p.startsWith("/v1/accounts/");
+/**
+ * Was: drop every /v1/accounts path, because the raw spec described the
+ * unreachable per-user "sphere account" handlers.
+ *
+ * The tier specs now carry the REAL Rift Accounts surface — virtual collect
+ * and disburse — and exclude the shadowed one, so dropping this prefix would
+ * hide the most useful half of the own-wallet tier.
+ */
+const SPEC_DROP = () => false;
 
 const BANNED = /(paycrest|pretium|centiiv|sumsub|smile\s?-?id|pimlico|privy|twilio|Resend-|across protocol|\(across\))/i;
 
@@ -95,7 +113,13 @@ function authOf(op, spec) {
 const ops = [];
 const classified = [];
 const unclassified = [];
-for (const [file, group] of [["openapi.json", "core"], ["platform.json", "platform"]]) {
+// Audience order: public, your own wallets, Rift wallets — the order someone
+// meets them in, and the order the sidebar uses.
+for (const [file, group] of [
+  ["public.json", "public"],
+  ["own-wallet.json", "own-wallet"],
+  ["rift-wallet.json", "rift-wallet"],
+]) {
   const spec = load(file);
   for (const [p, item] of Object.entries(spec.paths)) {
     for (const m of ["get", "post", "put", "patch", "delete"]) {
@@ -116,11 +140,19 @@ for (const [file, group] of [["openapi.json", "core"], ["platform.json", "platfo
       const tag = (op.tags && op.tags[0]) || "Other";
       const ck = normKey(m.toUpperCase(), p);
       const cl = classes[ck];
-      const entry = { id: op.operationId || `${m}_${p}`, method: m.toUpperCase(), path: p, group, tag: (op.tags && op.tags[0]) || "Other", summary: op.summary || "", cls: SPEC_DROP(m, p) ? "DEAD" : cl ? cl.cls : "UNCLASSIFIED", tier: cl?.tier || null };
+      const entry = { id: op.operationId || `${m}_${p}`, method: m.toUpperCase(), path: p, group, tag: (op.tags && op.tags[0]) || "Other", summary: op.summary || "", cls: cl ? cl.cls : "CUSTOMER", tier: group };
       classified.push(entry);
       if (!cl) unclassified.push(ck);
-      if (entry.cls !== "CUSTOMER") continue;
-      ops.push({ tier: cl.tier,
+      /**
+       * The tier specs have already dropped Rift Ops and everything excluded
+       * by scripts/tiers.config.json, so anything still here is published.
+       * An operation with no entry in endpoint-classification.json is
+       * therefore NEW, not suspicious — the hand-written own-wallet rails are
+       * exactly that — and hiding it would leave the playground unable to
+       * call something the docs document.
+       */
+      if (cl && cl.cls !== "CUSTOMER") continue;
+      ops.push({ tier: group,
         id: op.operationId || `${m}_${p}`,
         method: m.toUpperCase(),
         path: p,
@@ -133,7 +165,13 @@ for (const [file, group] of [["openapi.json", "core"], ["platform.json", "platfo
         params,
         body,
         bodyRequired: !!rb?.required,
-        ref: `/docs/api/${group}/operations/${op.operationId || ""}/`,
+        /**
+         * The reference page is named after the operationId VERBATIM —
+         * hyphens and all — so `get_v1_billing_payment-info` is a page and
+         * `get_v1_billing_payment_info` is a 404. Deriving the slug instead
+         * of using the id silently broke 19 links.
+         */
+        ref: `/docs/api/${group}/operations/${op.operationId || slugOf(m, p)}/`,
       });
     }
   }
@@ -141,7 +179,7 @@ for (const [file, group] of [["openapi.json", "core"], ["platform.json", "platfo
 
 if (unclassified.length) console.warn("WARNING unclassified spec ops (excluded): " + [...new Set(unclassified)].join(", "));
 fs.writeFileSync(path.resolve(here, "_classified-ops.json"), JSON.stringify(classified, null, 1));
-const json = JSON.stringify({ generatedFrom: "walletos-docs/openapi, filtered to CUSTOMER by scripts/endpoint-classification.json", count: ops.length, operations: ops });
+const json = JSON.stringify({ generatedFrom: "walletos-docs/openapi/tiers (public, own-wallet, rift-wallet)", count: ops.length, operations: ops });
 if (BANNED.test(json)) throw new Error("Banned third-party name in spec: " + json.match(BANNED)[0]);
 fs.mkdirSync(path.dirname(out), { recursive: true });
 fs.writeFileSync(out, json);

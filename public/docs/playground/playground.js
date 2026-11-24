@@ -19,6 +19,21 @@
     sandbox: "https://sandbox.riftfi.com",
     production: "https://api.riftfi.com"
   };
+  /**
+   * The three audiences, in the order someone meets them. Mirrors the
+   * reference at /docs/api/ so a reader moving between the two sees the same
+   * structure and the same words.
+   */
+  var TIER_LABEL = {
+    "public": "1. Public",
+    "own-wallet": "2. Your own wallets",
+    "rift-wallet": "3. Rift wallets",
+    // Pre-tier specs called them this; kept so an old spec.json still renders.
+    "core": "3. Rift wallets",
+    "platform": "2. Your own wallets"
+  };
+  var TIER_RANK = { "1. Public": 1, "2. Your own wallets": 2, "3. Rift wallets": 3 };
+
   var env = "sandbox"; // sandbox is always the default
   var ops = [];
   var cur = null;
@@ -62,10 +77,17 @@
       if (o.auth === "admin") return;
       var hay = (o.method + " " + o.path + " " + o.summary + " " + o.tag).toLowerCase();
       if (f && hay.indexOf(f) === -1) return;
-      var g = (o.group === "platform" ? "Platform: " : "") + o.tag;
+      var g = TIER_LABEL[o.tier || o.group] + " · " + o.tag;
       (groups[g] = groups[g] || []).push(i);
     });
-    Object.keys(groups).sort().forEach(function (g) {
+    // Audience order, not alphabetical: public, your own wallets, Rift
+    // wallets. Sorting by name would interleave the three tiers and lose the
+    // one distinction the reader actually navigates by.
+    Object.keys(groups).sort(function (a, b) {
+      var ra = TIER_RANK[a.split(" · ")[0]] || 9;
+      var rb = TIER_RANK[b.split(" · ")[0]] || 9;
+      return ra !== rb ? ra - rb : a.localeCompare(b);
+    }).forEach(function (g) {
       list.appendChild(el("div", "g", g));
       groups[g].forEach(function (i) {
         var o = ops[i];
