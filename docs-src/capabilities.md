@@ -12,10 +12,10 @@ Beta features may change before general availability.
 | Group | What you can do | Main endpoints | Read |
 |---|---|---|---|
 | **Sign-in and sign-up** | Create and sign in your project's customers with email or phone one-time codes, external id and password, Google or Apple. The project key selects the project | `POST /v1/auth/sign-up`, `/sign-in`, `/sign-in/google`, `/sign-in/apple`; `POST /v1/one-time-codes`, `/verify` | [Authentication](/docs/authentication/) |
-| **Customer administration** | List your project's customers, look up, suspend and unsuspend them | `GET /v1/users`, `/v1/users/lookup`, `/v1/users/suspended`, `POST /v1/users/{id}/suspend`, `/unsuspend` | [API](/docs/api/core/) |
+| **Customer administration** | List your project's customers, look up, suspend and unsuspend them | `GET /v1/users`, `/v1/users/lookup`, `/v1/users/suspended`, `POST /v1/users/{id}/suspend`, `/unsuspend` | [API](/docs/api/rift-wallet/) |
 | **Account recovery** | Masked recovery options, password reset and account recovery for external-id accounts, for your own sign-in screens | `GET /v1/identifier-recovery/options`, `POST /v1/identifier-recovery/password-reset`, `/account-recovery` | [Passkeys and recovery](/docs/guides/passkeys-and-recovery/) |
-| **Payment links and invoices** | Create invoices, list and cancel them, record payments, send the link by email or SMS | `POST /v1/invoices`, `GET /v1/invoices`, `DELETE /v1/invoices/{id}`, `POST /v1/invoices/{id}/payments`, `/notifications` | [API](/docs/api/core/) |
-| **Merchant approval** | Mark your customers as approved merchants. Only enforced when merchant approval is switched on for your project | `GET /v1/merchants`, `POST /v1/merchants/{id}/approval`, `DELETE` same path | [API](/docs/api/core/) |
+| **Payment links and invoices** | Create invoices, list and cancel them, record payments, send the link by email or SMS | `POST /v1/invoices`, `GET /v1/invoices`, `DELETE /v1/invoices/{id}`, `POST /v1/invoices/{id}/payments`, `/notifications` | [API](/docs/api/rift-wallet/) |
+| **Merchant approval** | Mark your customers as approved merchants. Only enforced when merchant approval is switched on for your project | `GET /v1/merchants`, `POST /v1/merchants/{id}/approval`, `DELETE` same path | [API](/docs/api/rift-wallet/) |
 | **Widget configuration** | Branding and settings the widget loads for your project key | `GET /v1/widget-config` | [Widget](/docs/sdk/widget/) |
 | **Your project** | Read and update your project, rotate the key, add allowed origins, set fee markup, read usage and API logs | `GET/PATCH /v1/projects/{id}`, `POST /v1/projects/{id}/api-keys/rotate`, `POST /v1/projects/{id}/origins`, `PATCH /v1/projects/{id}/markup`, `GET /v1/projects/{id}/stats`, `/api-logs` | [Going live](/docs/guides/going-live/) |
 | **Billing** | Plans, payment details, your subscription state and payments | `GET /v1/billing/plans`, `/v1/billing/payment-info`, `GET /v1/projects/{id}/billing/subscription`, `GET/POST /v1/projects/{id}/billing/payments` | [Pricing](/docs/pricing/) |
@@ -33,7 +33,7 @@ Beta features may change before general availability.
 
 ## Run by the widget, React components and SDK
 
-These are the end user's own flows. They are authenticated with the customer's access token rather than your project key, and several need a passkey signature that only the customer's device can produce, so the Rift widget or SDK calls them for you. They are not part of the per-project API reference; the operation pages are collected under [Used by the Rift widget and app](/docs/api/core/#used-by-the-rift-widget-and-app).
+These are the end user's own flows. They are authenticated with the customer's access token rather than your project key, and several need a passkey signature that only the customer's device can produce, so the Rift widget or SDK calls them for you. They are documented in full under [Rift wallets](/docs/api/rift-wallet/), the section for partners whose wallets Rift issues and secures.
 
 - Customer profile, balances, history, deposits, sending and signing (two-phase preview then submit), approvals, trusted devices, passkey registration.
 - Payouts (offramp), onramp, beneficiaries, bridges, WalletConnect, ledger and statements, identity verification pages.

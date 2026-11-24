@@ -22,8 +22,9 @@ Important rules for agents integrating Rift:
 
 ## Reference
 
-- [API reference (Core)](https://riftfi.com/docs/api/core/): the per-project API (your API key or project id) with schemas, plus a clearly separated list of the end-user flows the widget and SDK run for you
-- [API reference (Platform, Beta)](https://riftfi.com/docs/api/platform/): server-only institution endpoints
+- [API reference — Public](https://riftfi.com/docs/api/public/): catalogue and pricing. Chains, tokens, assets, rates, rails, payout countries, and the endpoints a payer uses to settle a payment link. No session; nothing here moves money
+- [API reference — Your own wallets](https://riftfi.com/docs/api/own-wallet/): for partners who hold the crypto themselves. Virtual fiat accounts to collect into and disburse from, offramp and onramp against wallets Rift never touches, plus customers, consents, webhooks, gas policy and usage. Server-side, with a psk_ platform key
+- [API reference — Rift wallets](https://riftfi.com/docs/api/rift-wallet/): for partners using Rift-issued wallets, a Safe owned by the end user's passkey. Sign-in, passkeys, devices, signing, transfers, bridge, WalletConnect, offramp, onramp, beneficiaries and statements. End-user token
 - [API playground](https://riftfi.com/docs/playground/): run live requests against sandbox or production with your own key; the key is kept in memory only
 - [Errors and retries](https://riftfi.com/docs/guides/errors/)
 - [Webhooks](https://riftfi.com/docs/guides/webhooks/)

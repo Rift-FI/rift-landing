@@ -191,11 +191,11 @@ for (const group of ["core", "platform"]) {
   }
 }
 const appOps = classified.filter((o) => o.cls === "APP" && o.group === "core");
-const APP_BANNER = callout(`<strong>Used by the Rift widget and app.</strong> This call belongs to the signed-in end user's own flow (customer access token, often a passkey signature). The Rift widget, React components and SDK make it for you; it is not part of the per-project API you call with your key. See <a href="/docs/api/core/#used-by-the-rift-widget-and-app">the list</a>.`);
+const APP_BANNER = callout(`<strong>Used by the Rift widget and app.</strong> This call belongs to the signed-in end user's own flow (customer access token, often a passkey signature). The Rift widget, React components and SDK make it for you; it is not part of the per-project API you call with your key. See <a href="/docs/api/rift-wallet/">the list</a>.`);
 const appSection = () => `<div data-rift-extras="1"><div class="sl-heading-wrapper level-h2"><h2 id="used-by-the-rift-widget-and-app" class="sl-openapi-heading">Used by the Rift widget and app</h2></div>` +
   `<p>These operations are the end user's own flows. They are authenticated with the customer's access token (not your project key) and are run for you by the widget, the React components and the SDK. You normally do not call them yourself. They are not part of the per-project API above.</p><ul>` +
-  appOps.map((o) => `<li><code>${o.method} ${esc(o.path)}</code> <a href="/docs/api/core/operations/${o.id}/">${esc(o.summary || o.id)}</a></li>`).join("") + `</ul></div>`;
-const TIER_NOTE = callout(`<strong>What is in this reference.</strong> Endpoints you call with your <strong>project API key</strong> or a <strong>project id</strong> you own, the server-only <strong>platform tier</strong> (<code>psk_</code> key), and public reference data. End-user flows that the Rift widget, React components and SDK run for you are collected under <a href="/docs/api/core/#used-by-the-rift-widget-and-app">Used by the Rift widget and app</a>.`);
+  appOps.map((o) => `<li><code>${o.method} ${esc(o.path)}</code> <a href="/docs/api/rift-wallet/operations/${o.id}/">${esc(o.summary || o.id)}</a></li>`).join("") + `</ul></div>`;
+const TIER_NOTE = callout(`<strong>What is in this reference.</strong> Endpoints you call with your <strong>project API key</strong> or a <strong>project id</strong> you own, the server-only <strong>platform tier</strong> (<code>psk_</code> key), and public reference data. End-user flows that the Rift widget, React components and SDK run for you are collected under <a href="/docs/api/rift-wallet/">Used by the Rift widget and app</a>.`);
 let pruned = 0;
 const emptyGroupRe = /<li class="astro-rmhv4bp6"><details[^>]*><summary[\s\S]*?<\/summary><sl-sidebar-restore[^>]*><\/sl-sidebar-restore><ul class="astro-rmhv4bp6"><\/ul><\/details><\/li>/g;
 for (const file of walk(docsOut)) {
@@ -331,7 +331,7 @@ const intro = fs.readFileSync(path.join(srcDir, "_llms-intro.txt"), "utf8");
 const own = pages.map((p) => `\n\n# ${p.meta.title}\n\nSource: ${SITE}/docs/${p.slug}/\n\n${p.body.trim()}`).join("");
 
 const appList = classifiedAll.filter((o) => o.cls === "APP" && o.group === "core").map((o) => `- ${o.method} ${o.path} ${o.summary}`).join(String.fromCharCode(10));
-let full = `${intro.trim()}\n${own}${guideText}\n\n# Endpoint catalogue\n\nThe per-project API: every operation you call with your project API key or a project id you own (tier "per-project"), the server-only platform tier (psk_ key) and public reference data. End-user flows that the Rift widget, React components and SDK run for you are listed after the catalogue and are not an integration surface. Notation: METHOD path [auth] summary | params (* = required, in parentheses where it goes) | example JSON body. "customer token" = Authorization: Bearer; "project key" = X-API-Key. Full per-endpoint detail: ${SITE}/docs/api/core/ and ${SITE}/docs/api/platform/. Try any of them live: ${SITE}/docs/playground/\n${endpointText}\n\n# Used by the Rift widget and app (not an integration surface)\n\nEnd-user flows authenticated with the customer access token, often needing a passkey signature on the customer device. The widget, React components and SDK call them for you; do not build against them directly.\n\n${appList}\n`;
+let full = `${intro.trim()}\n${own}${guideText}\n\n# Endpoint catalogue\n\nThe API in three parts, by who is integrating. PUBLIC: catalogue and pricing, no session. YOUR OWN WALLETS: you hold the crypto, Rift provides the fiat rails — virtual accounts, own-wallet offramp and onramp — authenticated server-side with a psk_ platform key. RIFT WALLETS: Rift issues and secures the wallet (a Safe owned by the end user's passkey), authenticated with the end user's token, and every money move is signed on their device. Notation: METHOD path [auth] summary | params (* = required, in parentheses where it goes) | example JSON body. "customer token" = Authorization: Bearer; "project key" = X-API-Key; "platform key" = X-API-Key with a psk_ value. Full per-endpoint detail: ${SITE}/docs/api/public/, ${SITE}/docs/api/own-wallet/ and ${SITE}/docs/api/rift-wallet/. Try any of them live: ${SITE}/docs/playground/\n${endpointText}\n\n# Used by the Rift widget and app (not an integration surface)\n\nEnd-user flows authenticated with the customer access token, often needing a passkey signature on the customer device. The widget, React components and SDK call them for you; do not build against them directly.\n\n${appList}\n`;
 
 const inv = path.resolve(root, "../reports/backend-api-inventory.md");
 const invNote = fs.existsSync(inv) ? "present" : "absent";
@@ -362,8 +362,9 @@ Important rules for agents integrating Rift:
 
 ## Reference
 
-- [API reference (Core)](${SITE}/docs/api/core/): the per-project API (your API key or project id) with schemas, plus a clearly separated list of the end-user flows the widget and SDK run for you
-- [API reference (Platform, Beta)](${SITE}/docs/api/platform/): server-only institution endpoints
+- [API reference — Public](${SITE}/docs/api/public/): catalogue and pricing. Chains, tokens, assets, rates, rails, payout countries, and the endpoints a payer uses to settle a payment link. No session; nothing here moves money
+- [API reference — Your own wallets](${SITE}/docs/api/own-wallet/): for partners who hold the crypto themselves. Virtual fiat accounts to collect into and disburse from, offramp and onramp against wallets Rift never touches, plus customers, consents, webhooks, gas policy and usage. Server-side, with a psk_ platform key
+- [API reference — Rift wallets](${SITE}/docs/api/rift-wallet/): for partners using Rift-issued wallets, a Safe owned by the end user's passkey. Sign-in, passkeys, devices, signing, transfers, bridge, WalletConnect, offramp, onramp, beneficiaries and statements. End-user token
 - [API playground](${SITE}/docs/playground/): run live requests against sandbox or production with your own key; the key is kept in memory only
 - [Errors and retries](${SITE}/docs/guides/errors/)
 - [Webhooks](${SITE}/docs/guides/webhooks/)

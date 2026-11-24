@@ -30,7 +30,7 @@
 <td><strong>Customer administration</strong></td>
 <td>List your project&#39;s customers, look up, suspend and unsuspend them</td>
 <td><code>GET /v1/users</code>, <code>/v1/users/lookup</code>, <code>/v1/users/suspended</code>, <code>POST /v1/users/{id}/suspend</code>, <code>/unsuspend</code></td>
-<td><a href="/docs/api/core/">API</a></td>
+<td><a href="/docs/api/rift-wallet/">API</a></td>
 </tr>
 <tr>
 <td><strong>Account recovery</strong></td>
@@ -42,13 +42,13 @@
 <td><strong>Payment links and invoices</strong></td>
 <td>Create invoices, list and cancel them, record payments, send the link by email or SMS</td>
 <td><code>POST /v1/invoices</code>, <code>GET /v1/invoices</code>, <code>DELETE /v1/invoices/{id}</code>, <code>POST /v1/invoices/{id}/payments</code>, <code>/notifications</code></td>
-<td><a href="/docs/api/core/">API</a></td>
+<td><a href="/docs/api/rift-wallet/">API</a></td>
 </tr>
 <tr>
 <td><strong>Merchant approval</strong></td>
 <td>Mark your customers as approved merchants. Only enforced when merchant approval is switched on for your project</td>
 
-<td><a href="/docs/api/core/">API</a></td>
+<td><a href="/docs/api/rift-wallet/">API</a></td>
 </tr>
 <tr>
 <td><strong>Widget configuration</strong></td>
@@ -117,7 +117,7 @@
 </tr>
 </tbody></table>
 <h2 id="run-by-the-widget-react-components-and-sdk">Run by the widget, React components and SDK</h2>
-<p>These are the end user&#39;s own flows. They are authenticated with the customer&#39;s access token rather than your project key, and several need a passkey signature that only the customer&#39;s device can produce, so the Rift widget or SDK calls them for you. They are not part of the per-project API reference; the operation pages are collected under <a href="/docs/api/core/#used-by-the-rift-widget-and-app">Used by the Rift widget and app</a>.</p>
+<p>These are the end user&#39;s own flows. They are authenticated with the customer&#39;s access token rather than your project key, and several need a passkey signature that only the customer&#39;s device can produce, so the Rift widget or SDK calls them for you. They are documented in full under <a href="/docs/api/rift-wallet/">Rift wallets</a>, the section for partners whose wallets Rift issues and secures.</p>
 <ul>
 <li>Customer profile, balances, history, deposits, sending and signing (two-phase preview then submit), approvals, trusted devices, passkey registration.</li>
 <li>Payouts (offramp), onramp, beneficiaries, bridges, WalletConnect, ledger and statements, identity verification pages.</li>
