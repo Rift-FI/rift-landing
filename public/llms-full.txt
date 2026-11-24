@@ -9,7 +9,7 @@ This file is self-contained. It contains everything needed to integrate Rift: en
 - Sandbox API base URL: https://sandbox.riftfi.com . Free. No payment. Start here.
 - Production API base URL: https://api.riftfi.com . Access is a flat $88 per month subscription (no usage tiers).
 - Sandbox and production are separate: keys, projects, customers and wallets do not cross environments. The optional header `X-Rift-Mode: sandbox|production` selects the environment's data.
-- Widget scripts: sandbox https://widget.sandbox.riftfi.com/embed.js ; production https://widget.riftfi.xyz/embed.js . The widget origin decides which backend it talks to.
+- Widget scripts: sandbox https://widget.sandbox.riftfi.com/embed.js ; production https://widget.riftfi.com/embed.js . The widget origin decides which backend it talks to.
 - Dashboard (create projects, keys, allowed origins, billing): https://portal.riftfi.com
 - Credentials: project key `sk_...` (X-API-Key header; server side), public key `pk_...` (frontend; being introduced, existing keys keep working), platform key `psk_...` (server only; Platform API), and the customer access token (Authorization: Bearer).
 - Never put an `sk_` or `psk_` key in browser or mobile code. Never commit keys. Read them from environment variables.
@@ -174,7 +174,7 @@ Rift gives your product wallets, payments and payouts through one REST API, an e
 |---|---|---|
 | API base URL | `https://sandbox.riftfi.com` | `https://api.riftfi.com` |
 | Cost | **Free. No payment needed.** | Flat **$88 per month** subscription |
-| Widget script | `https://widget.sandbox.riftfi.com/embed.js` | `https://widget.riftfi.xyz/embed.js` |
+| Widget script | `https://widget.sandbox.riftfi.com/embed.js` | `https://widget.riftfi.com/embed.js` |
 | Funds | Test payment routes and sandbox wallets | Real customer funds |
 | Keys and customers | Separate from production | Separate from sandbox |
 
@@ -264,7 +264,7 @@ Pick the lightest path that covers what you need. All of them talk to the same A
 Register your page origin in the dashboard first (allowed origins), then:
 
 ```html
-<!-- Sandbox. For production use https://widget.riftfi.xyz/embed.js and a production key -->
+<!-- Sandbox. For production use https://widget.riftfi.com/embed.js and a production key -->
 <script src="https://widget.sandbox.riftfi.com/embed.js"
         data-project-key="YOUR_SANDBOX_PROJECT_KEY" async></script>
 
@@ -996,7 +996,7 @@ The hosted widget is a Rift-branded modal in an iframe. It signs customers in (e
    <script src="https://widget.sandbox.riftfi.com/embed.js" data-project-key="sk_YOUR_SANDBOX_KEY" async></script>
 
    <!-- Production -->
-   <script src="https://widget.riftfi.xyz/embed.js" data-project-key="sk_YOUR_PROJECT_KEY" async></script>
+   <script src="https://widget.riftfi.com/embed.js" data-project-key="sk_YOUR_PROJECT_KEY" async></script>
    ```
 
    The widget talks to the backend of the environment it is loaded from.
@@ -1012,7 +1012,7 @@ The hosted widget is a Rift-branded modal in an iframe. It signs customers in (e
 
    ```ts
 // embed.ts: page script next to
-//   <script src="https://widget.riftfi.xyz/embed.js" data-project-key="sk_…" async></script>
+//   <script src="https://widget.riftfi.com/embed.js" data-project-key="sk_…" async></script>
 //   <button data-rift-trigger>Sign in</button>
 
 let accessToken: string | null = null;
@@ -3623,7 +3623,7 @@ Sandbox and production run the same API, SDKs and widget. You choose by base URL
 | | Sandbox | Production |
 |---|---|---|
 | API base URL | `https://sandbox.riftfi.com` | `https://api.riftfi.com` |
-| Widget | `https://widget.sandbox.riftfi.com/embed.js` | `https://widget.riftfi.xyz/embed.js` |
+| Widget | `https://widget.sandbox.riftfi.com/embed.js` | `https://widget.riftfi.com/embed.js` |
 | `@rift-finance/react` | `<RiftProvider environment="sandbox">` | `<RiftProvider>` (default `"production"`) |
 | `@rift-finance/wallet` | `environment: Environment.SANDBOX` | `environment: Environment.PRODUCTION` |
 | Wallet owners | Customer passkeys, verified on-chain | Customer passkeys, verified on-chain |
@@ -3846,7 +3846,7 @@ Wrap the app once.
 | Prop | Type | Default | |
 |---|---|---|---|
 | `apiKey` | `string` | required | Project API key (`sk_…`). |
-| `environment` | `"production" \| "sandbox"` | `"production"` | Picks the widget: `widget.riftfi.xyz` or `widget.sandbox.riftfi.com`, and so the backend. |
+| `environment` | `"production" \| "sandbox"` | `"production"` | Picks the widget: `widget.riftfi.com` or `widget.sandbox.riftfi.com`, and so the backend. |
 | `widgetUrl` | `string` | | Overrides `environment` (self-hosted widget, local build). |
 | `autoOpen` | `boolean` | `false` | Open sign-in on mount when signed out. |
 | `persist` | `boolean` | `true` | Remember the signed-in identity across reloads. The access token itself stays in memory. |
@@ -3938,12 +3938,12 @@ Source: https://riftfi.com/docs/sdk/widget/
 ### Script tag
 
 ```html
-<script src="https://widget.riftfi.xyz/embed.js" data-project-key="sk_…" async></script>
+<script src="https://widget.riftfi.com/embed.js" data-project-key="sk_…" async></script>
 ```
 
 | Attribute | |
 |---|---|
-| `src` | `https://widget.riftfi.xyz/embed.js` (production) or `https://widget.sandbox.riftfi.com/embed.js` (sandbox). The widget origin decides the backend. |
+| `src` | `https://widget.riftfi.com/embed.js` (production) or `https://widget.sandbox.riftfi.com/embed.js` (sandbox). The widget origin decides the backend. |
 | `data-project-key` | Your project API key. Required. |
 
 Elements with `data-rift-trigger` open the modal on click; `data-rift-mode` sets the mode (`signin` default, `signup`).

@@ -7,6 +7,24 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "riftfi.xyz" }],
+      "destination": "https://riftfi.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.riftfi.xyz" }],
+      "destination": "https://riftfi.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.riftfi.com" }],
+      "destination": "https://riftfi.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/blog/black-market-is-a-price",
       "destination": "/blog/parallel-market-is-a-price",
       "permanent": true

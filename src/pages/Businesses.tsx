@@ -29,7 +29,7 @@ export const Businesses = () => (
         name="description"
         content="Move money across African borders in minutes, compliantly, and turn every payment into credit history your bank can see."
       />
-      <link rel="canonical" href="https://riftfi.xyz/businesses" />
+      <link rel="canonical" href="https://riftfi.com/businesses" />
       <meta property="og:type" content="website" />
       <meta
         property="og:title"
@@ -39,7 +39,7 @@ export const Businesses = () => (
         property="og:description"
         content="Move money across African borders in minutes, compliantly, and turn every payment into credit history your bank can see."
       />
-      <meta property="og:url" content="https://riftfi.xyz/businesses" />
+      <meta property="og:url" content="https://riftfi.com/businesses" />
     </Helmet>
 
     <header className="hero hero--center" id="top">
@@ -55,13 +55,13 @@ export const Businesses = () => (
         <div className="hero-cta">
           <a
             className="btn btn-primary btn-lg"
-            href="https://wallet.riftfi.xyz/"
+            href="https://wallet.riftfi.com/"
             target="_blank"
             rel="noopener noreferrer"
           >
             Start moving money {I.arrow}
           </a>
-          <a className="btn btn-secondary btn-lg" href="mailto:admin@riftfi.xyz">
+          <a className="btn btn-secondary btn-lg" href="mailto:admin@riftfi.com">
             Talk to us {I.arrowR}
           </a>
         </div>
@@ -170,13 +170,13 @@ export const Businesses = () => (
           <div className="cta-btns">
             <a
               className="btn cta-btn btn-lg"
-              href="https://wallet.riftfi.xyz/"
+              href="https://wallet.riftfi.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
               Open the Rift Wallet {I.arrow}
             </a>
-            <a className="tlink cta-tlink" href="mailto:admin@riftfi.xyz">
+            <a className="tlink cta-tlink" href="mailto:admin@riftfi.com">
               Talk to us {I.arrowR}
             </a>
           </div>

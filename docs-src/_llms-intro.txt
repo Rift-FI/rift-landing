@@ -9,7 +9,7 @@ This file is self-contained. It contains everything needed to integrate Rift: en
 - Sandbox API base URL: https://sandbox.riftfi.com . Free. No payment. Start here.
 - Production API base URL: https://api.riftfi.com . Access is a flat $88 per month subscription (no usage tiers).
 - Sandbox and production are separate: keys, projects, customers and wallets do not cross environments. The optional header `X-Rift-Mode: sandbox|production` selects the environment's data.
-- Widget scripts: sandbox https://widget.sandbox.riftfi.com/embed.js ; production https://widget.riftfi.xyz/embed.js . The widget origin decides which backend it talks to.
+- Widget scripts: sandbox https://widget.sandbox.riftfi.com/embed.js ; production https://widget.riftfi.com/embed.js . The widget origin decides which backend it talks to.
 - Dashboard (create projects, keys, allowed origins, billing): https://portal.riftfi.com
 - Credentials: project key `sk_...` (X-API-Key header; server side), public key `pk_...` (frontend; being introduced, existing keys keep working), platform key `psk_...` (server only; Platform API), and the customer access token (Authorization: Bearer).
 - Never put an `sk_` or `psk_` key in browser or mobile code. Never commit keys. Read them from environment variables.

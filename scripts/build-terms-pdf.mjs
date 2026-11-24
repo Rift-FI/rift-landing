@@ -190,7 +190,7 @@ const SECTIONS = [
     title: "Contact",
     blocks: [
       { kind: "p", text: "Sphere Ramp Ltd (Rift), Enkang, Ngong Road, Nairobi, Kenya." },
-      { kind: "p", text: "sales@riftfi.com · admin@riftfi.com · admin@riftfi.xyz" },
+      { kind: "p", text: "sales@riftfi.com · admin@riftfi.com · admin@riftfi.com" },
     ],
   },
 ];

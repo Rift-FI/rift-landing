@@ -146,7 +146,7 @@ const CALLOUTS = {
 };
 const PRICING_HTML = `<div data-rift-extras="1"><h2>Sandbox is free</h2><p>The sandbox at <code>https://sandbox.riftfi.com</code> is free and needs no payment. Build and test every integration there.</p>
 <h2>Production: $88 per month</h2><p>Production API access (<code>https://api.riftfi.com</code>) is one flat subscription of <strong>$88 per month</strong>. There are no usage tiers. New projects start with a short trial. Billing details are returned by <code>GET /v1/billing/plans</code> and <code>GET /v1/billing/payment-info</code>. Fees for payouts, onramp, bridges and transfers are priced per corridor and shown in each quote.</p>
-<p>For volume terms, a security pack or help with your launch plan, email <a href="mailto:admin@riftfi.xyz">admin@riftfi.xyz</a> with your countries, expected monthly active customers and the rails you need.</p></div>`;
+<p>For volume terms, a security pack or help with your launch plan, email <a href="mailto:admin@riftfi.com">admin@riftfi.com</a> with your countries, expected monthly active customers and the rails you need.</p></div>`;
 
 let patched = 0;
 for (const file of walk(docsOut)) {

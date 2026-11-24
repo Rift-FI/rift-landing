@@ -10,7 +10,7 @@ import path from "node:path";
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, "dist");
 const POSTS_DIR = path.join(ROOT, "src", "content", "blog");
-const BASE_URL = "https://riftfi.xyz";
+const BASE_URL = "https://riftfi.com";
 // Legal / compliance pages canonicalise to the Google Play developer domain.
 const LEGAL_URL = "https://riftfi.com";
 
@@ -101,7 +101,7 @@ async function writeRss(posts) {
       <guid isPermaLink="true">${BASE_URL}/blog/${p.slug}</guid>
       <description>${escapeXml(p.description)}</description>
       <pubDate>${new Date(p.date).toUTCString()}</pubDate>
-      <author>noreply@riftfi.xyz (${escapeXml(p.author)})</author>
+      <author>noreply@riftfi.com (${escapeXml(p.author)})</author>
 ${(p.tags || []).map((t) => `      <category>${escapeXml(t)}</category>`).join("\n")}
     </item>`
   ).join("\n");

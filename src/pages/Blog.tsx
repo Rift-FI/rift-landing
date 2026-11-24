@@ -73,36 +73,36 @@ export const Blog = () => {
           name="description"
           content="Essays, deep dives and product updates from the Rift team on stablecoins, payments, emerging markets and what we're building."
         />
-        <link rel="canonical" href="https://riftfi.xyz/blog" />
-        <link rel="alternate" type="application/rss+xml" title="Rift Journal" href="https://riftfi.xyz/feed.xml" />
+        <link rel="canonical" href="https://riftfi.com/blog" />
+        <link rel="alternate" type="application/rss+xml" title="Rift Journal" href="https://riftfi.com/feed.xml" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Rift Journal. Notes on money without borders." />
         <meta property="og:description" content="Essays from the Rift team on stablecoins, emerging markets and the future of programmable money." />
-        <meta property="og:url" content="https://riftfi.xyz/blog" />
-        <meta property="og:image" content="https://riftfi.xyz/og-image.png" />
+        <meta property="og:url" content="https://riftfi.com/blog" />
+        <meta property="og:image" content="https://riftfi.com/og-image.png" />
         <meta property="og:site_name" content="Rift Finance" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@tryrift" />
         <meta name="twitter:title" content="Rift Journal" />
         <meta name="twitter:description" content="Essays from the Rift team on stablecoins, emerging markets and programmable money." />
-        <meta name="twitter:image" content="https://riftfi.xyz/og-image.png" />
+        <meta name="twitter:image" content="https://riftfi.com/og-image.png" />
 
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Blog",
           "name": "Rift Journal",
-          "url": "https://riftfi.xyz/blog",
+          "url": "https://riftfi.com/blog",
           "description": "Essays from the Rift team on stablecoins, emerging markets and programmable money.",
           "publisher": {
             "@type": "Organization",
             "name": "Rift Finance",
-            "url": "https://riftfi.xyz/",
+            "url": "https://riftfi.com/",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://riftfi.xyz/assets/rift-logo.png"
+              "url": "https://riftfi.com/assets/rift-logo.png"
             }
           },
           "blogPost": posts.slice(0, 10).map((p) => ({
@@ -112,8 +112,8 @@ export const Blog = () => {
             "datePublished": p.date,
             "dateModified": p.date,
             "author": { "@type": "Person", "name": p.author },
-            "url": `https://riftfi.xyz/blog/${p.slug}`,
-            "mainEntityOfPage": `https://riftfi.xyz/blog/${p.slug}`,
+            "url": `https://riftfi.com/blog/${p.slug}`,
+            "mainEntityOfPage": `https://riftfi.com/blog/${p.slug}`,
             "keywords": p.tags?.join(", ")
           }))
         })}</script>
@@ -121,8 +121,8 @@ export const Blog = () => {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://riftfi.xyz/" },
-            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://riftfi.xyz/blog" }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://riftfi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://riftfi.com/blog" }
           ]
         })}</script>
       </Helmet>

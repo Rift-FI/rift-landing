@@ -239,7 +239,7 @@ export const InstitutionReveal = () => {
               ))}
             </div>
             <div className="hero-cta" style={{ marginTop: 40, justifyContent: "center" }}>
-              <a className="btn btn-primary btn-lg" href="mailto:admin@riftfi.xyz">
+              <a className="btn btn-primary btn-lg" href="mailto:admin@riftfi.com">
                 Book a call {I.arrow}
               </a>
             </div>
@@ -424,7 +424,7 @@ export const Wallet = () => (
           <div className="hero-cta" style={{ marginTop: 28 }}>
             <a
               className="btn btn-secondary"
-              href="https://wallet.riftfi.xyz/"
+              href="https://wallet.riftfi.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -446,12 +446,12 @@ export const FinalCTA = () => (
         <h2>Book a call.</h2>
         <p>15 minutes. We walk you through Rift and answer your questions.</p>
         <div className="cta-btns">
-          <a className="btn cta-btn btn-lg" href="mailto:admin@riftfi.xyz">
+          <a className="btn cta-btn btn-lg" href="mailto:admin@riftfi.com">
             Book a call {I.arrow}
           </a>
           <a
             className="tlink cta-tlink"
-            href="https://portal.riftfi.xyz/docs"
+            href="https://portal.riftfi.com/docs"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -472,7 +472,7 @@ export const Footer = () => {
         ["The stack", "/#stack"],
         ["Trust", "/#security"],
         ["Coverage", "/#coverage"],
-        ["Rift Wallet", "https://wallet.riftfi.xyz/"],
+        ["Rift Wallet", "https://wallet.riftfi.com/"],
       ],
     },
     {
@@ -485,16 +485,16 @@ export const Footer = () => {
     {
       h: "Developers",
       links: [
-        ["Documentation", "https://portal.riftfi.xyz/docs"],
-        ["API reference", "https://portal.riftfi.xyz/docs"],
-        ["Sandbox", "https://portal.riftfi.xyz/docs"],
+        ["Documentation", "https://portal.riftfi.com/docs"],
+        ["API reference", "https://portal.riftfi.com/docs"],
+        ["Sandbox", "https://portal.riftfi.com/docs"],
       ],
     },
     {
       h: "Company",
       links: [
         ["Blog", "/blog"],
-        ["Contact", "mailto:admin@riftfi.xyz"],
+        ["Contact", "mailto:admin@riftfi.com"],
       ],
     },
     {
@@ -573,7 +573,7 @@ export const Footer = () => {
               {I.tg}
             </a>
             <a
-              href="https://portal.riftfi.xyz/docs"
+              href="https://portal.riftfi.com/docs"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Docs"

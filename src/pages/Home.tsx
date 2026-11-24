@@ -21,14 +21,14 @@ export const Home = () => (
       <meta name="description" content={DESC} />
       <meta name="author" content="Rift Finance" />
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-      <link rel="canonical" href="https://riftfi.xyz/" />
+      <link rel="canonical" href="https://riftfi.com/" />
 
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Rift Finance" />
       <meta property="og:title" content={TITLE} />
       <meta property="og:description" content={DESC} />
-      <meta property="og:url" content="https://riftfi.xyz/" />
-      <meta property="og:image" content="https://riftfi.xyz/og-image.png" />
+      <meta property="og:url" content="https://riftfi.com/" />
+      <meta property="og:image" content="https://riftfi.com/og-image.png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:locale" content="en_KE" />
@@ -37,16 +37,16 @@ export const Home = () => (
       <meta name="twitter:site" content="@tryrift" />
       <meta name="twitter:title" content={TITLE} />
       <meta name="twitter:description" content={DESC} />
-      <meta name="twitter:image" content="https://riftfi.xyz/og-image.png" />
+      <meta name="twitter:image" content="https://riftfi.com/og-image.png" />
 
       <script type="application/ld+json">{JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Organization",
-        "@id": "https://riftfi.xyz/#org",
+        "@id": "https://riftfi.com/#org",
         name: "Rift Finance",
         alternateName: "Rift",
-        url: "https://riftfi.xyz/",
-        logo: "https://riftfi.xyz/assets/rift-logo.png",
+        url: "https://riftfi.com/",
+        logo: "https://riftfi.com/assets/rift-logo.png",
         description: DESC,
         foundingLocation: { "@type": "Place", name: "Nairobi, Kenya" },
         areaServed: COUNTRIES.map((name) => ({ "@type": "Country", name })),
@@ -62,10 +62,10 @@ export const Home = () => (
       <script type="application/ld+json">{JSON.stringify({
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "@id": "https://riftfi.xyz/#website",
-        url: "https://riftfi.xyz/",
+        "@id": "https://riftfi.com/#website",
+        url: "https://riftfi.com/",
         name: "Rift Finance",
-        publisher: { "@id": "https://riftfi.xyz/#org" },
+        publisher: { "@id": "https://riftfi.com/#org" },
       })}</script>
     </Helmet>
     <Landing />

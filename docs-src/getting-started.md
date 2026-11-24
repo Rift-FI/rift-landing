@@ -11,7 +11,7 @@ Rift gives your product wallets, payments and payouts through one REST API, an e
 |---|---|---|
 | API base URL | `https://sandbox.riftfi.com` | `https://api.riftfi.com` |
 | Cost | **Free. No payment needed.** | Flat **$88 per month** subscription |
-| Widget script | `https://widget.sandbox.riftfi.com/embed.js` | `https://widget.riftfi.xyz/embed.js` |
+| Widget script | `https://widget.sandbox.riftfi.com/embed.js` | `https://widget.riftfi.com/embed.js` |
 | Funds | Test payment routes and sandbox wallets | Real customer funds |
 | Keys and customers | Separate from production | Separate from sandbox |
 

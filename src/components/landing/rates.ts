@@ -45,7 +45,7 @@ const FALLBACK: Record<string, Rate> = {
   NGN: { currency: "NGN", symbol: "₦", decimals: 2, onramp: 1405.38, offramp: 1387.08, perTransactionMax: 1000000 },
 };
 
-const RATES_URL = "https://payment.riftfi.xyz/v1/rates";
+const RATES_URL = "https://api.riftfi.com/v1/rates";
 
 export type RatesState = { rates: Record<string, Rate>; live: boolean; updatedAt: Date | null };
 

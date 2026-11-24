@@ -11,4 +11,4 @@ Allow: /
 User-agent: DuckDuckBot
 Allow: /
 
-Sitemap: https://riftfi.xyz/sitemap.xml
+Sitemap: https://riftfi.com/sitemap.xml

@@ -18,7 +18,7 @@ Pick the lightest path that covers what you need. All of them talk to the same A
 Register your page origin in the dashboard first (allowed origins), then:
 
 ```html
-<!-- Sandbox. For production use https://widget.riftfi.xyz/embed.js and a production key -->
+<!-- Sandbox. For production use https://widget.riftfi.com/embed.js and a production key -->
 <script src="https://widget.sandbox.riftfi.com/embed.js"
         data-project-key="YOUR_SANDBOX_PROJECT_KEY" async></script>
 

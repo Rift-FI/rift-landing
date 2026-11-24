@@ -19,7 +19,7 @@ import net from "node:net";
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, "dist");
 const POSTS_DIR = path.join(ROOT, "src", "content", "blog");
-const BASE_URL = "https://riftfi.xyz";
+const BASE_URL = "https://riftfi.com";
 const PORT = 4173;
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -147,7 +147,7 @@ async function writeRss(posts) {
       <guid isPermaLink="true">${BASE_URL}/blog/${p.slug}</guid>
       <description>${escapeXml(p.description)}</description>
       <pubDate>${new Date(p.date).toUTCString()}</pubDate>
-      <author>noreply@riftfi.xyz (${escapeXml(p.author)})</author>
+      <author>noreply@riftfi.com (${escapeXml(p.author)})</author>
 ${(p.tags || []).map((t) => `      <category>${escapeXml(t)}</category>`).join("\n")}
     </item>`
     )
@@ -205,7 +205,7 @@ async function renderOgImage(page) {
     <h1>Compliant stablecoin infrastructure<br/>for <span class="accent">institutions.</span></h1>
     <div class="foot">
       <span>Wallets · ramps · settlement · one API</span>
-      <span class="url">riftfi.xyz</span>
+      <span class="url">riftfi.com</span>
     </div>
   </div>
 </body></html>`;
@@ -290,7 +290,7 @@ async function main() {
     browser = await chromium.launch({ headless: true });
     const ctx = await browser.newContext({
       viewport: { width: 1440, height: 900 },
-      userAgent: "RiftPrerender/1.0 (+https://riftfi.xyz)",
+      userAgent: "RiftPrerender/1.0 (+https://riftfi.com)",
     });
     const page = await ctx.newPage();
 

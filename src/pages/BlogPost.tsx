@@ -86,14 +86,14 @@ export const BlogPost = () => {
         <html lang="en" />
         <title>{`${post.title}. Rift Blog.`}</title>
         <meta name="description" content={post.description} />
-        <link rel="canonical" href={`https://riftfi.xyz/blog/${post.slug}`} />
+        <link rel="canonical" href={`https://riftfi.com/blog/${post.slug}`} />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.description} />
-        <meta property="og:url" content={`https://riftfi.xyz/blog/${post.slug}`} />
-        <meta property="og:image" content="https://riftfi.xyz/og-image.png" />
+        <meta property="og:url" content={`https://riftfi.com/blog/${post.slug}`} />
+        <meta property="og:image" content="https://riftfi.com/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:site_name" content="Rift Finance" />
@@ -109,7 +109,7 @@ export const BlogPost = () => {
         <meta name="twitter:site" content="@tryrift" />
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.description} />
-        <meta name="twitter:image" content="https://riftfi.xyz/og-image.png" />
+        <meta name="twitter:image" content="https://riftfi.com/og-image.png" />
 
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
@@ -121,27 +121,27 @@ export const BlogPost = () => {
           "author": {
             "@type": "Person",
             "name": post.author || "Rift Team",
-            "url": "https://riftfi.xyz/blog"
+            "url": "https://riftfi.com/blog"
           },
           "publisher": {
             "@type": "Organization",
             "name": "Rift Finance",
-            "url": "https://riftfi.xyz/",
+            "url": "https://riftfi.com/",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://riftfi.xyz/assets/rift-logo.png",
+              "url": "https://riftfi.com/assets/rift-logo.png",
               "width": 512,
               "height": 512
             }
           },
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://riftfi.xyz/blog/${post.slug}`
+            "@id": `https://riftfi.com/blog/${post.slug}`
           },
-          "url": `https://riftfi.xyz/blog/${post.slug}`,
+          "url": `https://riftfi.com/blog/${post.slug}`,
           "image": {
             "@type": "ImageObject",
-            "url": "https://riftfi.xyz/og-image.png",
+            "url": "https://riftfi.com/og-image.png",
             "width": 1200,
             "height": 630
           },
@@ -153,9 +153,9 @@ export const BlogPost = () => {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://riftfi.xyz/" },
-            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://riftfi.xyz/blog" },
-            { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://riftfi.xyz/blog/${post.slug}` }
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://riftfi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://riftfi.com/blog" },
+            { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://riftfi.com/blog/${post.slug}` }
           ]
         })}</script>
       </Helmet>
