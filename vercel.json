@@ -7,22 +7,70 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "riftfi.xyz" }],
-      "destination": "https://riftfi.com/:path*",
-      "permanent": true
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "riftfi.xyz"
+        }
+      ],
+      "destination": "https://riftfi.com/",
+      "statusCode": 301
     },
     {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.riftfi.xyz" }],
-      "destination": "https://riftfi.com/:path*",
-      "permanent": true
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "riftfi.xyz"
+        }
+      ],
+      "destination": "https://riftfi.com/$1",
+      "statusCode": 301
     },
     {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.riftfi.com" }],
-      "destination": "https://riftfi.com/:path*",
-      "permanent": true
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.riftfi.xyz"
+        }
+      ],
+      "destination": "https://riftfi.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.riftfi.xyz"
+        }
+      ],
+      "destination": "https://riftfi.com/$1",
+      "statusCode": 301
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.riftfi.com"
+        }
+      ],
+      "destination": "https://riftfi.com/",
+      "statusCode": 301
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.riftfi.com"
+        }
+      ],
+      "destination": "https://riftfi.com/$1",
+      "statusCode": 301
     },
     {
       "source": "/blog/black-market-is-a-price",
