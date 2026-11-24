@@ -4211,9 +4211,9 @@ The API in three parts, by who is integrating. PUBLIC: catalogue and pricing, no
 
 ### Platform (Beta)
 
-- GET /v1/platform/keys [platform key (psk_)] (per-project) List platform secret keys (owner session only)
-- POST /v1/platform/keys [platform key (psk_)] (per-project) Create a platform secret key (owner session only); the key is returned once | body: {"label":"string"}
-- DELETE /v1/platform/keys/{id} [platform key (psk_)] (per-project) Revoke a platform key (owner session only) | params: id*(path)
+- GET /v1/platform/keys [owner] (per-project) List platform secret keys (owner session only)
+- POST /v1/platform/keys [owner] (per-project) Create a platform secret key (owner session only); the key is returned once | body: {"label":"string"}
+- DELETE /v1/platform/keys/{id} [owner] (per-project) Revoke a platform key (owner session only) | params: id*(path)
 - GET /v1/platform/customers [platform key (psk_)] (per-project) List customers | params: search(query), kyc(query), cursor(query), limit(query)
 - GET /v1/platform/customers/{id} [platform key (psk_)] (per-project) Customer detail | params: id*(path)
 - GET /v1/platform/customers/{id}/ledger [platform key (psk_)] (per-project) Customer ledger | params: id*(path), from(query), to(query), type(query), cursor(query), limit(query)

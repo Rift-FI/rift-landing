@@ -102,6 +102,16 @@ function authOf(op, spec) {
   if (sec && sec.length === 0) return "none";
   const names = new Set((sec || spec.security || []).flatMap((s) => Object.keys(s)));
   if (names.has("platformKeyAuth")) return "platform";
+  /**
+   * Owner-session routes take a bearer token like a customer route, but it
+   * is the PROJECT OWNER's dashboard session, not an end user's. Labelling
+   * it "customer access token" sends someone to find the wrong thing — the
+   * same failure as asking for a psk_ key on a route that refuses one.
+   */
+  const ownerOnly = /owner session only|owner-session only|dashboard session/i.test(
+    (op.summary || "") + " " + (op.description || "")
+  );
+  if (ownerOnly && names.has("bearerAuth")) return "owner";
   if (names.has("adminKeyAuth") && names.size === 1) return "admin";
   const b = names.has("bearerAuth"), k = names.has("apiKeyAuth");
   if (b && k) return "customer+key";

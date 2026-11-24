@@ -50,6 +50,7 @@
     none: "No authentication required",
     customer: "Customer access token (Authorization: Bearer)",
     key: "Project API key (X-API-Key)",
+    owner: "Project owner's dashboard session (Authorization: Bearer). Not a psk_ key and not an end-user token — these routes refuse both, so that a platform key can never mint another.",
     "customer+key": "Customer access token, with the project API key",
     platform: "Platform secret key (psk_...) in X-API-Key. Server-side only",
     admin: "Rift internal"
@@ -194,7 +195,7 @@
     var lines = ["curl -X " + cur.method + " '" + u.url + "'"];
     lines.push("  -H 'X-Rift-Mode: " + env + "'");
     if (cur.auth !== "none") lines.push("  -H \"X-API-Key: $RIFT_API_KEY\"");
-    if (cur.auth === "customer" || cur.auth === "customer+key") lines.push("  -H \"Authorization: Bearer $RIFT_TOKEN\"");
+    if (cur.auth === "customer" || cur.auth === "customer+key" || cur.auth === "owner") lines.push("  -H \"Authorization: Bearer $RIFT_TOKEN\"");
     var b = bodyText();
     if (b != null) {
       lines.push("  -H 'Content-Type: application/json'");
@@ -234,7 +235,7 @@
       if (/\s/.test(key) || /[^\x21-\x7e]/.test(key)) { setStatus("That key contains characters an API key never has.", "err"); return; }
       headers["X-API-Key"] = key;
     }
-    if (token && (cur.auth === "customer" || cur.auth === "customer+key")) {
+    if (token && (cur.auth === "customer" || cur.auth === "customer+key" || cur.auth === "owner")) {
       if (/[^\x21-\x7e]/.test(token)) { setStatus("The token contains invalid characters.", "err"); return; }
       headers["Authorization"] = "Bearer " + token;
     }
