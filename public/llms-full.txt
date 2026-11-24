@@ -4100,6 +4100,12 @@ The per-project API: every operation you call with your project API key or a pro
 - POST /v1/ramps/onramp [none] (per-project) Onramp to any address | body: {"currency":"KES","amount":"string","phone":"+254712345678","toAddress":"string"}
 - GET /v1/ramps/orders/{id} [none] (per-project) Get a ramp order | params: id*(path)
 
+### Payment links
+
+- GET /v1/invoices/{id}/onramp/quote [none] (per-project) Price a link in mobile money | params: id*(path), currency(query), phone(query), fiatAmount(query), amount(query)
+- POST /v1/invoices/{id}/onramp [none] (per-project) Raise the payment prompt | params: id*(path) | body: {"phone":"0712345678","network":"Safaricom","currency":"string","fiatAmount":1,"amount":1}
+- GET /v1/invoices/{id}/onramp/{orderId} [none] (per-project) Poll the prompt | params: id*(path), orderId*(path)
+
 ### Payouts (Beta)
 
 - GET /v1/payouts/countries [none] (per-project) Countries, rails and limits for payouts and onramp (public, cached about 10 minutes).

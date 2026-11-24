@@ -210,6 +210,46 @@
   "tier": "public"
  },
  {
+  "id": "get_v1_invoices_id_public",
+  "method": "GET",
+  "path": "/v1/invoices/{id}/public",
+  "group": "public",
+  "tag": "Payment links",
+  "summary": "The payer's view of a link",
+  "cls": "APP",
+  "tier": "public"
+ },
+ {
+  "id": "get_v1_invoices_id_onramp_quote",
+  "method": "GET",
+  "path": "/v1/invoices/{id}/onramp/quote",
+  "group": "public",
+  "tag": "Payment links",
+  "summary": "Price a link in mobile money",
+  "cls": "CUSTOMER",
+  "tier": "public"
+ },
+ {
+  "id": "post_v1_invoices_id_onramp",
+  "method": "POST",
+  "path": "/v1/invoices/{id}/onramp",
+  "group": "public",
+  "tag": "Payment links",
+  "summary": "Raise the payment prompt",
+  "cls": "CUSTOMER",
+  "tier": "public"
+ },
+ {
+  "id": "get_v1_invoices_id_onramp_orderid",
+  "method": "GET",
+  "path": "/v1/invoices/{id}/onramp/{orderId}",
+  "group": "public",
+  "tag": "Payment links",
+  "summary": "Poll the prompt",
+  "cls": "CUSTOMER",
+  "tier": "public"
+ },
+ {
   "id": "post_v1_kyc_sessions",
   "method": "POST",
   "path": "/v1/kyc/sessions",
