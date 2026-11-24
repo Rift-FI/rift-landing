@@ -150,16 +150,6 @@
   "tier": "public"
  },
  {
-  "id": "get_v1_chains_chainId_assets",
-  "method": "GET",
-  "path": "/v1/chains/{chainId}/assets",
-  "group": "public",
-  "tag": "Chains",
-  "summary": "List assets for a specific chain.",
-  "cls": "DEAD",
-  "tier": "public"
- },
- {
   "id": "get_v1_chains_chainId_tokens",
   "method": "GET",
   "path": "/v1/chains/{chainId}/tokens",

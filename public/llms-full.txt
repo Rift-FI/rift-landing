@@ -1807,7 +1807,7 @@ export async function signedPost<T>(accessToken: string, path: string, payload: 
 
 #### Register
 
-Every device endpoint is in the [Core API reference](https://riftfi.com/docs/api/rift-wallet/operations/post_v1_devices/) under Devices.
+Every device endpoint is in the [Rift wallets reference](https://riftfi.com/docs/api/rift-wallet/operations/post_v1_devices/) under Devices.
 
 ```bash
 curl -X POST https://sandbox.riftfi.com/v1/devices \
@@ -2375,7 +2375,7 @@ The full list is on [errors](https://riftfi.com/docs/guides/errors/).
 
 Source: https://riftfi.com/docs/guides/onramp/
 
-> Beta: Onramp is off on an environment until Rift enables it there; until then every onramp route answers `404 ONRAMP_DISABLED`. The endpoints are in the [Core API reference](https://riftfi.com/docs/api/rift-wallet/operations/post_v1_onramps/) under Onramps (Beta).
+> Beta: Onramp is off on an environment until Rift enables it there; until then every onramp route answers `404 ONRAMP_DISABLED`. The endpoints are in the [Rift wallets reference](https://riftfi.com/docs/api/rift-wallet/operations/post_v1_onramps/) under Onramps (Beta).
 
 Onramp turns local money into stablecoins in the customer's **own Safe**. The recipient is always the customer's wallet address; an onramp cannot be pointed anywhere else.
 
@@ -4057,6 +4057,14 @@ The Rift MCP server exposes 83 tools. Setup is in the [MCP quickstart](https://r
 
 The per-project API: every operation you call with your project API key or a project id you own (tier "per-project"), the server-only platform tier (psk_ key) and public reference data. End-user flows that the Rift widget, React components and SDK run for you are listed after the catalogue and are not an integration surface. Notation: METHOD path [auth] summary | params (* = required, in parentheses where it goes) | example JSON body. "customer token" = Authorization: Bearer; "project key" = X-API-Key. Full per-endpoint detail: https://riftfi.com/docs/api/core/ and https://riftfi.com/docs/api/platform/. Try any of them live: https://riftfi.com/docs/playground/
 
+### Approvals
+
+- GET /v1/approvals [customer token] (per-project) List the user's approval requests (app inbox). | params: status(query)
+- GET /v1/approvals/{id} [customer token + project key] (per-project) Get an approval request — owner user JWT, or the creating project's API key alone. | params: id*(path)
+- POST /v1/approvals/{id}/preview [customer token] (per-project) Fresh two-phase ticket built from the stored intent. | params: id*(path)
+- POST /v1/approvals/{id}/approve [customer token] (per-project) Approve with the passkey-signed ticket from /preview (single use). | params: id*(path) | body: {"ticketId":"string","authProof":{"kind":"passkey","cred_id_b64":"string","client_data_json_b64":"string","authenticator_data_b64":"string","signature_b64":"string"}}
+- POST /v1/approvals/{id}/reject [customer token] (per-project) Reject an approval request. | params: id*(path)
+
 ### Assets
 
 - GET /v1/assets [none] (per-project) List all supported assets.
@@ -4069,11 +4077,32 @@ The per-project API: every operation you call with your project API key or a pro
 - POST /v1/auth/sign-in [project key] (per-project) Authenticate existing user. | body: {}
 - POST /v1/auth/sign-in/google [none] (per-project) Verify a Google ID token and find-or-create the user. | body: {"idToken":"string","referrer":"string"}
 - POST /v1/auth/sign-in/apple [none] (per-project) Verify an Apple identity token and find-or-create the user. | body: {"idToken":"string","displayName":"string","referrer":"string"}
+- POST /v1/auth/sessions/refresh [none] (per-project) Rotate the refresh-cookie and issue a fresh access JWT.
+- POST /v1/auth/sign-out [none] (per-project) Revoke the refresh-cookie.
+
+### Balances
+
+- GET /v1/balances [customer token] (per-project) Get all token balances on a given chain or across all chains. | params: chain(query), walletType(query)
+- GET /v1/balances/tokens/{symbol} [customer token] (per-project) Get the balance of a specific token across chains. | params: symbol*(path), chain(query), walletType(query)
+
+### Beneficiaries (Beta)
+
+- GET /v1/beneficiaries [customer token] (per-project) Saved recipients (most recently used first). | params: type(query)
+- POST /v1/beneficiaries [customer token] (per-project) Save a recipient. Fiat recipients get a name lookup; deduped on (type, identifier, bankCode). | body: {"type":"wallet","identifier":"string"}
+- PATCH /v1/beneficiaries/{id} [customer token] (per-project) Edit label / network / bank name (identifier is immutable). | params: id*(path) | body: {"label":"string","network":"string","bankName":"string"}
+- DELETE /v1/beneficiaries/{id} [customer token] (per-project) Delete a saved recipient. | params: id*(path)
 
 ### Billing
 
 - GET /v1/billing/plans [none] (per-project) Get the public billing plan catalogue.
 - GET /v1/billing/payment-info [none] (per-project) Get the on-chain payment configuration (admin payout address + supported chains).
+
+### Bridge
+
+- GET /v1/bridge/routes [none] (per-project) List supported bridge routes and tokens.
+- POST /v1/bridge/quotes [none] (per-project) Get a crosschain bridge quote with platform-fee + balance check. | body: {"sourceChain":"string","destinationChain":"string","token":"string","amount":"string","recipient":"string"}
+- POST /v1/bridge/transfers [customer token] (per-project) Execute a crosschain bridge transfer via Rift's bridge. | body: {"sourceChain":"string","destinationChain":"string","token":"string","amount":"string","recipient":"string"}
+- POST /v1/bridge/transfers/preview [customer token] (per-project) Phase 1 of a v3 cross-chain bridge — builds the bridge calls and returns hash + ticket. | body: {"sourceChain":"BASE","destChain":"ARBITRUM","token":"USDC","amount":"string","recipient":"string"}
 
 ### Chains
 
@@ -4081,17 +4110,84 @@ The per-project API: every operation you call with your project API key or a pro
 - GET /v1/chains/{id} [none] (per-project) Get a single chain by id. | params: id*(path)
 - GET /v1/chains/{chainId}/tokens [none] (per-project) List tokens for a specific chain. | params: chainId*(path)
 
+### Deposits
+
+- GET /v1/deposits [customer token] (per-project) List the user's onchain deposits.
+- GET /v1/deposits/stats [customer token] (per-project) Get the user's deposit statistics.
+
+### Devices
+
+- GET /v1/devices [customer token] (per-project) List devices
+- POST /v1/devices [customer token] (per-project) Register this device's key | body: {"publicKey":"string","label":"string","platform":"string"}
+- GET /v1/devices/policy [none] (per-project) Enforcement switch
+- POST /v1/devices/{id}/approve/challenge [customer token] (per-project) Passkey challenge to approve a pending device (from a trusted device) | params: id*(path)
+- POST /v1/devices/{id}/approve [customer token] (per-project) Approve a pending device with a passkey (from a trusted device) | params: id*(path) | body: {"challengeId":"string","authProof":{}}
+- POST /v1/devices/{id}/recover/start [customer token] (per-project) Lost other device: send an OTP (from the pending device itself) | params: id*(path)
+- POST /v1/devices/{id}/recover/verify [customer token] (per-project) Verify the OTP → cooling_off | params: id*(path) | body: {"otpCode":"string"}
+- POST /v1/devices/{id}/recover/cancel [none] (per-project) Cancel link from the email (no JWT) | params: id*(path) | body: {"token":"string"}
+- DELETE /v1/devices/{id} [customer token] (per-project) Remove a device (from a trusted device) | params: id*(path)
+
 ### Invoices
 
 - POST /v1/invoices/{id}/payments [project key] (per-project) Mark an invoice as paid via an on-chain transaction. | params: id*(path) | body: {"transactionHash":"string","chain":"string"}
 - GET /v1/invoices [customer token + project key] (per-project) List invoices. | params: status(query), sortBy(query), sortOrder(query), startDate(query), endDate(query), page(query), limit(query)
 - POST /v1/invoices [customer token + project key] (per-project) Create a new invoice. | body: {"chain":"string","token":"string","amount":1}
 - POST /v1/invoices/{id}/notifications [project key] (per-project) Deliver an invoice link via email or SMS to a recipient. | params: id*(path) | body: {"paymentLink":"string","message":"string","recipientEmail":"string","recipientPhone":"string"}
+- GET /v1/invoices/{id}/redirect [none] (per-project) Public redirect to the invoice URL (used by short-link surfaces). | params: id*(path)
+
+### KYC
+
+- POST /v1/kyc/status [none] (per-project) Look up a user's KYC verification status by identifier. | body: {"identifier":"string"}
+- POST /v1/kyc/poll-and-notify [none] (per-project) Poll a KYC job to completion and dispatch a one-time code on success. | body: {"identifier":"string","timeout":1}
+- POST /v1/kyc/sessions [none] (per-project) Create a KYC verification session (the provider or the provider depending on country). | body: {"country_code":"string","identifier":"string"}
+- GET /v1/kyc/status [customer token] (per-project) Check the authenticated user's KYC verification status.
+- GET /v1/kyc/jobs/{jobId} [customer token] (per-project) Poll a KYC submission job to completion. | params: jobId*(path)
+- POST /v1/kyc/sessions [none] (per-project) Create a KYC verification session (the provider or the provider depending on country). | body: {"country_code":"string","identifier":"string"}
+- GET /v1/kyc/status [customer token] (per-project) Check the authenticated user's KYC verification status.
+- POST /v1/kyc/submissions [customer token] (per-project) Submit KYC images (from frontend or via server-to-server). | body: {"images":{},"partner_params":{},"country_code":"string"}
+- GET /v1/kyc/jobs/{jobId} [customer token] (per-project) Poll a KYC submission job to completion. | params: jobId*(path)
+
+### Ledger (Beta)
+
+- GET /v1/ledger [customer token] (per-project) Every money movement of the user, newest first. | params: from(query), to(query), type(query), cursor(query), limit(query)
+- POST /v1/statements/challenge [customer token] (per-project) Single-use (5 min) passkey challenge for a statement.
+- POST /v1/statements [customer token] (per-project) Statement (CSV or PDF) authorised by a passkey assertion over hashToSign; emailed or downloaded. | body: {"challengeId":"string","authProof":{"kind":"passkey","cred_id_b64":"string","client_data_json_b64":"string","authenticator_data_b64":"string","signature_b64":"string"},"from":"2026-01-01T00:00:00Z","to":"2026-01-01T00:00:00Z","format":"csv","delivery":"email"}
+
+### Me
+
+- GET /v1/me [customer token] (per-project) Get the authenticated user's profile.
+- PUT /v1/me [customer token] (per-project) Update the authenticated user's profile (PUT alias of PATCH). | body: {}
+- PATCH /v1/me [customer token] (per-project) Update the authenticated user's profile. | body: {}
+- DELETE /v1/me [customer token] (per-project) Delete the authenticated user and all related data. | body: {"externalId":"string","phone":"string","email":"string","otpCode":"string","phoneNumber":"string","password":"string"}
+- GET /v1/me/tokens [customer token] (per-project) List the tokens currently owned by the authenticated user.
+
+### Notifications
+
+- POST /v1/notifications/messages [customer token] (per-project) Send a notification email to the authenticated user (self). | body: {"message":"string","title":"string","targetUrl":"string"}
+- POST /v1/notifications/broadcasts [customer token] (per-project) Project owner broadcasts an email to every user in their project. | body: {"message":"string","title":"string","targetUrl":"string"}
+
+### Offramps
+
+- GET /v1/offramps [customer token] (per-project) List the user's offramp orders (newest first, paginated). | params: page(query), limit(query)
+- POST /v1/offramps [customer token] (per-project) Pay out stablecoins to local money (one-phase). | body: {"token":"USDC","currency":"KES","chain":"BASE"}
+- GET /v1/offramps/{transactionCode} [customer token] (per-project) Payout order by Rift order id (or, for older orders, by transaction code). | params: transactionCode*(path), currency(query)
+- POST /v1/offramps/preview [customer token] (per-project) Phase 1 of a v3 off-ramp — builds the ERC-20 transfer to Rift's settlement address and returns hash + ticket. | body: {"token":"string","chain":"string","amount":"string","lpAddress":"string"}
+- POST /v1/offramps/init [customer token] (per-project) Two-phase payout, step 1: create the order and return the hash to sign. | body: {"token":"USDC","amount":"string","currency":"KES","chain":"BASE","recipient":{"type":"MOBILE","accountIdentifier":"string","institution":"string","accountNumber":"string","bankCode":"string","accountName":"string"},"localAmount":1}
+- POST /v1/offramps/finalize [customer token] (per-project) Two-phase payout, step 2: submit the passkey signature and start the fiat leg. | body: {"orderId":"string","ticketId":"string","authProof":{"kind":"passkey","cred_id_b64":"string","client_data_json_b64":"string","authenticator_data_b64":"string","signature_b64":"string"}}
+- POST /v1/offramps/{id}/refund [customer token] (per-project) Refund a failed payout to the customer's wallet. | params: id*(path)
 
 ### One-time codes
 
 - POST /v1/one-time-codes [none] (per-project) Send a one-time code via SMS or email. | body: {"phone":"string","email":"string"}
 - POST /v1/one-time-codes/verify [none] (per-project) Verify a one-time code. | body: {"phone":"string","email":"string","code":"string"}
+
+### Onramps (Beta)
+
+- GET /v1/onramps/quote [customer token] (per-project) Quote a fiat amount. | params: currency*(query), amount*(query), token(query), chain(query)
+- GET /v1/onramps/kyc [customer token] (per-project) Whether the customer's verified KYC is usable for onramp (no personal data returned). | params: currency(query)
+- GET /v1/onramps [customer token] (per-project) The user's onramp orders.
+- POST /v1/onramps [customer token] (per-project) Buy stablecoins into the customer's own Safe. | body: {"currency":"KES","fiatAmount":1300,"token":"USDC","chain":"BASE"}
+- GET /v1/onramps/{id} [customer token] (per-project) One onramp order with its current status. | params: id*(path)
 
 ### Own-wallet ramps
 
@@ -4102,6 +4198,7 @@ The per-project API: every operation you call with your project API key or a pro
 
 ### Payment links
 
+- GET /v1/invoices/{id}/public [none] (per-project) The payer's view of a link | params: id*(path)
 - GET /v1/invoices/{id}/onramp/quote [none] (per-project) Price a link in mobile money | params: id*(path), currency(query), phone(query), fiatAmount(query), amount(query)
 - POST /v1/invoices/{id}/onramp [none] (per-project) Raise the payment prompt | params: id*(path) | body: {"phone":"0712345678","network":"Safaricom","currency":"string","fiatAmount":1,"amount":1}
 - GET /v1/invoices/{id}/onramp/{orderId} [none] (per-project) Poll the prompt | params: id*(path), orderId*(path)
@@ -4136,8 +4233,11 @@ The per-project API: every operation you call with your project API key or a pro
 
 ### Projects
 
+- GET /v1/projects [customer token] (per-project) List projects owned by the authenticated user.
+- POST /v1/projects [none] (per-project) Create a new project (bootstrap; OTP required). | body: {"name":"string"}
 - GET /v1/projects/{id} [customer token] (per-project) Get a project's details. | params: id*(path)
 - PATCH /v1/projects/{id} [customer token] (per-project) Update a project (name, branding, custom widget domain). | params: id*(path) | body: {}
+- DELETE /v1/projects/{id} [customer token] (per-project) Delete a project. | params: id*(path) | body: {"otpCode":"string","email":"string","phoneNumber":"string","externalId":"string","password":"string"}
 - GET /v1/projects/{id}/stats [customer token] (per-project) Get a project's usage stats. | params: id*(path)
 - GET /v1/projects/{id}/api-logs [customer token] (per-project) Get a paginated API call log for a project. | params: id*(path), page(query), limit(query), status(query), onlyErrors(query)
 - PATCH /v1/projects/{id}/markup [customer token] (per-project) Configure the project's markup (custom service-fee on transfers). | params: id*(path) | body: {"markup_bps":1,"markup_treasury_address":"string"}
@@ -4163,6 +4263,13 @@ The per-project API: every operation you call with your project API key or a pro
 
 ### Recovery
 
+- GET /v1/identifier-recovery/methods [customer token] (per-project) Get the authenticated user's recovery methods.
+- POST /v1/identifier-recovery/methods [customer token] (per-project) Create the authenticated user's recovery methods. | body: {}
+- PUT /v1/identifier-recovery/methods [customer token] (per-project) Replace all of the authenticated user's recovery methods. | body: {}
+- DELETE /v1/identifier-recovery/methods [customer token] (per-project) Delete all of the authenticated user's recovery methods. | body: {"otpCode":"string","email":"string","phoneNumber":"string","externalId":"string","password":"string"}
+- POST /v1/identifier-recovery/methods/{type} [customer token] (per-project) Add a specific recovery method. | params: type*(path) | body: {"value":"string","otpCode":"string","email":"string","phoneNumber":"string","externalId":"string","password":"string"}
+- PATCH /v1/identifier-recovery/methods/{type} [customer token] (per-project) Update the value of a specific recovery method. | params: type*(path) | body: {"value":"string","otpCode":"string","email":"string","phoneNumber":"string","externalId":"string","password":"string"}
+- DELETE /v1/identifier-recovery/methods/{type} [customer token] (per-project) Remove a specific recovery method (cannot remove the last one). | params: type*(path) | body: {"otpCode":"string","email":"string","phoneNumber":"string","externalId":"string","password":"string"}
 - GET /v1/identifier-recovery/options/{externalId} [project key] (per-project) Get masked recovery options for an externalId. | params: externalId*(path)
 - GET /v1/identifier-recovery/options [project key] (per-project) Get masked recovery options by primary identifier. | params: identifier*(query), identifierType*(query)
 - GET /v1/identifier-recovery/tokens/{token} [project key] (per-project) Validate a recovery token. | params: token*(path)
@@ -4179,6 +4286,13 @@ The per-project API: every operation you call with your project API key or a pro
 
 - GET /v1/tokens [none] (per-project) List all tokens.
 - GET /v1/tokens/{id} [none] (per-project) Get a single token by id. | params: id*(path)
+
+### Transactions
+
+- GET /v1/transactions [customer token] (per-project) List the user's transaction history. | params: limit(query), page(query), token(query), chain(query)
+- POST /v1/transactions [customer token] (per-project) Send tokens across chains (native or ERC-20). | body: {"value":"string","token":"string","chain":"string"}
+- GET /v1/transactions/fee-estimate [customer token] (per-project) Estimate the on-chain fee for a transfer (paymaster-aware). | params: recipient*(query), amount*(query), chain*(query), token*(query)
+- POST /v1/transactions/preview [customer token] (per-project) Phase 1 of a v3 token transfer — returns the UserOp hash + ticket for a `token / recipient / amount` triple. | body: {"token":"USDC","chain":"BASE","recipient":"0x000...dead","amount":"1.50"}
 
 ### Users
 
@@ -4204,6 +4318,36 @@ The per-project API: every operation you call with your project API key or a pro
 - GET /v1/accounts/{id}/transactions [none] (per-project) List transactions | params: id*(path), type(query), status(query), limit(query), cursor(query)
 - GET /v1/accounts/{id}/statement [none] (per-project) Account statement | params: id*(path), from(query), to(query)
 - GET /v1/accounts/transactions/{txnId} [none] (per-project) Get one transaction | params: txnId*(path)
+
+### Wallet
+
+- GET /v1/wallet/identity [customer token] (per-project) Get wallet identity (EOA address). The public key is dropped in Phase 2 — derive it from any signature if you need it.
+- POST /v1/wallet/chains/{chain} [customer token] (per-project) Get wallet instance metadata for a specific chain. | params: chain*(path)
+- POST /v1/wallet/signatures/message [customer token] (per-project) ERC-1271 message signing, phase 2 → { signature } (ERC-6492-wrapped if the Safe is undeployed). | body: {"ticketId":"string","authProof":{"kind":"passkey","cred_id_b64":"string","client_data_json_b64":"string","authenticator_data_b64":"string","signature_b64":"string"}}
+- POST /v1/wallet/user-operations [customer token] (per-project) Send an ERC-4337 user operation via the smart-wallet service. | body: {"chain":"string","transactionData":{},"paymasterToken":"string"}
+- POST /v1/wallet/user-operations/preview [customer token] (per-project) Phase 1 — build an ERC-4337 UserOperation and return the hash + ticket to sign. | body: {"chain":"BASE","transactionData":{"to":"string","value":"string","data":"string"}}
+- POST /v1/wallet/user-operations/submit-prepared [customer token] (per-project) Phase 2 — submit a previously-previewed UserOperation with the user's authProof. | body: {"ticketId":"string","authProof":{"kind":"passkey","cred_id_b64":"string","client_data_json_b64":"string","authenticator_data_b64":"string","signature_b64":"string"}}
+- POST /v1/wallet/signatures/message/preview [customer token] (per-project) ERC-1271 message signing, phase 1 (personal_sign or typed data). | body: {"chain":"BASE","message":"string","typedData":{}}
+
+### Wallet & passkeys
+
+- GET /v1/wallet/status [customer token] (per-project) Passkey-wallet status (also returned as `walletStatus` by every sign-in).
+- POST /v1/wallet/passkeys/options [customer token] (per-project) WebAuthn registration options (ES256 only, 32-byte single-use challenge, 5 min). | body: {"rpId":"string"}
+- GET /v1/wallet/passkeys [customer token] (per-project) List the user's passkeys.
+- POST /v1/wallet/passkeys [customer token] (per-project) Register a passkey (creates, migrates or extends the wallet). | body: {"attestation":{"cred_id_b64":"string","client_data_json_b64":"string","attestation_object_b64":"string"},"label":"string","possession":{"cred_id_b64":"string","client_data_json_b64":"string","authenticator_data_b64":"string","signature_b64":"string"}}
+- POST /v1/wallet/passkeys/confirm [customer token] (per-project) Confirm an added passkey with signatures from an existing passkey (one per deployed chain). | body: {"credentialId":"string","signatures":[{"ticketId":"string","authProof":{"kind":"passkey","cred_id_b64":"string","client_data_json_b64":"string","authenticator_data_b64":"string","signature_b64":"string"}}]}
+- DELETE /v1/wallet/passkeys/{id} [customer token] (per-project) Start removing a passkey (removeOwner tickets for every deployed chain). | params: id*(path)
+- POST /v1/wallet/passkeys/{id}/confirm-removal [customer token] (per-project) Submit the passkey-signed removeOwner tickets. | params: id*(path) | body: {"signatures":[{"ticketId":"string","authProof":{"kind":"passkey","cred_id_b64":"string","client_data_json_b64":"string","authenticator_data_b64":"string","signature_b64":"string"}}]}
+
+### WalletConnect
+
+- POST /v1/wallet-connect/pairings [customer token] (per-project) Pair the wallet with a DApp via a WalletConnect URI. | body: {"uri":"string","chain":"string"}
+- GET /v1/wallet-connect/requests [customer token] (per-project) List pending WalletConnect requests awaiting approval.
+- POST /v1/wallet-connect/requests/{id}/approve [customer token] (per-project) Approve a pending WalletConnect request. | params: id*(path)
+- POST /v1/wallet-connect/requests/{id}/reject [customer token] (per-project) Reject a pending WalletConnect request. | params: id*(path)
+- GET /v1/wallet-connect/sessions [customer token] (per-project) List active WalletConnect sessions.
+- DELETE /v1/wallet-connect/sessions/{topic} [customer token] (per-project) Disconnect a WalletConnect session. | params: topic*(path)
+- POST /v1/wallet-connect/requests/{id}/preview [customer token] (per-project) Phase 1 for a v3 WalletConnect approval — build the UserOp for the dApp's request and return hash + ticket. | params: id*(path)
 
 ### Widget
 

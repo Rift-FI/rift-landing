@@ -151,7 +151,25 @@ for (const [file, group] of [
        * exactly that — and hiding it would leave the playground unable to
        * call something the docs document.
        */
-      if (cl && cl.cls !== "CUSTOMER") continue;
+      /**
+       * Hide only what cannot usefully be called, NOT what needs a user
+       * token.
+       *
+       * The old rule kept CUSTOMER and dropped everything else, including
+       * all 153 operations classified APP — a class whose own definition is
+       * "User JWT only (no project-key path): the signed-in end user's own
+       * wallet flow". That is the definition of the Rift-wallet tier, so the
+       * rule hid the tier from its own playground: no WalletConnect, no
+       * bridge transfer, no send, no balances, no offramp, no KYC. The
+       * classification predates the three-tier split and was answering a
+       * question nobody asks any more.
+       *
+       * The tier specs have already removed Rift Ops and the excluded
+       * products, so what is left to exclude is only: routes that no longer
+       * exist, Rift-internal test endpoints, and routes on their way out.
+       */
+      const HIDE = new Set(["DEAD", "INTERNAL", "REMOVE"]);
+      if (cl && HIDE.has(cl.cls)) continue;
       ops.push({ tier: group,
         id: op.operationId || `${m}_${p}`,
         method: m.toUpperCase(),
@@ -177,7 +195,9 @@ for (const [file, group] of [
   }
 }
 
-if (unclassified.length) console.warn("WARNING unclassified spec ops (excluded): " + [...new Set(unclassified)].join(", "));
+// Not a warning any more: an operation with no classification entry is new,
+// and new operations are published. Printed so the list stays visible.
+if (unclassified.length) console.log("new since the last classification pass (included): " + [...new Set(unclassified)].join(", "));
 fs.writeFileSync(path.resolve(here, "_classified-ops.json"), JSON.stringify(classified, null, 1));
 const json = JSON.stringify({ generatedFrom: "walletos-docs/openapi/tiers (public, own-wallet, rift-wallet)", count: ops.length, operations: ops });
 if (BANNED.test(json)) throw new Error("Banned third-party name in spec: " + json.match(BANNED)[0]);
