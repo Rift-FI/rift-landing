@@ -9,6 +9,10 @@ export const CONTACT_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponen
 /** Yield (LP pool): invite-only, its own site. */
 export const YIELD_URL = "https://lp.riftfi.com";
 
+/** The Android app on Google Play. */
+export const PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=xyz.riftfi.wallet";
+
 /**
  * Partner logos for the strip under the hero. Empty on purpose: add only
  * partners who have agreed to be named. The strip hides itself when empty.
