@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import { Link } from "react-router-dom";
 import { APP_URL, CONTACT_EMAIL, CONTACT_HREF, DOCS_URL, PLAY_STORE_URL, YIELD_URL } from "../../lib/links";
 import { CORRIDORS, fmt, useRates } from "./rates";
+import { PlayMark } from "../PlayMark";
 import { Roller } from "./Roller";
 import { useReducedMotion } from "./useReducedMotion";
 
@@ -24,24 +25,11 @@ const Arrow = () => (
   </svg>
 );
 
-/**
- * The Google Play mark, drawn as its four facets rather than loaded as an
- * image: it stays crisp at any size, inherits the button metrics, and costs
- * no request in front of the hero.
- */
-const GooglePlayMark = () => (
-  <svg className="rl-play-mark" width="17" height="19" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path d="M3 1.8 13.6 12 3 22.2Z" fill="#00C3FF" />
-    <path d="M3 1.8 17.2 9.9 13.6 12Z" fill="#00E676" />
-    <path d="M3 22.2 13.6 12l3.6 2.1Z" fill="#FF3D47" />
-    <path d="M17.2 9.9 20.8 12l-3.6 2.1L13.6 12Z" fill="#FFCE00" />
-  </svg>
-);
 
 /** Google Play, in the two-line lockup people recognise, as a Rift pill. */
 const PlayButton = () => (
   <a className="rl-btn rl-btn-play" href={PLAY_STORE_URL} target="_blank" rel="noreferrer">
-    <GooglePlayMark />
+    <PlayMark className="rl-play-mark" />
     <span className="rl-play-text">
       <span className="rl-play-kicker">Get it on</span>
       <span className="rl-play-name">Google Play</span>

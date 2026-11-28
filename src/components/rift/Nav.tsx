@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { APP_URL, CONTACT_HREF, DOCS_URL } from "../../lib/links";
+import { APP_URL, CONTACT_HREF, DOCS_URL, PLAY_STORE_URL } from "../../lib/links";
+import { PlayMark } from "../PlayMark";
 
 export const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -45,12 +46,19 @@ export const Nav = () => {
 
   return (
     <nav ref={navRef} className={"top" + (scrolled ? " scrolled" : "")}>
-      <a className="announce" href={APP_URL} data-testid="announce-app">
+      <a
+        className="announce"
+        href={PLAY_STORE_URL}
+        target="_blank"
+        rel="noreferrer"
+        data-testid="announce-app"
+      >
+        <PlayMark size={15} className="announce-mark" />
         <span>
-          <strong>Rift Payments is live.</strong>
-          <span className="announce-sub"> Send, receive and cash out stablecoins.</span>
+          <strong>Rift is live on Google Play.</strong>
+          <span className="announce-sub"> Send, receive and cash out from your phone.</span>
         </span>
-        <span className="announce-cta">Open the app <span aria-hidden="true">→</span></span>
+        <span className="announce-cta">Get the app <span aria-hidden="true">→</span></span>
       </a>
       <div className="wrap nav-in">
         <Link className="brand" to="/" onClick={closeMenu}>
